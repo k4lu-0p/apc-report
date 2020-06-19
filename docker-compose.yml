@@ -1,0 +1,82 @@
+version: '3'
+services:
+    # Service pour notre app
+    # Le service app construira une image basé sur notre Dockerfile
+    app:
+        # Cette configuration indique à Docker Compose de construire une image locale
+        build:
+            # Les arguments qui seront passés à notre Dockerfile
+            args:
+                user: lucas
+                uid: 1000
+            # Soit un chemin vers un répertoire contenant un Dockerfile, soit une URL vers un référentiel git.
+            context: ./
+            dockerfile: ./docker/Dockerfile
+        # Comme Docker Compose charge automatiquement les fichiers variables .env situés dans le même répertoire que le fichier docker-compose.yml...
+        env_file:
+            - .env
+        image: api-meet-report
+        container_name: api-meet-report-app
+        # Indique qu'il faut toujours redémarrer ce service, sauf s'il est explicitement arrêté.
+        restart: unless-stopped
+        # Définit le répertoire par défaut du service
+        working_dir: /var/www/
+        # Crée un volume partagé qui synchronisera le contenu du répertoire actuel avec /var/www dans le conteneur.
+        volumes:
+            - ./:/var/www
+        # Configure ce service pour utiliser un réseau nommé mynetwork
+        networks:
+            - mynetwork
+    # Service pour notre server SQL et notre database
+    db:
+        image: mysql:5.7
+        # Le nom du container est également le nom host à saisir par exemple dans adminer
+        container_name: api-meet-report-db
+        restart: unless-stopped
+        # Définit les variables d'environnement dans le nouveau conteneur
+        environment:
+            # On bind les variables de notre .env
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        # Crée un volume pour partager un dump de base de données .sql qui sera utilisé pour initialiser la base de données de l'application
+        volumes:
+            - ./docker/config/database/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+        networks:
+            - mynetwork
+    # Service pour la gestion de la database
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        container_name: api-meet-report-phpmyadmin
+        networks:
+            - mynetwork
+        ports:
+            - 8181:80
+        environment:
+            MYSQL_USERNAME: ${DB_USERNAME}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            PMA_HOST: db
+    # Service pour notre server web
+    nginx:
+        # Image Nginx pré-construite sur Alpine, une distribution Linux légère
+        image: nginx:1.17-alpine
+        container_name: api-meet-report-nginx
+        restart: unless-stopped
+        ports:
+            # Redirection de port: 8000 machine hôte -> 80 container
+            - 8000:80
+        volumes:
+            # synchronisera le contenu du répertoire actuel avec /var/www à l'intérieur du conteneur
+            - ./:/var/www
+            # en synchronisant notre dossier de config contenant une config perso nginx,
+            # la copie de notre fichier conf se fait dans le dossier de config nginx de container.
+            - ./docker/config/nginx:/etc/nginx/conf.d
+        networks:
+            - mynetwork
+# Nos services partageront un pont de réseau appelé mynetwork
+networks:
+    mynetwork:
+        driver: bridge
