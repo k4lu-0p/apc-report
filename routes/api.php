@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// GET : Lister tous les utilisateurs
+Route::middleware('auth:sanctum')->get('/users', 'UserController@list');
+
+// POST : S'identifier
+Route::post('/login', 'SecurityController@login');
