@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/users', 'UserController@index');
 
 // GET : Lister les comptes-rendus
-Route::get('/reports', 'ReportController@index');
+Route::middleware('auth:sanctum')->get('/reports', 'ReportController@index');
 
 // POST : S'identifier
 Route::post('/login', 'SecurityController@login');
