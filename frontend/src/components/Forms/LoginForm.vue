@@ -1,0 +1,98 @@
+<!-- eslint-disable max-len -->
+<template>
+  <div class="w-screen h-screen flex flex-col justify-center items-center">
+    <form @submit.prevent="login" class="bg-white shadow-md rounded px-8 pt-6 pb-20 mb-4">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          {{ $t('form.email.label') }}
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="email"
+          type="email"
+          v-model="$v.form.email.$model"
+          @blur="$v.form.email.$touch()"
+          :placeholder="$t('form.email.label')"
+        >
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+        {{ $t('form.password.label') }}
+        </label>
+        <input
+          class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          id="password"
+          type="password"
+          v-model="$v.form.password.$model"
+          @blur="$v.form.password.$touch()"
+          :placeholder="$t('form.password.label')"
+        >
+        <p class="text-red-500 text-xs italic">Please choose a password.</p>
+      </div>
+      <div class="flex items-center justify-center absolute left-1/2 right-1/2">
+        <transition mode="out-in">
+          <div class="flex" v-if="authStatus === 'loading'">
+            <moon-loader :color="$const.MISC.SPINNER.COLOR"></moon-loader>
+          </div>
+          <button
+            type="submit"
+            v-else
+            class="mx-auto bg-teal-600 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >{{ $t('form.login.label') }}</button>
+        </transition>
+      </div>
+    </form>
+    <p class="text-center text-gray-500 text-xs">
+      &copy;2020 Lucas R. All rights reserved.
+    </p>
+  </div>
+</template>
+
+<script>
+import validator from '@/validators';
+import { mapGetters } from 'vuex';
+
+export default {
+  name: 'login-form',
+  data() {
+    return {
+      form: {
+        email: '',
+        password: '',
+      },
+    };
+  },
+  validations: validator.login,
+  methods: {
+    login() {
+      if (!this.$v.$invalid) {
+        this.$store.dispatch('authModule/login', this.form)
+          .then(() => this.$router.push('/'))
+          .catch((err) => console.log(err));
+      }
+    },
+  },
+  computed: {
+    ...mapGetters({
+      authStatus: 'authModule/authStatus',
+    }),
+    emailErrors() {
+      const errors = [];
+      if (!this.$v.form.email.$dirty) return errors;
+      if (!this.$v.form.email.email) errors.push(this.$t('form.email.validations.email'));
+      if (!this.$v.form.email.required) errors.push(this.$t('form.email.validations.required'));
+      return errors;
+    },
+    passwordErrors() {
+      const errors = [];
+      if (!this.$v.form.password.$dirty) return errors;
+      if (!this.$v.form.password.required) errors.push(this.$t('form.password.validations.required'));
+      return errors;
+    },
+  },
+};
+</script>
+
+<style lang="stylus" scoped>
+
+</style>

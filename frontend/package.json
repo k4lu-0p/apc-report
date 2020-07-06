@@ -1,0 +1,44 @@
+{
+    "name": "meet-report",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "rm -rf ../public/{js,css,img} && vue-cli-service build --no-clean",
+        "lint": "vue-cli-service lint",
+        "test:unit": "vue-cli-service test:unit"
+    },
+    "dependencies": {
+        "animate.css": "^4.1.0",
+        "axios": "^0.19.2",
+        "core-js": "^3.6.5",
+        "register-service-worker": "^1.7.1",
+        "roboto-fontface": "*",
+        "vue": "^2.6.11",
+        "vue-i18n": "^8.18.2",
+        "vue-router": "^3.2.0",
+        "vue-spinner": "^1.0.3",
+        "vuelidate": "^0.7.5",
+        "vuex": "^3.4.0",
+        "vuex-module-maker": "^1.0.2"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^4.4.0",
+        "@vue/cli-plugin-eslint": "^4.4.0",
+        "@vue/cli-plugin-pwa": "^4.4.0",
+        "@vue/cli-plugin-unit-jest": "^4.4.0",
+        "@vue/cli-service": "^4.4.0",
+        "@vue/eslint-config-airbnb": "^5.0.2",
+        "@vue/test-utils": "^1.0.3",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-vue": "^6.2.2",
+        "stylus": "^0.54.7",
+        "stylus-loader": "^3.0.2",
+        "vue-cli-plugin-tailwind": "^1.4.1",
+        "vue-cli-plugin-tailwindcss": "^0.1.1",
+        "vue-svg-loader": "^0.16.0",
+        "vue-template-compiler": "^2.6.11"
+    }
+}

@@ -1,0 +1,9 @@
+.git
+.gitignore
+env.*
+docker
+README.md
+.DS_Store
+frontend
+/tmp/*
+*.csv
