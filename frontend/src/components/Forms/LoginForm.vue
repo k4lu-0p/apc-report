@@ -1,12 +1,19 @@
 <!-- eslint-disable max-len -->
 <template>
   <div class="w-screen h-screen flex flex-col justify-center items-center">
+
+    <!-- // Login form -->
     <form @submit.prevent="login" class="bg-white shadow-md rounded px-8 pt-6 pb-20 mb-4">
       <div class="mb-4">
+
+        <!-- Label email field -->
         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
           {{ $t('form.email.label') }}
         </label>
+
+        <!-- // Input Email -->
         <input
+          :class="{'border-red-500' : emailErrors.length}"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="email"
           type="email"
@@ -14,31 +21,65 @@
           @blur="$v.form.email.$touch()"
           :placeholder="$t('form.email.label')"
         >
+
+        <!-- // Email error messages -->
+        <p
+          v-for="(message, index) in emailErrors"
+          :key="`email-error-${index}`"
+          class="text-red-500 text-xs italic pt-2"
+        >
+          {{ message }}
+        </p>
       </div>
       <div class="mb-6">
+
+        <!-- // Label password field -->
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
         {{ $t('form.password.label') }}
         </label>
+
+        <!-- // Input Password -->
         <input
-          class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+          :class="{'border-red-500' : passwordErrors.length}"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           v-model="$v.form.password.$model"
           @blur="$v.form.password.$touch()"
           :placeholder="$t('form.password.label')"
         >
-        <p class="text-red-500 text-xs italic">Please choose a password.</p>
+
+        <!-- // Password error messages -->
+        <p
+          v-for="(message, index) in passwordErrors"
+          :key="`password-error-${index}`"
+          class="text-red-500 text-xs italic pt-2"
+        >
+          {{ message }}
+        </p>
+
+        <!-- // Auth error message -->
+        <p class="text-red-500 text-xs italic pt-2" v-if="authStatus === $const.API.STATUS.ERROR">
+          {{ $t('form.login.failed') }}
+        </p>
       </div>
       <div class="flex items-center justify-center absolute left-1/2 right-1/2">
         <transition mode="out-in">
-          <div class="flex" v-if="authStatus === 'loading'">
+
+          <!-- // Spinner loading -->
+          <div class="flex" v-if="authStatus === $const.API.STATUS.LOADING">
             <moon-loader :color="$const.MISC.SPINNER.COLOR"></moon-loader>
           </div>
+
+          <!-- // Submit button -->
           <button
             type="submit"
             v-else
             class="mx-auto bg-teal-600 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >{{ $t('form.login.label') }}</button>
+          >
+            {{ $t('form.login.label') }}
+          </button>
+
         </transition>
       </div>
     </form>
@@ -67,8 +108,14 @@ export default {
     login() {
       if (!this.$v.$invalid) {
         this.$store.dispatch('authModule/login', this.form)
-          .then(() => this.$router.push('/'))
-          .catch((err) => console.log(err));
+          .then(() => {
+            if (this.authStatus === this.$const.API.STATUS.SUCCESS) {
+              this.$router.push('/');
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
   },
