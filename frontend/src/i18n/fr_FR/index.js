@@ -27,6 +27,9 @@ export default {
       label: 'Connexion',
       failed: 'Échec de l\'authentification.',
     },
+    logout: {
+      label: 'Déconnexion',
+    },
   },
   tabsNavigator: {
     home: 'Accueil',

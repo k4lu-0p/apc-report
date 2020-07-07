@@ -4,6 +4,7 @@ import $const from '../../constants';
 
 const template = {
   instructions: {
+    status: 'string',
     reports: {
       type: 'object',
       // initial_value: JSON.parse(localStorage.getItem('reports')) || '',
@@ -15,9 +16,20 @@ const template = {
       const { authModule: { token } } = rootState;
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_REPORTS}`;
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      const { data: reports } = await axios.get(endpoint, config);
-      localStorage.setItem('reports', JSON.stringify(reports));
-      commit('setReports', reports);
+      try {
+        commit('setStatus', $const.API.STATUS.LOADING);
+        const { data: reports } = await axios.get(endpoint, config);
+        localStorage.setItem('reports', JSON.stringify(reports));
+        commit('setReports', reports);
+        commit('setStatus', $const.API.STATUS.SUCCESS);
+      } catch (error) {
+        commit('setStatus', $const.API.STATUS.ERROR);
+        if (error.response) {
+          if (error.response.status === 401) {
+            commit('setStatus', $const.API.STATUS.UNAUTHORIZED);
+          }
+        }
+      }
     },
   },
 };
