@@ -18,7 +18,7 @@
           id="email"
           type="email"
           v-model="$v.form.email.$model"
-          @blur="$v.form.email.$touch()"
+          @blur="$v.form.email.touch()"
           :placeholder="$t('form.email.label')"
         >
 
@@ -45,7 +45,7 @@
           id="password"
           type="password"
           v-model="$v.form.password.$model"
-          @blur="$v.form.password.$touch()"
+          @blur="$v.form.password.touch()"
           :placeholder="$t('form.password.label')"
         >
 
@@ -89,55 +89,58 @@
   </div>
 </template>
 
-<script>
-import validator from '@/validators';
-import { mapGetters } from 'vuex';
+<script lang="ts">
+import $const from '../../constants';
+import { authModule } from '../../store/auth-module';
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Validations } from 'vuelidate-property-decorators';
+import validator from '../../validators';
+import { validationMixin } from 'vuelidate'
 
-export default {
-  name: 'login-form',
-  data() {
-    return {
-      form: {
-        email: '',
-        password: '',
-      },
-    };
-  },
-  validations: validator.login,
-  methods: {
-    login() {
-      if (!this.$v.$invalid) {
-        this.$store.dispatch('authModule/login', this.form)
-          .then(() => {
-            if (this.authStatus === this.$const.API.STATUS.SUCCESS) {
-              this.$router.push('/');
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    },
-  },
-  computed: {
-    ...mapGetters({
-      authStatus: 'authModule/authStatus',
-    }),
-    emailErrors() {
-      const errors = [];
-      if (!this.$v.form.email.$dirty) return errors;
-      if (!this.$v.form.email.email) errors.push(this.$t('form.email.validations.email'));
-      if (!this.$v.form.email.required) errors.push(this.$t('form.email.validations.required'));
-      return errors;
-    },
-    passwordErrors() {
-      const errors = [];
-      if (!this.$v.form.password.$dirty) return errors;
-      if (!this.$v.form.password.required) errors.push(this.$t('form.password.validations.required'));
-      return errors;
-    },
-  },
-};
+@Component
+export default class LoginForm extends Vue {
+  form: object = {
+    email: '',
+    password: '',
+  }
+
+  mounted() {
+    console.log(this.$v);
+  }
+
+  validations() {
+    return validator.login;
+  }
+
+  get authStatus(): string {
+    return authModule.authStatus;
+  }
+
+  get emailErrors(): Array<string> {
+    const errors: Array<any> = [];
+    if (!this.$v.form.email.$dirty) return errors;
+    if (!this.$v.form.email.email) errors.push(this.$t('form.email.validations.email'));
+    if (!this.$v.form.email.required) errors.push(this.$t('form.email.validations.required'));
+    return errors;
+  }
+
+  get passwordErrors(): Array<string> {
+    const errors: Array<any> = [];
+    if (!this.$v.form.password.$dirty) return errors;
+    if (!this.$v.form.password.required) errors.push(this.$t('form.password.validations.required'));
+    return errors;
+  }
+
+  private login(): void {
+    if (!this.$v.$invalid) {
+      authModule.login(this.form).then(() => {
+        if (authModule.authStatus === $const.API.STATUS.SUCCESS) {
+          this.$router.push('/');
+        }
+      });
+    }
+  }
+}
 </script>
 
 <style lang="stylus" scoped>

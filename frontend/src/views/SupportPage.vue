@@ -5,11 +5,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
-export default {
-  name: 'support-page',
-  components: {
-  },
-};
+@Component
+export default class SupportPage extends Vue {
+
+}
+
 </script>

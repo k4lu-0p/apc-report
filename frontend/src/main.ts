@@ -1,10 +1,13 @@
+import './hooks/registerComponentHooks'
 import Vue from 'vue';
 import constants from '@/constants';
-import axios from 'axios';
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import Vuelidate from 'vuelidate';
+
+Vue.use(Vuelidate);
 
 // Service Worker
 // import './registerServiceWorker';
@@ -14,12 +17,10 @@ import './assets/tailwind.css';
 import 'animate.css/animate.compat.css';
 
 // Plugins
-import './plugins/vuelidate';
-import i18n from './plugins/i18n';
+import { i18n } from './plugins/i18n';
 
 // Configurations
 Vue.config.productionTip = false;
-Vue.config.$axios = axios;
 
 // Utilitaires globaux
 Vue.prototype.$const = constants;

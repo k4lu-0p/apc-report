@@ -18,32 +18,34 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import ReportItem from '@/components/Reports/ReportItem.vue';
+import { reportsModule } from '../store/reports-module';
+import $const from '../constants';
 
-export default {
-  name: 'reports-page',
+@Component({
   components: {
     ReportItem,
   },
-  computed: {
-    reports: {
-      get() {
-        return this.$store.getters['reportsModule/getReports'];
-      },
-    },
-  },
-  mounted() {
+})
+export default class ReportsPage extends Vue {
+  mounted(): void {
     if (!this.reports && !this.reports.length) {
-      this.$store.dispatch('reportsModule/fetchReports').then(() => {
+      reportsModule.fetchUserReports().then(() => {
         // Handle invalid token even if user is authenticated
-        if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
-          this.$store.dispatch('authModule/logout').then(() => {
-            this.$router.push({ path: '/login' });
-          });
+        if (reportsModule.requestStatus === $const.API.STATUS.UNAUTHORIZED) {
+          reportsModule.logout().then(() => {
+            this.$router.push({ path: '/login' }) // TODO: fix this
+          })
         }
       });
     }
   },
-};
+
+  get reports(): Array<object> {
+    return reportsModule.allReportsUser;
+  }
+}
+
 </script>

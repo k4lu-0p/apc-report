@@ -4,15 +4,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import LoginForm from '@/components/Forms/LoginForm.vue';
 
-export default {
-  name: 'login-page',
+@Component({
   components: {
     LoginForm,
   },
-};
+})
+export default class LoginPage extends Vue {
+
+}
+
 </script>
 
 <style lang="scss" scoped>

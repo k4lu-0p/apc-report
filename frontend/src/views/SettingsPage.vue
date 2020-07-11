@@ -10,18 +10,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import { authModule } from '../store/auth-module';
 
-export default {
-  name: 'settings-page',
-  components: {
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch('authModule/logout').then(() => {
-        this.$router.push({ path: '/login' });
-      });
-    },
-  },
-};
+@Component
+export default class SettingsPage extends Vue {
+  private logout(): void {
+    authModule.logout().then(() => {
+      this.$router.push({ path: '/login' }); // TODO: fix it
+    });
+  }
+}
+
 </script>

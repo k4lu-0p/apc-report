@@ -1,5 +1,7 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import VueRouter, {
+  RouteConfig
+} from 'vue-router'
 import store from '../store';
 
 // Pages
@@ -12,7 +14,7 @@ import SettingsPage from '../views/SettingsPage.vue';
 
 Vue.use(VueRouter);
 
-const routes = [
+const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home-page',
@@ -65,7 +67,7 @@ const routes = [
       }
     },
   },
-];
+]
 
 const router = new VueRouter({
   routes,
@@ -92,3 +94,4 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
+

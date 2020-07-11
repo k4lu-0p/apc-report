@@ -65,7 +65,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import { IMAGES } from '../../constants';
 
 const {
@@ -77,41 +78,36 @@ const {
   },
 } = IMAGES;
 
-export default {
-  name: 'tabs-navigator',
+@Component({
   components: {
     SupportIcon,
     SettingsIcon,
     ReportsIcon,
     UsersIcon,
   },
-  data() {
-    return {
-      isVisible: true,
-      lastScrollPosition: 0,
-    };
-  },
-  methods: {
-    onScroll() {
-      const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      if (currentScrollPosition < 0) {
-        return;
-      }
-      // eslint-disable-next-line max-len
-      this.isVisible = (currentScrollPosition > this.lastScrollPosition) || (currentScrollPosition === 0);
-      this.lastScrollPosition = currentScrollPosition;
-    },
-    logout() {
-      console.log('Déconnexion');
-    },
-  },
+})
+export default class TabsNavigator extends Vue {
+  private isVisible: boolean = true;
+  private lastScrollPosition: number = 0;
+
   mounted() {
     window.addEventListener('scroll', this.onScroll);
   },
+
   beforeDestroy() {
     window.removeEventListener('scroll', this.onScroll);
   },
-};
+
+  public onScroll(): void {
+    const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    if (currentScrollPosition < 0) {
+      return;
+    }
+    // eslint-disable-next-line max-len
+    this.isVisible = (currentScrollPosition > this.lastScrollPosition) || (currentScrollPosition === 0);
+    this.lastScrollPosition = currentScrollPosition;
+  }
+}
 </script>
 
 <style lang="stylus">

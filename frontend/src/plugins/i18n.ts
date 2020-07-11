@@ -5,7 +5,16 @@ import messages from '@/i18n';
 
 Vue.use(VueI18n);
 
-export default new VueI18n({
+const i18n = new VueI18n({
   locale: constants.CONFIG.LOCAL.FR,
   messages,
 });
+
+const translate = (key: string) => {
+  if (!key) {
+    return '';
+  }
+  return i18n.t(key);
+};
+
+export { i18n, translate };

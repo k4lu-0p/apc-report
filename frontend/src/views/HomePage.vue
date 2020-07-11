@@ -12,11 +12,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
-export default {
-  name: 'home-page',
-  components: {
-  },
-};
+@Component
+export default class HomePage extends Vue {
+
+}
+
 </script>
