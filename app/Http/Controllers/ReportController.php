@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\Report as ReportResource;
+use App\Http\Resources\ReportResource;
 
 class ReportController extends Controller
 {
