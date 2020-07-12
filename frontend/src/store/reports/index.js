@@ -18,7 +18,7 @@ const template = {
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
-        const { data: reports } = await axios.get(endpoint, config);
+        const { data: { data: reports } } = await axios.get(endpoint, config);
         localStorage.setItem('reports', JSON.stringify(reports));
         commit('setReports', reports);
         commit('setStatus', $const.API.STATUS.SUCCESS);
