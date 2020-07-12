@@ -31,7 +31,7 @@
           :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.USERS_PAGE}"
         >
           <users-icon class="icon"></users-icon>
-          <span class="block text-xs">{{ $t('tabsNavigator.users') }}</span>
+          <span class="block text-xs">{{ $t('tabsNavigator.customers') }}</span>
         </router-link>
         <router-link
           id="tab-reports"

@@ -1,13 +1,13 @@
 <template>
     <!-- Main -->
     <div class="">
-      users-page
+      customers-page
     </div>
 </template>
 
 <script>
 export default {
-  name: 'users-page',
+  name: 'customers-page',
   components: {
   },
 };

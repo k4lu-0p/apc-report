@@ -5,7 +5,7 @@ import store from '../store';
 // Pages
 import HomePage from '../views/HomePage.vue';
 import LoginPage from '../views/LoginPage.vue';
-import UsersPage from '../views/UsersPage.vue';
+import CustomersPage from '../views/CustomersPage.vue';
 import ReportsPage from '../views/ReportsPage.vue';
 import SupportPage from '../views/SupportPage.vue';
 import SettingsPage from '../views/SettingsPage.vue';
@@ -32,7 +32,7 @@ const routes = [
   {
     path: '/users',
     name: 'users-page',
-    component: UsersPage,
+    component: CustomersPage,
     meta: {
       requiresAuth: true,
     },

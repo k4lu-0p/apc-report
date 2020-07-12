@@ -35,7 +35,7 @@ export default {
     home: 'Accueil',
     reports: 'Rapports',
     support: 'Support',
-    users: 'Utilisateurs',
+    customers: 'Clients',
     settings: 'Paramètres',
   },
 };
