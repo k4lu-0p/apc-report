@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// POST : S'identifier
+Route::post('/login', 'SecurityController@login');
+
 // GET : Lister tous les utilisateurs
 Route::middleware('auth:sanctum')->get('/users', 'UserController@index');
 
-// GET : Lister les comptes-rendus
+// GET : Lister tous les comptes-rendus de tous les événements de l'utilisateur connecté
 Route::middleware('auth:sanctum')->get('/reports', 'ReportController@index');
 
-// POST : S'identifier
-Route::post('/login', 'SecurityController@login');
+// GET : Lister tous les clients
+Route::middleware('auth:sanctum')->get('/customers', 'CustomerController@index');
