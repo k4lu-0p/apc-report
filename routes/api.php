@@ -20,7 +20,10 @@ Route::post('/login', 'SecurityController@login');
 // GET : Lister tous les utilisateurs
 Route::middleware('auth:sanctum')->get('/users', 'UserController@index');
 
-// GET : Lister tous les comptes-rendus de tous les événements de l'utilisateur connecté
+// GET : Lister tous les rendez-vous de l'utilisateur connecté
+Route::middleware('auth:sanctum')->get('/appointments', 'AppointmentController@index');
+
+// GET : Lister tous les comptes-rendus de tous les rendez-vous de l'utilisateur connecté
 Route::middleware('auth:sanctum')->get('/reports', 'ReportController@index');
 
 // GET : Lister tous les clients
