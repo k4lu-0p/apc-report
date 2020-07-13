@@ -16,11 +16,10 @@ class ReportResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user' => new UserResource($this->user),
+            // 'user' => new UserResource($this->user),
             'customer' => new CustomerResource($this->customer),
-            'content' => $this->content,
+            'survey' => $this->survey,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }
