@@ -11,4 +11,8 @@ class Customer extends Model
     public function reports() {
         return $this->hasMany('App\Report');
     }
+
+    public function appointments() {
+        return $this->hasMany('App\Appointment');
+    }
 }
