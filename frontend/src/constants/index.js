@@ -20,7 +20,7 @@ export default {
   },
   API: {
     // BASE_URL: 'http://localhost:8000', // Dev mod
-    BASE_URL: '/',
+    BASE_URL: '',
     ENDPOINTS: {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
