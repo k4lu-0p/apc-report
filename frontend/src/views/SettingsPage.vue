@@ -1,13 +1,15 @@
 <template>
 <!-- eslint-disable max-len -->
-
   <!-- Main -->
-  <div class="flex justify-center items-center h-screen">
-    <button
-      @click="logout"
-      class="mx-auto bg-teal-600 hover:bg-teal-800 px-24 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-    >{{ $t('form.logout.label') }}</button>
+  <div class="container">
+    <div class="flex justify-center items-center h-screen">
+      <button
+        @click="logout"
+        class="mx-auto bg-teal-600 hover:bg-teal-800 px-24 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >{{ $t('form.logout.label') }}</button>
+    </div>
   </div>
+  <!-- Main -->
 </template>
 
 <script>

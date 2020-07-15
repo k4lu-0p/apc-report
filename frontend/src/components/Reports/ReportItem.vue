@@ -1,9 +1,12 @@
 <template>
   <div v-if="report.id">
     <div class="flex flex-col p-2">
-      {{ report.id }}
-      {{ report.survey }}
+      <p>{{ report.id }}</p>
+      <p v-for="(question, index) in survey" :key="`${index}-question`">
+        {{index}} : {{question}}
+      </p>
     </div>
+    <hr>
   </div>
 </template>
 
@@ -12,6 +15,11 @@ export default {
   name: 'report-item',
   props: {
     report: Object,
+  },
+  computed: {
+    survey() {
+      return JSON.parse(this.report.survey);
+    },
   },
 };
 </script>

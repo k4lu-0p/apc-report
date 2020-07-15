@@ -1,6 +1,6 @@
 <template>
   <!-- Main -->
-  <div class="">
+  <div class="container">
     <transition
       enter-active-class="animated fadeIn faster"
       leave-active-class="animated fadeOut faster"

@@ -1,6 +1,6 @@
 <template>
     <!-- Main -->
-    <div class="">
+    <div class="container">
       customers-page
     </div>
 </template>
