@@ -23,6 +23,9 @@ Route::middleware('auth:sanctum')->get('/users', 'UserController@index');
 // GET : Lister tous les rendez-vous de l'utilisateur connecté
 Route::middleware('auth:sanctum')->get('/appointments', 'AppointmentController@index');
 
+// POST : Créer et enregistrer un rendez-vous
+Route::middleware('auth:sanctum')->post('/appointment', 'AppointmentController@store');
+
 // GET : Lister tous les comptes-rendus de tous les rendez-vous de l'utilisateur connecté
 Route::middleware('auth:sanctum')->get('/reports', 'ReportController@index');
 

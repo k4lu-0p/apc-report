@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Http\Requests\StoreAppointment;
 use App\Http\Resources\AppointmentResource;
 use Illuminate\Http\Request;
 
@@ -19,24 +20,29 @@ class AppointmentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAppointment $request)
     {
-        //
+        $validated = $request->validated();
+
+        dd($validated);
+
+        $appointment = new Appointment();
+
+        $appointment->report_id = $request->report_id ?: 0;
+        $appointment->user_id = $request->user()->id;
+        $appointment->customer_id = $request->customer_id;
+        $appointment->title = $request->title;
+        $appointment->location = $request->location;
+        $appointment->start_at = $request->start_at;
+        $appointment->finish_at = $request->finish_at;
+        $appointment->warning = $request->warning ?: null;
+
+        $appointment->save();
     }
 
     /**
