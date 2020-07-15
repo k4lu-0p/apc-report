@@ -2,6 +2,9 @@ import SupportIcon from '../assets/svg/support.svg';
 import SettingsIcon from '../assets/svg/settings.svg';
 import ReportsIcon from '../assets/svg/reports.svg';
 import UsersIcon from '../assets/svg/users.svg';
+import AppointmentsIcon from '../assets/svg/appointments.svg';
+import HomeIcon from '../assets/svg/home.svg';
+import AddIcon from '../assets/svg/add.svg';
 
 export default {
   CONFIG: {
@@ -20,6 +23,7 @@ export default {
     ENDPOINTS: {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
+      FETCH_APPOINTMENTS: '/api/appointments',
     },
     STATUS: {
       LOADING: 'loading',
@@ -35,15 +39,19 @@ export default {
       SUPPORT_PAGE: 'support-page',
       SETTINGS_PAGE: 'settings-page',
       REPORTS_PAGE: 'reports-page',
+      APPOINTMENTS_PAGE: 'appointments-page',
     },
   },
 };
 
 export const IMAGES = {
   svg: {
+    HomeIcon,
     SupportIcon,
     SettingsIcon,
     ReportsIcon,
     UsersIcon,
+    AppointmentsIcon,
+    AddIcon,
   },
 };

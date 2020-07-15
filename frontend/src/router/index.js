@@ -7,7 +7,7 @@ import HomePage from '../views/HomePage.vue';
 import LoginPage from '../views/LoginPage.vue';
 import CustomersPage from '../views/CustomersPage.vue';
 import ReportsPage from '../views/ReportsPage.vue';
-import SupportPage from '../views/SupportPage.vue';
+import AppointmentsPage from '../views/AppointmentsPage.vue';
 import SettingsPage from '../views/SettingsPage.vue';
 
 Vue.use(VueRouter);
@@ -38,9 +38,9 @@ const routes = [
     },
   },
   {
-    path: '/support',
-    name: 'support-page',
-    component: SupportPage,
+    path: '/appointments',
+    name: 'appointments-page',
+    component: AppointmentsPage,
     meta: {
       requiresAuth: true,
     },

@@ -1,8 +1,8 @@
 <template>
   <div v-if="report.id">
     <div class="flex flex-col p-2">
-      <strong>Id de l'utilisateur: {{ report.user_id }}</strong>
-      <em>{{ report.content }}</em>
+      {{ report.id }}
+      {{ report.survey }}
     </div>
   </div>
 </template>

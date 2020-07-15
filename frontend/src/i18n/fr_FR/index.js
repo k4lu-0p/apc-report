@@ -37,5 +37,6 @@ export default {
     support: 'Support',
     customers: 'Clients',
     settings: 'Paramètres',
+    appointments: 'Rendez-vous',
   },
 };
