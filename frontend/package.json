@@ -4,7 +4,8 @@
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "rm -rf ../public/{js,css,img} && vue-cli-service build --no-clean",
+        "build:prod": "rm -rf ../public/{js,css,img} && vue-cli-service build --no-clean",
+        "build:dev": "rm -rf ../public/{js,css,img} && vue-cli-service build --mode development",
         "lint": "vue-cli-service lint",
         "test:unit": "vue-cli-service test:unit"
     },
