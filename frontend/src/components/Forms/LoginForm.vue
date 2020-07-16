@@ -84,7 +84,7 @@
       </div>
     </form>
     <p class="text-center text-gray-500 text-xs">
-      &copy;2020 APLHA PLUS COURTAGE Tous droits réservé.
+      &copy;2020 APLHA PLUS COURTAGE Tous droits réservés.
     </p>
   </div>
 </template>
