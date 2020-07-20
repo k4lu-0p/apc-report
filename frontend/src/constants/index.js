@@ -23,8 +23,8 @@ export default {
   },
   API: {
     // BASE_URL: '', // Dev mod
-    BASE_URL: 'http://localhost:8000', // Vue Serve mod
-    // BASE_URL: 'http://212.47.230.255', // Preprod mod
+    // BASE_URL: 'http://localhost:8000', // Vue Serve mod
+    BASE_URL: 'http://212.47.230.255', // Preprod mod
     ENDPOINTS: {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
