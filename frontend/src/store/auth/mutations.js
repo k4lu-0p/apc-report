@@ -4,10 +4,10 @@ export default {
   auth_request(state) {
     state.status = constants.API.STATUS.LOADING;
   },
-  auth_success(state, token, user) {
+  auth_success(state, payload) {
     state.status = constants.API.STATUS.SUCCESS;
-    state.token = token;
-    state.user = user;
+    state.token = payload.token;
+    state.user = payload.user;
   },
   auth_error(state) {
     state.status = constants.API.STATUS.ERROR;

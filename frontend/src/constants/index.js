@@ -5,6 +5,9 @@ import UsersIcon from '../assets/svg/users.svg';
 import AppointmentsIcon from '../assets/svg/appointments.svg';
 import HomeIcon from '../assets/svg/home.svg';
 import AddIcon from '../assets/svg/add.svg';
+import BackIcon from '../assets/svg/back.svg';
+import MagnifyIcon from '../assets/svg/magnify.svg';
+import AcceptIcon from '../assets/svg/accept.svg';
 
 export default {
   CONFIG: {
@@ -19,12 +22,15 @@ export default {
     },
   },
   API: {
-    // BASE_URL: 'http://localhost:8000', // Dev mod
-    BASE_URL: 'http://212.47.230.255', // Preprod mod
+    // BASE_URL: '', // Dev mod
+    BASE_URL: 'http://localhost:8000', // Vue Serve mod
+    // BASE_URL: 'http://212.47.230.255', // Preprod mod
     ENDPOINTS: {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
       FETCH_APPOINTMENTS: '/api/appointments',
+      FETCH_CUSTOMERS: '/api/customers',
+      STORE_APPOINTMENT: '/api/appointment',
     },
     STATUS: {
       LOADING: 'loading',
@@ -36,11 +42,10 @@ export default {
   NAVIGATION: {
     TABS: {
       HOME_PAGE: 'home-page',
-      USERS_PAGE: 'users-page',
-      SUPPORT_PAGE: 'support-page',
       SETTINGS_PAGE: 'settings-page',
-      REPORTS_PAGE: 'reports-page',
-      APPOINTMENTS_PAGE: 'appointments-page',
+      APPOINTMENTS_HOME: 'appointments-home',
+      CUSTOMERS_HOME: 'customers-home',
+      REPORTS_HOME: 'reports-home',
     },
   },
 };
@@ -54,5 +59,8 @@ export const IMAGES = {
     UsersIcon,
     AppointmentsIcon,
     AddIcon,
+    BackIcon,
+    MagnifyIcon,
+    AcceptIcon,
   },
 };

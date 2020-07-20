@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Http\Requests\SearchCustomers;
 use App\Http\Resources\CustomerResource;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,18 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SearchCustomers $request)
     {
-        return CustomerResource::collection(Customer::all());
+        $search = $request->search;
+        $offset = $request->offset;
+        $limit = $request->limit;
+
+        $result = Customer::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
+        return CustomerResource::collection($result);
     }
 
     /**
