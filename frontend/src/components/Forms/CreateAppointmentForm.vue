@@ -97,17 +97,23 @@
       </div>
 
       <!-- Customer -->
-      <div :class="[customerErrors.length > 1 ? 'pb-5' : 'pb-12']">
+      <div :class="[customerErrors.length > 1 || hasNoResultCustomerSearched ? 'pb-5' : 'pb-12']">
         <!-- input -->
         <customer-input
           @clear="handleClearCustomer($event)"
           @onClickCustomer="handleSelectCustomer($event)"
+          @onNoResult="handleNoResultCustomerSearched($event)"
           :label="$t('form.appointment.customer.label')"
           :placeholder="$t('form.appointment.customer.placeholder')"
         ></customer-input>
 
         <!-- errors -->
-        <div :class="{'absolute' : customerErrors.length === 1}">
+        <div :class="{'absolute' : customerErrors.length === 1 && hasNoResultCustomerSearched == false}">
+          <p
+            class="text-red-500 font-bold text-xs italic pt-2"
+            v-if="hasNoResultCustomerSearched">
+            {{ $t('form.appointment.customer.errors.result') }}
+          </p>
           <p
             v-for="(message, index) in customerErrors"
             :key="`customer-error-${index}`"
@@ -223,6 +229,7 @@ export default {
   },
   data() {
     return {
+      hasNoResultCustomerSearched: false,
       form: {
         start_at: null,
         finish_at: null,
@@ -252,6 +259,9 @@ export default {
     },
     onSubmit() {
       this.$emit('submit', this.form);
+    },
+    handleNoResultCustomerSearched() {
+      this.hasNoResultCustomerSearched = true;
     },
   },
   computed: {

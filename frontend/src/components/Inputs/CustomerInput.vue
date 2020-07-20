@@ -83,7 +83,12 @@ export default {
     handleKeyUp() {
       if (this.status !== this.$const.API.STATUS.LOADING) {
         if (this.requestParams.search.length >= 2) {
-          this.$store.dispatch('customersModule/fetchCustomers', this.requestParams);
+          this.$store.dispatch('customersModule/fetchCustomers', this.requestParams)
+            .then(() => {
+              if (this.$store.getters['customersModule/getCustomers'].length === 0) {
+                this.$emit('onNoResult');
+              }
+            });
         }
       }
     },

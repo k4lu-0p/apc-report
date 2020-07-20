@@ -34,6 +34,9 @@ export default {
       integer: 'La selection d\'un client est obligatoire.',
       isValidId: 'La selection d\'un client est obligatoire.',
     },
+    errors: {
+      result: 'Aucun clients n\'a été trouvé.',
+    },
   },
   title: {
     label: 'Titre du rendez-vous :',
