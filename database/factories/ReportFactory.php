@@ -34,6 +34,7 @@ $factory->define(Report::class, function(Faker $faker) {
         'appointment_id' => $faker->numberBetween(1, 10),
         'user_id' => $faker->numberBetween(1, 10),
         'customer_id' => $faker->numberBetween(1, 10),
+        'is_complete' => false,
         'survey' => generateSurvey($faker),
     ];
 });

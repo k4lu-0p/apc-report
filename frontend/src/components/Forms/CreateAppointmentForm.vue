@@ -234,7 +234,6 @@ export default {
         start_at: null,
         finish_at: null,
         location: null,
-        report_id: 0,
         customer_id: 0,
         title: '',
         warning: '',
