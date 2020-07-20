@@ -11,8 +11,14 @@
           <report-item :report="report"/>
         </li>
       </transition-group>
-      <div v-else class="fixed w-screen flex flex-col justify-center items-center h-screen">
+      <div
+        v-else-if="status === $const.API.STATUS.LOADING"
+        class="fixed w-screen flex flex-col justify-center items-center h-screen"
+      >
         <moon-loader :color="$const.MISC.SPINNER.COLOR"></moon-loader>
+      </div>
+       <div v-else class="absolute top-45 flex flex-col justify-center items-center">
+        <p class="text-gray-500 text-center px-10">{{ $t('page.reports.empty') }}</p>
       </div>
     </transition>
   </div>
@@ -31,6 +37,9 @@ export default {
       get() {
         return this.$store.getters['reportsModule/getReports'];
       },
+    },
+    status() {
+      return this.$store.getters['reportsModule/getStatus'];
     },
   },
   mounted() {
