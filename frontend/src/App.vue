@@ -5,7 +5,8 @@
       leave-active-class="animated slideOutRight faster-x2"
       mode="out-in"
     >
-        <router-view/>
+        <router-view v-if="isMobile"/>
+        <p v-else>Application uniquement disponible sur appareil mobile</p>
     </transition>
 
     <tabs-navigator
@@ -21,6 +22,14 @@ export default {
   name: 'app',
   components: {
     TabsNavigator,
+  },
+  computed: {
+    isMobile() {
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+        return true;
+      }
+      return false;
+    },
   },
 };
 </script>
