@@ -7,9 +7,10 @@
     </label>
     <div class="relative input-form h-10 flex justify-between">
       <input
+        title="customer"
         class="bg-transparent absolute h-full w-5/6 left-0 top-0 text-gray-700"
         id="customer"
-        type="text"
+        type="search"
         v-model="requestParams.search"
         @click="onClearField($event)"
         @keyup="handleKeyUp($event)"
@@ -77,7 +78,8 @@ export default {
     };
   },
   methods: {
-    handleKeyUp() {
+    handleKeyUp($event) {
+      console.log($event);
       if (this.fetchingStatus !== this.$const.API.STATUS.LOADING) {
         if (this.requestParams.search.length >= 2) {
           this.$store.dispatch('customersModule/fetchCustomers', this.requestParams);

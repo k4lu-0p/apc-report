@@ -9,7 +9,7 @@
       <input
         class="bg-transparent absolute h-full w-5/6 left-0 top-0 text-gray-700"
         id="location"
-        type="text"
+        type="search"
         v-model="search"
         @click="onClearField($event)"
         @keydown="onKeyDownEnter($event)"
