@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
+  <div class="w-screen h-screen flex flex-col justify-center items-center">
     <login-form />
   </div>
 </template>
 
 <script>
-import LoginForm from '@/components/Forms/LoginForm.vue';
+import LoginForm from '../components/Forms/LoginForm.vue';
 
 export default {
   name: 'login-page',

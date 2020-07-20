@@ -6,12 +6,12 @@
       leave-active-class="animated fadeOut faster"
       mode="out-in"
     >
-      <transition-group v-if="reports" tag="ul">
+      <transition-group v-if="reports && reports.length" tag="ul">
         <li v-for="report in reports" :key="report.id">
           <report-item :report="report"/>
         </li>
       </transition-group>
-      <div v-else class="flex justify-center items-center h-screen w-screen">
+      <div v-else class="fixed w-screen flex flex-col justify-center items-center h-screen">
         <moon-loader :color="$const.MISC.SPINNER.COLOR"></moon-loader>
       </div>
     </transition>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ReportItem from '@/components/Reports/ReportItem.vue';
+import ReportItem from '../../components/Reports/ReportItem.vue';
 
 export default {
   name: 'reports-page',
@@ -34,7 +34,7 @@ export default {
     },
   },
   mounted() {
-    if (!this.reports && !this.reports.length) {
+    if (this.reports.length === 0) {
       this.$store.dispatch('reportsModule/fetchReports').then(() => {
         // Handle invalid token even if user is authenticated
         if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
