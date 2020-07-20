@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import TabsNavigator from '@/components/Navigators/TabsNavigator.vue';
+import TabsNavigator from './components/Navigators/TabsNavigator.vue';
 
 export default {
   name: 'app',

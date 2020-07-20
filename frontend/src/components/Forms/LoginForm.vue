@@ -1,14 +1,15 @@
 <!-- eslint-disable max-len -->
 <template>
-  <div class="w-screen h-screen flex flex-col justify-center items-center">
+  <!-- form -->
+  <form @submit.prevent="login">
 
-    <!-- // Login form -->
-    <form @submit.prevent="login" class="bg-white shadow-md rounded px-8 pt-6 pb-20 mb-4">
+    <!-- fields -->
+    <div @submit.prevent="login" class="bg-white shadow-md rounded px-8 pt-6 pb-20 mb-4">
       <div class="mb-4">
 
         <!-- Label email field -->
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-          {{ $t('form.email.label') }}
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+          {{ $t('form.login.email.label') }}
         </label>
 
         <!-- // Input Email -->
@@ -19,7 +20,7 @@
           type="email"
           v-model="$v.form.email.$model"
           @blur="$v.form.email.$touch()"
-          :placeholder="$t('form.email.label')"
+          :placeholder="$t('form.login.email.label')"
         >
 
         <!-- // Email error messages -->
@@ -35,7 +36,7 @@
 
         <!-- // Label password field -->
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-        {{ $t('form.password.label') }}
+        {{ $t('form.login.password.label') }}
         </label>
 
         <!-- // Input Password -->
@@ -46,7 +47,7 @@
           type="password"
           v-model="$v.form.password.$model"
           @blur="$v.form.password.$touch()"
-          :placeholder="$t('form.password.label')"
+          :placeholder="$t('form.login.password.label')"
         >
 
         <!-- // Password error messages -->
@@ -60,7 +61,7 @@
 
         <!-- // Auth error message -->
         <p class="text-red-500 text-xs italic pt-2" v-if="authStatus === $const.API.STATUS.ERROR">
-          {{ $t('form.login.failed') }}
+          {{ $t('form.login.submit.failed') }}
         </p>
       </div>
       <div class="flex items-center justify-center absolute left-1/2 right-1/2">
@@ -77,21 +78,23 @@
             v-else
             class="mx-auto bg-teal-600 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            {{ $t('form.login.label') }}
+            {{ $t('form.login.submit.label') }}
           </button>
 
         </transition>
       </div>
-    </form>
+    </div>
+
+    <!-- copyright -->
     <p class="text-center text-gray-500 text-xs">
-      &copy;2020 APLHA PLUS COURTAGE Tous droits réservés.
+      &copy;{{ $t('misc.copyright') }}
     </p>
-  </div>
+  </form>
 </template>
 
 <script>
-import validator from '@/validators';
 import { mapGetters } from 'vuex';
+import validator from '../../validators';
 
 export default {
   name: 'login-form',
@@ -110,7 +113,7 @@ export default {
         this.$store.dispatch('authModule/login', this.form)
           .then(() => {
             if (this.authStatus === this.$const.API.STATUS.SUCCESS) {
-              this.$router.push('/');
+              this.$router.push({ name: 'home-page' });
             }
           })
           .catch((err) => {
@@ -126,14 +129,14 @@ export default {
     emailErrors() {
       const errors = [];
       if (!this.$v.form.email.$dirty) return errors;
-      if (!this.$v.form.email.email) errors.push(this.$t('form.email.validations.email'));
-      if (!this.$v.form.email.required) errors.push(this.$t('form.email.validations.required'));
+      if (!this.$v.form.email.email) errors.push(this.$t('form.login.email.validations.email'));
+      if (!this.$v.form.email.required) errors.push(this.$t('form.login.email.validations.required'));
       return errors;
     },
     passwordErrors() {
       const errors = [];
       if (!this.$v.form.password.$dirty) return errors;
-      if (!this.$v.form.password.required) errors.push(this.$t('form.password.validations.required'));
+      if (!this.$v.form.password.required) errors.push(this.$t('form.login.password.validations.required'));
       return errors;
     },
   },

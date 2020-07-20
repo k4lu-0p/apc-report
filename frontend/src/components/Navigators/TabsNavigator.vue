@@ -1,7 +1,7 @@
 <!-- eslint-disable max-len -->
 <template>
   <div>
-    <div class="pt-16"></div> <!-- Prevent hidden elements -->
+    <div class="pt-16"></div> <!-- Prevent hidden elements by offset with bar -->
     <section
       class="tabs-navigator block fixed inset-x-0 bottom-0 z-10 bg-white shadow-2xl"
       :class="{'tabs-navigator-hidden': !isVisible}"
@@ -10,21 +10,21 @@
 
         <router-link
           id="tab-users"
-          :to="{name: $const.NAVIGATION.TABS.USERS_PAGE}"
+          :to="{name: $const.NAVIGATION.TABS.CUSTOMERS_HOME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.USERS_PAGE}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.CUSTOMERS_HOME}"
         >
           <users-icon class="icon"></users-icon>
-          <span class="block text-xs">{{ $t('tabsNavigator.customers') }}</span>
+          <span class="block text-xs">{{ $t('navigator.tabs.customers') }}</span>
         </router-link>
         <router-link
           id="tab-reports"
-          :to="{name: $const.NAVIGATION.TABS.REPORTS_PAGE}"
+          :to="{name: $const.NAVIGATION.TABS.REPORTS_HOME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.REPORTS_PAGE}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.REPORTS_HOME}"
         >
           <reports-icon class="icon"></reports-icon>
-          <span class="block text-xs">{{ $t('tabsNavigator.reports') }}</span>
+          <span class="block text-xs">{{ $t('navigator.tabs.reports') }}</span>
         </router-link>
 
          <router-link
@@ -34,17 +34,17 @@
           :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.HOME_PAGE}"
         >
           <home-icon class="icon"></home-icon>
-          <span class="block text-xs">{{ $t('tabsNavigator.home') }}</span>
+          <span class="block text-xs">{{ $t('navigator.tabs.home') }}</span>
         </router-link>
 
         <router-link
           id="tab-support"
-          :to="{name: $const.NAVIGATION.TABS.APPOINTMENTS_PAGE}"
+          :to="{name: $const.NAVIGATION.TABS.APPOINTMENTS_HOME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.APPOINTMENTS_PAGE}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.APPOINTMENTS_HOME}"
         >
           <AppointmentsIcon class="icon"></AppointmentsIcon>
-          <span class="block text-xs">{{ $t('tabsNavigator.appointments') }}</span>
+          <span class="block text-xs">{{ $t('navigator.tabs.appointments') }}</span>
         </router-link>
 
         <router-link
@@ -54,7 +54,7 @@
           :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.SETTINGS_PAGE}"
         >
           <settings-icon class="icon"></settings-icon>
-          <span class="block text-xs">{{ $t('tabsNavigator.settings') }}</span>
+          <span class="block text-xs">{{ $t('navigator.tabs.settings') }}</span>
         </router-link>
 
       </div>
@@ -99,9 +99,6 @@ export default {
       // eslint-disable-next-line max-len
       this.isVisible = (currentScrollPosition > this.lastScrollPosition) || (currentScrollPosition === 0);
       this.lastScrollPosition = currentScrollPosition;
-    },
-    logout() {
-      console.log('Déconnexion');
     },
   },
   mounted() {
