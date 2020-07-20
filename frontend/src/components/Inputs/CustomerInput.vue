@@ -17,7 +17,7 @@
         :placeholder="placeholder"
       >
       <span
-        @click="onClickSearchCustomers($event)"
+        @click="onClickSearchCustomer($event)"
         class="w-1/6 absolute right-0 top-0 h-full flex justify-center items-center"
       >
           <moon-loader
@@ -86,7 +86,9 @@ export default {
           this.$store.dispatch('customersModule/fetchCustomers', this.requestParams)
             .then(() => {
               if (this.$store.getters['customersModule/getCustomers'].length === 0) {
-                this.$emit('onNoResult');
+                this.$emit('onNoResult', true);
+              } else {
+                this.$emit('onNoResult', false);
               }
             });
         }

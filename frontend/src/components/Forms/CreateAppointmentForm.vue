@@ -260,8 +260,8 @@ export default {
     onSubmit() {
       this.$emit('submit', this.form);
     },
-    handleNoResultCustomerSearched() {
-      this.hasNoResultCustomerSearched = true;
+    handleNoResultCustomerSearched(hasNoResult) {
+      this.hasNoResultCustomerSearched = hasNoResult;
     },
   },
   computed: {
