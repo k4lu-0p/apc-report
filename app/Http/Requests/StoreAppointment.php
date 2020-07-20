@@ -26,10 +26,11 @@ class StoreAppointment extends FormRequest
         return [
             'report_id' => ['nullable', 'numeric', 'unique:App\Report,id'],
             'customer_id' => ['required', 'numeric'],
-            'title' => ['required', 'max:6'],
+            'title' => ['required', 'string'],
             'location' => ['required', 'json'],
             'start_at' => ['required', 'date'],
             'finish_at' => ['required', 'date'],
+            'warning' => ['nullable', 'string'],
         ];
     }
 

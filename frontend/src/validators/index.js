@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
 import {
@@ -8,6 +9,10 @@ import {
   helpers,
   numeric,
   maxLength,
+  integer,
+  not,
+  minValue,
+  requiredIf,
 } from 'vuelidate/lib/validators';
 
 const alphaCustom = helpers.regex('alphaCustom', /^[A-Za-z\ç\é\á\ó\ú\í\è\ò\ù\ì\à\ê\î\â\ô\û\'\-\ ]+$/);
@@ -25,6 +30,38 @@ const login = {
   },
 };
 
+const appointment = {
+  form: {
+    start_at: {
+      required,
+    },
+    finish_at: {
+      required,
+      // eslint-disable-next-line object-shorthand
+      isSuperiorStart: function () {
+        return this.form.start_at < this.form.finish_at;
+      },
+    },
+    location: {
+      required,
+    },
+    customer_id: {
+      required,
+      integer,
+      isValidId: minValue(1),
+    },
+    title: {
+      required,
+      minLength: minLength(5),
+      maxLength: maxLength(80),
+    },
+    warning: {
+      alphaNumCustom,
+    },
+  },
+};
+
 export default {
   login,
+  appointment,
 };

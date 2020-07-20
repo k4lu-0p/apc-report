@@ -6,6 +6,7 @@ use App\Appointment;
 use App\Http\Requests\StoreAppointment;
 use App\Http\Resources\AppointmentResource;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
@@ -29,7 +30,9 @@ class AppointmentController extends Controller
     {
         $validated = $request->validated();
 
-        dd($validated);
+        // Handle date format
+        $start_at = Carbon::create($request->start_at)->format('Y-m-d H:i:s');
+        $finish_at = Carbon::create($request->finish_at)->format('Y-m-d H:i:s');
 
         $appointment = new Appointment();
 
@@ -38,11 +41,13 @@ class AppointmentController extends Controller
         $appointment->customer_id = $request->customer_id;
         $appointment->title = $request->title;
         $appointment->location = $request->location;
-        $appointment->start_at = $request->start_at;
-        $appointment->finish_at = $request->finish_at;
+        $appointment->start_at = $start_at;
+        $appointment->finish_at = $finish_at;
         $appointment->warning = $request->warning ?: null;
 
         $appointment->save();
+
+        return response()->newAppointmentStored($appointment);
     }
 
     /**
