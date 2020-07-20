@@ -16,9 +16,14 @@
         :placeholder="placeholder"
       >
       <span
-      @click="onClickSearchLocations"
+      @click="onClickSearchLocations($event)"
       class="w-1/6 absolute right-0 top-0 h-full flex justify-center items-center">
-        <magnify-icon class="magnify-icon"></magnify-icon>
+        <moon-loader
+          class="v-spinner-custom"
+          v-if="loading"
+          :color="$const.MISC.SPINNER.COLOR"
+        ></moon-loader>
+        <magnify-icon v-else class="magnify-icon"></magnify-icon>
       </span>
     </div>
     <transition

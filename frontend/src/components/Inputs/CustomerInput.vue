@@ -22,9 +22,10 @@
       >
           <moon-loader
             class="v-spinner-custom"
-            v-if="fetchingStatus === $const.API.STATUS.LOADING"
+            v-if="status === $const.API.STATUS.LOADING"
             :color="$const.MISC.SPINNER.COLOR"
           ></moon-loader>
+          <magnify-icon v-else class="magnify-icon"></magnify-icon>
       </span>
     </div>
     <transition
@@ -56,12 +57,13 @@
 <script>
 import { IMAGES } from '../../constants';
 
-const { svg: { AddIcon } } = IMAGES;
+const { svg: { AddIcon, MagnifyIcon } } = IMAGES;
 
 export default {
   name: 'customer-input',
   components: {
     AddIcon,
+    MagnifyIcon,
   },
   props: {
     label: String,
@@ -78,13 +80,15 @@ export default {
     };
   },
   methods: {
-    handleKeyUp($event) {
-      console.log($event);
-      if (this.fetchingStatus !== this.$const.API.STATUS.LOADING) {
+    handleKeyUp() {
+      if (this.status !== this.$const.API.STATUS.LOADING) {
         if (this.requestParams.search.length >= 2) {
           this.$store.dispatch('customersModule/fetchCustomers', this.requestParams);
         }
       }
+    },
+    onClickSearchCustomer() {
+      this.handleKeyUp();
     },
     onClickCustomer(event, customer) {
       this.customerSelected = customer;
@@ -101,7 +105,7 @@ export default {
     customers() {
       return this.$store.getters['customersModule/getCustomers'];
     },
-    fetchingStatus() {
+    status() {
       return this.$store.getters['customersModule/getStatus'];
     },
   },
