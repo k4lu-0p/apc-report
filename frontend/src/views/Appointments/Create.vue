@@ -50,11 +50,11 @@ export default {
       // eslint-disable-next-line no-alert
       window.alert('Désolé mais la partie reporting est actuellement en cours de développement.');
       this.isConfirmModalOpen = false;
-      this.$router.push({ name: 'appointments-home' });
+      this.$router.push({ name: this.$const.NAVIGATION.APPOINTMENTS_HOME.NAME });
     },
     handleCancel() {
       this.isConfirmModalOpen = false;
-      this.$router.push({ name: 'appointments-home' });
+      this.$router.push({ name: this.$const.NAVIGATION.APPOINTMENTS_HOME.NAME });
     },
     openConfirmModal() {
       this.isConfirmModalOpen = true;

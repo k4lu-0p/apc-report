@@ -48,7 +48,7 @@ export default {
         // Handle invalid token even if user is authenticated
         if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
           this.$store.dispatch('authModule/logout').then(() => {
-            this.$router.push({ path: '/login' });
+            this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
           });
         }
       });

@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '../store';
+import $const from '../constants';
 
 // Page login
-import LoginPage from '../views/LoginPage.vue';
+import LoginIndex from '../views/Login/Index.vue';
 
 // Page home
-import HomePage from '../views/HomePage.vue';
+import HomeIndex from '../views/Home/Index.vue';
 
 // Pages appointments
 import AppointmentsIndex from '../views/Appointments/Index.vue';
@@ -22,22 +23,23 @@ import ReportsIndex from '../views/Reports/Index.vue';
 import ReportsHome from '../views/Reports/Home.vue';
 
 // Page settings
-import SettingsPage from '../views/SettingsPage.vue';
+import SettingsIndex from '../views/Settings/Index.vue';
+import SettingsHome from '../views/Settings/Home.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'home-page',
-    component: HomePage,
+    path: $const.NAVIGATION.HOME_INDEX.PATH,
+    name: $const.NAVIGATION.HOME_INDEX.NAME,
+    component: HomeIndex,
     meta: {
       requiresAuth: true,
     },
   },
 
   {
-    path: '/reports',
+    path: $const.NAVIGATION.REPORTS_INDEX.PATH,
     // name: 'reports-index',
     component: ReportsIndex,
     meta: {
@@ -45,15 +47,21 @@ const routes = [
     },
     children: [
       {
-        path: '',
-        name: 'reports-home',
+        path: $const.NAVIGATION.REPORTS_HOME.PATH,
+        name: $const.NAVIGATION.REPORTS_HOME.NAME,
+        component: ReportsHome,
+      },
+      {
+        path: $const.NAVIGATION.REPORTS_EDIT.PATH,
+        name: $const.NAVIGATION.REPORTS_EDIT.NAME,
+        props: true,
         component: ReportsHome,
       },
     ],
   },
 
   {
-    path: '/customers',
+    path: $const.NAVIGATION.CUSTOMERS_INDEX.PATH,
     // name: 'customers-index',
     component: CustomersIndex,
     meta: {
@@ -61,15 +69,15 @@ const routes = [
     },
     children: [
       {
-        path: '',
-        name: 'customers-home',
+        path: $const.NAVIGATION.CUSTOMERS_HOME.PATH,
+        name: $const.NAVIGATION.CUSTOMERS_HOME.NAME,
         component: CustomersHome,
       },
     ],
   },
 
   {
-    path: '/appointments',
+    path: $const.NAVIGATION.APPOINTMENTS_INDEX.PATH,
     // name: 'appointments-index',
     component: AppointmentsIndex,
     meta: {
@@ -77,31 +85,38 @@ const routes = [
     },
     children: [
       {
-        path: '',
-        name: 'appointments-home',
+        path: $const.NAVIGATION.APPOINTMENTS_HOME.PATH,
+        name: $const.NAVIGATION.APPOINTMENTS_HOME.NAME,
         component: AppointmentsHome,
       },
       {
-        path: 'create',
-        name: 'appointments-create',
+        path: $const.NAVIGATION.APPOINTMENTS_CREATE.PATH,
+        name: $const.NAVIGATION.APPOINTMENTS_CREATE.NAME,
         component: AppointmentsCreate,
       },
     ],
   },
 
   {
-    path: '/settings',
-    name: 'settings-page',
-    component: SettingsPage,
+    path: $const.NAVIGATION.SETTINGS_INDEX.PATH,
+    // name: $const.NAVIGATION.SETTINGS_INDEX.NAME,
+    component: SettingsIndex,
     meta: {
       requiresAuth: true,
     },
+    children: [
+      {
+        path: $const.NAVIGATION.SETTINGS_HOME.PATH,
+        name: $const.NAVIGATION.SETTINGS_HOME.NAME,
+        component: SettingsHome,
+      },
+    ],
   },
 
   {
-    path: '/login',
-    name: 'login-page',
-    component: LoginPage,
+    path: $const.NAVIGATION.LOGIN_INDEX.PATH,
+    name: $const.NAVIGATION.LOGIN_INDEX.NAME,
+    component: LoginIndex,
     beforeEnter: (to, from, next) => {
       if (store.getters['authModule/isLoggedIn']) {
         next('/');
@@ -130,7 +145,7 @@ router.beforeEach((to, from, next) => {
     if (store.getters['authModule/isLoggedIn']) {
       next();
     } else {
-      next('/login');
+      next($const.NAVIGATION.LOGIN_INDEX.PATH);
     }
   } else {
     next();

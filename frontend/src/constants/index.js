@@ -11,6 +11,7 @@ import AcceptIcon from '../assets/svg/accept.svg';
 
 export default {
   CONFIG: {
+    LIMIT_WIDTH_SCREEN: 768,
     LOCAL: {
       FR: 'fr',
       EN: 'en',
@@ -23,8 +24,8 @@ export default {
   },
   API: {
     // BASE_URL: '', // Dev mod
-    // BASE_URL: 'http://localhost:8000', // Vue Serve mod
-    BASE_URL: 'http://212.47.230.255', // Preprod mod
+    BASE_URL: 'http://localhost:8000', // Vue Serve mod
+    // BASE_URL: 'http://212.47.230.255', // Preprod mod
     ENDPOINTS: {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
@@ -40,13 +41,28 @@ export default {
     },
   },
   NAVIGATION: {
-    TABS: {
-      HOME_PAGE: 'home-page',
-      SETTINGS_PAGE: 'settings-page',
-      APPOINTMENTS_HOME: 'appointments-home',
-      CUSTOMERS_HOME: 'customers-home',
-      REPORTS_HOME: 'reports-home',
-    },
+    // index
+    LOGIN_INDEX: { NAME: 'login-index', PATH: '/login' },
+    HOME_INDEX: { NAME: 'home-index', PATH: '/' },
+    SETTINGS_INDEX: { NAME: 'settings-index', PATH: '/settings' },
+    APPOINTMENTS_INDEX: { NAME: 'appointments-index', PATH: '/appointments' },
+    CUSTOMERS_INDEX: { NAME: 'customers-index', PATH: '/customers' },
+    REPORTS_INDEX: { NAME: 'reports-index', PATH: '/reports' },
+
+    // childs: settings
+    SETTINGS_HOME: { NAME: 'settings-home', PATH: '' },
+
+    // childs: appointments
+    APPOINTMENTS_HOME: { NAME: 'appointments-home', PATH: '' },
+    APPOINTMENTS_CREATE: { NAME: 'appointments-create', PATH: 'create' },
+
+    // childs: customers
+    CUSTOMERS_HOME: { NAME: 'customers-home', PATH: '' },
+
+    // childs: reports
+    REPORTS_HOME: { NAME: 'reports-home', PATH: '' },
+    REPORTS_EDIT: { NAME: 'reports-edit', PATH: 'edit/:id' },
+
   },
 };
 

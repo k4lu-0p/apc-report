@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import LoginForm from '../components/Forms/LoginForm.vue';
+import LoginForm from '../../components/Forms/LoginForm.vue';
 
 export default {
-  name: 'login-page',
+  name: 'login-index',
   components: {
     LoginForm,
   },

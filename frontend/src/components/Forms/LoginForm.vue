@@ -113,7 +113,7 @@ export default {
         this.$store.dispatch('authModule/login', this.form)
           .then(() => {
             if (this.authStatus === this.$const.API.STATUS.SUCCESS) {
-              this.$router.push({ name: 'home-page' });
+              this.$router.push({ name: this.$const.NAVIGATION.HOME_INDEX.NAME });
             }
           })
           .catch((err) => {
