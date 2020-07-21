@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateReport;
 use Illuminate\Http\Request;
 use App\Http\Resources\ReportResource;
+use App\Report;
 
 class ReportController extends Controller
 {
@@ -15,16 +17,6 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         return ReportResource::collection($request->user()->reports);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -50,26 +42,23 @@ class ReportController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Report  $report
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Report $report)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Report  $report
+     * @param  integer  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report)
+    public function update(UpdateReport $request, $id)
     {
-        //
+        $report = Report::find($id);
+
+        $report->is_complete = true;
+        $report->survey = $request->survey;
+
+        $report->save();
+
+        // succes response with report updated
+        return response()->reportUpdated($report);
     }
 
     /**

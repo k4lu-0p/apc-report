@@ -31,3 +31,6 @@ Route::middleware('auth:sanctum')->get('/reports', 'ReportController@index');
 
 // GET : Lister tous les clients
 Route::middleware('auth:sanctum')->get('/customers', 'CustomerController@index');
+
+// PUT : Mettre à jour un rapport
+Route::middleware('auth:sanctum')->put('/report/{id}', 'ReportController@update');
