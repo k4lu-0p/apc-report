@@ -21,6 +21,7 @@ import CustomersHome from '../views/Customers/Home.vue';
 // Pages reports
 import ReportsIndex from '../views/Reports/Index.vue';
 import ReportsHome from '../views/Reports/Home.vue';
+import ReportsEdit from '../views/Reports/Edit.vue';
 
 // Page settings
 import SettingsIndex from '../views/Settings/Index.vue';
@@ -54,8 +55,7 @@ const routes = [
       {
         path: $const.NAVIGATION.REPORTS_EDIT.PATH,
         name: $const.NAVIGATION.REPORTS_EDIT.NAME,
-        props: true,
-        component: ReportsHome,
+        component: ReportsEdit,
       },
     ],
   },
@@ -93,6 +93,7 @@ const routes = [
         path: $const.NAVIGATION.APPOINTMENTS_CREATE.PATH,
         name: $const.NAVIGATION.APPOINTMENTS_CREATE.NAME,
         component: AppointmentsCreate,
+        props: true,
       },
     ],
   },

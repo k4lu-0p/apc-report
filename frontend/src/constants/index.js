@@ -8,6 +8,7 @@ import AddIcon from '../assets/svg/add.svg';
 import BackIcon from '../assets/svg/back.svg';
 import MagnifyIcon from '../assets/svg/magnify.svg';
 import AcceptIcon from '../assets/svg/accept.svg';
+import ClockIcon from '../assets/svg/clock.svg';
 
 export default {
   CONFIG: {
@@ -25,12 +26,13 @@ export default {
   API: {
     // BASE_URL: '', // Dev mod
     BASE_URL: 'http://localhost:8000', // Vue Serve mod
-    // BASE_URL: 'http://212.47.230.255', // Preprod mod
+    // BASE_URL: 'https://212.47.230.255', // Preprod mod
     ENDPOINTS: {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
       FETCH_APPOINTMENTS: '/api/appointments',
       FETCH_CUSTOMERS: '/api/customers',
+      FETCH_SETTINGS: '/api/settings',
       STORE_APPOINTMENT: '/api/appointment',
     },
     STATUS: {
@@ -78,5 +80,6 @@ export const IMAGES = {
     BackIcon,
     MagnifyIcon,
     AcceptIcon,
+    ClockIcon,
   },
 };

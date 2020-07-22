@@ -68,7 +68,7 @@
         <transition mode="out-in">
 
           <!-- // Spinner loading -->
-          <div class="flex" v-if="authStatus === $const.API.STATUS.LOADING">
+          <div class="flex" v-if="authStatus === $const.API.STATUS.LOADING || settingsStatus === $const.API.STATUS.LOADING">
             <moon-loader :color="$const.MISC.SPINNER.COLOR"></moon-loader>
           </div>
 
@@ -110,21 +110,26 @@ export default {
   methods: {
     login() {
       if (!this.$v.$invalid) {
-        this.$store.dispatch('authModule/login', this.form)
-          .then(() => {
-            if (this.authStatus === this.$const.API.STATUS.SUCCESS) {
-              this.$router.push({ name: this.$const.NAVIGATION.HOME_INDEX.NAME });
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        // auth
+        this.$store.dispatch('authModule/login', this.form).then(() => {
+          if (this.authStatus === this.$const.API.STATUS.SUCCESS) {
+            // settings
+            this.$store.dispatch('settingsModule/fetchSettings').then(() => {
+              if (this.settingsStatus === this.$const.API.STATUS.SUCCESS) {
+                this.$router.push({ name: this.$const.NAVIGATION.HOME_INDEX.NAME });
+              }
+            });
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
       }
     },
   },
   computed: {
     ...mapGetters({
       authStatus: 'authModule/authStatus',
+      settingsStatus: 'settingsModule/getStatus',
     }),
     emailErrors() {
       const errors = [];
