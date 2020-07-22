@@ -29,8 +29,12 @@ Route::middleware('auth:sanctum')->post('/appointment', 'AppointmentController@s
 // GET : Lister tous les comptes-rendus de tous les rendez-vous de l'utilisateur connecté
 Route::middleware('auth:sanctum')->get('/reports', 'ReportController@index');
 
+// PUT : Mettre à jour un rapport
+Route::middleware('auth:sanctum')->put('/report/{id}', 'ReportController@update');
+
 // GET : Lister tous les clients
 Route::middleware('auth:sanctum')->get('/customers', 'CustomerController@index');
 
-// PUT : Mettre à jour un rapport
-Route::middleware('auth:sanctum')->put('/report/{id}', 'ReportController@update');
+// GET : Lister toute les options globales
+Route::middleware('auth:sanctum')->get('/settings', 'SettingController@index');
+

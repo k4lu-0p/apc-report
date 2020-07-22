@@ -6,6 +6,7 @@ import authModule from './auth';
 import reportsModule from './reports';
 import appointmentsModule from './appointments';
 import customersModule from './customers';
+import settingsModule from './settings';
 
 Vue.use(Vuex);
 
@@ -15,5 +16,6 @@ export default new Vuex.Store({
     reportsModule,
     appointmentsModule,
     customersModule,
+    settingsModule,
   },
 });
