@@ -23,7 +23,7 @@ class UpdateReport extends FormRequest {
     public function rules()
     {
         return [
-            'survey' => ['required', 'json'],
+            'responses' => ['required', 'json'],
         ];
     }
 }

@@ -22,7 +22,7 @@ class ReportResource extends JsonResource
             'appointment_title' => $this->appointment->title,
             'appointment_start_at' => $this->appointment->start_at,
             'appointment_finish_at' => $this->appointment->finish_at,
-            'survey' => $this->survey,
+            'responses' => $this->responses,
             'created_at' => $this->created_at,
         ];
     }

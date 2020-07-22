@@ -7,6 +7,7 @@ use App\Customer;
 use App\Http\Requests\StoreAppointment;
 use App\Http\Resources\AppointmentResource;
 use App\Report;
+use App\Services\ReportSurveyService;
 use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -29,7 +30,7 @@ class AppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAppointment $request)
+    public function store(StoreAppointment $request, ReportSurveyService $reportSurveyService)
     {
         // handle validations
         $validated = $request->validated();
@@ -45,27 +46,8 @@ class AppointmentController extends Controller
         $customer = Customer::find($request->customer_id);
 
         // fill report data
-        $survey = [
-            'reception' => 1,
-            'appointment_quality' => 1,
-            'profile' => 'agency',
-            'subject' => 'new_partner',
-            'has_described_society' => false,
-            'has_showed_extranet' => false,
-            'has_showed_automotive_pricing' =>  false,
-            'has_distributed_visual_support' =>  false,
-            'products_evoked' => [
-                'auto' =>  false,
-                'housing' =>  false,
-                'moto' =>  false,
-                'health' =>  false,
-                'juridic' =>  false,
-                'life' =>  false,
-            ],
-            'monthly_volume' => 1,
-        ];
         $report->is_complete = false;
-        $report->survey = json_encode($survey);
+        $report->responses = $reportSurveyService->getDefaultResponsesStringify();
 
         // fill appointment data
         $appointment->title = $request->title;
@@ -90,9 +72,6 @@ class AppointmentController extends Controller
         $customer->reports()->save($report); // has many
         $customer->appointments()->save($appointment); // has many
 
-
-
-
         // succes response with appointment created
         return response()->newAppointmentStored($appointment);
     }
@@ -104,17 +83,6 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Appointment $appointment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Appointment  $appointment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Appointment $appointment)
     {
         //
     }
