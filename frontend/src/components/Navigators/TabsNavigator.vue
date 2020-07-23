@@ -16,7 +16,7 @@
           :class="{'tab-active': $route.name === $const.NAVIGATION.CUSTOMERS_HOME.NAME}"
         >
           <users-icon class="icon"></users-icon>
-          <span class="block text-xs">{{ $t('navigator.tabs.customers') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.customers') }}</span>
         </router-link>
 
         <router-link
@@ -26,7 +26,7 @@
           :class="{'tab-active': $route.name === $const.NAVIGATION.REPORTS_HOME.NAME}"
         >
           <reports-icon class="icon"></reports-icon>
-          <span class="block text-xs">{{ $t('navigator.tabs.reports') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.reports') }}</span>
         </router-link>
 
          <router-link
@@ -36,7 +36,7 @@
           :class="{'tab-active': $route.name === $const.NAVIGATION.HOME_INDEX.NAME}"
         >
           <home-icon class="icon"></home-icon>
-          <span class="block text-xs">{{ $t('navigator.tabs.home') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.home') }}</span>
         </router-link>
 
         <router-link
@@ -46,7 +46,7 @@
           :class="{'tab-active': $route.name === $const.NAVIGATION.APPOINTMENTS_HOME.NAME}"
         >
           <AppointmentsIcon class="icon"></AppointmentsIcon>
-          <span class="block text-xs">{{ $t('navigator.tabs.appointments') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.appointments') }}</span>
         </router-link>
 
         <router-link
@@ -56,7 +56,7 @@
           :class="{'tab-active': $route.name === $const.NAVIGATION.SETTINGS_HOME.NAME}"
         >
           <settings-icon class="icon"></settings-icon>
-          <span class="block text-xs">{{ $t('navigator.tabs.settings') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.settings') }}</span>
         </router-link>
 
       </div>
@@ -121,10 +121,14 @@ export default {
   #tabs
     .tab
       transition all 0.2s
+      fill theme('colors.gray.800')
+      color theme('colors.gray.800')
       .icon
-        width 25px
-        height 25px
+        width 22px
+        height 22px
         margin-bottom 0.25rem
+      .icon-label
+        @apply font-bold
     .tab-active
       fill theme('colors.teal.600')
       color theme('colors.teal.600')

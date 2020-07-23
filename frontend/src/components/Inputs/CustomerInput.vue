@@ -1,14 +1,14 @@
 <template>
 <!-- eslint-disable max-len -->
   <div>
-    <label class="font-medium" for="customer">
+    <label class="block pb-2 font-semibold text-gray-800" for="customer">
       {{ label }}
       <span class="text-red-500">*</span>
     </label>
-    <div class="relative input-form h-10 flex justify-between">
+    <div class="relative appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-10 flex justify-between">
       <input
         title="customer"
-        class="bg-transparent absolute h-full w-5/6 left-0 top-0 text-gray-700"
+        class="px-3 bg-transparent absolute h-full w-5/6 left-0 top-0 text-gray-700"
         id="customer"
         type="search"
         v-model="requestParams.search"

@@ -1,6 +1,6 @@
 <template>
   <div class="px-4 py-4 border-b">
-    <p>{{ customer.name }}</p>
+    <p class="font-medium text-gray-800">{{ customer.name }}</p>
   </div>
 </template>
 

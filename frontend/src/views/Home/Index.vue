@@ -1,7 +1,7 @@
 <template>
   <!-- Main -->
-  <div class="container">
-    <p>En cours de construction...</p>
+  <div class="container flex absolute top-45 px-10">
+    <p class="font-bold">En cours de développement...</p>
   </div>
 </template>
 

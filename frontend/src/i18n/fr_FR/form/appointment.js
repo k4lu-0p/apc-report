@@ -1,17 +1,17 @@
 export default {
   header: {
-    title: 'Créer un rendez-vous',
+    title: 'Nouveau rendez-vous',
   },
   date: {
     start: {
-      label: 'Début du rendez-vous :',
+      label: 'Début :',
       placeholder: 'Selectionner la date et l\'heure',
       validations: {
         required: 'La date de début est obligatoire.',
       },
     },
     finish: {
-      label: 'Fin du rendez-vous :',
+      label: 'Fin :',
       placeholder: 'Selectionner la date et l\'heure',
       validations: {
         required: 'La date de fin est obligatoire.',
@@ -20,26 +20,26 @@ export default {
     },
   },
   location: {
-    label: 'Lieu du rendez-vous :',
+    label: 'Lieu :',
     placeholder: 'Rechercher le lieu',
     validations: {
       required: 'Le lieu est obligatoire.',
     },
   },
   customer: {
-    label: 'Client :',
-    placeholder: 'Rechercher le client',
+    label: 'Partneraire :',
+    placeholder: 'Rechercher un partenaire',
     validations: {
-      required: 'La selection d\'un client est obligatoire.',
-      integer: 'La selection d\'un client est obligatoire.',
-      isValidId: 'La selection d\'un client est obligatoire.',
+      required: 'La selection d\'un partenaire est obligatoire.',
+      integer: 'La selection d\'un partenaire est obligatoire.',
+      isValidId: 'La selection d\'un partenaire est obligatoire.',
     },
     errors: {
-      result: 'Aucun clients n\'a été trouvé.',
+      result: 'Aucun partenaires n\'a été trouvé.',
     },
   },
   title: {
-    label: 'Titre du rendez-vous :',
+    label: 'Titre :',
     placeholder: 'Définir un titre',
     validations: {
       required: 'Le titre est obligatoire.',
