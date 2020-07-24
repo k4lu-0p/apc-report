@@ -53,7 +53,7 @@ class ReportController extends Controller
         $report = Report::find($id);
 
         $report->is_complete = true;
-        $report->survey = $request->survey;
+        $report->responses = $request->responses;
 
         $report->save();
 
