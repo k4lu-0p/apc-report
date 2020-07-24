@@ -1,6 +1,7 @@
 <template>
-  <div class="px-4 py-4 border-b">
-    <p>{{ customer.name }}</p>
+  <div class="border my-2 rounded-r flex shadow">
+    <!-- <div class="bg-teal-600 pl-1"></div> -->
+    <p class="p-3 font-medium text-gray-800">{{ customer.name }}</p>
   </div>
 </template>
 
@@ -18,10 +19,6 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
-
-<style>
+<style lang="stylus">
 
 </style>

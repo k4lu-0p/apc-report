@@ -44,6 +44,7 @@ const template = {
         commit('setStatus', $const.API.STATUS.LOADING);
         const { data: { appointment } } = await axios.post(endpoint, formData, config);
         commit('addAppointment', appointment);
+        commit('reportsModule/addReport', appointment.report, { root: true });
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Appointment;
+use App\Customer;
 use App\Http\Requests\StoreAppointment;
 use App\Http\Resources\AppointmentResource;
+use App\Report;
+use App\Services\ReportSurveyService;
+use App\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -26,27 +30,49 @@ class AppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAppointment $request)
+    public function store(StoreAppointment $request, ReportSurveyService $reportSurveyService)
     {
+        // handle validations
         $validated = $request->validated();
 
-        // Handle date format
+        // handle date format
         $start_at = Carbon::create($request->start_at)->format('Y-m-d H:i:s');
         $finish_at = Carbon::create($request->finish_at)->format('Y-m-d H:i:s');
 
+        // create or search model to associate
+        $user = User::find($request->user()->id);
         $appointment = new Appointment();
+        $report = new Report();
+        $customer = Customer::find($request->customer_id);
 
-        $appointment->report_id = $request->report_id ?: 0;
-        $appointment->user_id = $request->user()->id;
-        $appointment->customer_id = $request->customer_id;
+        // fill report data
+        $report->is_complete = false;
+        $report->responses = $reportSurveyService->getDefaultResponsesStringify();
+
+        // fill appointment data
         $appointment->title = $request->title;
         $appointment->location = $request->location;
         $appointment->start_at = $start_at;
         $appointment->finish_at = $finish_at;
         $appointment->warning = $request->warning ?: null;
 
+        // save
+        $report->save();
         $appointment->save();
 
+        // handle and save relations
+        $appointment->report()->save($report); // has one
+        $appointment->user()->associate($user); // belongs to
+        $appointment->customer()->associate($customer); // belongs to
+
+        $report->user()->associate($user); // belongs to
+        $report->customer()->associate($customer); // belongs to
+        $report->appointment()->associate($appointment); // belongs to
+
+        $customer->reports()->save($report); // has many
+        $customer->appointments()->save($appointment); // has many
+
+        // succes response with appointment created
         return response()->newAppointmentStored($appointment);
     }
 
@@ -57,17 +83,6 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Appointment $appointment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Appointment  $appointment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Appointment $appointment)
     {
         //
     }

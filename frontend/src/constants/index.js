@@ -8,9 +8,11 @@ import AddIcon from '../assets/svg/add.svg';
 import BackIcon from '../assets/svg/back.svg';
 import MagnifyIcon from '../assets/svg/magnify.svg';
 import AcceptIcon from '../assets/svg/accept.svg';
+import ClockIcon from '../assets/svg/clock.svg';
 
 export default {
   CONFIG: {
+    LIMIT_WIDTH_SCREEN: 768,
     LOCAL: {
       FR: 'fr',
       EN: 'en',
@@ -28,8 +30,10 @@ export default {
     ENDPOINTS: {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
+      UPDATE_REPORT: '/api/report',
       FETCH_APPOINTMENTS: '/api/appointments',
       FETCH_CUSTOMERS: '/api/customers',
+      FETCH_SETTINGS: '/api/settings',
       STORE_APPOINTMENT: '/api/appointment',
     },
     STATUS: {
@@ -40,13 +44,28 @@ export default {
     },
   },
   NAVIGATION: {
-    TABS: {
-      HOME_PAGE: 'home-page',
-      SETTINGS_PAGE: 'settings-page',
-      APPOINTMENTS_HOME: 'appointments-home',
-      CUSTOMERS_HOME: 'customers-home',
-      REPORTS_HOME: 'reports-home',
-    },
+    // index
+    LOGIN_INDEX: { NAME: 'login-index', PATH: '/login' },
+    HOME_INDEX: { NAME: 'home-index', PATH: '/' },
+    SETTINGS_INDEX: { NAME: 'settings-index', PATH: '/settings' },
+    APPOINTMENTS_INDEX: { NAME: 'appointments-index', PATH: '/appointments' },
+    CUSTOMERS_INDEX: { NAME: 'customers-index', PATH: '/customers' },
+    REPORTS_INDEX: { NAME: 'reports-index', PATH: '/reports' },
+
+    // childs: settings
+    SETTINGS_HOME: { NAME: 'settings-home', PATH: '' },
+
+    // childs: appointments
+    APPOINTMENTS_HOME: { NAME: 'appointments-home', PATH: '' },
+    APPOINTMENTS_CREATE: { NAME: 'appointments-create', PATH: 'create' },
+
+    // childs: customers
+    CUSTOMERS_HOME: { NAME: 'customers-home', PATH: '' },
+
+    // childs: reports
+    REPORTS_HOME: { NAME: 'reports-home', PATH: '' },
+    REPORTS_EDIT: { NAME: 'reports-edit', PATH: 'edit/:id' },
+
   },
 };
 
@@ -62,5 +81,6 @@ export const IMAGES = {
     BackIcon,
     MagnifyIcon,
     AcceptIcon,
+    ClockIcon,
   },
 };

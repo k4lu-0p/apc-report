@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- top bar -->
-    <top-bar></top-bar>
+    <top-bar has-back-button ></top-bar>
 
     <!-- form -->
     <create-appointment-form
@@ -47,17 +47,24 @@ export default {
       });
     },
     handleConfirm() {
-      // eslint-disable-next-line no-alert
-      window.alert('Désolé mais la partie reporting est actuellement en cours de développement.');
       this.isConfirmModalOpen = false;
-      this.$router.push({ name: 'appointments-home' });
+      // redirect to report survey form
+      this.$router.push({
+        name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
+        params: { id: this.lastReport.id },
+      });
     },
     handleCancel() {
       this.isConfirmModalOpen = false;
-      this.$router.push({ name: 'appointments-home' });
+      this.$router.push({ name: this.$const.NAVIGATION.APPOINTMENTS_HOME.NAME });
     },
     openConfirmModal() {
       this.isConfirmModalOpen = true;
+    },
+  },
+  computed: {
+    lastReport() {
+      return this.$store.getters['reportsModule/getLastReport'];
     },
   },
 };

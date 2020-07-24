@@ -1,12 +1,15 @@
 <template>
 <!-- eslint-disable max-len -->
   <div class="container mx-auto px-8">
-    <h2 class="font-bold text-2xl py-10">
-      {{ $t('form.appointment.header.title') }}
-    </h2>
+    <div class="flex flex-col justify-center items-center py-12">
+      <img src="../../../public/img/bg/2.png" class="header-image" alt="">
+      <h2 class="font-bold text-2xl text-gray-800">
+        {{ $t('form.appointment.header.title') }}
+      </h2>
+    </div>
     <form @submit.prevent="onSubmit($event)">
       <!-- Date start -->
-      <div class="datetime-start" :class="[startAtErrors.length > 1 ? 'pb-5' : 'pb-10']">
+      <div class="datetime-start" :class="[startAtErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- input -->
         <datetime
           zone="local"
@@ -15,13 +18,13 @@
           input-id="dateStart"
           v-model="startAt"
           @blur="$v.form.start_at.$touch()"
-          input-class="input-form datetime-input h-10"
+          input-class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           :phrases="{ok: 'Ok', cancel: 'Annuler'}"
           :title="$t('form.appointment.date.start.label')"
           :placeholder="$t('form.appointment.date.start.placeholder')"
         >
           <!-- label -->
-          <label class="font-medium" for="dateStart" slot="before">
+          <label class="block pb-2 font-semibold text-lg text-gray-800" for="dateStart" slot="before">
             {{ $t('form.appointment.date.start.label') }}
             <span class="text-red-500">*</span>
           </label>
@@ -32,7 +35,7 @@
           <p
             v-for="(message, index) in startAtErrors"
             :key="`date-start-error-${index}`"
-            class="text-red-500 text-xs italic pt-2"
+            class="text-red-500 text-xs font-medium pt-2"
           >
             {{ message }}
           </p>
@@ -40,7 +43,7 @@
       </div>
 
       <!-- Date end -->
-      <div class="datetime-finish" :class="[finishAtErrors.length > 1 ? 'pb-5' : 'pb-10']">
+      <div class="datetime-finish" :class="[finishAtErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- input -->
         <datetime
           zone="local"
@@ -49,14 +52,14 @@
           input-id="dateFinish"
           v-model="finishAt"
           @blur="$v.form.finish_at.$touch()"
-          input-class="input-form datetime-input h-10"
+          input-class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           :phrases="{ok: 'Ok', cancel: 'Annuler'}"
           :title="$t('form.appointment.date.finish.label')"
           :placeholder="$t('form.appointment.date.finish.placeholder')"
           :flow="['time']"
         >
           <!-- label -->
-          <label class="font-medium" for="dateFinish" slot="before">
+          <label class="block pb-2 font-semibold text-gray-800 text-lg" for="dateFinish" slot="before">
              {{ $t('form.appointment.date.finish.label') }}
              <span class="text-red-500">*</span>
           </label>
@@ -67,7 +70,7 @@
           <p
             v-for="(message, index) in finishAtErrors"
             :key="`date-finish-error-${index}`"
-            class="text-red-500 text-xs italic pt-2"
+            class="text-red-500 text-xs font-medium pt-2"
           >
             {{ message }}
           </p>
@@ -75,7 +78,7 @@
       </div>
 
       <!-- Location -->
-      <div :class="[locationErrors.length > 1 ? 'pb-5' : 'pb-12']">
+      <div :class="[locationErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- input -->
         <here-input
           @clear="handleClearLocation($event)"
@@ -89,7 +92,7 @@
           <p
             v-for="(message, index) in locationErrors"
             :key="`localisation-error-${index}`"
-            class="text-red-500 text-xs italic pt-2"
+            class="text-red-500 text-xs font-medium pt-2"
           >
             {{ message }}
           </p>
@@ -97,7 +100,7 @@
       </div>
 
       <!-- Customer -->
-      <div :class="[customerErrors.length > 1 || hasNoResultCustomerSearched ? 'pb-5' : 'pb-12']">
+      <div :class="[customerErrors.length > 1 || hasNoResultCustomerSearched ? 'pb-5' : 'pb-8']">
         <!-- input -->
         <customer-input
           @clear="handleClearCustomer($event)"
@@ -110,14 +113,14 @@
         <!-- errors -->
         <div :class="{'absolute' : customerErrors.length === 1 && hasNoResultCustomerSearched == false}">
           <p
-            class="text-red-500 font-bold text-xs italic pt-2"
+            class="text-red-500 font-bold text-xs pt-2"
             v-if="hasNoResultCustomerSearched">
             {{ $t('form.appointment.customer.errors.result') }}
           </p>
           <p
             v-for="(message, index) in customerErrors"
             :key="`customer-error-${index}`"
-            class="text-red-500 text-xs italic pt-2"
+            class="text-red-500 text-xs font-medium pt-2"
           >
             {{ message }}
           </p>
@@ -125,16 +128,16 @@
       </div>
 
       <!-- Title -->
-      <div :class="[titleErrors.length > 1 ? 'pb-5' : 'pb-12']">
+      <div :class="[titleErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- label -->
-        <label class="font-medium" for="title">
+        <label class="block pb-2 font-semibold text-gray-800 text-lg" for="title">
           {{ $t('form.appointment.title.label') }}
           <span class="text-red-500">*</span>
         </label>
 
         <!-- input -->
         <input
-          class="input-form h-10"
+          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
           name=""
           id="title"
@@ -148,7 +151,7 @@
           <p
             v-for="(message, index) in titleErrors"
             :key="`title-error-${index}`"
-            class="text-red-500 text-xs italic pt-2"
+            class="text-red-500 text-xs font-medium pt-2"
           >
             {{ message }}
           </p>
@@ -156,15 +159,15 @@
       </div>
 
       <!-- Warning -->
-      <div :class="[warningErrors.length > 1 ? 'pb-5' : 'pb-12']">
+      <div :class="[warningErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- label -->
-        <label class="font-medium" for="warning">
+        <label class="block pb-2 font-semibold text-gray-800 text-lg" for="warning">
           {{ $t('form.appointment.warning.label') }}
         </label>
 
         <!-- input -->
         <textarea
-          class="input-form"
+          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           name=""
           id="warning"
           rows="5"
@@ -178,7 +181,7 @@
           <p
             v-for="(message, index) in warningErrors"
             :key="`warning-error-${index}`"
-            class="text-red-500 text-xs italic pt-2"
+            class="text-red-500 text-xs font-medium pt-2"
           >
             {{ message }}
           </p>
@@ -186,7 +189,7 @@
       </div>
 
       <!-- Submit -->
-      <div class="pb-10 flex justify-center items-center h-16">
+      <div class="pb-8 flex justify-center items-center h-16">
         <transition
           mode="out-in"
           enter-active-class="animated fadeIn faster-x2"
@@ -234,7 +237,6 @@ export default {
         start_at: null,
         finish_at: null,
         location: null,
-        report_id: 0,
         customer_id: 0,
         title: '',
         warning: '',
@@ -330,6 +332,9 @@ export default {
       return errors;
     },
   },
+  mounted() {
+    this.$store.commit('customersModule/setCustomers', []);
+  },
 };
 </script>
 
@@ -358,4 +363,7 @@ export default {
     background theme('colors.teal.600')
   .vdatetime-popup__header
     background theme('colors.teal.600')
+
+.header-image
+  height 120px
 </style>

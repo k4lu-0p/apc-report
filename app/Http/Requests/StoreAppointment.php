@@ -24,7 +24,7 @@ class StoreAppointment extends FormRequest
     public function rules()
     {
         return [
-            'report_id' => ['nullable', 'numeric', 'unique:App\Report,id'],
+            // 'report_id' => ['nullable', 'numeric', 'unique:App\Report,id'],
             'customer_id' => ['required', 'numeric'],
             'title' => ['required', 'string'],
             'location' => ['required', 'json'],

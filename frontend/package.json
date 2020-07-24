@@ -10,6 +10,7 @@
         "test:unit": "vue-cli-service test:unit"
     },
     "dependencies": {
+        "@tailwindcss/custom-forms": "^0.2.1",
         "animate.css": "^4.1.0",
         "axios": "^0.19.2",
         "core-js": "^3.6.5",
@@ -23,6 +24,7 @@
         "vue-i18n": "^8.18.2",
         "vue-router": "^3.2.0",
         "vue-spinner": "^1.0.3",
+        "vue-star-rating": "^1.6.1",
         "vuelidate": "^0.7.5",
         "vuex": "^3.4.0",
         "vuex-module-maker": "^1.0.2",

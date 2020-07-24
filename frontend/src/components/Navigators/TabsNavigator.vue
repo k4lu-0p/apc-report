@@ -1,3 +1,4 @@
+/* eslint-disable vue/no-unused-components */
 <!-- eslint-disable max-len -->
 <template>
   <div>
@@ -10,51 +11,52 @@
 
         <router-link
           id="tab-users"
-          :to="{name: $const.NAVIGATION.TABS.CUSTOMERS_HOME}"
+          :to="{name: $const.NAVIGATION.CUSTOMERS_HOME.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.CUSTOMERS_HOME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.CUSTOMERS_HOME.NAME}"
         >
           <users-icon class="icon"></users-icon>
-          <span class="block text-xs">{{ $t('navigator.tabs.customers') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.customers') }}</span>
         </router-link>
+
         <router-link
           id="tab-reports"
-          :to="{name: $const.NAVIGATION.TABS.REPORTS_HOME}"
+          :to="{name: $const.NAVIGATION.REPORTS_HOME.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.REPORTS_HOME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.REPORTS_HOME.NAME}"
         >
           <reports-icon class="icon"></reports-icon>
-          <span class="block text-xs">{{ $t('navigator.tabs.reports') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.reports') }}</span>
         </router-link>
 
          <router-link
           id="tab-home"
-          :to="{name: $const.NAVIGATION.TABS.HOME_PAGE}"
+          :to="{name: $const.NAVIGATION.HOME_INDEX.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.HOME_PAGE}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.HOME_INDEX.NAME}"
         >
           <home-icon class="icon"></home-icon>
-          <span class="block text-xs">{{ $t('navigator.tabs.home') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.home') }}</span>
         </router-link>
 
         <router-link
           id="tab-support"
-          :to="{name: $const.NAVIGATION.TABS.APPOINTMENTS_HOME}"
+          :to="{name: $const.NAVIGATION.APPOINTMENTS_HOME.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.APPOINTMENTS_HOME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.APPOINTMENTS_HOME.NAME}"
         >
           <AppointmentsIcon class="icon"></AppointmentsIcon>
-          <span class="block text-xs">{{ $t('navigator.tabs.appointments') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.appointments') }}</span>
         </router-link>
 
         <router-link
           id="tab-settings"
-          :to="{name: $const.NAVIGATION.TABS.SETTINGS_PAGE}"
+          :to="{name: $const.NAVIGATION.SETTINGS_HOME.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.TABS.SETTINGS_PAGE}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.SETTINGS_HOME.NAME}"
         >
           <settings-icon class="icon"></settings-icon>
-          <span class="block text-xs">{{ $t('navigator.tabs.settings') }}</span>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.settings') }}</span>
         </router-link>
 
       </div>
@@ -119,10 +121,14 @@ export default {
   #tabs
     .tab
       transition all 0.2s
+      fill theme('colors.gray.800')
+      color theme('colors.gray.800')
       .icon
-        width 25px
-        height 25px
+        width 22px
+        height 22px
         margin-bottom 0.25rem
+      .icon-label
+        @apply font-bold
     .tab-active
       fill theme('colors.teal.600')
       color theme('colors.teal.600')

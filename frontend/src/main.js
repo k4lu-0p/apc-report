@@ -2,6 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import moment from 'moment';
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
+import StarRating from 'vue-star-rating';
 import { Datetime } from 'vue-datetime';
 import constants from './constants';
 import App from './App.vue';
@@ -25,6 +26,7 @@ Vue.use(Datetime);
 
 // Configurations
 Vue.config.productionTip = false;
+moment.locale('fr');
 
 // Utilitaires globaux
 Vue.prototype.$const = constants;
@@ -34,6 +36,7 @@ Vue.prototype.$moment = moment;
 // Composants globaux
 Vue.component('moon-loader', MoonLoader);
 Vue.component('datetime', Datetime);
+Vue.component('star-rating', StarRating);
 
 new Vue({
   router,

@@ -2,7 +2,7 @@ export default {
   home: 'Accueil',
   reports: 'Rapports',
   support: 'Support',
-  customers: 'Clients',
+  customers: 'Partenaires',
   settings: 'Paramètres',
   appointments: 'RDV',
 };

@@ -232,6 +232,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        '"Quicksand"',
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',
@@ -725,5 +726,5 @@ module.exports = {
     transitionDelay: ['responsive'],
   },
   corePlugins: {},
-  plugins: [],
+  plugins: [require('@tailwindcss/custom-forms')],
 }

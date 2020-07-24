@@ -10,7 +10,7 @@
     </transition>
 
     <tabs-navigator
-      v-if="Object.values($const.NAVIGATION.TABS).includes($route.name)"
+      v-if="Object.values(routesHasTabsNavigator).includes($route.name)"
     />
   </div>
 </template>
@@ -25,10 +25,20 @@ export default {
   },
   computed: {
     isMobile() {
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+      if (window.innerWidth <= this.$const.CONFIG.LIMIT_WIDTH_SCREEN) {
         return true;
       }
+      this.$store.dispatch('authModule/logout');
       return false;
+    },
+    routesHasTabsNavigator() {
+      return [
+        this.$const.NAVIGATION.HOME_INDEX.NAME, // index
+        this.$const.NAVIGATION.CUSTOMERS_HOME.NAME,
+        this.$const.NAVIGATION.APPOINTMENTS_HOME.NAME,
+        this.$const.NAVIGATION.SETTINGS_HOME.NAME,
+        this.$const.NAVIGATION.REPORTS_HOME.NAME,
+      ];
     },
   },
 };

@@ -8,14 +8,14 @@
       <div class="mb-4">
 
         <!-- Label email field -->
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+        <label class="block text-gray-800 text-sm font-bold mb-2" for="email">
           {{ $t('form.login.email.label') }}
         </label>
 
         <!-- // Input Email -->
         <input
           :class="{'border-red-500' : emailErrors.length}"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="email"
           type="email"
           v-model="$v.form.email.$model"
@@ -35,14 +35,14 @@
       <div class="mb-6">
 
         <!-- // Label password field -->
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+        <label class="block text-gray-800 text-sm font-bold mb-2" for="password">
         {{ $t('form.login.password.label') }}
         </label>
 
         <!-- // Input Password -->
         <input
           :class="{'border-red-500' : passwordErrors.length}"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           type="password"
           v-model="$v.form.password.$model"
@@ -68,7 +68,7 @@
         <transition mode="out-in">
 
           <!-- // Spinner loading -->
-          <div class="flex" v-if="authStatus === $const.API.STATUS.LOADING">
+          <div class="flex" v-if="authStatus === $const.API.STATUS.LOADING || settingsStatus === $const.API.STATUS.LOADING">
             <moon-loader :color="$const.MISC.SPINNER.COLOR"></moon-loader>
           </div>
 
@@ -110,21 +110,26 @@ export default {
   methods: {
     login() {
       if (!this.$v.$invalid) {
-        this.$store.dispatch('authModule/login', this.form)
-          .then(() => {
-            if (this.authStatus === this.$const.API.STATUS.SUCCESS) {
-              this.$router.push({ name: 'home-page' });
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        // auth
+        this.$store.dispatch('authModule/login', this.form).then(() => {
+          if (this.authStatus === this.$const.API.STATUS.SUCCESS) {
+            // settings
+            this.$store.dispatch('settingsModule/fetchSettings').then(() => {
+              if (this.settingsStatus === this.$const.API.STATUS.SUCCESS) {
+                this.$router.push({ name: this.$const.NAVIGATION.HOME_INDEX.NAME });
+              }
+            });
+          }
+        }).catch((err) => {
+          console.log(err);
+        });
       }
     },
   },
   computed: {
     ...mapGetters({
       authStatus: 'authModule/authStatus',
+      settingsStatus: 'settingsModule/getStatus',
     }),
     emailErrors() {
       const errors = [];

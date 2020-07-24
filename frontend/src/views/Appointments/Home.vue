@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable max-len -->
   <!-- Main -->
   <div class="container">
     <transition
@@ -22,7 +23,7 @@
       </div>
     </transition>
 
-    <float-add-button @onTap="$router.push({ name: 'appointments-create' })" />
+    <float-add-button @onTap="$router.push({ name: $const.NAVIGATION.APPOINTMENTS_CREATE.NAME })" />
   </div>
 </template>
 
@@ -52,7 +53,7 @@ export default {
         // Handle invalid token even if user is authenticated
         if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
           this.$store.dispatch('authModule/logout').then(() => {
-            this.$router.push({ name: 'login-page' });
+            this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
           });
         }
       });

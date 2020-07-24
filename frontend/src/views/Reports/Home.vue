@@ -1,6 +1,10 @@
 <template>
   <!-- Main -->
-  <div class="container">
+  <div class="container mx-auto px-4">
+
+    <!-- top bar -->
+    <top-bar :has-search-input="false" ></top-bar>
+
     <transition
       enter-active-class="animated fadeIn faster"
       leave-active-class="animated fadeOut faster"
@@ -26,11 +30,13 @@
 
 <script>
 import ReportItem from '../../components/Reports/ReportItem.vue';
+import TopBar from '../../components/Navigators/TopBar.vue';
 
 export default {
   name: 'reports-page',
   components: {
     ReportItem,
+    TopBar,
   },
   computed: {
     reports: {
@@ -48,7 +54,7 @@ export default {
         // Handle invalid token even if user is authenticated
         if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
           this.$store.dispatch('authModule/logout').then(() => {
-            this.$router.push({ path: '/login' });
+            this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
           });
         }
       });
