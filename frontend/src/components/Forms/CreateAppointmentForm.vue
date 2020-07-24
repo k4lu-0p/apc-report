@@ -24,7 +24,7 @@
           :placeholder="$t('form.appointment.date.start.placeholder')"
         >
           <!-- label -->
-          <label class="block pb-2 font-semibold text-gray-800" for="dateStart" slot="before">
+          <label class="block pb-2 font-semibold text-lg text-gray-800" for="dateStart" slot="before">
             {{ $t('form.appointment.date.start.label') }}
             <span class="text-red-500">*</span>
           </label>
@@ -59,7 +59,7 @@
           :flow="['time']"
         >
           <!-- label -->
-          <label class="block pb-2 font-semibold text-gray-800" for="dateFinish" slot="before">
+          <label class="block pb-2 font-semibold text-gray-800 text-lg" for="dateFinish" slot="before">
              {{ $t('form.appointment.date.finish.label') }}
              <span class="text-red-500">*</span>
           </label>
@@ -130,7 +130,7 @@
       <!-- Title -->
       <div :class="[titleErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- label -->
-        <label class="block pb-2 font-semibold text-gray-800" for="title">
+        <label class="block pb-2 font-semibold text-gray-800 text-lg" for="title">
           {{ $t('form.appointment.title.label') }}
           <span class="text-red-500">*</span>
         </label>
@@ -161,7 +161,7 @@
       <!-- Warning -->
       <div :class="[warningErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- label -->
-        <label class="block pb-2 font-semibold text-gray-800" for="warning">
+        <label class="block pb-2 font-semibold text-gray-800 text-lg" for="warning">
           {{ $t('form.appointment.warning.label') }}
         </label>
 
