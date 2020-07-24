@@ -1,7 +1,7 @@
 <template>
 <!-- eslint-disable max-len -->
   <div>
-    <label class="block pb-2 font-semibold text-gray-800" for="location">
+    <label class="block pb-2 font-semibold text-gray-800 text-lg" for="location">
       {{ label }}
       <span class="text-red-500">*</span>
     </label>
