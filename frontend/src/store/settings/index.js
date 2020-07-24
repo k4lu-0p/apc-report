@@ -32,6 +32,11 @@ const template = {
       }
     },
   },
+  getters: {
+    getSurvey: (state) => JSON.parse(state.settings
+      .find((setting) => setting.key === 'survey')
+      .content),
+  },
 };
 
 const config = {

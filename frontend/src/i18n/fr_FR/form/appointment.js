@@ -27,7 +27,7 @@ export default {
     },
   },
   customer: {
-    label: 'Partneraire :',
+    label: 'Partenaire :',
     placeholder: 'Rechercher un partenaire',
     validations: {
       required: 'La selection d\'un partenaire est obligatoire.',

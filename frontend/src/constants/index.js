@@ -30,6 +30,7 @@ export default {
     ENDPOINTS: {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
+      UPDATE_REPORT: '/api/report',
       FETCH_APPOINTMENTS: '/api/appointments',
       FETCH_CUSTOMERS: '/api/customers',
       FETCH_SETTINGS: '/api/settings',
