@@ -11,7 +11,7 @@
         class="px-3 bg-transparent absolute h-full w-5/6 left-0 top-0 text-gray-700"
         id="customer"
         type="search"
-        v-model="requestParams.search"
+        v-model="params.value"
         @click="onClearField($event)"
         @keyup="handleKeyUp($event)"
         :placeholder="placeholder"
@@ -71,8 +71,9 @@ export default {
   },
   data() {
     return {
-      requestParams: {
-        search: '',
+      params: {
+        by: 'name',
+        value: '',
         limit: 4,
         offset: 0,
       },
@@ -82,8 +83,8 @@ export default {
   methods: {
     handleKeyUp() {
       if (this.status !== this.$const.API.STATUS.LOADING) {
-        if (this.requestParams.search.length >= 2) {
-          this.$store.dispatch('customersModule/fetchCustomers', this.requestParams)
+        if (this.params.value.length >= 2) {
+          this.$store.dispatch('customersModule/fetchCustomers', this.params)
             .then(() => {
               if (this.$store.getters['customersModule/getCustomers'].length === 0) {
                 this.$emit('onNoResult', true);
@@ -99,12 +100,12 @@ export default {
     },
     onClickCustomer(event, customer) {
       this.customerSelected = customer;
-      this.requestParams.search = customer.name;
+      this.params.value = customer.name;
       this.$store.commit('customersModule/setCustomers', []);
       this.$emit('onClickCustomer', this.customerSelected);
     },
     onClearField() {
-      this.requestParams.search = '';
+      this.params.value = '';
       this.$emit('clear');
     },
   },

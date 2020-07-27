@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
-use App\Http\Requests\SearchCustomers;
-use App\Http\Resources\CustomerResource;
+use App\Http\Requests\GetCustomersRequest;
+use App\Services\CustomerService;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -14,18 +14,10 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SearchCustomers $request)
+    public function index(GetCustomersRequest $request, CustomerService $customerService)
     {
-        $search = $request->search;
-        $offset = $request->offset;
-        $limit = $request->limit;
-
-        $result = Customer::query()
-            ->where('name', 'LIKE', "%{$search}%")
-            ->offset($offset)
-            ->limit($limit)
-            ->get();
-        return CustomerResource::collection($result);
+        $customerService->setUserRequest($request);
+        return $customerService->handleFilteredRequest();
     }
 
     /**
@@ -55,9 +47,9 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $appointment)
+    public function show(CustomerService $customerService, $id)
     {
-        //
+        return $customerService->getById($id);
     }
 
     /**

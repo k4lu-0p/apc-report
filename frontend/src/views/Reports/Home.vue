@@ -38,6 +38,14 @@ export default {
     ReportItem,
     TopBar,
   },
+  data() {
+    return {
+      params: {
+        limit: 10,
+        offset: 0,
+      },
+    };
+  },
   computed: {
     reports: {
       get() {
@@ -49,16 +57,14 @@ export default {
     },
   },
   mounted() {
-    if (this.reports.length === 0) {
-      this.$store.dispatch('reportsModule/fetchReports').then(() => {
-        // Handle invalid token even if user is authenticated
-        if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
-          this.$store.dispatch('authModule/logout').then(() => {
-            this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
-          });
-        }
-      });
-    }
+    this.$store.dispatch('reportsModule/fetchReports', this.params).then(() => {
+      // Handle invalid token even if user is authenticated
+      if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
+        this.$store.dispatch('authModule/logout').then(() => {
+          this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
+        });
+      }
+    });
   },
 };
 </script>

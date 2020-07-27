@@ -14,7 +14,7 @@ const template = {
     fetchCustomers: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
 
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_CUSTOMERS}?&limit=40&offset=0`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_CUSTOMERS}`;
 
       const config = {
         headers: {
@@ -27,7 +27,6 @@ const template = {
         commit('setStatus', $const.API.STATUS.LOADING);
 
         const { data: { data: customers } } = await axios.get(endpoint, config);
-        localStorage.setItem('customers', JSON.stringify(customers));
 
         commit('setCustomers', customers);
         commit('setStatus', $const.API.STATUS.SUCCESS);

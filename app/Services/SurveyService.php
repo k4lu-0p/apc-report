@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-class ReportSurveyService {
+class SurveyService {
 
     private $survey = [
         [

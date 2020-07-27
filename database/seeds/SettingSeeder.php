@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Setting;
-use App\Services\ReportSurveyService;
+use App\Services\SurveyService;
 
 class SettingSeeder extends Seeder
 {
@@ -11,11 +11,11 @@ class SettingSeeder extends Seeder
      *
      * @return void
      */
-    public function run(ReportSurveyService $reportSurveyService)
+    public function run(SurveyService $surveyService)
     {
         return Setting::create([
             'key' => 'survey',
-            'content' => $reportSurveyService->getSurveyStringify(),
+            'content' => $surveyService->getSurveyStringify(),
         ]);
     }
 }

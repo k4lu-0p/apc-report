@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SearchCustomers extends FormRequest
+class GetAppointmentsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class SearchCustomers extends FormRequest
     public function rules()
     {
         return [
-            'search' => ['nullable', 'min:2'],
+            'by' => ['nullable'],
+            'value' => ['nullable'],
             'limit' => ['required', 'numeric'],
             'offset' => ['required', 'numeric'],
         ];

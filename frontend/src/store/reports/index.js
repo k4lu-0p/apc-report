@@ -12,15 +12,24 @@ const template = {
     },
   },
   actions: {
-    fetchReports: async ({ commit, rootState }) => {
+    fetchReports: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
+
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_REPORTS}`;
-      const config = { headers: { Authorization: `Bearer ${token}` } };
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params,
+      };
+
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
+
         const { data: { data: reports } } = await axios.get(endpoint, config);
-        localStorage.setItem('reports', JSON.stringify(reports));
         commit('setReports', reports);
+
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);
@@ -31,24 +40,16 @@ const template = {
         }
       }
     },
-    putReport: async ({ commit, rootState, state }, payload) => {
+    putReport: async ({ commit, rootState }, payload) => {
+      commit('setReports', []);
+
       const { id, responses } = payload;
       const { authModule: { token } } = rootState;
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.UPDATE_REPORT}/${id}`;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
-
-        const { data: { report } } = await axios.put(endpoint, { responses }, config);
-
-        // update state
-        commit('removeReport', report.id);
-        commit('addReport', report);
-
-        // update local
-        localStorage.removeItem('reports');
-        localStorage.setItem('reports', JSON.stringify(state.reports));
-
+        await axios.put(endpoint, { responses }, config);
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);
@@ -67,9 +68,6 @@ const template = {
   mutations: {
     removeReport: (state, id) => {
       state.reports = state.reports.filter((report) => report.id !== id);
-    },
-    addReport: (state, report) => {
-      state.reports.push(report);
     },
   },
 };

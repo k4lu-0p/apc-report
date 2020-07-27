@@ -3,7 +3,7 @@
   <div>
     <div class="pt-16"></div> <!-- prevent hidden elements by offset with bar -->
     <div
-      class="h-12 block shadow-md fixed inset-x-0 top-0 z-10 bg-white"
+      class="h-12 block shadow-sm fixed inset-x-0 top-0 z-10 bg-white"
     >
       <div class="px-4 w-screen flex justify-between h-full">
 
