@@ -75,6 +75,20 @@ class CustomerService {
         return CustomerResource::collection($result);
     }
 
+     /**
+     * GET les customers
+     */
+    private function getAll()
+    {
+        $result = Customer::query()
+            ->offset($this->request->offset)
+            ->limit($this->request->limit)
+            ->get();
+
+        return CustomerResource::collection($result);
+    }
+
+
     /**
      *
      */
@@ -83,6 +97,9 @@ class CustomerService {
         switch ($this->request->by) {
             case self::FILTER_AUTHORIZED['CUSTOMER_NAME'] :
                 return $this->getByName();
+                break;
+            default :
+                return $this->getAll();
                 break;
         }
     }
