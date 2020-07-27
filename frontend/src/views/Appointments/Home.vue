@@ -18,7 +18,7 @@
       >
         <moon-loader :color="$const.MISC.SPINNER.COLOR"></moon-loader>
       </div>
-      <div v-else class="absolute top-45 flex flex-col justify-center items-center">
+      <div v-else class="absolute top-45 left-0 flex flex-col justify-center items-center">
         <p class="text-gray-500 text-center px-10">{{ $t('page.appointments.empty') }}</p>
       </div>
     </transition>
