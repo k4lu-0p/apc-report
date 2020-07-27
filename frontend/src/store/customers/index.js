@@ -27,7 +27,6 @@ const template = {
         commit('setStatus', $const.API.STATUS.LOADING);
 
         const { data: { data: customers } } = await axios.get(endpoint, config);
-        localStorage.setItem('customers', JSON.stringify(customers));
 
         commit('setCustomers', customers);
         commit('setStatus', $const.API.STATUS.SUCCESS);

@@ -48,16 +48,14 @@ export default {
     },
   },
   mounted() {
-    if (this.appointments.length === 0) {
-      this.$store.dispatch('appointmentsModule/fetchAppointments').then(() => {
-        // Handle invalid token even if user is authenticated
-        if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
-          this.$store.dispatch('authModule/logout').then(() => {
-            this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
-          });
-        }
-      });
-    }
+    this.$store.dispatch('appointmentsModule/fetchAppointments').then(() => {
+      // Handle invalid token even if user is authenticated
+      if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
+        this.$store.dispatch('authModule/logout').then(() => {
+          this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
+        });
+      }
+    });
   },
 };
 </script>

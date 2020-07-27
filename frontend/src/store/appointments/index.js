@@ -13,19 +13,18 @@ const template = {
       initial_value: [],
     },
   },
-  mutations: {
-    addAppointment: (state, appointment) => appointment.id > 0 && state.appointments.push(appointment),
-  },
   actions: {
     fetchAppointments: async ({ commit, rootState }) => {
       const { authModule: { token } } = rootState;
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_APPOINTMENTS}`;
       const config = { headers: { Authorization: `Bearer ${token}` } };
+
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
+
         const { data: { data: appointments } } = await axios.get(endpoint, config);
-        localStorage.setItem('appointments', JSON.stringify(appointments));
         commit('setAppointments', appointments);
+
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);
@@ -42,9 +41,9 @@ const template = {
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
+
         const { data: { appointment } } = await axios.post(endpoint, formData, config);
-        commit('addAppointment', appointment);
-        commit('reportsModule/addReport', appointment.report, { root: true });
+
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);
