@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetReportsRequest;
 use App\Http\Requests\UpdateReport;
 use Illuminate\Http\Request;
-use App\Http\Resources\ReportResource;
 use App\Report;
+use App\Services\ReportService;
 
 class ReportController extends Controller
 {
@@ -14,9 +15,10 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(GetReportsRequest $request, ReportService $reportService)
     {
-        return ReportResource::collection($request->user()->reports);
+        $reportService->setUserRequest($request);
+        return $reportService->handleFilteredRequest();
     }
 
     /**
@@ -25,9 +27,9 @@ class ReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+
     }
 
     /**
@@ -36,9 +38,9 @@ class ReportController extends Controller
      * @param  \App\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show(ReportService $reportService, $id)
     {
-        //
+        return $reportService->getById($id);
     }
 
     /**

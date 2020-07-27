@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Carbon\Carbon;
+use App\Services\CustomerService;
 use Illuminate\Support\ServiceProvider;
 
-class ReportSurveyProvider extends ServiceProvider {
+class CustomerServiceProvider extends ServiceProvider {
     /**
      * Bootstrap the application services.
      *
@@ -23,6 +23,6 @@ class ReportSurveyProvider extends ServiceProvider {
      */
     public function register()
     {
-        require_once app_path() . '/Services/ReportSurveyService.php';
+        return app(CustomerService::class);
     }
 }
