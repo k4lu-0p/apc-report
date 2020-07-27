@@ -14,10 +14,17 @@ const template = {
     },
   },
   actions: {
-    fetchAppointments: async ({ commit, rootState }) => {
+    fetchAppointments: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
+
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_APPOINTMENTS}`;
-      const config = { headers: { Authorization: `Bearer ${token}` } };
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params,
+      };
 
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
@@ -36,6 +43,8 @@ const template = {
       }
     },
     storeAppointment: async ({ commit, rootState }, formData) => {
+      commit('setAppointments', []);
+
       const { authModule: { token } } = rootState;
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.STORE_APPOINTMENT}`;
       const config = { headers: { Authorization: `Bearer ${token}` } };

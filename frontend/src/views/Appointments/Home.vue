@@ -37,6 +37,14 @@ export default {
     AppointmentItem,
     FloatAddButton,
   },
+  data() {
+    return {
+      params: {
+        limit: 10,
+        offset: 0,
+      },
+    };
+  },
   computed: {
     appointments: {
       get() {
@@ -48,7 +56,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('appointmentsModule/fetchAppointments').then(() => {
+    this.$store.dispatch('appointmentsModule/fetchAppointments', this.params).then(() => {
       // Handle invalid token even if user is authenticated
       if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
         this.$store.dispatch('authModule/logout').then(() => {

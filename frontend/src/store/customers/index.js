@@ -14,7 +14,7 @@ const template = {
     fetchCustomers: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
 
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_CUSTOMERS}?&limit=40&offset=0`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_CUSTOMERS}`;
 
       const config = {
         headers: {

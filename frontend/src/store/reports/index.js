@@ -12,14 +12,24 @@ const template = {
     },
   },
   actions: {
-    fetchReports: async ({ commit, rootState }) => {
+    fetchReports: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
+
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_REPORTS}`;
-      const config = { headers: { Authorization: `Bearer ${token}` } };
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params,
+      };
+
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
+
         const { data: { data: reports } } = await axios.get(endpoint, config);
         commit('setReports', reports);
+
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);
@@ -31,6 +41,8 @@ const template = {
       }
     },
     putReport: async ({ commit, rootState }, payload) => {
+      commit('setReports', []);
+
       const { id, responses } = payload;
       const { authModule: { token } } = rootState;
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.UPDATE_REPORT}/${id}`;

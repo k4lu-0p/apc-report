@@ -31,6 +31,14 @@ export default {
     CustomerItem,
     TopBar,
   },
+  data() {
+    return {
+      params: {
+        limit: 10,
+        offset: 0,
+      },
+    };
+  },
   computed: {
     customers: {
       get() {
@@ -39,7 +47,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('customersModule/fetchCustomers').then(() => {
+    this.$store.dispatch('customersModule/fetchCustomers', this.params).then(() => {
       // Handle invalid token even if user is authenticated
       if (this.$store.getters['customersModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
         this.$store.dispatch('authModule/logout').then(() => {

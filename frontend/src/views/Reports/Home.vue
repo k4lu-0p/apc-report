@@ -38,6 +38,14 @@ export default {
     ReportItem,
     TopBar,
   },
+  data() {
+    return {
+      params: {
+        limit: 10,
+        offset: 0,
+      },
+    };
+  },
   computed: {
     reports: {
       get() {
@@ -49,7 +57,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('reportsModule/fetchReports').then(() => {
+    this.$store.dispatch('reportsModule/fetchReports', this.params).then(() => {
       // Handle invalid token even if user is authenticated
       if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
         this.$store.dispatch('authModule/logout').then(() => {
