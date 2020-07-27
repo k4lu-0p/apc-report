@@ -75,6 +75,7 @@ class AppointmentService {
             ->where('user_id', '=', $this->user->id)
             ->offset($this->request->offset)
             ->limit($this->request->limit)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return AppointmentResource::collection($result);

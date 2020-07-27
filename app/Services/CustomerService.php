@@ -83,11 +83,11 @@ class CustomerService {
         $result = Customer::query()
             ->offset($this->request->offset)
             ->limit($this->request->limit)
+            ->orderBy('name', 'asc')
             ->get();
 
         return CustomerResource::collection($result);
     }
-
 
     /**
      *

@@ -73,6 +73,7 @@ class ReportService
             ->where('reports.user_id', '=', $this->user->id)
             ->offset($this->request->offset)
             ->limit($this->request->limit)
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return ReportResource::collection($result);
