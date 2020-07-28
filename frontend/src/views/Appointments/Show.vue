@@ -1,6 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div>
+  <div class="min-h-screen">
     <top-bar has-back-button ></top-bar>
     <div class="container mx-auto px-4">
 

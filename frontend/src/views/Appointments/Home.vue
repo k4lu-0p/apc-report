@@ -1,30 +1,27 @@
 <template>
 <!-- eslint-disable max-len -->
   <!-- Main -->
-  <div class="container mx-auto px-4">
+  <div class="min-h-screen">
     <top-bar></top-bar>
-    <transition
-      enter-active-class="animated fadeIn faster"
-      leave-active-class="animated fadeOut faster"
-      mode="out-in"
-    >
-      <transition-group v-if="appointments && appointments.length" tag="ul">
-        <li v-for="appointment in appointments" :key="appointment.id">
-          <appointment-item :appointment="appointment"/>
-        </li>
-      </transition-group>
-      <div
-        v-else-if="status === $const.API.STATUS.LOADING"
-        class="fixed w-screen flex flex-col justify-center items-center h-screen"
+    <div class="container mx-auto px-4">
+      <transition
+        enter-active-class="animated fadeIn faster"
+        leave-active-class="animated fadeOut faster"
+        mode="out-in"
       >
-        <moon-loader :color="$const.MISC.SPINNER.COLOR"></moon-loader>
-      </div>
-      <div v-else class="absolute top-45 left-0 flex flex-col justify-center items-center">
-        <p class="text-gray-500 text-center px-10">{{ $t('page.appointments.empty') }}</p>
-      </div>
-    </transition>
+        <transition-group v-if="appointments && appointments.length" tag="ul">
+          <li v-for="appointment in appointments" :key="appointment.id">
+            <appointment-item :appointment="appointment"/>
+          </li>
+        </transition-group>
+        <spinner v-else-if="status === $const.API.STATUS.LOADING" :is-visible="true"></spinner>
+        <div v-else class="absolute top-45 left-0 flex flex-col justify-center items-center">
+          <p class="text-gray-500 text-center px-10">{{ $t('page.appointments.empty') }}</p>
+        </div>
+      </transition>
 
-    <float-add-button @onTap="$router.push({ name: $const.NAVIGATION.APPOINTMENTS_CREATE.NAME })" />
+      <float-add-button @onTap="$router.push({ name: $const.NAVIGATION.APPOINTMENTS_CREATE.NAME })" />
+    </div>
   </div>
 </template>
 
@@ -32,6 +29,7 @@
 import AppointmentItem from '../../components/Appointments/AppointmentItem.vue';
 import FloatAddButton from '../../components/Buttons/FloatAddButton.vue';
 import TopBar from '../../components/Navigators/TopBar.vue';
+import Spinner from '../../components/Spinner.vue';
 
 export default {
   name: 'appointments-page',
@@ -39,6 +37,7 @@ export default {
     AppointmentItem,
     FloatAddButton,
     TopBar,
+    Spinner,
   },
   data() {
     return {

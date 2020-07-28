@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="min-h-screen">
     <transition
       enter-active-class="animated slideInLeft faster-x2"
       leave-active-class="animated slideOutRight faster-x2"
