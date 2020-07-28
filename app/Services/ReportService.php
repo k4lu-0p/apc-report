@@ -19,10 +19,6 @@ class ReportService
         'APPOINTMENT_START_AT' => 'start_at',
     ];
 
-    public function __construct(GetReportsRequest $request)
-    {
-    }
-
     public function setUserRequest($request) {
         // handle validations
         $validated = $request->validated();
@@ -61,6 +57,11 @@ class ReportService
         }
 
         $result = Report::find($id);
+
+        if (empty($result)) {
+            return response()->reportNotFound();
+        }
+
         return new ReportResource($result);
     }
 

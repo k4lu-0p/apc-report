@@ -38,7 +38,7 @@ class ReportController extends Controller
      * @param  \App\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function show(ReportService $reportService, $id)
+    public function show($id, ReportService $reportService)
     {
         return $reportService->getById($id);
     }
