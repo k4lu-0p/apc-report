@@ -1,25 +1,27 @@
 <template>
-  <div class="container">
+  <div class="min-h-screen">
     <!-- top bar -->
     <top-bar has-back-button ></top-bar>
+    <div class="container">
 
-    <!-- form -->
-    <create-appointment-form
-      @submit="handleSubmit($event)"
-    ></create-appointment-form>
+      <!-- form -->
+      <create-appointment-form
+        @submit="handleSubmit($event)"
+      ></create-appointment-form>
 
-    <!-- modal -->
-    <transition
-      mode="out-in"
-      enter-active-class="animated fadeIn faster-x2"
-      leave-active-class="animated fadeOut faster-x2"
-    >
-      <confirm-appointment-modal
-        v-if="isConfirmModalOpen"
-        @confirm="handleConfirm"
-        @cancel="handleCancel"
-      ></confirm-appointment-modal>
-    </transition>
+      <!-- modal -->
+      <transition
+        mode="out-in"
+        enter-active-class="animated fadeIn faster-x2"
+        leave-active-class="animated fadeOut faster-x2"
+      >
+        <confirm-appointment-modal
+          v-if="isConfirmModalOpen"
+          @confirm="handleConfirm"
+          @cancel="handleCancel"
+        ></confirm-appointment-modal>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -38,12 +40,15 @@ export default {
   data() {
     return {
       isConfirmModalOpen: false,
+      newAppointmentCreated: null,
     };
   },
   methods: {
     handleSubmit(form) {
-      this.$store.dispatch('appointmentsModule/storeAppointment', form).then(() => {
+      this.$store.dispatch('appointmentsModule/storeAppointment', form).then((newAppointmentCreated) => {
         this.isConfirmModalOpen = true;
+        this.newAppointmentCreated = newAppointmentCreated;
+        console.log(newAppointmentCreated);
       });
     },
     handleConfirm() {
@@ -51,7 +56,7 @@ export default {
       // redirect to report survey form
       this.$router.push({
         name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
-        params: { id: this.lastReport.id },
+        params: { id: this.newAppointmentCreated.report.id },
       });
     },
     handleCancel() {

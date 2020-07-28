@@ -16,10 +16,6 @@ class CustomerService {
         'CUSTOMER_NAME' => 'name',
     ];
 
-    public function __construct(GetCustomersRequest $request)
-    {
-    }
-
     public function setUserRequest($request) {
         // handle validations
         $validated = $request->validated();
@@ -57,8 +53,23 @@ class CustomerService {
             ]);
         }
 
-        $result = Customer::find($id);
-        return new CustomerResource($result);
+        $customer = Customer::find($id);
+        return new CustomerResource($customer);
+    }
+
+    /**
+     * Supprime définitivement le client
+     */
+    public function deleteById(int $id) {
+        if (empty($id)) {
+            throw ValidationException::withMessages([
+                'id' => ['id customer introuvable']
+            ]);
+        }
+
+        $customer = Customer::find($id);
+        $customer->delete();
+        return response()->customerDeleted();
     }
 
     /**

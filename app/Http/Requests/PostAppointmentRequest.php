@@ -26,6 +26,7 @@ class PostAppointmentRequest extends FormRequest
         return [
             // 'report_id' => ['nullable', 'numeric', 'unique:App\Report,id'],
             'customer_id' => ['required', 'numeric'],
+            'customer_name' => ['required', 'string'],
             'title' => ['required', 'string'],
             'location' => ['required', 'json'],
             'start_at' => ['required', 'date'],

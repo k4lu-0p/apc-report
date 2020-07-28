@@ -13,6 +13,7 @@ import HomeIndex from '../views/Home/Index.vue';
 import AppointmentsIndex from '../views/Appointments/Index.vue';
 import AppointmentsHome from '../views/Appointments/Home.vue';
 import AppointmentsCreate from '../views/Appointments/Create.vue';
+import AppointmentsShow from '../views/Appointments/Show.vue';
 
 // Pages customers
 import CustomersIndex from '../views/Customers/Index.vue';
@@ -93,6 +94,12 @@ const routes = [
         path: $const.NAVIGATION.APPOINTMENTS_CREATE.PATH,
         name: $const.NAVIGATION.APPOINTMENTS_CREATE.NAME,
         component: AppointmentsCreate,
+        props: true,
+      },
+      {
+        path: $const.NAVIGATION.APPOINTMENTS_SHOW.PATH,
+        name: $const.NAVIGATION.APPOINTMENTS_SHOW.NAME,
+        component: AppointmentsShow,
         props: true,
       },
     ],

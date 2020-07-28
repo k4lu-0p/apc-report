@@ -1,11 +1,10 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div>
-    <div class="pt-16"></div> <!-- prevent hidden elements by offset with bar -->
+  <div class="sticky inset-x-0 top-0 left-0 z-10 w-full h-12">
     <div
-      class="h-12 block shadow-sm fixed inset-x-0 top-0 z-10 bg-white"
+      class="h-full shadow-sm bg-white"
     >
-      <div class="px-4 w-screen flex justify-between h-full">
+      <div class="px-4 flex justify-between h-full">
 
         <!-- back button -->
         <div v-if="hasBackButton" @click="$router.go(-1)"  class="back-icon-wrapper flex justify-center items-center">
@@ -26,9 +25,7 @@
         <!-- <div v-if="hasFilterMenu" class="magnify-icon-wrapper flex justify-center items-center">
           <magnify-icon class="magnify-icon"></magnify-icon>
         </div> -->
-
       </div>
-
     </div>
   </div>
 </template>

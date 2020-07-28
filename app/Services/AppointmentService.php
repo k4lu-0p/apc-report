@@ -20,11 +20,6 @@ class AppointmentService {
         'APPOINTMENT_START_AT' => 'start_at',
     ];
 
-    public function __construct()
-    {
-
-    }
-
     public function setUserRequest($request) {
         // handle validations
         $validated = $request->validated();
@@ -58,11 +53,16 @@ class AppointmentService {
     {
         if (empty($id)) {
             throw ValidationException::withMessages([
-                'id' => ['id appointment introuvable']
+                'id' => ['id rendez-vous introuvable']
             ]);
         }
 
         $result = Appointment::find($id);
+
+        if (empty($result)) {
+            return response()->appointmentNotFound();
+        }
+
         return new AppointmentResource($result);
     }
 
@@ -117,7 +117,13 @@ class AppointmentService {
         // create or search model to associate
         $appointment = new Appointment();
         $report = new Report();
-        $customer = Customer::find($this->request->customer_id);
+
+        if ($this->request->customer_id !== 0) {
+            $customer = Customer::find($this->request->customer_id);
+        }
+
+        $customer = new Customer();
+        $customer->name = $this->request->customer_name;
 
         // fill report data
         $report->is_complete = false;
@@ -131,6 +137,7 @@ class AppointmentService {
         $appointment->warning = $this->request->warning ?: null;
 
         // save
+        $customer->save();
         $report->save();
         $appointment->save();
 
