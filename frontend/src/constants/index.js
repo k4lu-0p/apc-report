@@ -31,8 +31,11 @@ export default {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
       UPDATE_REPORT: '/api/report',
+      FETCH_REPORT: '/api/report/',
       FETCH_APPOINTMENTS: '/api/appointments',
+      FETCH_APPOINTMENT: '/api/appointment/',
       FETCH_CUSTOMERS: '/api/customers',
+      DELETE_CUSTOMER: '/api/customer/',
       FETCH_SETTINGS: '/api/settings',
       STORE_APPOINTMENT: '/api/appointment',
     },
@@ -58,6 +61,7 @@ export default {
     // childs: appointments
     APPOINTMENTS_HOME: { NAME: 'appointments-home', PATH: '' },
     APPOINTMENTS_CREATE: { NAME: 'appointments-create', PATH: 'create' },
+    APPOINTMENTS_SHOW: { NAME: 'appointments-show', PATH: 'show/:id' },
 
     // childs: customers
     CUSTOMERS_HOME: { NAME: 'customers-home', PATH: '' },

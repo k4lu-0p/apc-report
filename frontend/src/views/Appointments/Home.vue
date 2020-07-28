@@ -1,7 +1,8 @@
 <template>
 <!-- eslint-disable max-len -->
   <!-- Main -->
-  <div class="container">
+  <div class="container mx-auto px-4">
+    <top-bar></top-bar>
     <transition
       enter-active-class="animated fadeIn faster"
       leave-active-class="animated fadeOut faster"
@@ -30,12 +31,14 @@
 <script>
 import AppointmentItem from '../../components/Appointments/AppointmentItem.vue';
 import FloatAddButton from '../../components/Buttons/FloatAddButton.vue';
+import TopBar from '../../components/Navigators/TopBar.vue';
 
 export default {
   name: 'appointments-page',
   components: {
     AppointmentItem,
     FloatAddButton,
+    TopBar,
   },
   data() {
     return {

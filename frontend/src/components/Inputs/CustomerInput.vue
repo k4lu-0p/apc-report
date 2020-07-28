@@ -33,10 +33,23 @@
       leave-active-class="animated fadeOut faster-x2"
       mode="out-in"
     >
-      <div v-if="customers.length > 0">
+      <div v-if="customers.length > 0 || params.value.length >= 2">
         <ul class="customers-list">
           <li
-            @click="onClickCustomer($event, customer)"
+            v-if="params.value.length >= 2 && !IsCustomerNameAlreadyExist(params.value) && customerSelected === null"
+            @click="onSelectNewCustomer($event)"
+            class="py-2 customer-item flex justify-between items-center"
+          >
+            <span class="w-5/6 h-full" >
+              {{ params.value }}
+            </span>
+            <span class="flex justify-center items-center w-1/6 text-sm">
+              <!-- <add-icon class="add-icon"></add-icon> -->
+              créer
+            </span>
+          </li>
+          <li
+            @click="onSelectCustomer($event, customer)"
             class="py-2 customer-item flex justify-between items-center"
             v-for="(customer, index) in customers"
             :key="`customer-${index}-${customer.id}`"
@@ -84,29 +97,38 @@ export default {
     handleKeyUp() {
       if (this.status !== this.$const.API.STATUS.LOADING) {
         if (this.params.value.length >= 2) {
-          this.$store.dispatch('customersModule/fetchCustomers', this.params)
-            .then(() => {
-              if (this.$store.getters['customersModule/getCustomers'].length === 0) {
-                this.$emit('onNoResult', true);
-              } else {
-                this.$emit('onNoResult', false);
-              }
-            });
+          this.$store.dispatch('customersModule/fetchCustomers', this.params);
         }
       }
     },
     onClickSearchCustomer() {
       this.handleKeyUp();
     },
-    onClickCustomer(event, customer) {
+    onSelectCustomer(event, customer) {
       this.customerSelected = customer;
       this.params.value = customer.name;
       this.$store.commit('customersModule/setCustomers', []);
-      this.$emit('onClickCustomer', this.customerSelected);
+      this.$emit('select', this.customerSelected);
+    },
+    onSelectNewCustomer() {
+      this.customerSelected = {
+        id: 0,
+        name: this.params.value,
+      };
+      this.$store.commit('customersModule/setCustomers', []);
+      this.$emit('select', this.customerSelected);
     },
     onClearField() {
       this.params.value = '';
+      this.customerSelected = null;
       this.$emit('clear');
+    },
+    IsCustomerNameAlreadyExist(search) {
+      const names = this.customers.map((customer) => customer.name.toLowerCase());
+      if (names.includes(search.toLowerCase())) {
+        return true;
+      }
+      return false;
     },
   },
   computed: {

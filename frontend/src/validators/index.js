@@ -45,10 +45,8 @@ const appointment = {
     location: {
       required,
     },
-    customer_id: {
+    customer_name: {
       required,
-      integer,
-      isValidId: minValue(1),
     },
     title: {
       required,

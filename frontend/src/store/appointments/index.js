@@ -43,17 +43,26 @@ const template = {
       }
     },
     storeAppointment: async ({ commit, rootState }, formData) => {
+      // clean for force reload with the new
       commit('setAppointments', []);
 
       const { authModule: { token } } = rootState;
+      let newAppointment = null;
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.STORE_APPOINTMENT}`;
-      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
 
         const { data: { appointment } } = await axios.post(endpoint, formData, config);
-
+        newAppointment = appointment;
         commit('setStatus', $const.API.STATUS.SUCCESS);
+
+        return appointment;
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);
         if (error.response) {
@@ -62,6 +71,8 @@ const template = {
           }
         }
       }
+
+      return newAppointment;
     },
   },
 };

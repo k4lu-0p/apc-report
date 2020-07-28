@@ -104,8 +104,7 @@
         <!-- input -->
         <customer-input
           @clear="handleClearCustomer($event)"
-          @onClickCustomer="handleSelectCustomer($event)"
-          @onNoResult="handleNoResultCustomerSearched($event)"
+          @select="handleSelectCustomer($event)"
           :label="$t('form.appointment.customer.label')"
           :placeholder="$t('form.appointment.customer.placeholder')"
         ></customer-input>
@@ -238,6 +237,7 @@ export default {
         finish_at: null,
         location: null,
         customer_id: 0,
+        customer_name: '',
         title: '',
         warning: '',
       },
@@ -250,10 +250,11 @@ export default {
     },
     handleSelectCustomer(customer) {
       this.form.customer_id = customer.id;
+      this.form.customer_name = customer.name;
     },
     handleClearCustomer() {
-      this.$v.form.customer_id.$touch();
-      this.form.customer_id = 0;
+      this.$v.form.customer_name.$touch();
+      this.form.customer_name = '';
     },
     handleClearLocation() {
       this.$v.form.location.$touch();
@@ -261,9 +262,6 @@ export default {
     },
     onSubmit() {
       this.$emit('submit', this.form);
-    },
-    handleNoResultCustomerSearched(hasNoResult) {
-      this.hasNoResultCustomerSearched = hasNoResult;
     },
   },
   computed: {
@@ -312,9 +310,8 @@ export default {
     },
     customerErrors() {
       const errors = [];
-      if (!this.$v.form.customer_id.$dirty) return errors;
-      if (!this.$v.form.customer_id.required) errors.push(this.$t('form.appointment.customer.validations.required'));
-      if (!this.$v.form.customer_id.isValidId) errors.push(this.$t('form.appointment.customer.validations.isValidId'));
+      if (!this.$v.form.customer_name.$dirty) return errors;
+      if (!this.$v.form.customer_name.required) errors.push(this.$t('form.appointment.customer.validations.required'));
       return errors;
     },
     titleErrors() {

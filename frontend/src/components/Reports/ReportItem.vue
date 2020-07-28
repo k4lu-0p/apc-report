@@ -2,18 +2,27 @@
 <!-- eslint-disable max-len -->
   <div v-if="report.id" class="bg-white shadow-md my-4 rounded-lg">
     <div class="px-6">
+
+      <!-- header -->
       <div class="flex justify-between items-center py-2">
         <div class="flex justify-start items-center">
           <clock-icon class="clock-icon"></clock-icon>
-          <p class="text-gray-500 pl-2 text-xs">{{ $moment(report.appointment_start_at).calendar() }}</p>
+          <p class="text-gray-500 pl-2 text-xs">
+            {{ $moment(report.appointment_start_at).calendar() }}
+          </p>
         </div>
         <div class="flex justify-start items-center">
           <users-icon class="users-icon"></users-icon>
-          <p class="text-gray-500 pl-2 text-xs">{{ report.customer_name }}</p>
+          <p class="text-gray-500 pl-2 text-xs">
+            {{ report.customer_name }}
+          </p>
         </div>
       </div>
 
-      <p class="py-4 font-medium text-gray-800">{{ report.appointment_title }}</p>
+      <!-- title -->
+      <p class="py-4 font-medium text-gray-800">
+        {{ report.appointment_title }}
+      </p>
 
       <!-- chips -->
       <hr>
@@ -28,15 +37,15 @@
     <div class="flex justify-between items-center">
       <button
         v-if="report.is_complete === 0"
-        @click="goToEdit()"
-        class="rounded-bl w-full text-center p-3 bg-teal-600 text-white border border-gray-200 text-md font-medium"
+        @click="goToSurvey()"
+        class="rounded-b-lg w-full text-center p-3 bg-teal-600 text-white border-4 border-white text-md font-bold"
       >
         Compléter
       </button>
       <button
         v-else
-        @click="goToEdit()"
-        class="rounded-bl w-full text-center p-3 bg-gray-200 border-gray-200 text-gray-600 border border-gray-200 text-lg font-medium"
+        @click="goToSurvey()"
+        class="rounded-b-lg w-full text-center p-3 bg-gray-200 border-white text-gray-600 border-4 border-gray-200 text-md font-bold"
       >
         Modifier
       </button>
@@ -59,7 +68,7 @@ export default {
     report: Object,
   },
   methods: {
-    goToEdit() {
+    goToSurvey() {
       this.$router.push({
         name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
         params: { id: this.report.id },
@@ -75,8 +84,6 @@ export default {
         this.$moment().format('YYYY-MM-DD') === this.$moment(this.report.appointment_finish_at).format('YYYY-MM-DD')
       );
     },
-  },
-  mounted() {
   },
 };
 </script>

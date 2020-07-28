@@ -38,12 +38,15 @@ export default {
   data() {
     return {
       isConfirmModalOpen: false,
+      newAppointmentCreated: null,
     };
   },
   methods: {
     handleSubmit(form) {
-      this.$store.dispatch('appointmentsModule/storeAppointment', form).then(() => {
+      this.$store.dispatch('appointmentsModule/storeAppointment', form).then((newAppointmentCreated) => {
         this.isConfirmModalOpen = true;
+        this.newAppointmentCreated = newAppointmentCreated;
+        console.log(newAppointmentCreated);
       });
     },
     handleConfirm() {
@@ -51,7 +54,7 @@ export default {
       // redirect to report survey form
       this.$router.push({
         name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
-        params: { id: this.lastReport.id },
+        params: { id: this.newAppointmentCreated.report.id },
       });
     },
     handleCancel() {

@@ -11,7 +11,10 @@
     >
       <transition-group v-if="customers && customers.length" tag="ul">
         <li v-for="customer in customers" :key="customer.id">
-          <customer-item :customer="customer"/>
+          <customer-item
+            @delete="handleOnDelete($event)"
+            :customer="customer"
+          />
         </li>
       </transition-group>
       <div v-else class="fixed w-screen flex flex-col justify-center items-center h-screen">
@@ -39,11 +42,24 @@ export default {
       },
     };
   },
+  methods: {
+    async handleOnDelete(customerId) {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      };
+      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.DELETE_CUSTOMER}${customerId}`;
+      const res = await this.$axios.delete(endpoint, config);
+      console.log(res);
+    },
+  },
   computed: {
-    customers: {
-      get() {
-        return this.$store.getters['customersModule/getCustomers'];
-      },
+    customers() {
+      return this.$store.getters['customersModule/getCustomers'];
+    },
+    token() {
+      return this.$store.getters['authModule/getToken'];
     },
   },
   mounted() {
