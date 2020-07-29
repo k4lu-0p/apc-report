@@ -9,6 +9,8 @@ import BackIcon from '../assets/svg/back.svg';
 import MagnifyIcon from '../assets/svg/magnify.svg';
 import AcceptIcon from '../assets/svg/accept.svg';
 import ClockIcon from '../assets/svg/clock.svg';
+import LocationIcon from '../assets/svg/location.svg';
+import WarningIcon from '../assets/svg/warning.svg';
 
 export default {
   CONFIG: {
@@ -86,5 +88,7 @@ export const IMAGES = {
     MagnifyIcon,
     AcceptIcon,
     ClockIcon,
+    LocationIcon,
+    WarningIcon,
   },
 };

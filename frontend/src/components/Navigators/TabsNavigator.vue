@@ -9,14 +9,24 @@
     >
       <div id="tabs" class="flex justify-between">
 
-        <router-link
-          id="tab-users"
-          :to="{name: $const.NAVIGATION.CUSTOMERS_HOME.NAME}"
+         <router-link
+          id="tab-home"
+          :to="{name: $const.NAVIGATION.HOME_INDEX.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.CUSTOMERS_HOME.NAME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.HOME_INDEX.NAME}"
         >
-          <users-icon class="icon"></users-icon>
-          <span class="icon-label block text-xs">{{ $t('navigator.tabs.customers') }}</span>
+          <home-icon class="icon"></home-icon>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.home') }}</span>
+        </router-link>
+
+        <router-link
+          id="tab-appointment"
+          :to="{name: $const.NAVIGATION.APPOINTMENTS_HOME.NAME}"
+          class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.APPOINTMENTS_HOME.NAME}"
+        >
+          <AppointmentsIcon class="icon"></AppointmentsIcon>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.appointments') }}</span>
         </router-link>
 
         <router-link
@@ -29,24 +39,14 @@
           <span class="icon-label block text-xs">{{ $t('navigator.tabs.reports') }}</span>
         </router-link>
 
-         <router-link
-          id="tab-home"
-          :to="{name: $const.NAVIGATION.HOME_INDEX.NAME}"
-          class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.HOME_INDEX.NAME}"
-        >
-          <home-icon class="icon"></home-icon>
-          <span class="icon-label block text-xs">{{ $t('navigator.tabs.home') }}</span>
-        </router-link>
-
         <router-link
-          id="tab-support"
-          :to="{name: $const.NAVIGATION.APPOINTMENTS_HOME.NAME}"
+          id="tab-customers"
+          :to="{name: $const.NAVIGATION.CUSTOMERS_HOME.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.APPOINTMENTS_HOME.NAME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.CUSTOMERS_HOME.NAME}"
         >
-          <AppointmentsIcon class="icon"></AppointmentsIcon>
-          <span class="icon-label block text-xs">{{ $t('navigator.tabs.appointments') }}</span>
+          <users-icon class="icon"></users-icon>
+          <span class="icon-label block text-xs">{{ $t('navigator.tabs.customers') }}</span>
         </router-link>
 
         <router-link

@@ -2,12 +2,6 @@
 <!-- eslint-disable max-len -->
   <form v-if="survey.length > 0 && responses" @submit.prevent="onSubmitResponses">
 
-    <!-- appointment title -->
-    <div class="py-2">
-      <p class="font-semibold text-lg pr-2 text-gray-800 pb-2">Titre du rendez-vous :</p>
-      <p class="text-gray-800 font-medium">{{ report.appointment_title }}</p>
-    </div>
-
     <!-- survey fields -->
     <div v-for="(question, index) in survey" :key="`question-${index}`">
 
@@ -36,20 +30,22 @@
         <div class="flex flex-col py-2">
           <label class="font-semibold text-lg text-gray-800 block pb-2">{{question.label}} : <small class="font-light text-sm">(plusieurs choix possibles)</small></label>
           <div
-            :key="`choice-${index}-${question.slug}`"
+           :key="`choice-${index}-${question.slug}`"
             v-for="(choice, index) in question.choices"
-            class="pr-4 flex items-center py-2"
           >
-            <label :for="choice.label" class="pr-2 w-2/3 text-gray-800 font-medium">{{ choice.label }}</label>
-            <div class="w-1/3 flex justify-center">
-              <input
-                :id="choice.label"
-                class="form-checkbox w-5 h-5 text-teal-600"
-                :type="question.type"
-                :value="choice.value"
-                v-model="responses[question.slug]"
-              />
+            <div class="pr-4 flex items-center py-2">
+              <label :for="choice.label" class="pr-2 w-2/3 text-gray-800 font-medium">{{ choice.label }}</label>
+              <div class="w-1/3 flex justify-center">
+                <input
+                  :id="choice.label"
+                  class="form-checkbox w-5 h-5 text-teal-600"
+                  :type="question.type"
+                  :value="choice.value"
+                  v-model="responses[question.slug]"
+                />
+              </div>
             </div>
+            <hr v-if="question.slug === 'profile' && index === 1" class="my-2">
           </div>
         </div>
       </div>
@@ -59,11 +55,14 @@
         <div class="py-2">
           <label class="font-semibold text-lg text-gray-800 block pb-2">{{question.label}} :</label>
            <div
-            :key="`choice-${index}-${question.slug}`"
-            v-for="(choice, index) in question.choices"
-            class="pr-4 flex items-center py-2"
-          >
-            <label :for="choice.label" :name="`${question.slug}`" class="pr-2 w-2/3 text-gray-800 font-medium">
+              :key="`choice-${index}-${question.slug}`"
+              v-for="(choice, index) in question.choices"
+              class="pr-4 flex items-center py-2"
+            >
+            <label
+              :for="choice.label"
+              :name="`${question.slug}`"
+              class="pr-2 w-2/3 text-gray-800 font-medium">
               {{ choice.label }}
             </label>
             <div class="w-1/3 flex justify-center">
@@ -101,7 +100,7 @@
             :class="[isValid === false ? 'bg-gray-400' : ' bg-teal-600 hover:bg-teal-800']"
             v-else
             class="mx-auto text-white font-bold py-2 px-4 my-4 w-full rounded focus:outline-none focus:shadow-outline"
-          >Soumettre</button>
+          >Envoyer mon rapport</button>
 
         </transition>
       </div>
@@ -148,6 +147,7 @@ export default {
   mounted() {
     // link current values to the form
     this.responses = JSON.parse(this.report.responses);
+    console.log(this.survey);
   },
 };
 </script>

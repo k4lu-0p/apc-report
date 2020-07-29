@@ -16,7 +16,6 @@ $factory->define(Appointment::class, function () {
         'report_id' => $faker->numberBetween(1, 10),
         'user_id' => $faker->numberBetween(1, 10),
         'customer_id' => $faker->numberBetween(1, 10),
-        'title' => $faker->sentence(6, false),
         'location' => json_encode([
             'city' => $faker->city(),
             'postcode' => $faker->postcode(),

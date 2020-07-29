@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen bg-white">
     <top-bar :has-back-button="true"></top-bar>
     <div class="container mx-auto px-4">
 

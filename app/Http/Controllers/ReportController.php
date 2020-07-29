@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\GetReportsRequest;
-use App\Http\Requests\UpdateReport;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateReportRequest;
 use App\Report;
 use App\Services\ReportService;
 
@@ -50,17 +49,10 @@ class ReportController extends Controller
      * @param  integer  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateReport $request, $id)
+    public function update($id, ReportService $reportService, UpdateReportRequest $request)
     {
-        $report = Report::find($id);
-
-        $report->is_complete = true;
-        $report->responses = $request->responses;
-
-        $report->save();
-
-        // succes response with report updated
-        return response()->reportUpdated($report);
+        $reportService->setUserRequest($request);
+        return $reportService->updateById($id);
     }
 
     /**

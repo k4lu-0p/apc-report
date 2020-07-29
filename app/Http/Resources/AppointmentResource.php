@@ -19,7 +19,6 @@ class AppointmentResource extends JsonResource
             // 'user' => new UserResource($this->user),
             'customer' => new CustomerResource($this->customer),
             'report' => new ReportResource($this->report),
-            'title' => $this->title,
             'location' => $this->location,
             'warning' => $this->warning,
             'start_at' => $this->start_at,

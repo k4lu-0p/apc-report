@@ -1,7 +1,8 @@
 <template>
-  <div class="border my-2 rounded-r flex shadow-xs">
+<!-- eslint-disable max-len */ -->
+  <div class="h-20 rounded-r flex items-center justify-center shadow-lg bg-white rounded">
     <!-- <div class="bg-teal-600 pl-1"></div> -->
-    <p class="p-3 font-medium text-gray-800">{{ customer.name }}</p>
+    <p class="py-5 text-center w-full font-bold text-gray-800">{{ customer.name }}</p>
     <!-- <button
       @click="$emit('delete', customer.id)"
     >

@@ -38,15 +38,6 @@ export default {
       result: 'Aucun partenaires n\'a été trouvé.',
     },
   },
-  title: {
-    label: 'Titre :',
-    placeholder: 'Définir un titre',
-    validations: {
-      required: 'Le titre est obligatoire.',
-      minLength: 'Le titre doit contenir au minimum 5 caractères.',
-      maxLength: 'Le titre ne doit pas dépasser 80 caractères.',
-    },
-  },
   warning: {
     label: 'Avertissement :',
     placeholder: 'Définir un message d\'avertissement supplémentaire (optionnel).',

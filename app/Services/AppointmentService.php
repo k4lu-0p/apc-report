@@ -120,17 +120,16 @@ class AppointmentService {
 
         if ($this->request->customer_id !== 0) {
             $customer = Customer::find($this->request->customer_id);
+        } else {
+            $customer = new Customer();
+            $customer->name = $this->request->customer_name;
         }
-
-        $customer = new Customer();
-        $customer->name = $this->request->customer_name;
 
         // fill report data
         $report->is_complete = false;
         $report->responses = $surveyService->getDefaultResponsesStringify();
 
         // fill appointment data
-        $appointment->title = $this->request->title;
         $appointment->location = $this->request->location;
         $appointment->start_at = $start_at;
         $appointment->finish_at = $finish_at;
