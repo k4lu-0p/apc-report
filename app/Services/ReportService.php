@@ -3,14 +3,16 @@ namespace App\Services;
 
 use App\Http\Requests\GetReportsRequest;
 use App\Http\Resources\ReportResource;
+use App\Mail\ReportMail;
 use App\Report;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class ReportService
 {
     private ?User $user = null;
-    private ?GetReportsRequest $request = null;
+    private $request = null;
 
     const FILTER_AUTHORIZED = [
         'CUSTOMER_NAME' => 'customer',
@@ -151,10 +153,16 @@ class ReportService
     {
         $report = Report::find($id);
 
-        $report->is_complete = true;
-        $report->responses = $this->request->responses;
+        if ($report->is_complete === 0) {
+            $report->is_complete = true;
+            $report->responses = $this->request->responses;
+            $report->save();
 
-        $report->save();
+            foreach (['lucas.rob1@live.fr', 'pro.lucas.rob1@live.fr'] as $recipient) {
+                Mail::to($recipient)->send(new ReportMail($report));
+            }
+
+        }
 
         // succes response with report updated
         return response()->reportUpdated($report);

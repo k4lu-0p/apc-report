@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Vue2TouchEvents from 'vue2-touch-events';
 import axios from 'axios';
 import moment from 'moment';
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
@@ -23,6 +24,7 @@ import i18n from './plugins/i18n';
 
 // Dependencies
 Vue.use(Datetime);
+Vue.use(Vue2TouchEvents);
 
 // Configurations
 Vue.config.productionTip = false;

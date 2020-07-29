@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable max-len -->
   <!-- Main -->
   <div class="min-h-screen">
     <!-- top bar -->
@@ -10,7 +11,7 @@
         leave-active-class="animated fadeOut faster"
         mode="out-in"
       >
-        <transition-group v-if="customers && customers.length" tag="ul">
+        <transition-group v-if="customers && customers.length" tag="ul" class="grid grid-cols-2 gap-2">
           <li v-for="customer in customers" :key="customer.id">
             <customer-item
               @delete="handleOnDelete($event)"

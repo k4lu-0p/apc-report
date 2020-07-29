@@ -3,9 +3,6 @@
   <div class="container mx-auto px-8">
     <div class="flex flex-col justify-center items-center py-12">
       <img src="../../../public/img/bg/2.png" class="header-image" alt="">
-      <h2 class="font-bold text-2xl text-gray-800">
-        {{ $t('form.appointment.header.title') }}
-      </h2>
     </div>
     <form @submit.prevent="onSubmit($event)">
       <!-- Date start -->
@@ -126,37 +123,6 @@
         </div>
       </div>
 
-      <!-- Title -->
-      <div :class="[titleErrors.length > 1 ? 'pb-5' : 'pb-8']">
-        <!-- label -->
-        <label class="block pb-2 font-semibold text-gray-800 text-lg" for="title">
-          {{ $t('form.appointment.title.label') }}
-          <span class="text-red-500">*</span>
-        </label>
-
-        <!-- input -->
-        <input
-          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          type="text"
-          name=""
-          id="title"
-          :placeholder="$t('form.appointment.title.placeholder')"
-          @blur="$v.form.title.$touch()"
-          v-model="$v.form.title.$model"
-        >
-
-        <!-- errors -->
-        <div :class="{'absolute' : titleErrors.length === 1}">
-          <p
-            v-for="(message, index) in titleErrors"
-            :key="`title-error-${index}`"
-            class="text-red-500 text-xs font-medium pt-2"
-          >
-            {{ message }}
-          </p>
-        </div>
-      </div>
-
       <!-- Warning -->
       <div :class="[warningErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- label -->
@@ -171,7 +137,7 @@
           id="warning"
           rows="5"
           :placeholder="$t('form.appointment.warning.placeholder')"
-          @blur="$v.form.title.$touch()"
+          @blur="$v.form.warning.$touch()"
           v-model="$v.form.warning.$model"
         ></textarea>
 
@@ -312,14 +278,6 @@ export default {
       const errors = [];
       if (!this.$v.form.customer_name.$dirty) return errors;
       if (!this.$v.form.customer_name.required) errors.push(this.$t('form.appointment.customer.validations.required'));
-      return errors;
-    },
-    titleErrors() {
-      const errors = [];
-      if (!this.$v.form.title.$dirty) return errors;
-      if (!this.$v.form.title.required) errors.push(this.$t('form.appointment.title.validations.required'));
-      if (!this.$v.form.title.minLength) errors.push(this.$t('form.appointment.title.validations.minLength'));
-      if (!this.$v.form.title.maxLength) errors.push(this.$t('form.appointment.title.validations.maxLength'));
       return errors;
     },
     warningErrors() {

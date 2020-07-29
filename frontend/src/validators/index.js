@@ -48,11 +48,6 @@ const appointment = {
     customer_name: {
       required,
     },
-    title: {
-      required,
-      minLength: minLength(5),
-      maxLength: maxLength(80),
-    },
     warning: {
       alphaNumCustom,
     },

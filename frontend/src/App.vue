@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen bg-main">
     <transition
       enter-active-class="animated slideInLeft faster-x2"
       leave-active-class="animated slideOutRight faster-x2"
@@ -47,4 +47,11 @@ export default {
 <style lang="stylus">
 .faster-x2
   animation-duration 0.25s !important
+
+.bg-main
+  background-color #ffffff
+  background-image url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23319795' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23319795' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%2363aba9' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%2363aba9' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%238cc0be' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%238cc0be' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23b3d5d3' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23b3d5d3' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23d9eae9' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23d9eae9' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23ffffff' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23ffffff' points='943 900 1210 900 971 687'/%3E%3C/svg%3E")
+  background-attachment fixed
+  background-size cover
+  background-position center
 </style>

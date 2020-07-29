@@ -1,6 +1,10 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div v-if="report.id" class="bg-white shadow-md my-4 rounded-lg">
+  <div
+    v-if="report.id"
+    class="bg-white shadow-lg my-4 rounded-lg"
+    @click="goToSurvey()"
+  >
     <div class="px-6">
 
       <!-- header -->
@@ -19,36 +23,29 @@
         </div>
       </div>
 
-      <!-- title -->
-      <p class="py-4 font-medium text-gray-800">
-        {{ report.appointment_title }}
-      </p>
-
       <!-- chips -->
       <hr>
       <div class="flex flex-wrap py-4">
-        <p v-if="report.is_complete === 0" class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-orange-500 text-orange-500 font-medium">À compléter</p>
-        <p v-else class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-green-500 text-green-500 font-medium">Complété</p>
-        <p v-if="isAppointmentFinishToday" class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-500 text-teal-500 font-medium">Aujourd'hui</p>
-      </div>
-    </div>
+        <p
+          v-if="report.is_complete === 0"
+          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
+          <warning-icon class="warning-icon mr-1"></warning-icon>
+          <span>À compléter</span>
+        </p>
 
-    <!-- buttons -->
-    <div class="flex justify-between items-center">
-      <button
-        v-if="report.is_complete === 0"
-        @click="goToSurvey()"
-        class="rounded-b-lg w-full text-center p-3 bg-teal-600 text-white border-4 border-white text-md font-bold"
-      >
-        Compléter
-      </button>
-      <button
-        v-else
-        @click="goToSurvey()"
-        class="rounded-b-lg w-full text-center p-3 bg-gray-200 border-white text-gray-600 border-4 border-gray-200 text-md font-bold"
-      >
-        Modifier
-      </button>
+        <p
+          v-else
+          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-150 text-teal-150 font-medium flex items-center">
+          <accept-icon class="accept-icon2 mr-1"></accept-icon>
+          <span>Complété</span>
+        </p>
+
+        <p
+          v-if="isAppointmentFinishToday"
+          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-150 text-teal-150 font-medium">
+          Aujourd'hui
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -56,23 +53,34 @@
 <script>
 import { IMAGES } from '../../constants';
 
-const { svg: { ClockIcon, UsersIcon } } = IMAGES;
+const {
+  svg: {
+    ClockIcon,
+    UsersIcon,
+    AcceptIcon,
+    WarningIcon,
+  },
+} = IMAGES;
 
 export default {
   name: 'report-item',
   components: {
     ClockIcon,
     UsersIcon,
+    AcceptIcon,
+    WarningIcon,
   },
   props: {
     report: Object,
   },
   methods: {
     goToSurvey() {
-      this.$router.push({
-        name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
-        params: { id: this.report.id },
-      });
+      if (this.report.is_complete === 0) {
+        this.$router.push({
+          name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
+          params: { id: this.report.id },
+        });
+      }
     },
   },
   computed: {
@@ -94,4 +102,10 @@ export default {
   height 15px
   fill theme('colors.gray.500')
   color theme('colors.gray.500')
+
+.accept-icon2
+  width 15px
+  height 15px
+  fill theme('colors.teal.150')
+  color theme('colors.teal.150')
 </style>

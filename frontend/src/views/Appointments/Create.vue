@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen bg-white">
     <!-- top bar -->
     <top-bar has-back-button ></top-bar>
     <div class="container">

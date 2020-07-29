@@ -19,7 +19,6 @@ class ReportResource extends JsonResource
             // 'user' => new UserResource($this->user),
             'is_complete' => $this->is_complete,
             'customer_name' => $this->customer->name,
-            'appointment_title' => $this->appointment->title,
             'appointment_start_at' => $this->appointment->start_at,
             'appointment_finish_at' => $this->appointment->finish_at,
             'responses' => $this->responses,

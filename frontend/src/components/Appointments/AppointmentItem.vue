@@ -1,6 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div v-if="appointment" class="bg-white shadow-md my-4 rounded-lg">
+  <div @click="goToDetail($event)" v-if="appointment" class="bg-white shadow-lg my-4 rounded-lg">
     <div class="px-6">
        <div class="flex justify-between items-center py-2">
         <div class="flex justify-start items-center">
@@ -10,40 +10,43 @@
           </p>
         </div>
         <div class="flex justify-start items-center">
-          <users-icon class="users-icon"></users-icon>
+          <location-icon class="location-icon"></location-icon>
           <p class="text-gray-500 pl-2 text-xs">
-            {{ appointment.customer.name }}
+            {{ location.address.city }}
           </p>
         </div>
       </div>
 
-      <p class="py-4 font-medium text-gray-800">
-        {{ appointment.title }}
-      </p>
+      <p class="py-4 font-bold text-lg text-gray-800">{{ appointment.customer.name }}</p>
 
       <!-- chips -->
       <hr>
       <div class="flex flex-wrap py-4">
-        <!-- <p v-if="report.is_complete === 0" class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-orange-500 text-orange-500 font-medium">À compléter</p>
-        <p v-else class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-green-500 text-green-500 font-medium">Complété</p> -->
-        <p v-if="isAppointmentFinishToday" class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-500 text-teal-500 font-medium">Aujourd'hui</p>
-      </div>
-    </div>
+        <p
+          @click.stop="goToSurvey($event)"
+          v-if="appointment.report.is_complete === 0"
+          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
+          <warning-icon class="warning-icon mr-1"></warning-icon>
+          <span>
+            Rapport à compléter
+          </span>
+        </p>
 
-    <!-- buttons -->
-    <div class="flex justify-between items-center">
-      <button
-        @click="goToSurvey($event)"
-        class="rounded-bl-lg w-1/2 text-center p-3 bg-gray-200 border-white text-gray-600 border-l-4 border-t-4 border-b-4 border-r-2 text-md font-bold"
-      >
-        {{ textButtonSurvey }}
-      </button>
-      <button
-        @click="goToDetail($event)"
-        class="rounded-br-lg w-1/2 text-center p-3 bg-teal-600 border-white text-white border-r-4 border-t-4 border-b-4 border-l-2 text-md font-bold"
-      >
-        Détail
-      </button>
+        <p
+          v-else
+          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-150 text-teal-150 font-medium flex items-center">
+          <accept-icon class="accept-icon2 mr-1"></accept-icon>
+          <span>
+            Rapport complété
+          </span>
+        </p>
+
+        <p
+          v-if="isAppointmentFinishToday"
+          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-150 text-teal-150 font-medium">
+          Aujourd'hui
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -51,13 +54,22 @@
 <script>
 import { IMAGES } from '../../constants';
 
-const { svg: { ClockIcon, UsersIcon } } = IMAGES;
+const {
+  svg: {
+    ClockIcon,
+    LocationIcon,
+    WarningIcon,
+    AcceptIcon,
+  },
+} = IMAGES;
 
 export default {
   name: 'appointment-item',
   components: {
     ClockIcon,
-    UsersIcon,
+    LocationIcon,
+    WarningIcon,
+    AcceptIcon,
   },
   props: {
     appointment: Object,
@@ -80,12 +92,6 @@ export default {
     location() {
       return JSON.parse(this.appointment.location);
     },
-    textButtonSurvey() {
-      if (this.appointment.report.is_complete === 1) {
-        return 'Modifier rapport';
-      }
-      return 'Saisir rapport';
-    },
     isAppointmentFinishToday() {
       return (
         this.$moment().format('YYYY-MM-DD') === this.$moment(this.appointment.finish_at).format('YYYY-MM-DD')
@@ -95,6 +101,16 @@ export default {
 };
 </script>
 
-<style>
+<style lang="stylus">
+  .location-icon
+    height 14px
+    width 14px
+    fill theme('colors.gray.500')
+    color theme('colors.gray.500')
 
+  .warning-icon
+    height 14px
+    width 14px
+    fill theme('colors.white')
+    color theme('colors.white')
 </style>

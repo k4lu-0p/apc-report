@@ -75,6 +75,7 @@ module.exports = {
       },
       teal: {
         100: '#e6fffa',
+        150: '#b3d5d3',
         200: '#b2f5ea',
         300: '#81e6d9',
         400: '#4fd1c5',

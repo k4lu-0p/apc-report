@@ -25,6 +25,7 @@
         "vue-router": "^3.2.0",
         "vue-spinner": "^1.0.3",
         "vue-star-rating": "^1.6.1",
+        "vue2-touch-events": "^2.2.1",
         "vuelidate": "^0.7.5",
         "vuex": "^3.4.0",
         "vuex-module-maker": "^1.0.2",
