@@ -159,7 +159,7 @@ class ReportService
             $report->save();
 
             foreach (['lucas.rob1@live.fr', 'pro.lucas.rob1@live.fr'] as $recipient) {
-                Mail::to($recipient)->send(new ReportMail($report));
+                Mail::to($recipient)->send(new ReportMail($report, $this->request->user()));
             }
 
         }

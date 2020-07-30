@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Report;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,15 +14,17 @@ class ReportMail extends Mailable
     use Queueable, SerializesModels;
 
     private Report $report;
+    private User $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Report $report)
+    public function __construct(Report $report, User $user)
     {
         $this->report = $report;
+        $this->user = $user;
     }
 
     /**
