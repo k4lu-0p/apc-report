@@ -47,7 +47,7 @@ return [
             'username' => 'pro.lucas.rob1@gmail.com',
             'password' => 'wzuQrZ1tTVRDo7oCjDm3',
             'timeout' => null,
-            'auth_mode' => null,
+            'auth_mode' => 'login',
         ],
 
         'ses' => [
