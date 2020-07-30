@@ -1,6 +1,6 @@
 <template>
 <!-- eslint-disable max-len */ -->
-  <div class="h-20 rounded-r flex items-center justify-center shadow-lg bg-white rounded">
+  <div class="h-20 rounded-r flex items-center justify-center shadow-lg bg-white rounded px-2">
     <!-- <div class="bg-teal-600 pl-1"></div> -->
     <p class="py-5 text-center w-full font-bold text-gray-800">{{ customer.name }}</p>
     <!-- <button

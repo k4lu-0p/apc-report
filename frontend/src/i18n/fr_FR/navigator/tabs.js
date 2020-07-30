@@ -4,5 +4,5 @@ export default {
   support: 'Support',
   customers: 'Partenaires',
   settings: 'Paramètres',
-  appointments: 'Rendez-vous',
+  appointments: 'RDV',
 };
