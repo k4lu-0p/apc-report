@@ -36,11 +36,11 @@ class ReportMail extends Mailable
     {
         return $this->view('mails.report')
             ->with([
-                'user' => $this->report->user()->name,
+                'user' => $this->user->name,
                 'responses' => $this->report->responses,
-                'start_at' => $this->report->appointment()->start_at,
-                'finish_at' => $this->report->appointment()->finish_at,
-                'customer_name' => $this->report->customer()->name,
+                'start_at' => $this->report->appointment->start_at,
+                'finish_at' => $this->report->appointment->finish_at,
+                'customer_name' => $this->report->customer->name,
             ]);
         ;
     }
