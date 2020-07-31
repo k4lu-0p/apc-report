@@ -1,5 +1,6 @@
 <template>
-  <div class="min-h-screen bg-main">
+<div>
+  <div v-if="appIsVisible" class="min-h-screen bg-main">
     <transition
       enter-active-class="animated slideInLeft faster-x2"
       leave-active-class="animated slideOutRight faster-x2"
@@ -13,15 +14,22 @@
       v-if="Object.values(routesHasTabsNavigator).includes($route.name)"
     />
   </div>
+  <spinner v-else is-visible></spinner>
+</div>
+
 </template>
 
 <script>
 import TabsNavigator from './components/Navigators/TabsNavigator.vue';
+import visibilityApp from './mixins/visibilityApp';
+import Spinner from './components/Spinner.vue';
 
 export default {
   name: 'app',
+  mixins: [visibilityApp],
   components: {
     TabsNavigator,
+    Spinner,
   },
   computed: {
     isMobile() {
