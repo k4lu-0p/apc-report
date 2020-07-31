@@ -94,9 +94,6 @@ class ReportService
             ->limit($this->request->limit)
             ->get();
 
-        dd($result);
-
-
         return ReportResource::collection($result);
     }
 
@@ -158,7 +155,13 @@ class ReportService
             $report->responses = $this->request->responses;
             $report->save();
 
-            foreach (['lucas.rob1@live.fr', 'jpheulpin@ymail.com'] as $recipient) {
+            // Todo: rendre dynamique
+            $recipients = [
+                'lucas.rob1@live.fr',
+                'jpheulpin@ymail.com',
+            ];
+
+            foreach ($recipients as $recipient) {
                 Mail::to($recipient)->send(new ReportMail($report, $this->request->user()));
             }
 

@@ -7,11 +7,12 @@
           <accept-icon class="accept-icon"></accept-icon>
         </div>
         <h2 class="font-bold text-2xl text-center">Rendez-vous créé !</h2>
-        <p class="py-6 px-6">Souhaitez-vous remplir votre rapport maintenant ?</p>
+        <p class="p-3 text-left">
+          Un rapport associé au rendez-vous est également créé. Vous serez en mesure de <strong class="font-medium">le remplir uniquement à partir de la date de fin du rendez-vous.</strong>
+        </p>
       </div>
       <div class="flex justify-between items-center">
-        <button class="rounded-bl w-1/2 text-center  p-3 text-teal-600  border border-gray-200 text-lg font-medium" @click="confirm($event)">Oui</button>
-        <button class= "rounded-br w-1/2 text-center bg-gray-200 border-gray-200 p-3 border text-black text-lg font-medium" @click="cancel($event)">Plus tard</button>
+        <button class= "rounded-br w-full text-center bg-gray-200 border-gray-200 p-3 border text-black text-lg font-medium" @click="cancel($event)">Quitter</button>
       </div>
     </div>
   </div>
@@ -28,9 +29,6 @@ export default {
     AcceptIcon,
   },
   methods: {
-    confirm() {
-      this.$emit('confirm');
-    },
     cancel() {
       this.$emit('cancel');
     },

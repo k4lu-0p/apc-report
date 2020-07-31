@@ -9,6 +9,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 use App\Services\SurveyService;
+use Illuminate\Support\Facades\Log;
 
 class AppointmentService {
 
@@ -107,9 +108,16 @@ class AppointmentService {
     }
 
     public function create() {
+
+        Log::debug('[AppointmentService/create()] 1. Création nouveau RDV par ' . $this->request->user()->name);
+        Log::debug('[AppointmentService/create()] 1. Contenu de la requête ' . json_encode($this->request->all()));
+
         // handle date format
         $start_at = Carbon::create($this->request->start_at)->format('Y-m-d H:i:s');
         $finish_at = Carbon::create($this->request->finish_at)->format('Y-m-d H:i:s');
+
+        Log::debug('[AppointmentService/create()] 2. start_at ' . $start_at);
+        Log::debug('[AppointmentService/create()] 3. finish_at ' . $finish_at);
 
         // TODO: remove this
         $surveyService = new SurveyService();
@@ -120,9 +128,11 @@ class AppointmentService {
 
         if ($this->request->customer_id !== 0) {
             $customer = Customer::find($this->request->customer_id);
+            Log::debug('[AppointmentService/create()] 4. customer connu :' . $customer->name);
         } else {
             $customer = new Customer();
             $customer->name = $this->request->customer_name;
+            Log::debug('[AppointmentService/create()] 4. nouveau customer :' . $customer->name);
         }
 
         // fill report data
@@ -152,10 +162,12 @@ class AppointmentService {
         $customer->reports()->save($report); // has many
         $customer->appointments()->save($appointment); // has many
 
+        Log::debug('[AppointmentService/create()] 5. report lié : ' . $report->id);
+        Log::debug('[AppointmentService/create()] 6. customer lié : ' . $customer->id);
+
         // succes response with appointment created
         return response()->newAppointmentStored($appointment);
     }
-
 
      /**
      *

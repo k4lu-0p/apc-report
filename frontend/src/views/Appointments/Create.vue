@@ -17,7 +17,6 @@
       >
         <confirm-appointment-modal
           v-if="isConfirmModalOpen"
-          @confirm="handleConfirm"
           @cancel="handleCancel"
         ></confirm-appointment-modal>
       </transition>
@@ -49,14 +48,6 @@ export default {
         this.isConfirmModalOpen = true;
         this.newAppointmentCreated = newAppointmentCreated;
         console.log(newAppointmentCreated);
-      });
-    },
-    handleConfirm() {
-      this.isConfirmModalOpen = false;
-      // redirect to report survey form
-      this.$router.push({
-        name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
-        params: { id: this.newAppointmentCreated.report.id },
       });
     },
     handleCancel() {
