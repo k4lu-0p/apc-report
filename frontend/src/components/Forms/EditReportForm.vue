@@ -147,7 +147,6 @@ export default {
   mounted() {
     // link current values to the form
     this.responses = JSON.parse(this.report.responses);
-    console.log(this.survey);
   },
 };
 </script>
