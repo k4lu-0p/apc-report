@@ -241,20 +241,20 @@
                             <td align="left" style="font-size:0px;padding:0px;word-break:break-word;">
                               <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
                                 <tr align="middle">
-                                  <td style="padding: 10px 15px;">Partenaire</td>
-                                  <td style="padding: 10px 15px;font-weight:bold;">{{ $customer_name }}</td>
+                                  <td style="padding: 15px 15px 0px 15px;">Partenaire</td>
+                                  <td style="padding: 15px 15px 0px 15px;font-weight:bold;">{{ $customer_name }}</td>
                                 </tr>
                                 <tr align="middle">
-                                  <td style="padding: 10px 15px;">Lieu du rendez-vous</td>
-                                  <td style="padding: 10px 15px;font-weight:bold;">{{ $location }}</td>
+                                  <td style="padding: 15px 15px 0px 15px;">Lieu du rendez-vous</td>
+                                  <td style="padding: 15px 15px 0px 15px;font-weight:bold;">{{ $location }}</td>
                                 </tr>
                                 <tr align="middle">
-                                  <td style="padding: 10px 15px;">Début du rendez-vous</td>
-                                  <td style="padding: 10px 15px;font-weight:bold;">{{ $start_at }}</td>
+                                  <td style="padding: 15px 15px 0px 15px;">Début du rendez-vous</td>
+                                  <td style="padding: 15px 15px 0px 15px;font-weight:bold;">{{ $start_at }}</td>
                                 </tr>
                                 <tr align="middle">
-                                  <td style="padding: 10px 15px;">Fin du rendez-vous</td>
-                                  <td style="padding: 10px 15px;font-weight:bold;">{{ $finish_at }}</td>
+                                  <td style="padding: 15px 15px 0px 15px;">Fin du rendez-vous</td>
+                                  <td style="padding: 15px 15px 0px 15px;font-weight:bold;">{{ $finish_at }}</td>
                                 </tr>
                               </table>
                             </td>
@@ -367,8 +367,8 @@
                               <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Profil de l'environnement</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
+                                    <td style="padding: 15px 15px 0px 15px;">Profil de l'environnement</td>
+                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
                                         @foreach ($responses->profile as $response)
                                             @if ($loop->index === count($responses->profile) - 1)
                                                 @switch($response)
@@ -414,23 +414,48 @@
                                 </tr>
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Qualité de la réception</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
+                                    <td style="padding: 15px 15px 0px 15px;">Qualité de la réception</td>
+                                    <td style="padding: 15px 15px 0px 15px;">
                                        @switch($responses->reception)
                                             @case(1)
-                                                Mauvaise
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/1-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                />
                                                 @break
                                             @case(2)
-                                                Passable
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/2-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                />
                                                 @break
                                             @case(3)
-                                                Moyenne
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/3-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;"
+                                                />
                                                 @break
                                             @case(4)
-                                                Bien
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/4-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                />
                                                 @break
                                             @case(5)
-                                                Excellente
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/5-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                />
                                                 @break
                                            @default
                                        @endswitch
@@ -438,8 +463,8 @@
                                 </tr>
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Nature du rendez-vous</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
+                                    <td style="padding: 15px 15px 0px 15px;">Nature du rendez-vous</td>
+                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
                                         @switch($responses->subject)
                                             @case('new_partner')
                                                 Nouveau partenaire
@@ -453,8 +478,8 @@
                                 </tr>
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Présentation de APC</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
+                                    <td style="padding: 15px 15px 0px 15px;">Présentation de APC</td>
+                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
                                         @switch($responses->has_described_society)
                                             @case(1)
                                                 Oui
@@ -468,8 +493,8 @@
                                 </tr>
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Démo de l'extranet courtage</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
+                                    <td style="padding: 15px 15px 0px 15px;">Démo de l'extranet courtage</td>
+                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
                                         @switch($responses->has_showed_extranet)
                                             @case(1)
                                                 Oui
@@ -483,8 +508,8 @@
                                 </tr>
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Exemple tarification auto</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
+                                    <td style="padding: 15px 15px 0px 15px;">Exemple tarification auto</td>
+                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
                                         @switch($responses->has_showed_automotive_pricing)
                                             @case(1)
                                                 Oui
@@ -498,8 +523,8 @@
                                 </tr>
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Support visuel distribué (plaquette)</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
+                                    <td style="padding: 15px 15px 0px 15px;">Support visuel distribué (plaquette)</td>
+                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
                                         @switch($responses->has_distributed_visual_support)
                                             @case(1)
                                                 Oui
@@ -513,32 +538,56 @@
                                 </tr>
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Qualité du RDV</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
-                                       @switch($responses->appointment_quality)
+                                    <td style="padding: 15px 15px 0px 15px;">Qualité du RDV</td>
+                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                        @switch($responses->appointment_quality)
                                             @case(1)
-                                                Mauvaise
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/1-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                />
                                                 @break
                                             @case(2)
-                                                Passable
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/2-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                />
                                                 @break
                                             @case(3)
-                                                Moyenne
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/3-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;"
+                                                />
                                                 @break
                                             @case(4)
-                                                Bien
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/4-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                />
                                                 @break
                                             @case(5)
-                                                Excellente
+                                                <img
+                                                    alt="tickets"
+                                                    height="21"
+                                                    src="https://apc-report.lucasrobin.fr/img/mails/5-5.PNG"
+                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                />
                                                 @break
-                                           @default
                                        @endswitch
                                     </td>
                                 </tr>
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Production future évoquée</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
+                                    <td style="padding: 15px 15px 0px 15px;">Production future évoquée</td>
+                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
                                         @foreach ($responses->products_evoked as $response)
                                         @if ($loop->index === count($responses->products_evoked) - 1)
                                             @switch($response)
@@ -584,8 +633,8 @@
                                 </tr>
 
                                 <tr align="middle">
-                                    <td style="padding: 10px 15px;">Volumétrie attendue mensuelle</td>
-                                    <td style="padding: 10px 15px;font-weight:bold;">
+                                    <td style="padding: 15px 15px 0px 15px;">Volumétrie attendue mensuelle</td>
+                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
                                        @switch($responses->monthly_volume)
                                             @case(1)
                                                 de 0 à 5 contrats
