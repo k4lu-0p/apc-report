@@ -12,7 +12,10 @@
       >
         <transition-group v-if="reports && reports.length" tag="ul">
           <li v-for="report in reports" :key="report.id">
-            <report-item :report="report"/>
+            <report-item
+              :report="report"
+              @alert="handleOpenAlertModal"
+            />
           </li>
         </transition-group>
         <spinner v-else-if="status === $const.API.STATUS.LOADING" :is-visible="true"></spinner>
@@ -21,6 +24,11 @@
         </div>
       </transition>
     </div>
+
+    <alert-modal
+      v-if="isAlertModalOpen"
+      @cancel="handleCancelAlertModal"
+    ></alert-modal>
   </div>
 </template>
 
@@ -28,6 +36,7 @@
 import ReportItem from '../../components/Reports/ReportItem.vue';
 import TopBar from '../../components/Navigators/TopBar.vue';
 import Spinner from '../../components/Spinner.vue';
+import AlertModal from '../../components/Modals/AlertModal.vue';
 
 export default {
   name: 'reports-page',
@@ -35,6 +44,7 @@ export default {
     ReportItem,
     TopBar,
     Spinner,
+    AlertModal,
   },
   data() {
     return {
@@ -42,7 +52,16 @@ export default {
         limit: 10,
         offset: 0,
       },
+      isAlertModalOpen: false,
     };
+  },
+  methods: {
+    handleOpenAlertModal() {
+      this.isAlertModalOpen = true;
+    },
+    handleCancelAlertModal() {
+      this.isAlertModalOpen = false;
+    },
   },
   computed: {
     reports: {

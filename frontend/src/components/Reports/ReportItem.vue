@@ -27,14 +27,14 @@
       <hr>
       <div class="flex flex-wrap py-4">
         <p
-          v-if="report.is_complete === 0"
+          v-if="report.is_complete === 0 && isAppointmentOver"
           class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
           <warning-icon class="warning-icon mr-1"></warning-icon>
           <span>À compléter</span>
         </p>
 
         <p
-          v-else
+          v-if="report.is_complete"
           class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-150 text-teal-150 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-1"></accept-icon>
           <span>Complété</span>
@@ -75,11 +75,13 @@ export default {
   },
   methods: {
     goToSurvey() {
-      if (this.report.is_complete === 0) {
+      if (this.report.is_complete === 0 && this.isAppointmentOver) {
         this.$router.push({
           name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
           params: { id: this.report.id },
         });
+      } else {
+        this.$emit('alert');
       }
     },
   },
@@ -90,6 +92,11 @@ export default {
     isAppointmentFinishToday() {
       return (
         this.$moment().format('YYYY-MM-DD') === this.$moment(this.report.appointment_finish_at).format('YYYY-MM-DD')
+      );
+    },
+    isAppointmentOver() {
+      return (
+        this.$moment().format('YYYY-MM-DD, h:mm:ss') > this.$moment(this.report.appointment_finish_at).format('YYYY-MM-DD, h:mm:ss')
       );
     },
   },

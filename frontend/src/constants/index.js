@@ -11,6 +11,7 @@ import AcceptIcon from '../assets/svg/accept.svg';
 import ClockIcon from '../assets/svg/clock.svg';
 import LocationIcon from '../assets/svg/location.svg';
 import WarningIcon from '../assets/svg/warning.svg';
+import AlertIcon from '../assets/svg/alert.svg';
 
 export default {
   CONFIG: {
@@ -90,5 +91,6 @@ export const IMAGES = {
     ClockIcon,
     LocationIcon,
     WarningIcon,
+    AlertIcon,
   },
 };
