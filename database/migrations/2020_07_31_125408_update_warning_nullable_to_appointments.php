@@ -14,7 +14,7 @@ class UpdateWarningNullableToAppointments extends Migration
     public function up()
     {
         Schema::table('appointments', function (Blueprint $table) {
-            $table->integer('user_id')->nullable()->change();
+            $table->integer('warning')->nullable()->change();
         });
     }
 
