@@ -21,12 +21,12 @@
 
 <script>
 import TabsNavigator from './components/Navigators/TabsNavigator.vue';
-import visibilityApp from './mixins/visibilityApp';
+import autoReloading from './mixins/autoReloading';
 import Spinner from './components/Spinner.vue';
 
 export default {
   name: 'app',
-  mixins: [visibilityApp],
+  mixins: [autoReloading],
   components: {
     TabsNavigator,
     Spinner,

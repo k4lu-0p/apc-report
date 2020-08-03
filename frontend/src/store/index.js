@@ -7,6 +7,7 @@ import reportsModule from './reports';
 import appointmentsModule from './appointments';
 import customersModule from './customers';
 import settingsModule from './settings';
+import weatherModule from './weather';
 
 Vue.use(Vuex);
 
@@ -17,5 +18,6 @@ export default new Vuex.Store({
     appointmentsModule,
     customersModule,
     settingsModule,
+    weatherModule,
   },
 });

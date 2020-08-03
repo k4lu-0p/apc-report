@@ -1,3 +1,4 @@
+// common icons
 import SupportIcon from '../assets/svg/support.svg';
 import SettingsIcon from '../assets/svg/settings.svg';
 import ReportsIcon from '../assets/svg/reports.svg';
@@ -12,6 +13,22 @@ import ClockIcon from '../assets/svg/clock.svg';
 import LocationIcon from '../assets/svg/location.svg';
 import WarningIcon from '../assets/svg/warning.svg';
 import AlertIcon from '../assets/svg/alert.svg';
+
+// weather icons
+import CloudCloudy from '../assets/svg/weather/cloud_cloudy.svg';
+import CloudCloudySun from '../assets/svg/weather/cloud_cloudy_sun.svg';
+import CloudCloudyThunderStorm from '../assets/svg/weather/cloud_cloudy_thunder_storm.svg';
+import CloudDrizzleRain from '../assets/svg/weather/cloud_drizzle_rain.svg';
+import CloudFog from '../assets/svg/weather/cloud_fog.svg';
+import CloudHeavyRain from '../assets/svg/weather/cloud_heavy_rain.svg';
+import CloudHeavyRainThunderStorm from '../assets/svg/weather/cloud_heavy_rain_thunder_storm.svg';
+import CloudHeavySnow from '../assets/svg/weather/cloud_heavy_snow.svg';
+import CloudNight from '../assets/svg/weather/cloud_night.svg';
+import CloudRain from '../assets/svg/weather/cloud_rain.svg';
+import CloudSnow from '../assets/svg/weather/cloud_snow.svg';
+import CloudWinter from '../assets/svg/weather/cloud_winter.svg';
+import SunSunnyCloud from '../assets/svg/weather/sun_sunny_cloud.svg';
+import SunSunnyHot from '../assets/svg/weather/sun_sunny_hot.svg';
 
 export default {
   CONFIG: {
@@ -49,6 +66,11 @@ export default {
       UNAUTHORIZED: 'unauthorized',
     },
   },
+  API_WEATHER: {
+    KEY: '05c26101c105a9c65e3f58779e9adbdf',
+    CURRENT_WEATHER: 'https://api.openweathermap.org/data/2.5/weather',
+    FORECASTS: 'https://api.openweathermap.org/data/2.5/onecall',
+  },
   NAVIGATION: {
     // index
     LOGIN_INDEX: { NAME: 'login-index', PATH: '/login' },
@@ -76,8 +98,8 @@ export default {
   },
 };
 
-export const IMAGES = {
-  svg: {
+export const ICONS = {
+  common: {
     HomeIcon,
     SupportIcon,
     SettingsIcon,
@@ -92,5 +114,21 @@ export const IMAGES = {
     LocationIcon,
     WarningIcon,
     AlertIcon,
+  },
+  weather: {
+    CloudCloudy,
+    CloudCloudySun,
+    CloudCloudyThunderStorm,
+    CloudDrizzleRain,
+    CloudFog,
+    CloudHeavyRain,
+    CloudHeavyRainThunderStorm,
+    CloudHeavySnow,
+    CloudNight,
+    CloudRain,
+    CloudSnow,
+    CloudWinter,
+    SunSunnyCloud,
+    SunSunnyHot,
   },
 };

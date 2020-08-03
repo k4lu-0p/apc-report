@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable max-len -->
   <div class="min-h-screen">
     <!-- top bar -->
     <top-bar :has-search-input="false" ></top-bar>
@@ -25,14 +26,24 @@
       </transition>
     </div>
 
-    <alert-modal
-      v-if="isAlertModalOpen"
-      @cancel="handleCancelAlertModal"
-    ></alert-modal>
+    <!-- modal alert -->
+    <transition
+      enter-active-class="animated fadeIn faster-x2"
+      leave-active-class="animated fadeOut faster-x2"
+    >
+      <alert-modal
+        v-if="isAlertModalOpen"
+        :title="alert.title"
+        :message="alert.message"
+        type="forbidden"
+        @cancel="handleCancelAlertModal"
+      ></alert-modal>
+    </transition>
   </div>
 </template>
 
 <script>
+
 import ReportItem from '../../components/Reports/ReportItem.vue';
 import TopBar from '../../components/Navigators/TopBar.vue';
 import Spinner from '../../components/Spinner.vue';
@@ -53,10 +64,22 @@ export default {
         offset: 0,
       },
       isAlertModalOpen: false,
+      alert: {
+        title: '',
+        message: '',
+      },
     };
   },
   methods: {
-    handleOpenAlertModal() {
+    handleOpenAlertModal(reportStatus) {
+      if (reportStatus === 1) {
+        this.alert.title = 'Rapport déjà envoyé !';
+        this.alert.message = 'Vous avez déjà complété et envoyé ce rapport. Celui-ci ne peut plus être modifié.';
+      } else {
+        this.alert.title = 'Rendez-vous non terminé !';
+        this.alert.message = 'Vous serez en mesure de le remplir uniquement à partir de la date de fin du rendez-vous.';
+      }
+
       this.isAlertModalOpen = true;
     },
     handleCancelAlertModal() {

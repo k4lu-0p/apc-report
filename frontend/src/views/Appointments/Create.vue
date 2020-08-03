@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable max-len -->
   <div class="min-h-screen bg-white">
     <!-- top bar -->
     <top-bar has-back-button ></top-bar>
@@ -15,10 +16,13 @@
         enter-active-class="animated fadeIn faster-x2"
         leave-active-class="animated fadeOut faster-x2"
       >
-        <confirm-appointment-modal
+        <alert-modal
+          title="Rendez-vous créé !"
+          message="Un rapport associé au rendez-vous est également créé. Vous serez en mesure de le remplir uniquement à partir de la date de fin du rendez-vous."
+          type="success"
           v-if="isConfirmModalOpen"
           @cancel="handleCancel"
-        ></confirm-appointment-modal>
+        ></alert-modal>
       </transition>
     </div>
   </div>
@@ -27,14 +31,14 @@
 <script>
 import TopBar from '../../components/Navigators/TopBar.vue';
 import CreateAppointmentForm from '../../components/Forms/CreateAppointmentForm.vue';
-import ConfirmAppointmentModal from '../../components/Modals/ConfirmAppointmentModal.vue';
+import AlertModal from '../../components/Modals/AlertModal.vue';
 
 export default {
   name: 'appointments-create',
   components: {
     TopBar,
     CreateAppointmentForm,
-    ConfirmAppointmentModal,
+    AlertModal,
   },
   data() {
     return {

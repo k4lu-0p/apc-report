@@ -40,6 +40,20 @@ Vue.component('moon-loader', MoonLoader);
 Vue.component('datetime', Datetime);
 Vue.component('star-rating', StarRating);
 
+// eslint-disable-next-line prefer-arrow-callback
+Vue.filter('fahrenheit', (value) => {
+  if (!value) return 0;
+  const v = Number(value);
+  return Math.round(v - 273.15);
+});
+
+// eslint-disable-next-line prefer-arrow-callback
+Vue.filter('capitalize', (value) => {
+  if (!value) return '';
+  const v = String(value);
+  return v.charAt(0).toUpperCase() + v.slice(1);
+});
+
 new Vue({
   router,
   store,

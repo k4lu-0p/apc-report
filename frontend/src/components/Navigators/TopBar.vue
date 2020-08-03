@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import { IMAGES } from '../../constants';
+import { ICONS } from '../../constants';
 
-const { svg: { BackIcon, MagnifyIcon } } = IMAGES;
+const { common: { BackIcon, MagnifyIcon } } = ICONS;
 
 export default {
   name: 'top-bar',

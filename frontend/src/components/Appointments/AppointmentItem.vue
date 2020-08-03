@@ -52,16 +52,16 @@
 </template>
 
 <script>
-import { IMAGES } from '../../constants';
+import { ICONS } from '../../constants';
 
 const {
-  svg: {
+  common: {
     ClockIcon,
     LocationIcon,
     WarningIcon,
     AcceptIcon,
   },
-} = IMAGES;
+} = ICONS;
 
 export default {
   name: 'appointment-item',
