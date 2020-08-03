@@ -1,15 +1,17 @@
 <template>
   <!-- Main -->
-  <div class="container flex absolute top-45 px-10">
-    <p class="font-bold">En cours de développement...</p>
+  <div class="container mx-auto px-4">
+    <weather-widget></weather-widget>
   </div>
 </template>
 
 <script>
+import WeatherWidget from '../../components/Weather/WeatherWidget.vue';
 
 export default {
   name: 'home-index',
   components: {
+    WeatherWidget,
   },
 };
 </script>
