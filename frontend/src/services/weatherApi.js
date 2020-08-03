@@ -25,8 +25,6 @@ async function createApiInstance(baseURL, params = {}) {
 const apiWeatherClient = createApiInstance($const.API_WEATHER.CURRENT_WEATHER);
 const apiForecastsClient = createApiInstance($const.API_WEATHER.FORECASTS, { exclude: 'minutely,current,daily' });
 
-console.log(apiWeatherClient);
-
 export default {
   instanciateCurrentWeather() {
     return apiWeatherClient;

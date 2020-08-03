@@ -51,7 +51,6 @@ export default {
       this.$store.dispatch('appointmentsModule/storeAppointment', form).then((newAppointmentCreated) => {
         this.isConfirmModalOpen = true;
         this.newAppointmentCreated = newAppointmentCreated;
-        console.log(newAppointmentCreated);
       });
     },
     handleCancel() {

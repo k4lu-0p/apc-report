@@ -19,7 +19,7 @@
       <ul v-if="forecasts.length > 0" class="flex justify-around w-full">
         <li v-for="(forecast, index) in forecasts" :key="`forecast-${index}`" class="flex flex-col items-center">
           <weather-icon :id="forecast.weather[0].id"></weather-icon>
-          <small class="font-bold">{{ $moment.unix(forecast.dt).format('LT') }}</small>
+          <small class="font-bold text-gray-800">{{ $moment.unix(forecast.dt).format('LT') }}</small>
         </li>
       </ul>
       <div>
@@ -49,9 +49,7 @@ export default {
     }),
   },
   mounted() {
-    this.$store.dispatch('weatherModule/updateWeather').then(() => {
-      console.log(this.forecasts);
-    });
+    this.$store.dispatch('weatherModule/updateWeather');
   },
 };
 </script>
