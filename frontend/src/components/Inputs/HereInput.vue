@@ -53,9 +53,9 @@
 </template>
 
 <script>
-import { IMAGES } from '../../constants';
+import { ICONS } from '../../constants';
 
-const { svg: { MagnifyIcon, AddIcon } } = IMAGES;
+const { common: { MagnifyIcon, AddIcon } } = ICONS;
 
 export default {
   name: 'here-input',

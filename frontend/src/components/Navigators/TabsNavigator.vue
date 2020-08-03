@@ -65,17 +65,17 @@
 </template>
 
 <script>
-import { IMAGES } from '../../constants';
+import { ICONS } from '../../constants';
 
 const {
-  svg: {
+  common: {
     HomeIcon,
     SettingsIcon,
     ReportsIcon,
     UsersIcon,
     AppointmentsIcon,
   },
-} = IMAGES;
+} = ICONS;
 
 export default {
   name: 'tabs-navigator',

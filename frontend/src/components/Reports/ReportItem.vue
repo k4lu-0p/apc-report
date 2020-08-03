@@ -51,16 +51,16 @@
 </template>
 
 <script>
-import { IMAGES } from '../../constants';
+import { ICONS } from '../../constants';
 
 const {
-  svg: {
+  common: {
     ClockIcon,
     UsersIcon,
     AcceptIcon,
     WarningIcon,
   },
-} = IMAGES;
+} = ICONS;
 
 export default {
   name: 'report-item',
@@ -81,7 +81,7 @@ export default {
           params: { id: this.report.id },
         });
       } else {
-        this.$emit('alert');
+        this.$emit('alert', this.report.is_complete);
       }
     },
   },

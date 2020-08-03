@@ -68,9 +68,9 @@
 </template>
 
 <script>
-import { IMAGES } from '../../constants';
+import { ICONS } from '../../constants';
 
-const { svg: { AddIcon, MagnifyIcon } } = IMAGES;
+const { common: { AddIcon, MagnifyIcon } } = ICONS;
 
 export default {
   name: 'customer-input',

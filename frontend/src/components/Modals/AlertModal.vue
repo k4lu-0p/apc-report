@@ -1,14 +1,22 @@
 <template>
 <!-- eslint-disable max-len -->
   <div class="modal w-full h-full fixed top-0 flex justify-center items-center p-10">
-    <div class="bg-white shadow-xl rounded">
+    <div class="bg-white shadow-xl rounded w-full">
       <div class="p-6">
         <div class="flex justify-center items-center py-6">
-          <alert-icon class="alert-icon"></alert-icon>
+          <alert-icon
+            v-if="type === 'forbidden'"
+            class="icon alert-icon"
+          ></alert-icon>
+
+          <accept-icon
+            v-if="type === 'success'"
+            class="icon accept-icon"
+          ></accept-icon>
         </div>
-        <h2 class="font-bold text-2xl text-center">Rendez-vous non terminé !</h2>
+        <h2 class="font-bold text-xl text-center p-3">{{ title }}</h2>
         <p class="p-3 text-left">
-          Vous serez en mesure de <strong class="font-medium">le remplir uniquement à partir de la date de fin du rendez-vous.</strong>
+          {{ message }}
         </p>
       </div>
       <div class="flex justify-between items-center">
@@ -19,14 +27,29 @@
 </template>
 
 <script>
-import { IMAGES } from '../../constants';
+import { ICONS } from '../../constants';
 
-const { svg: { AlertIcon } } = IMAGES;
+const { common: { AlertIcon, AcceptIcon } } = ICONS;
 
 export default {
   name: 'alert-modal',
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    message: {
+      type: String,
+      required: true,
+    },
+    type: {
+      type: String,
+      required: true,
+    },
+  },
   components: {
     AlertIcon,
+    AcceptIcon,
   },
   methods: {
     cancel() {
@@ -41,9 +64,16 @@ export default {
   background rgba(0,0,0,0.6);
   z-index 10;
 
+.icon
+  height 65px
+  width 65px
+
 .alert-icon
   fill theme('colors.red.600')
   color theme('colors.red.600')
-  height 65px
-  width 65px
+
+.accept-icon
+  fill theme('colors.teal.600')
+  color theme('colors.teal.600')
+
 </style>

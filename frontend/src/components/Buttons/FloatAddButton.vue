@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import { IMAGES } from '../../constants';
+import { ICONS } from '../../constants';
 
-const { svg: { AddIcon } } = IMAGES;
+const { common: { AddIcon } } = ICONS;
 
 export default {
   data() {
