@@ -53,8 +53,7 @@ export default {
         },
       };
       const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.DELETE_CUSTOMER}${customerId}`;
-      const res = await this.$axios.delete(endpoint, config);
-      console.log(res);
+      await this.$axios.delete(endpoint, config);
     },
   },
   computed: {

@@ -57,6 +57,9 @@ export default {
       return this.$store.getters['appointmentsModule/getStatus'];
     },
   },
+  destroyed() {
+    this.$store.commit('appointmentsModule/setAppointments', []);
+  },
   mounted() {
     this.$store.dispatch('appointmentsModule/fetchAppointments', this.params).then(() => {
       // Handle invalid token even if user is authenticated

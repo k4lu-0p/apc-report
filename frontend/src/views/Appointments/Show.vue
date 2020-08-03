@@ -82,7 +82,6 @@ export default {
       const { data: { data: appointment } } = await this.$axios.get(endpoint, config);
       if (appointment !== undefined) {
         this.appointment = appointment;
-        console.log(this.appointment);
       }
     }
   },
