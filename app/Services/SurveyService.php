@@ -5,6 +5,17 @@ class SurveyService {
 
     private $survey = [
         [
+            'slug' => 'abort_reason',
+            'type' => 'radio',
+            'label' => 'Le rendez-vous a-t-il eu lieu ?',
+            'choices' => [
+                [ 'label' => 'Oui', 'value' => 'yes' ],
+                [ 'label' => 'Annulation du RDV par le partenaire', 'value' => 'abort_by_customer' ],
+                [ 'label' => 'Absence du partenaire au RDV ', 'value' => 'absence_by_customer' ],
+            ],
+            'default' => 'yes',
+        ],
+        [
           'slug' => 'profile',
           'label' => 'Profil de l\'environnement du rendez-vous',
           'type' => 'checkbox',
@@ -134,5 +145,49 @@ class SurveyService {
 
     public function getDefaultResponsesStringify() {
         return json_encode($this->generateDefaultResponses());
+    }
+
+    public function humanReadableResponses($responses) {
+        $survey = $this->getSurvey();
+        $humanResponses = [];
+
+        foreach ($responses as $responseKey => $responseValue) {
+            foreach ($survey as $surveyKey => $surveyValue) {
+                if ($responseKey === $surveyValue['slug']) { // On match le survey avec les responses
+                    if (array_key_exists('choices', $surveyValue)) { // Si radio ou checkbox
+
+                        if ($surveyValue['type'] === 'radio') { // Si radio
+                            foreach ($surveyValue['choices'] as $choiceAvailable) {
+                                if ($responseValue === $choiceAvailable['value']) {
+                                    $humanResponses[$responseKey] = [
+                                        'question' => $surveyValue['label'],
+                                        'response' => $choiceAvailable['label'],
+                                    ];
+                                }
+                            }
+                        } else { // Sinon checkbox
+                            foreach ($surveyValue['choices'] as $choiceAvailable) {
+                                foreach ($responseValue as $key => $checked) {
+                                    if ($checked === $choiceAvailable['value']) {
+                                        $humanResponses[$responseKey] = [
+                                            'question' => $surveyValue['label'],
+                                        ];
+                                        $humanResponses[$responseKey]['responses'][] = $choiceAvailable['label'];
+                                    }
+                                }
+                            }
+                        }
+
+                    } else { // Sinon rate
+                        $humanResponses[$responseKey] = [
+                            'question' => $surveyValue['label'],
+                            'response' => $responseValue,
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $humanResponses;
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Services\SurveyService;
 
 class ReportMail extends Mailable
 {
@@ -32,13 +33,16 @@ class ReportMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(SurveyService $surveyService)
     {
+        $responses = json_decode($this->report->responses);
+        // $responses = $surveyService->humanReadableResponses($responses);
+
         return $this->view('mails.report')
             ->with([
                 'user' => $this->user->name,
                 'location' => json_decode($this->report->appointment->location)->label,
-                'responses' => json_decode($this->report->responses),
+                'responses' => $responses,
                 'start_at' => $this->report->appointment->start_at,
                 'finish_at' => $this->report->appointment->finish_at,
                 'customer_name' => $this->report->customer->name,

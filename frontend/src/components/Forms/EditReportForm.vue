@@ -1,11 +1,11 @@
 <template>
 <!-- eslint-disable max-len -->
-  <form v-if="survey.length > 0 && responses" @submit.prevent="onSubmitResponses">
+  <form class="py-4" v-if="survey.length > 0 && responses" @submit.prevent="onSubmitResponses">
 
     <!-- survey fields -->
-    <div v-for="(question, index) in survey" :key="`question-${index}`">
+    <div v-for="(question, index) in surveyToUse" :key="`question-${index}`">
 
-      <hr class="my-2">
+      <hr class="my-2" v-if="index > 0">
 
       <!-- type rate -->
       <div v-if="question.type === 'rate'">
@@ -99,7 +99,7 @@
             :disabled="isValid === false"
             :class="[isValid === false ? 'bg-gray-400' : ' bg-teal-600 hover:bg-teal-800']"
             v-else
-            class="mx-auto text-white font-bold py-2 px-4 my-4 w-full rounded focus:outline-none focus:shadow-outline"
+            class="mx-auto text-white font-bold py-2 px-4 mt-10 w-full rounded focus:outline-none focus:shadow-outline"
           >Envoyer mon rapport</button>
 
         </transition>
@@ -123,25 +123,46 @@ export default {
   methods: {
     onSubmitResponses() {
       if (this.status !== this.$const.API.STATUS.LOADING) {
-        this.$emit('submit', this.responses);
+        // data envoyées diffèrent si rdv annulé
+        if (this.responses.abort_reason === 'yes') {
+          this.$emit('submit', this.responses);
+        } else {
+          const { responses } = this;
+          // on garde uniquement la question rdv annulé
+          Object.keys(responses).forEach((response) => {
+            if (response !== 'abort_reason') {
+              delete responses[response];
+            }
+          });
+          this.$emit('submit', responses);
+        }
       }
     },
   },
   computed: {
     isValid() {
       let isValid = true;
+      // si rdv annulé, formulaire valide.
+      if (this.responses.abort_reason === 'yes') {
       // eslint-disable-next-line no-restricted-syntax
-      for (const key in this.responses) {
+        for (const key in this.responses) {
         // eslint-disable-next-line no-prototype-builtins
-        if (this.responses.hasOwnProperty(key)) {
-          const element = this.responses[key];
-          if (element.length === 0) {
-            isValid = false;
-            break;
+          if (this.responses.hasOwnProperty(key)) {
+            const element = this.responses[key];
+            if (element.length === 0) {
+              isValid = false;
+              break;
+            }
           }
         }
       }
       return isValid;
+    },
+    surveyToUse() { // si le rendez-vous a été annulé, les autres questions ne sont pas disponibles.
+      if (this.responses && this.responses.abort_reason !== 'yes') {
+        return [this.survey[0]];
+      }
+      return this.survey;
     },
   },
   mounted() {
