@@ -85,7 +85,6 @@ const template = {
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
         const res = await axios.delete(endpoint, config);
-        console.log(res);
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);
