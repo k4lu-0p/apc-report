@@ -3,12 +3,10 @@
   <div class="min-h-screen bg-white">
     <!-- top bar -->
     <top-bar has-back-button ></top-bar>
-    <div class="container">
+    <div class="container mx-auto px-8">
 
       <!-- form -->
-      <create-appointment-form
-        @submit="handleSubmit($event)"
-      ></create-appointment-form>
+      <create-appointment-form @submit="handleSubmit($event)" />
 
       <!-- modal -->
       <transition
@@ -22,7 +20,7 @@
           type="success"
           v-if="isConfirmModalOpen"
           @cancel="handleCancel"
-        ></alert-modal>
+        />
       </transition>
     </div>
   </div>

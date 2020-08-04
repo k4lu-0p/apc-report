@@ -1,10 +1,11 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div class="container mx-auto px-8">
-    <div class="flex flex-col justify-center items-center py-12">
-      <img src="../../../public/img/bg/2.png" class="header-image" alt="">
-    </div>
-    <form @submit.prevent="onSubmit($event)">
+  <form @submit.prevent="onSubmit($event)">
+      <!-- header -->
+      <div class="flex flex-col justify-center items-center py-12">
+        <img src="../../../public/img/bg/2.png" class="header-image" alt="">
+      </div>
+
       <!-- Date start -->
       <div class="datetime-start" :class="[startAtErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- input -->
@@ -12,7 +13,7 @@
           zone="local"
           value-zone="local"
           type="datetime"
-          input-id="dateStart"
+          input-id="startAt"
           v-model="startAt"
           @blur="$v.form.start_at.$touch()"
           input-class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -20,8 +21,12 @@
           :title="$t('form.appointment.date.start.label')"
           :placeholder="$t('form.appointment.date.start.placeholder')"
         >
-          <!-- label -->
-          <label class="block pb-2 font-semibold text-lg text-gray-800" for="dateStart" slot="before">
+          <!-- slot label -->
+          <label
+            slot="before"
+            for="startAt"
+            class="block pb-2 font-semibold text-lg text-gray-800"
+          >
             {{ $t('form.appointment.date.start.label') }}
             <span class="text-red-500">*</span>
           </label>
@@ -46,7 +51,7 @@
           zone="local"
           value-zone="local"
           type="datetime"
-          input-id="dateFinish"
+          input-id="finishAt"
           v-model="finishAt"
           @blur="$v.form.finish_at.$touch()"
           input-class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -55,10 +60,15 @@
           :placeholder="$t('form.appointment.date.finish.placeholder')"
           :flow="['time']"
         >
-          <!-- label -->
-          <label class="block pb-2 font-semibold text-gray-800 text-lg" for="dateFinish" slot="before">
-             {{ $t('form.appointment.date.finish.label') }}
-             <span class="text-red-500">*</span>
+
+          <!-- slot label -->
+          <label
+            slot="before"
+            class="block pb-2 font-semibold text-gray-800 text-lg"
+            for="finishAt"
+          >
+              {{ $t('form.appointment.date.finish.label') }}
+              <span class="text-red-500">*</span>
           </label>
         </datetime>
 
@@ -179,18 +189,18 @@
           </button>
         </transition>
       </div>
-
-    </form>
-  </div>
+  </form>
 </template>
 
 <script>
 import HereInput from '../Inputs/HereInput.vue';
 import CustomerInput from '../Inputs/CustomerInput.vue';
+import { createAppointment as validationsMessage } from '../../mixins/formValidationMessages';
 import validator from '../../validators';
 
 export default {
   name: 'create-appointment-form',
+  mixins: [validationsMessage],
   components: {
     HereInput,
     CustomerInput,
@@ -254,37 +264,6 @@ export default {
     },
     submittingStatus() {
       return this.$store.getters['appointmentsModule/getStatus'];
-    },
-    startAtErrors() {
-      const errors = [];
-      if (!this.$v.form.start_at.$dirty) return errors;
-      if (!this.$v.form.start_at.required) errors.push(this.$t('form.appointment.date.start.validations.required'));
-      return errors;
-    },
-    finishAtErrors() {
-      const errors = [];
-      if (!this.$v.form.finish_at.$dirty) return errors;
-      if (!this.$v.form.finish_at.required) errors.push(this.$t('form.appointment.date.finish.validations.required'));
-      if (!this.$v.form.finish_at.isSuperiorStart) errors.push(this.$t('form.appointment.date.finish.validations.isSuperiorStart'));
-      return errors;
-    },
-    locationErrors() {
-      const errors = [];
-      if (!this.$v.form.location.$dirty) return errors;
-      if (!this.$v.form.location.required) errors.push(this.$t('form.appointment.location.validations.required'));
-      return errors;
-    },
-    customerErrors() {
-      const errors = [];
-      if (!this.$v.form.customer_name.$dirty) return errors;
-      if (!this.$v.form.customer_name.required) errors.push(this.$t('form.appointment.customer.validations.required'));
-      return errors;
-    },
-    warningErrors() {
-      const errors = [];
-      if (!this.$v.form.warning.$dirty) return errors;
-      if (!this.$v.form.warning.alphaNumCustom) errors.push(this.$t('form.appointment.warning.validations.alphaNumCustom'));
-      return errors;
     },
   },
   mounted() {
