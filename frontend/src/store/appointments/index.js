@@ -42,6 +42,7 @@ const template = {
         }
       }
     },
+
     storeAppointment: async ({ commit, rootState }, formData) => {
       // clean for force reload with the new
       commit('setAppointments', []);
@@ -57,11 +58,9 @@ const template = {
 
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
-
         const { data: { appointment } } = await axios.post(endpoint, formData, config);
         newAppointment = appointment;
         commit('setStatus', $const.API.STATUS.SUCCESS);
-
         return appointment;
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);
@@ -71,8 +70,26 @@ const template = {
           }
         }
       }
-
       return newAppointment;
+    },
+
+    deleteAppointment: async ({ commit, rootState }, id) => {
+      const { authModule: { token } } = rootState;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.DELETE_APPOINTMENT}${id}`;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      try {
+        commit('setStatus', $const.API.STATUS.LOADING);
+        const res = await axios.delete(endpoint, config);
+        commit('setStatus', $const.API.STATUS.SUCCESS);
+      } catch (error) {
+        commit('setStatus', $const.API.STATUS.ERROR);
+        throw error;
+      }
     },
   },
 };

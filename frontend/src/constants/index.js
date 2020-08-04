@@ -13,6 +13,7 @@ import ClockIcon from '../assets/svg/clock.svg';
 import LocationIcon from '../assets/svg/location.svg';
 import WarningIcon from '../assets/svg/warning.svg';
 import AlertIcon from '../assets/svg/alert.svg';
+import DeleteIcon from '../assets/svg/remove.svg';
 
 // weather icons
 import CloudCloudy from '../assets/svg/weather/cloud_cloudy.svg';
@@ -58,6 +59,7 @@ export default {
       DELETE_CUSTOMER: '/api/customer/',
       FETCH_SETTINGS: '/api/settings',
       STORE_APPOINTMENT: '/api/appointment',
+      DELETE_APPOINTMENT: '/api/appointment/',
     },
     STATUS: {
       LOADING: 'loading',
@@ -114,6 +116,7 @@ export const ICONS = {
     LocationIcon,
     WarningIcon,
     AlertIcon,
+    DeleteIcon,
   },
   weather: {
     CloudCloudy,

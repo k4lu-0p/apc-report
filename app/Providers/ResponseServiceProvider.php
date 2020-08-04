@@ -57,13 +57,23 @@ class ResponseServiceProvider extends ServiceProvider {
             ]);
         });
 
-        // Appointment not found
+        // Customer delete
         Response::macro('customerDeleted', function () {
 
             return Response::json([
                 'http' => 200,
                 'status' => 'customer_deleted',
                 'message' => 'Partenaire supprimé avec succès !',
+            ]);
+        });
+
+         // Appointment with report associate deleted
+         Response::macro('appointmentReportDeleted', function () {
+
+            return Response::json([
+                'http' => 200,
+                'status' => 'appointment_report__deleted',
+                'message' => 'Le RDV ainsi que son rapport ont été supprimés avec succès !',
             ]);
         });
     }

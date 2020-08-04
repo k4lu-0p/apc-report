@@ -19,5 +19,6 @@ export default {
     commit('logout');
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('settings');
   },
 };

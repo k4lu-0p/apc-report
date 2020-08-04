@@ -96,6 +96,9 @@ export default {
       return this.$store.getters['reportsModule/getStatus'];
     },
   },
+  destroyed() {
+    this.$store.commit('reportsModule/setReports', []);
+  },
   mounted() {
     this.$store.dispatch('reportsModule/fetchReports', this.params).then(() => {
       // Handle invalid token even if user is authenticated

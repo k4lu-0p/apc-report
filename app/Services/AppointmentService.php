@@ -68,6 +68,24 @@ class AppointmentService {
     }
 
      /**
+     * Supprime le rendez-vous et le rapport associé
+     */
+    public function deleteById(int $id)
+    {
+        if (empty($id)) {
+            throw ValidationException::withMessages([
+                'id' => ['id rendez-vous introuvable']
+            ]);
+        }
+
+        $appointment = Appointment::find($id);
+        $appointment->report->delete();
+        $appointment->delete();
+
+        return response()->appointmentReportDeleted();
+    }
+
+     /**
      * GET les appointments
      */
     private function getAll()

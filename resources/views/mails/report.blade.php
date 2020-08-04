@@ -309,9 +309,22 @@
                       <td style="vertical-align:top;padding:0px;">
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
                           <tr>
-                            <td align="center" style="font-size:0px;padding:10px 10px;word-break:break-word;">
-                              <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;"><strong>Réponses au questionnaire</strong></div>
-                            </td>
+                            @if ($responses->abort_reason === "yes")
+                                <td align="center" style="font-size:0px;padding:10px 10px;word-break:break-word;">
+                                <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;"><strong>Réponses au questionnaire</strong></div>
+                                </td>
+                            @else
+                                <td align="center" style="font-size:0px;padding:10px 10px;word-break:break-word;">
+                                    <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;"><strong>
+                                        Rendez-vous annulé
+                                        @if ($responses->abort_reason === "abort_by_customer")
+                                            par le partenaire.
+                                        @else
+                                            car le partenaire était absent.
+                                        @endif
+                                </strong></div>
+                                </td>
+                            @endif
                           </tr>
                         </table>
                       </td>
@@ -342,340 +355,342 @@
         <tr>
           <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
       <![endif]-->
-    <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
-        <tbody>
-          <tr>
-            <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+    @if ($responses->abort_reason === "yes")
+        <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                <tbody>
+                <tr>
+                    <td style="direction:ltr;font-size:0px;padding:20px 0;text-align:center;">
+                    <!--[if mso | IE]>
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
 
-        <tr>
+                <tr>
 
-            <td
-               class="" style="vertical-align:top;width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-                  <tbody>
-                    <tr>
-                      <td style="vertical-align:top;padding:0px 10px;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-                          <tr>
-                            <td align="left" style="font-size:0px;padding:0px;word-break:break-word;">
-                              <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Profil de l'environnement</td>
-                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
-                                        @foreach ($responses->profile as $response)
-                                            @if ($loop->index === count($responses->profile) - 1)
-                                                @switch($response)
-                                                    @case('agency')
-                                                        Agence
-                                                        @break
-                                                    @case('office')
-                                                        Cabinet
-                                                        @break
-                                                    @case('good')
-                                                        Bien
-                                                        @break
-                                                    @case('medium')
-                                                        Moyen
-                                                        @break
-                                                    @case('passable')
-                                                        Passable
-                                                        @break
-                                                    @default
-                                                @endswitch
-                                            @else
-                                                @switch($response)
-                                                    @case('agency')
-                                                        Agence,&nbsp;
-                                                        @break
-                                                    @case('office')
-                                                        Cabinet,&nbsp;
-                                                        @break
-                                                    @case('good')
-                                                        Bien,&nbsp;
-                                                        @break
-                                                    @case('medium')
-                                                        Moyen,&nbsp;
-                                                        @break
-                                                    @case('passable')
-                                                        Passable,&nbsp;
-                                                        @break
-                                                    @default
-                                                @endswitch
-                                            @endif
-                                        @endforeach
-                                    </td>
-                                </tr>
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Qualité de la réception</td>
-                                    <td style="padding: 15px 15px 0px 15px;">
-                                       @switch($responses->reception)
-                                            @case(1)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/1-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
-                                                />
-                                                @break
-                                            @case(2)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/2-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
-                                                />
-                                                @break
-                                            @case(3)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/3-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;"
-                                                />
-                                                @break
-                                            @case(4)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/4-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
-                                                />
-                                                @break
-                                            @case(5)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/5-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
-                                                />
-                                                @break
-                                           @default
-                                       @endswitch
-                                    </td>
-                                </tr>
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Nature du rendez-vous</td>
-                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
-                                        @switch($responses->subject)
-                                            @case('new_partner')
-                                                Nouveau partenaire
-                                                @break
-                                            @case('routine_visit')
-                                                VIsite de routine
-                                                @break
-                                            @default
-                                        @endswitch
-                                    </td>
-                                </tr>
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Présentation de APC</td>
-                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
-                                        @switch($responses->has_described_society)
-                                            @case(1)
-                                                Oui
-                                                @break
-                                            @case(0)
-                                                Non
-                                                @break
-                                            @default
-                                        @endswitch
-                                    </td>
-                                </tr>
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Démo de l'extranet courtage</td>
-                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
-                                        @switch($responses->has_showed_extranet)
-                                            @case(1)
-                                                Oui
-                                                @break
-                                            @case(0)
-                                                Non
-                                                @break
-                                            @default
-                                        @endswitch
-                                    </td>
-                                </tr>
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Exemple tarification auto</td>
-                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
-                                        @switch($responses->has_showed_automotive_pricing)
-                                            @case(1)
-                                                Oui
-                                                @break
-                                            @case(0)
-                                                Non
-                                                @break
-                                            @default
-                                        @endswitch
-                                    </td>
-                                </tr>
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Support visuel distribué (plaquette)</td>
-                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
-                                        @switch($responses->has_distributed_visual_support)
-                                            @case(1)
-                                                Oui
-                                                @break
-                                            @case(0)
-                                                Non
-                                                @break
-                                            @default
-                                        @endswitch
-                                    </td>
-                                </tr>
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Qualité du RDV</td>
-                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
-                                        @switch($responses->appointment_quality)
-                                            @case(1)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/1-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
-                                                />
-                                                @break
-                                            @case(2)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/2-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
-                                                />
-                                                @break
-                                            @case(3)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/3-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;"
-                                                />
-                                                @break
-                                            @case(4)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/4-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
-                                                />
-                                                @break
-                                            @case(5)
-                                                <img
-                                                    alt="tickets"
-                                                    height="21"
-                                                    src="https://apc-report.lucasrobin.fr/img/mails/5-5.PNG"
-                                                    style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
-                                                />
-                                                @break
-                                       @endswitch
-                                    </td>
-                                </tr>
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Production future évoquée</td>
-                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
-                                        @foreach ($responses->products_evoked as $response)
-                                        @if ($loop->index === count($responses->products_evoked) - 1)
-                                            @switch($response)
-                                                @case('auto')
-                                                    Auto
-                                                    @break
-                                                @case('moto')
-                                                    Moto
-                                                    @break
-                                                @case('health')
-                                                    MRH
-                                                    @break
-                                                @case('juridic')
-                                                    PJ
-                                                    @break
-                                                @case('life')
-                                                    Santé
-                                                    @break
-                                                @default
-                                            @endswitch
-                                        @else
-                                            @switch($response)
-                                                @case('auto')
-                                                    Auto,&nbsp;
-                                                    @break
-                                                @case('moto')
-                                                    Moto,&nbsp;
-                                                    @break
-                                                @case('health')
-                                                    MRH,&nbsp;
-                                                    @break
-                                                @case('juridic')
-                                                    PJ,&nbsp;
-                                                    @break
-                                                @case('life')
-                                                    Santé,&nbsp;
-                                                    @break
-                                                @default
-                                            @endswitch
-                                        @endif
-                                    @endforeach
-                                    </td>
-                                </tr>
-
-                                <tr align="middle">
-                                    <td style="padding: 15px 15px 0px 15px;">Volumétrie attendue mensuelle</td>
-                                    <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
-                                       @switch($responses->monthly_volume)
-                                            @case(1)
-                                                de 0 à 5 contrats
-                                                @break
-                                            @case(2)
-                                                de 5 à 15 contrats
-                                                @break
-                                            @case(3)
-                                                de 15 à 30 contrats
-                                                @break
-                                            @case(4)
-                                                plus de 30 contrats
-                                                @break
-                                           @default
-                                       @endswitch
-                                    </td>
-                                </tr>
-
-
-
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
-                  </table>
+                    <td
+                    class="" style="vertical-align:top;width:600px;"
+                    >
                 <![endif]-->
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+                    <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                        <tbody>
+                            <tr>
+                            <td style="vertical-align:top;padding:0px 10px;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                                <tr>
+                                    <td align="left" style="font-size:0px;padding:0px;word-break:break-word;">
+                                    <table cellpadding="0" cellspacing="0" width="100%" border="0" style="color:#000000;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none;">
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Profil de l'environnement</td>
+                                            <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                                @foreach ($responses->profile as $response)
+                                                    @if ($loop->index === count($responses->profile) - 1)
+                                                        @switch($response)
+                                                            @case('agency')
+                                                                Agence
+                                                                @break
+                                                            @case('office')
+                                                                Cabinet
+                                                                @break
+                                                            @case('good')
+                                                                Bien
+                                                                @break
+                                                            @case('medium')
+                                                                Moyen
+                                                                @break
+                                                            @case('passable')
+                                                                Passable
+                                                                @break
+                                                            @default
+                                                        @endswitch
+                                                    @else
+                                                        @switch($response)
+                                                            @case('agency')
+                                                                Agence,&nbsp;
+                                                                @break
+                                                            @case('office')
+                                                                Cabinet,&nbsp;
+                                                                @break
+                                                            @case('good')
+                                                                Bien,&nbsp;
+                                                                @break
+                                                            @case('medium')
+                                                                Moyen,&nbsp;
+                                                                @break
+                                                            @case('passable')
+                                                                Passable,&nbsp;
+                                                                @break
+                                                            @default
+                                                        @endswitch
+                                                    @endif
+                                                @endforeach
+                                            </td>
+                                        </tr>
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Qualité de la réception</td>
+                                            <td style="padding: 15px 15px 0px 15px;">
+                                            @switch($responses->reception)
+                                                    @case(1)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/1-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                        />
+                                                        @break
+                                                    @case(2)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/2-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                        />
+                                                        @break
+                                                    @case(3)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/3-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;"
+                                                        />
+                                                        @break
+                                                    @case(4)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/4-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                        />
+                                                        @break
+                                                    @case(5)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/5-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                        />
+                                                        @break
+                                                @default
+                                            @endswitch
+                                            </td>
+                                        </tr>
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Nature du rendez-vous</td>
+                                            <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                                @switch($responses->subject)
+                                                    @case('new_partner')
+                                                        Nouveau partenaire
+                                                        @break
+                                                    @case('routine_visit')
+                                                        VIsite de routine
+                                                        @break
+                                                    @default
+                                                @endswitch
+                                            </td>
+                                        </tr>
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Présentation de APC</td>
+                                            <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                                @switch($responses->has_described_society)
+                                                    @case(1)
+                                                        Oui
+                                                        @break
+                                                    @case(0)
+                                                        Non
+                                                        @break
+                                                    @default
+                                                @endswitch
+                                            </td>
+                                        </tr>
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Démo de l'extranet courtage</td>
+                                            <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                                @switch($responses->has_showed_extranet)
+                                                    @case(1)
+                                                        Oui
+                                                        @break
+                                                    @case(0)
+                                                        Non
+                                                        @break
+                                                    @default
+                                                @endswitch
+                                            </td>
+                                        </tr>
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Exemple tarification auto</td>
+                                            <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                                @switch($responses->has_showed_automotive_pricing)
+                                                    @case(1)
+                                                        Oui
+                                                        @break
+                                                    @case(0)
+                                                        Non
+                                                        @break
+                                                    @default
+                                                @endswitch
+                                            </td>
+                                        </tr>
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Support visuel distribué (plaquette)</td>
+                                            <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                                @switch($responses->has_distributed_visual_support)
+                                                    @case(1)
+                                                        Oui
+                                                        @break
+                                                    @case(0)
+                                                        Non
+                                                        @break
+                                                    @default
+                                                @endswitch
+                                            </td>
+                                        </tr>
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Qualité du RDV</td>
+                                            <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                                @switch($responses->appointment_quality)
+                                                    @case(1)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/1-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                        />
+                                                        @break
+                                                    @case(2)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/2-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                        />
+                                                        @break
+                                                    @case(3)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/3-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;"
+                                                        />
+                                                        @break
+                                                    @case(4)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/4-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                        />
+                                                        @break
+                                                    @case(5)
+                                                        <img
+                                                            alt="tickets"
+                                                            height="21"
+                                                            src="https://apc-report.lucasrobin.fr/img/mails/5-5.PNG"
+                                                            style="border:0;display:block;outline:none;text-decoration:none;width:30%;"
+                                                        />
+                                                        @break
+                                            @endswitch
+                                            </td>
+                                        </tr>
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Production future évoquée</td>
+                                            <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                                @foreach ($responses->products_evoked as $response)
+                                                @if ($loop->index === count($responses->products_evoked) - 1)
+                                                    @switch($response)
+                                                        @case('auto')
+                                                            Auto
+                                                            @break
+                                                        @case('moto')
+                                                            Moto
+                                                            @break
+                                                        @case('health')
+                                                            MRH
+                                                            @break
+                                                        @case('juridic')
+                                                            PJ
+                                                            @break
+                                                        @case('life')
+                                                            Santé
+                                                            @break
+                                                        @default
+                                                    @endswitch
+                                                @else
+                                                    @switch($response)
+                                                        @case('auto')
+                                                            Auto,&nbsp;
+                                                            @break
+                                                        @case('moto')
+                                                            Moto,&nbsp;
+                                                            @break
+                                                        @case('health')
+                                                            MRH,&nbsp;
+                                                            @break
+                                                        @case('juridic')
+                                                            PJ,&nbsp;
+                                                            @break
+                                                        @case('life')
+                                                            Santé,&nbsp;
+                                                            @break
+                                                        @default
+                                                    @endswitch
+                                                @endif
+                                            @endforeach
+                                            </td>
+                                        </tr>
+
+                                        <tr align="middle">
+                                            <td style="padding: 15px 15px 0px 15px;">Volumétrie attendue mensuelle</td>
+                                            <td style="padding: 15px 15px 0px 15px;font-weight:bold;">
+                                            @switch($responses->monthly_volume)
+                                                    @case(1)
+                                                        de 0 à 5 contrats
+                                                        @break
+                                                    @case(2)
+                                                        de 5 à 15 contrats
+                                                        @break
+                                                    @case(3)
+                                                        de 15 à 30 contrats
+                                                        @break
+                                                    @case(4)
+                                                        plus de 30 contrats
+                                                        @break
+                                                @default
+                                            @endswitch
+                                            </td>
+                                        </tr>
+
+
+
+                                    </table>
+                                    </td>
+                                </tr>
+                                </table>
+                            </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    <!--[if mso | IE]>
+                    </td>
+
+                </tr>
+
+                        </table>
+                        <![endif]-->
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    @endif
     <!--[if mso | IE]>
           </td>
         </tr>
