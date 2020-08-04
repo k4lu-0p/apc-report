@@ -8,21 +8,21 @@
       <!-- form -->
       <create-appointment-form @submit="handleSubmit($event)" />
 
-      <!-- modal -->
-      <transition
-        mode="out-in"
-        enter-active-class="animated fadeIn faster-x2"
-        leave-active-class="animated fadeOut faster-x2"
-      >
-        <alert-modal
-          title="Rendez-vous créé !"
-          message="Un rapport associé au rendez-vous est également créé. Vous serez en mesure de le remplir uniquement à partir de la date de fin du rendez-vous."
-          type="success"
-          v-if="isConfirmModalOpen"
-          @cancel="handleCancel"
-        />
-      </transition>
     </div>
+    <!-- modal -->
+    <transition
+      mode="out-in"
+      enter-active-class="animated fadeIn faster-x2"
+      leave-active-class="animated fadeOut faster-x2"
+    >
+      <alert-modal
+        title="Rendez-vous créé !"
+        message="Un rapport associé au rendez-vous est également créé. Vous serez en mesure de le remplir uniquement à partir de la date de fin du rendez-vous."
+        type="success"
+        v-if="isConfirmModalOpen"
+        @cancel="handleCancel"
+      />
+    </transition>
   </div>
 </template>
 

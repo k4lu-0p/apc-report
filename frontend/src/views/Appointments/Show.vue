@@ -1,7 +1,11 @@
 <template>
 <!-- eslint-disable max-len -->
   <div class="min-h-screen">
-    <top-bar has-back-button ></top-bar>
+    <top-bar
+      has-back-button
+      :has-delete-button="isAppointmentOver === false"
+      @delete="isVisibleModal = true"
+    />
     <div class="container mx-auto px-4">
 
       <div v-if="appointment">
@@ -15,11 +19,11 @@
           <h2 class="font-bold text-lg py-4">{{ appointmentLocation.label }}</h2>
         </div>
 
+        <!-- redirect to google map -->
         <a
           class="bg-teal-600 text-white font-bold rounded px-4 py-2 block my-4 text-center"
           :href="queryGoogleMap"
-          target="_blank"
-        >
+          target="_blank">
           Itinéraire Google Map
         </a>
       </div>
@@ -27,8 +31,23 @@
       <spinner
         :is-visible="appointment === null"
       ></spinner>
-
     </div>
+
+    <transition
+      mode="out-in"
+      enter-active-class="animated fadeIn faster-x2"
+      leave-active-class="animated fadeOut faster-x2"
+    >
+      <!-- confirm delete -->
+      <alert-modal
+        v-if="isVisibleModal"
+        type="dialog"
+        title="Annuler le RDV ?"
+        message="En annulant ce rendez-vous, celui-ci sera supprimé ainsi que son rapport associé."
+        @cancel="isVisibleModal = false"
+        @confirm="handleDeleteAppointment"
+      />
+    </transition>
   </div>
 </template>
 
@@ -36,16 +55,19 @@
 /* eslint-disable no-unused-expressions */
 import TopBar from '../../components/Navigators/TopBar.vue';
 import Spinner from '../../components/Spinner.vue';
+import AlertModal from '../../components/Modals/AlertModal.vue';
 
 export default {
   name: 'appointments-show',
   components: {
     TopBar,
     Spinner,
+    AlertModal,
   },
   data() {
     return {
       appointment: null,
+      isVisibleModal: false,
     };
   },
   computed: {
@@ -67,6 +89,24 @@ export default {
     },
     appointmentLocation() {
       return JSON.parse(this.appointment.location);
+    },
+    isAppointmentOver() {
+      if (this.appointment) {
+        return (
+          this.$moment().format('YYYY-MM-DD, h:mm:ss') > this.$moment(this.appointment.finish_at).format('YYYY-MM-DD, h:mm:ss')
+        );
+      }
+      return '';
+    },
+  },
+  methods: {
+    handleDeleteAppointment() {
+      const { id } = this.appointment;
+      this.appointment = null;
+      this.isVisibleModal = false;
+      this.$store.dispatch('appointmentsModule/deleteAppointment', id).then(() => {
+        this.$router.go(-1);
+      });
     },
   },
   async mounted() {

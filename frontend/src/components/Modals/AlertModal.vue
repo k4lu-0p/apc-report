@@ -5,7 +5,7 @@
       <div class="p-6">
         <div class="flex justify-center items-center py-6">
           <alert-icon
-            v-if="type === 'forbidden'"
+            v-if="type === 'forbidden' || type === 'dialog'"
             class="icon alert-icon"
           ></alert-icon>
 
@@ -20,7 +20,22 @@
         </p>
       </div>
       <div class="flex justify-between items-center">
-        <button class= "rounded-br w-full text-center bg-gray-200 border-gray-200 p-3 border text-black text-lg font-medium" @click="cancel($event)">Quitter</button>
+
+        <!-- yes -->
+        <button
+          v-if="type === 'dialog'"
+          class= "w-1/2 rounded-br text-center bg-white border-teal-600 p-3 text-teal-600 text-lg font-medium"
+          @click="$emit('confirm')">
+          Confirmer
+        </button>
+
+        <!-- cancel -->
+        <button
+          :class="[ type !== 'dialog' ? 'w-full' : 'w-1/2' ]"
+          class= "rounded-br text-center bg-gray-200 border-gray-200 p-3 border text-black text-lg font-medium"
+          @click="$emit('cancel')">
+          Quitter
+        </button>
       </div>
     </div>
   </div>
@@ -50,11 +65,6 @@ export default {
   components: {
     AlertIcon,
     AcceptIcon,
-  },
-  methods: {
-    cancel() {
-      this.$emit('cancel');
-    },
   },
 };
 </script>

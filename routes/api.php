@@ -29,6 +29,9 @@ Route::middleware('auth:sanctum')->post('/appointment', 'AppointmentController@s
 // GET : Récupérer un rendez-vous par son ID
 Route::middleware('auth:sanctum')->get('/appointment/{id}', 'AppointmentController@show');
 
+// DELETE : Supprime un client par son ID
+Route::middleware('auth:sanctum')->delete('/appointment/{id}', 'AppointmentController@destroy');
+
 // GET : Lister tous les comptes-rendus de tous les rendez-vous de l'utilisateur connecté
 Route::middleware('auth:sanctum')->get('/reports', 'ReportController@index');
 
