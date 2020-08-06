@@ -12,32 +12,41 @@
           <ul>
             <li class="py-2">
               <p class="text-gray-800">
-                <span class="font-medium text-lg">Nom commercial :</span> {{ customer.commercial_name }}
+                <span class="font-bold text-lg">Nom commercial :</span> {{ customer.commercial_name }}
               </p>
             </li>
             <li class="py-2">
               <p class="text-gray-800">
-                <span class="font-medium text-lg">Nom du dirigeant :</span> {{ customer.leader_lastname }}
+                <span class="font-bold text-lg">Nom du dirigeant :</span> {{ customer.leader_lastname }}
               </p>
             </li>
             <li class="py-2">
               <p class="text-gray-800">
-                <span class="font-medium text-lg">Prénom du dirigeant :</span> {{ customer.leader_firstname }}
+                <span class="font-bold text-lg">Prénom du dirigeant :</span> {{ customer.leader_firstname }}
               </p>
             </li>
             <li class="py-2">
               <p class="text-gray-800">
-                <span class="font-medium text-lg">Adresse complète :</span> {{ customer.address }}
+                <span class="font-bold text-lg">Adresse :</span>
+              </p>
+              <ul class="py-2" v-if="address">
+                <li v-if="address.country"><span class="font-medium">Pays : </span>{{ address.country }}</li>
+                <li v-if="address.state"><span class="font-medium">Région : </span>{{ address.state }}</li>
+                <li v-if="address.county"><span class="font-medium">Département : </span>{{ address.county }}</li>
+                <li v-if="address.postalCode"><span class="font-medium">Code postal : </span>{{ address.postalCode }}</li>
+                <li v-if="address.city"><span class="font-medium">Ville : </span>{{ address.city }}</li>
+                <li v-if="address.houseNumber"><span class="font-medium">Numéro : </span>{{ address.houseNumber }}</li>
+                <li v-if="address.street"><span class="font-medium">Rue : </span>{{ address.street }}</li>
+              </ul>
+            </li>
+            <li class="py-2">
+              <p class="text-gray-800">
+                <span class="font-bold text-lg">Téléphone :</span> {{ customer.phone }}
               </p>
             </li>
             <li class="py-2">
               <p class="text-gray-800">
-                <span class="font-medium text-lg">Téléphone :</span> {{ customer.phone }}
-              </p>
-            </li>
-            <li class="py-2">
-              <p class="text-gray-800">
-                <span class="font-medium text-lg">Email :</span> {{ customer.email }}
+                <span class="font-bold text-lg">Email :</span> {{ customer.email }}
               </p>
             </li>
           </ul>
@@ -102,6 +111,9 @@ export default {
   computed: {
     token() {
       return this.$store.getters['authModule/getToken'];
+    },
+    address() {
+      return JSON.parse(this.customer.address).address;
     },
   },
   methods: {
