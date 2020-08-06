@@ -9,11 +9,11 @@ use Illuminate\Validation\ValidationException;
 
 class CustomerService {
 
-    private ?GetCustomersRequest $request = null;
+    private $request = null;
     private ?User $user = null;
 
     const FILTER_AUTHORIZED = [
-        'CUSTOMER_NAME' => 'name',
+        'CUSTOMERS_COMMERCIAL_NAME' => 'commercial_name',
     ];
 
     public function setUserRequest($request) {
@@ -75,15 +75,27 @@ class CustomerService {
     /**
      * Récupère un ou plusieurs client au comparant la chaine entré dans la requête avec les noms des clients
      */
-    private function getByName()
+    private function searchByCommercialName()
     {
         $result = Customer::query()
-            ->where('name', 'LIKE', '%' . $this->request->value . '%')
+            ->where('commercial_name', 'LIKE', '%' . $this->request->value . '%')
             ->offset($this->request->offset)
             ->limit($this->request->limit)
             ->get();
 
         return CustomerResource::collection($result);
+    }
+
+    /**
+     * PUT un customer
+     */
+    public function updateById($id) {
+        $customer = Customer::find($id);
+        foreach ($this->request->all() as $key => $value) {
+            $customer->{$key} = $value ?: $customer->{$key};
+        }
+        $customer->save();
+        return response()->customerUpdated($customer);
     }
 
      /**
@@ -106,8 +118,8 @@ class CustomerService {
     public function handleFilteredRequest()
     {
         switch ($this->request->by) {
-            case self::FILTER_AUTHORIZED['CUSTOMER_NAME'] :
-                return $this->getByName();
+            case self::FILTER_AUTHORIZED['CUSTOMERS_COMMERCIAL_NAME'] :
+                return $this->searchByCommercialName();
                 break;
             default :
                 return $this->getAll();

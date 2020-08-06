@@ -10,7 +10,7 @@
 
       <div v-if="appointment">
         <div class="py-4">
-          <p>Rendez-vous avec <span class="font-medium">{{ appointment.customer.name }}</span></p>
+          <p>Rendez-vous avec <span class="font-medium">{{ appointment.customer.commercial_name }}</span></p>
           <p>Début du rendez-vous : <span class="font-medium">{{ $moment(appointment.start_at).calendar() }}</span></p>
           <p>Fin du rendez-vous estimée : <span class="font-medium">{{ $moment(appointment.finish_at).calendar() }}</span></p>
         </div>

@@ -29,7 +29,7 @@ Route::middleware('auth:sanctum')->post('/appointment', 'AppointmentController@s
 // GET : Récupérer un rendez-vous par son ID
 Route::middleware('auth:sanctum')->get('/appointment/{id}', 'AppointmentController@show');
 
-// DELETE : Supprime un client par son ID
+// DELETE : Supprime un rendez-vous ainsi que son rapport lié par l'ID du RDV
 Route::middleware('auth:sanctum')->delete('/appointment/{id}', 'AppointmentController@destroy');
 
 // GET : Lister tous les comptes-rendus de tous les rendez-vous de l'utilisateur connecté
@@ -44,8 +44,14 @@ Route::middleware('auth:sanctum')->get('/report/{id}', 'ReportController@show');
 // GET : Lister tous les clients
 Route::middleware('auth:sanctum')->get('/customers', 'CustomerController@index');
 
+// GET : Récupérer un client par son ID
+Route::middleware('auth:sanctum')->get('/customer/{id}', 'CustomerController@show');
+
 // DELETE : Supprime un client par son ID
 Route::middleware('auth:sanctum')->delete('/customer/{id}', 'CustomerController@destroy');
+
+// PUT : Mettre à jour un client
+Route::middleware('auth:sanctum')->put('/customer/{id}', 'CustomerController@update');
 
 // GET : Lister toute les options globales
 Route::middleware('auth:sanctum')->get('/settings', 'SettingController@index');

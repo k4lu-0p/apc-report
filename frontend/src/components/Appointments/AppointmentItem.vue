@@ -1,6 +1,9 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div @click="goToDetail($event)" v-if="appointment" class="bg-white shadow-lg my-4 rounded-lg">
+  <div
+    @click="goTo($const.NAVIGATION.APPOINTMENTS_SHOW.NAME, appointment.id)"
+    v-if="appointment" class="bg-white shadow-lg my-4 rounded-lg"
+  >
     <div class="px-6">
        <div class="flex justify-between items-center py-2">
         <div class="flex justify-start items-center">
@@ -17,13 +20,13 @@
         </div>
       </div>
 
-      <p class="py-4 font-bold text-lg text-gray-800">{{ appointment.customer.name }}</p>
+      <p class="py-4 font-bold text-lg text-gray-800">{{ appointment.customer.commercial_name }}</p>
 
       <!-- chips -->
       <hr>
       <div class="flex flex-wrap py-4">
         <p
-          @click.stop="goToSurvey($event)"
+          @click.stop="goTo($const.NAVIGATION.REPORTS_EDIT.NAME, appointment.id)"
           v-if="appointment.report.is_complete === 0 && isAppointmentOver"
           class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
           <warning-icon class="warning-icon mr-1"></warning-icon>
@@ -73,20 +76,6 @@ export default {
   },
   props: {
     appointment: Object,
-  },
-  methods: {
-    goToSurvey() {
-      this.$router.push({
-        name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
-        params: { id: this.appointment.report.id },
-      });
-    },
-    goToDetail() {
-      this.$router.push({
-        name: this.$const.NAVIGATION.APPOINTMENTS_SHOW.NAME,
-        params: { id: this.appointment.id },
-      });
-    },
   },
   computed: {
     location() {

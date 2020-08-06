@@ -56,7 +56,7 @@ export default {
       params: {
         limit: 10,
         offset: 0,
-        by: 'name',
+        by: 'commercial_name',
         value: '',
       },
     };
@@ -71,8 +71,8 @@ export default {
       const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.DELETE_CUSTOMER}${customerId}`;
       await this.$axios.delete(endpoint, config);
     },
-    handleSearch(name = '') {
-      this.params.value = name;
+    handleSearch(commercialName = '') {
+      this.params.value = commercialName;
 
       this.$store.dispatch('customersModule/fetchCustomers', this.params).then(() => {
         // Handle invalid token even if user is authenticated

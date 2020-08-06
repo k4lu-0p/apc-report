@@ -24,9 +24,13 @@ class PostAppointmentRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'report_id' => ['nullable', 'numeric', 'unique:App\Report,id'],
-            'customer_id' => ['required', 'numeric'],
-            'customer_name' => ['required', 'string'],
+            'customer.id' => ['required', 'numeric'],
+            'customer.commercial_name' => ['required', 'string'],
+            'customer.leader_firstname' => ['required', 'string'],
+            'customer.leader_lastname' => ['required', 'string'],
+            'customer.address' => ['required', 'json'],
+            'customer.email' => ['required', 'string'],
+            'customer.phone' => ['required', 'string'],
             'location' => ['required', 'json'],
             'start_at' => ['required', 'date'],
             'finish_at' => ['required', 'date'],
