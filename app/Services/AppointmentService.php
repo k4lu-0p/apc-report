@@ -139,18 +139,22 @@ class AppointmentService {
 
         // TODO: remove this
         $surveyService = new SurveyService();
-
         // create or search model to associate
         $appointment = new Appointment();
         $report = new Report();
 
-        if ($this->request->customer_id !== 0) {
-            $customer = Customer::find($this->request->customer_id);
-            Log::debug('[AppointmentService/create()] 4. customer connu :' . $customer->name);
+        if ( (int) $this->request->customer['id'] !== 0) {
+            $customer = Customer::find( (int) $this->request->customer['id']);
+            Log::debug('[AppointmentService/create()] 4. customer connu :' . $customer->commercial_name);
         } else {
             $customer = new Customer();
-            $customer->name = $this->request->customer_name;
-            Log::debug('[AppointmentService/create()] 4. nouveau customer :' . $customer->name);
+            $customer->commercial_name = $this->request->customer['commercial_name'];
+            $customer->leader_lastname = $this->request->customer['leader_lastname'];
+            $customer->leader_firstname = $this->request->customer['leader_firstname'];
+            $customer->address = $this->request->customer['address'];
+            $customer->phone = $this->request->customer['phone'];
+            $customer->email = $this->request->customer['email'];
+            Log::debug('[AppointmentService/create()] 4. nouveau customer :' . $customer->commercial_name);
         }
 
         // fill report data

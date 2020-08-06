@@ -15,7 +15,7 @@ class ReportService
     private $request = null;
 
     const FILTER_AUTHORIZED = [
-        'CUSTOMER_NAME' => 'customer',
+        'CUSTOMER_COMMERCIAL_NAME' => 'customer_commercial_name',
         'CUSTOMER_ID' => 'customer_id',
         'COMPLETED_STATUS' => 'completed',
         'APPOINTMENT_START_AT' => 'start_at',
@@ -158,7 +158,7 @@ class ReportService
             // Todo: rendre dynamique
             $recipients = [
                 'lucas.rob1@live.fr',
-                'jpheulpin@ymail.com',
+                // 'jpheulpin@ymail.com',
             ];
 
             foreach ($recipients as $recipient) {
@@ -180,7 +180,7 @@ class ReportService
             case self::FILTER_AUTHORIZED['COMPLETED_STATUS'] :
                 return $this->getByCompletedStatus();
                 break;
-            case self::FILTER_AUTHORIZED['CUSTOMER_NAME'] :
+            case self::FILTER_AUTHORIZED['CUSTOMER_COMMERCIAL_NAME'] :
                 return $this->getByCustomerName();
                 break;
             case self::FILTER_AUTHORIZED['CUSTOMER_ID'] :

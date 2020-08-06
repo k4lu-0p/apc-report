@@ -13,7 +13,7 @@ class CustomerService {
     private ?User $user = null;
 
     const FILTER_AUTHORIZED = [
-        'CUSTOMER_NAME' => 'name',
+        'CUSTOMER_COMMERCIAL_NAME' => 'commercial_name',
     ];
 
     public function setUserRequest($request) {
@@ -75,10 +75,10 @@ class CustomerService {
     /**
      * Récupère un ou plusieurs client au comparant la chaine entré dans la requête avec les noms des clients
      */
-    private function getByName()
+    private function getByCommercialName()
     {
         $result = Customer::query()
-            ->where('name', 'LIKE', '%' . $this->request->value . '%')
+            ->where('commercial_name', 'LIKE', '%' . $this->request->value . '%')
             ->offset($this->request->offset)
             ->limit($this->request->limit)
             ->get();
@@ -106,8 +106,8 @@ class CustomerService {
     public function handleFilteredRequest()
     {
         switch ($this->request->by) {
-            case self::FILTER_AUTHORIZED['CUSTOMER_NAME'] :
-                return $this->getByName();
+            case self::FILTER_AUTHORIZED['CUSTOMER_COMMERCIAL_NAME'] :
+                return $this->getByCommercialName();
                 break;
             default :
                 return $this->getAll();
