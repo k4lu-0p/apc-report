@@ -18,6 +18,8 @@ import AppointmentsShow from '../views/Appointments/Show.vue';
 // Pages customers
 import CustomersIndex from '../views/Customers/Index.vue';
 import CustomersHome from '../views/Customers/Home.vue';
+import CustomersShow from '../views/Customers/Show.vue';
+import CustomersEdit from '../views/Customers/Edit.vue';
 
 // Pages reports
 import ReportsIndex from '../views/Reports/Index.vue';
@@ -73,6 +75,16 @@ const routes = [
         path: $const.NAVIGATION.CUSTOMERS_HOME.PATH,
         name: $const.NAVIGATION.CUSTOMERS_HOME.NAME,
         component: CustomersHome,
+      },
+      {
+        path: $const.NAVIGATION.CUSTOMERS_SHOW.PATH,
+        name: $const.NAVIGATION.CUSTOMERS_SHOW.NAME,
+        component: CustomersShow,
+      },
+      {
+        path: $const.NAVIGATION.CUSTOMERS_EDIT.PATH,
+        name: $const.NAVIGATION.CUSTOMERS_EDIT.NAME,
+        component: CustomersEdit,
       },
     ],
   },

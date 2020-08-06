@@ -26,21 +26,9 @@ export default {
       required: 'Le lieu est obligatoire.',
     },
   },
-  customer: {
-    label: 'Partenaire :',
-    placeholder: 'Rechercher un partenaire',
-    validations: {
-      required: 'La selection d\'un partenaire est obligatoire.',
-      integer: 'La selection d\'un partenaire est obligatoire.',
-      isValidId: 'La selection d\'un partenaire est obligatoire.',
-    },
-    errors: {
-      result: 'Aucun partenaires n\'a été trouvé.',
-    },
-  },
   warning: {
     label: 'Avertissement :',
-    placeholder: 'Définir un message d\'avertissement supplémentaire (optionnel).',
+    placeholder: 'Définir un message d\'avertissement supplémentaire pour le rendez-vous. (optionnel)',
     validations: {
       alphaNumCustom: 'Le champ contient des caractères interdits.',
     },

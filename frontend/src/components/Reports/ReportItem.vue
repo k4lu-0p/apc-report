@@ -18,7 +18,7 @@
         <div class="flex justify-start items-center">
           <users-icon class="users-icon"></users-icon>
           <p class="text-gray-500 pl-2 text-xs">
-            {{ report.customer_name }}
+            {{ report.customer_commercial_name }}
           </p>
         </div>
       </div>

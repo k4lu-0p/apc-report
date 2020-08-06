@@ -20,24 +20,31 @@
         </div>
       </transition>
 
-      <float-add-button @onTap="$router.push({ name: $const.NAVIGATION.APPOINTMENTS_CREATE.NAME })" />
+      <!-- go to create appointment form -->
+      <float-button @tap="goTo($const.NAVIGATION.APPOINTMENTS_CREATE.NAME)">
+        <add-icon></add-icon>
+      </float-button>
     </div>
   </div>
 </template>
 
 <script>
 import AppointmentItem from '../../components/Appointments/AppointmentItem.vue';
-import FloatAddButton from '../../components/Buttons/FloatAddButton.vue';
+import FloatButton from '../../components/Buttons/FloatButton.vue';
 import TopBar from '../../components/Navigators/TopBar.vue';
 import Spinner from '../../components/Spinner.vue';
+import { ICONS } from '../../constants';
+
+const { common: { AddIcon } } = ICONS;
 
 export default {
   name: 'appointments-page',
   components: {
     AppointmentItem,
-    FloatAddButton,
+    FloatButton,
     TopBar,
     Spinner,
+    AddIcon,
   },
   data() {
     return {

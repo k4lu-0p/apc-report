@@ -106,32 +106,188 @@
         </div>
       </div>
 
-      <!-- Customer -->
-      <div :class="[customerErrors.length > 1 || hasNoResultCustomerSearched ? 'pb-5' : 'pb-8']">
+      <!-- Customer commercial_name -->
+      <div :class="[commercialNameErrors.length > 1 || hasNoResultCustomerSearched ? 'pb-5' : 'pb-8']">
         <!-- input -->
         <customer-input
           @clear="handleClearCustomer($event)"
           @select="handleSelectCustomer($event)"
-          :label="$t('form.appointment.customer.label')"
-          :placeholder="$t('form.appointment.customer.placeholder')"
+          @new="handleNewCustomer($event)"
+          :label="$t('form.customer.commercial_name.label')"
+          :placeholder="$t('form.customer.commercial_name.placeholder')"
         ></customer-input>
 
         <!-- errors -->
-        <div :class="{'absolute' : customerErrors.length === 1 && hasNoResultCustomerSearched == false}">
+        <div :class="{'absolute' : commercialNameErrors.length === 1 && hasNoResultCustomerSearched == false}">
           <p
             class="text-red-500 font-bold text-xs pt-2"
             v-if="hasNoResultCustomerSearched">
-            {{ $t('form.appointment.customer.errors.result') }}
+            {{ $t('form.customer.commercial_name.errors.result') }}
           </p>
           <p
-            v-for="(message, index) in customerErrors"
-            :key="`customer-error-${index}`"
+            v-for="(message, index) in commercialNameErrors"
+            :key="`customer-commercial-name-error-${index}`"
             class="text-red-500 text-xs font-medium pt-2"
           >
             {{ message }}
           </p>
         </div>
       </div>
+
+      <!-- CUSTOMER CREATE FIELDS -->
+      <transition
+        mode="out-in"
+        enter-active-class="animated bounceInRight faster"
+        leave-active-class="animated bounceOutLeft faster"
+      >
+        <div v-if="isCreateCustomerFieldsVisible">
+          <!-- Customer leader_lastname  -->
+          <div :class="[leaderLastnameErrors.length > 1 ? 'pb-5' : 'pb-8']">
+            <!-- label -->
+            <label class="block pb-2 font-semibold text-gray-800 text-lg" for="warning">
+              {{ $t('form.customer.leader_lastname.label') }}
+              <span class="text-red-500">*</span>
+            </label>
+
+            <!-- input -->
+            <input
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              name=""
+              id="warning"
+              type="text"
+              :placeholder="$t('form.customer.leader_lastname.placeholder')"
+              @blur="$v.form.customer.leader_lastname.$touch()"
+              v-model="$v.form.customer.leader_lastname.$model"
+            />
+
+            <!-- errors -->
+            <div :class="{'absolute' : leaderLastnameErrors.length === 1}">
+              <p
+                v-for="(message, index) in leaderLastnameErrors"
+                :key="`warning-error-${index}`"
+                class="text-red-500 text-xs font-medium pt-2"
+              >
+                {{ message }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Customer leader_firstname  -->
+          <div :class="[leaderFirstnameErrors.length > 1 ? 'pb-5' : 'pb-8']">
+            <!-- label -->
+            <label class="block pb-2 font-semibold text-gray-800 text-lg" for="warning">
+              {{ $t('form.customer.leader_firstname.label') }}
+              <span class="text-red-500">*</span>
+            </label>
+
+            <!-- input -->
+            <input
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              name=""
+              id="warning"
+              type="text"
+              :placeholder="$t('form.customer.leader_firstname.placeholder')"
+              @blur="$v.form.customer.leader_firstname.$touch()"
+              v-model="$v.form.customer.leader_firstname.$model"
+            />
+
+            <!-- errors -->
+            <div :class="{'absolute' : leaderFirstnameErrors.length === 1}">
+              <p
+                v-for="(message, index) in leaderFirstnameErrors"
+                :key="`warning-error-${index}`"
+                class="text-red-500 text-xs font-medium pt-2"
+              >
+                {{ message }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Customer adresse  -->
+          <div :class="[leaderFirstnameErrors.length > 1 ? 'pb-5' : 'pb-8']">
+            <!-- input et label -->
+            <here-input
+              @clear="handleClearAddress($event)"
+              @onClickLocation="handleSelectAddress($event)"
+              :label="$t('form.customer.address.label')"
+              :placeholder="$t('form.customer.address.placeholder')"
+            ></here-input>
+
+            <!-- errors -->
+            <div :class="{'absolute' : addressErrors.length === 1}">
+              <p
+                v-for="(message, index) in addressErrors"
+                :key="`warning-error-${index}`"
+                class="text-red-500 text-xs font-medium pt-2"
+              >
+                {{ message }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Customer email  -->
+          <div :class="[emailErrors.length > 1 ? 'pb-5' : 'pb-8']">
+            <!-- label -->
+            <label class="block pb-2 font-semibold text-gray-800 text-lg" for="warning">
+              {{ $t('form.customer.email.label') }}
+              <span class="text-red-500">*</span>
+            </label>
+
+            <!-- input -->
+            <input
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              name=""
+              id="warning"
+              type="email"
+              :placeholder="$t('form.customer.email.placeholder')"
+              @blur="$v.form.customer.email.$touch()"
+              v-model="$v.form.customer.email.$model"
+            />
+
+            <!-- errors -->
+            <div :class="{'absolute' : emailErrors.length === 1}">
+              <p
+                v-for="(message, index) in emailErrors"
+                :key="`warning-error-${index}`"
+                class="text-red-500 text-xs font-medium pt-2"
+              >
+                {{ message }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Customer phone  -->
+          <div :class="[phoneErrors.length > 1 ? 'pb-5' : 'pb-8']">
+            <!-- label -->
+            <label class="block pb-2 font-semibold text-gray-800 text-lg" for="warning">
+              {{ $t('form.customer.phone.label') }}
+              <span class="text-red-500">*</span>
+            </label>
+
+            <!-- input -->
+            <input
+              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              name=""
+              id="warning"
+              type="tel"
+              :placeholder="$t('form.customer.phone.placeholder')"
+              @blur="$v.form.customer.phone.$touch()"
+              v-model="$v.form.customer.phone.$model"
+            />
+
+            <!-- errors -->
+            <div :class="{'absolute' : phoneErrors.length === 1}">
+              <p
+                v-for="(message, index) in phoneErrors"
+                :key="`warning-error-${index}`"
+                class="text-red-500 text-xs font-medium pt-2"
+              >
+                {{ message }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </transition>
 
       <!-- Warning -->
       <div :class="[warningErrors.length > 1 ? 'pb-5' : 'pb-8']">
@@ -193,14 +349,23 @@
 </template>
 
 <script>
+/* eslint-disable camelcase */
+
 import HereInput from '../Inputs/HereInput.vue';
 import CustomerInput from '../Inputs/CustomerInput.vue';
-import { createAppointment as validationsMessage } from '../../mixins/formValidationMessages';
 import validator from '../../validators';
+
+import {
+  appointmentValidationMessages,
+  customerValidationMessages,
+} from '../../mixins/formValidationMessages';
 
 export default {
   name: 'create-appointment-form',
-  mixins: [validationsMessage],
+  mixins: [
+    appointmentValidationMessages,
+    customerValidationMessages,
+  ],
   components: {
     HereInput,
     CustomerInput,
@@ -208,33 +373,70 @@ export default {
   data() {
     return {
       hasNoResultCustomerSearched: false,
+      isCreateCustomerFieldsVisible: false,
       form: {
         start_at: null,
         finish_at: null,
         location: null,
-        customer_id: 0,
-        customer_name: '',
+        customer: {
+          id: 0,
+          commercial_name: '',
+          leader_lastname: '',
+          leader_firstname: '',
+          address: null,
+          email: '',
+          phone: '',
+        },
         title: '',
         warning: '',
       },
     };
   },
-  validations: validator.appointment,
+  validations() {
+    return {
+      form: {
+        ...validator.appointment.form,
+        customer: validator.customer.form,
+      },
+    };
+  },
   methods: {
     handleSelectLocation(location) {
       this.form.location = JSON.stringify(location);
     },
+    handleSelectAddress(location) {
+      this.form.customer.address = JSON.stringify(location);
+    },
     handleSelectCustomer(customer) {
-      this.form.customer_id = customer.id;
-      this.form.customer_name = customer.name;
+      this.isCreateCustomerFieldsVisible = false;
+      this.form.customer = customer;
     },
     handleClearCustomer() {
-      this.$v.form.customer_name.$touch();
-      this.form.customer_name = '';
+      this.isCreateCustomerFieldsVisible = false;
+      this.$v.form.customer.commercial_name.$touch();
+      this.form.customer = {
+        id: 0,
+        commercial_name: '',
+        leader_lastname: '',
+        leader_firstname: '',
+        address: null,
+        email: '',
+        phone: '',
+      };
     },
     handleClearLocation() {
       this.$v.form.location.$touch();
       this.form.location = null;
+    },
+    handleClearAddress() {
+      this.$v.form.customer.address.$touch();
+      this.form.customer.address = null;
+    },
+    // trigger quand on choisi de créer un partenaire dans l'input customer
+    handleNewCustomer({ id, commercial_name }) {
+      this.form.customer.id = id;
+      this.form.customer.commercial_name = commercial_name;
+      this.isCreateCustomerFieldsVisible = true;
     },
     onSubmit() {
       this.$emit('submit', this.form);

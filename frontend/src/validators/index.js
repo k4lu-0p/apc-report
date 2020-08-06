@@ -45,11 +45,32 @@ const appointment = {
     location: {
       required,
     },
-    customer_name: {
-      required,
-    },
     warning: {
       alphaNumCustom,
+    },
+  },
+};
+
+const customer = {
+  form: {
+    commercial_name: {
+      required,
+    },
+    leader_lastname: {
+      required,
+    },
+    leader_firstname: {
+      required,
+    },
+    address: {
+      required,
+    },
+    email: {
+      required,
+      email,
+    },
+    phone: {
+      required,
     },
   },
 };
@@ -57,4 +78,5 @@ const appointment = {
 export default {
   login,
   appointment,
+  customer,
 };

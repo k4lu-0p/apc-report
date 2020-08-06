@@ -1,5 +1,5 @@
 /* eslint-disable curly */
-export const createAppointment = {
+export const appointmentValidationMessages = {
   computed: {
     startAtErrors() {
       const errors = [];
@@ -20,12 +20,6 @@ export const createAppointment = {
       if (!this.$v.form.location.required) errors.push(this.$t('form.appointment.location.validations.required'));
       return errors;
     },
-    customerErrors() {
-      const errors = [];
-      if (!this.$v.form.customer_name.$dirty) return errors;
-      if (!this.$v.form.customer_name.required) errors.push(this.$t('form.appointment.customer.validations.required'));
-      return errors;
-    },
     warningErrors() {
       const errors = [];
       if (!this.$v.form.warning.$dirty) return errors;
@@ -35,6 +29,49 @@ export const createAppointment = {
   },
 };
 
+export const customerValidationMessages = {
+  computed: {
+    commercialNameErrors() {
+      const errors = [];
+      if (!this.$v.form.customer.commercial_name.$dirty) return errors;
+      if (!this.$v.form.customer.commercial_name.required) errors.push(this.$t('form.customer.commercial_name.validations.required'));
+      return errors;
+    },
+    leaderLastnameErrors() {
+      const errors = [];
+      if (!this.$v.form.customer.leader_lastname.$dirty) return errors;
+      if (!this.$v.form.customer.leader_lastname.required) errors.push(this.$t('form.customer.leader_lastname.validations.required'));
+      return errors;
+    },
+    leaderFirstnameErrors() {
+      const errors = [];
+      if (!this.$v.form.customer.leader_firstname.$dirty) return errors;
+      if (!this.$v.form.customer.leader_firstname.required) errors.push(this.$t('form.customer.leader_firstname.validations.required'));
+      return errors;
+    },
+    addressErrors() {
+      const errors = [];
+      if (!this.$v.form.customer.address.$dirty) return errors;
+      if (!this.$v.form.customer.address.required) errors.push(this.$t('form.customer.address.validations.required'));
+      return errors;
+    },
+    emailErrors() {
+      const errors = [];
+      if (!this.$v.form.customer.email.$dirty) return errors;
+      if (!this.$v.form.customer.email.required) errors.push(this.$t('form.customer.email.validations.required'));
+      if (!this.$v.form.customer.email.email) errors.push(this.$t('form.customer.email.validations.email'));
+      return errors;
+    },
+    phoneErrors() {
+      const errors = [];
+      if (!this.$v.form.customer.phone.$dirty) return errors;
+      if (!this.$v.form.customer.phone.required) errors.push(this.$t('form.customer.phone.validations.required'));
+      return errors;
+    },
+  },
+};
+
 export default {
-  createAppointment,
+  appointmentValidationMessages,
+  customerValidationMessages,
 };

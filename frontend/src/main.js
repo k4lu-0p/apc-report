@@ -54,6 +54,18 @@ Vue.filter('capitalize', (value) => {
   return v.charAt(0).toUpperCase() + v.slice(1);
 });
 
+// global mixin
+Vue.mixin({
+  methods: {
+    goTo(name, id = null) {
+      this.$router.push({
+        name,
+        params: { id },
+      });
+    },
+  },
+});
+
 new Vue({
   router,
   store,

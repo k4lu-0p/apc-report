@@ -14,6 +14,7 @@ import LocationIcon from '../assets/svg/location.svg';
 import WarningIcon from '../assets/svg/warning.svg';
 import AlertIcon from '../assets/svg/alert.svg';
 import DeleteIcon from '../assets/svg/remove.svg';
+import EditIcon from '../assets/svg/edit.svg';
 
 // weather icons
 import CloudCloudy from '../assets/svg/weather/cloud_cloudy.svg';
@@ -56,6 +57,7 @@ export default {
       FETCH_APPOINTMENTS: '/api/appointments',
       FETCH_APPOINTMENT: '/api/appointment/',
       FETCH_CUSTOMERS: '/api/customers',
+      FETCH_CUSTOMER: '/api/customer/',
       DELETE_CUSTOMER: '/api/customer/',
       FETCH_SETTINGS: '/api/settings',
       STORE_APPOINTMENT: '/api/appointment',
@@ -92,6 +94,8 @@ export default {
 
     // childs: customers
     CUSTOMERS_HOME: { NAME: 'customers-home', PATH: '' },
+    CUSTOMERS_SHOW: { NAME: 'customers-show', PATH: 'show/:id' },
+    CUSTOMERS_EDIT: { NAME: 'customers-edit', PATH: 'edit/:id' },
 
     // childs: reports
     REPORTS_HOME: { NAME: 'reports-home', PATH: '' },
@@ -117,6 +121,7 @@ export const ICONS = {
     WarningIcon,
     AlertIcon,
     DeleteIcon,
+    EditIcon,
   },
   weather: {
     CloudCloudy,

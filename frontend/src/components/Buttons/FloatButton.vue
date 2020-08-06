@@ -4,27 +4,26 @@
     leave-active-class="animated slideOutRight faster-x2"
     mode="out-in"
   >
-    <div v-if="isVisible" class="add-button-wrapper">
-      <button class="add-button-item" @click="$emit('onTap')">
-        <add-icon class="add-button-icon"></add-icon>
+    <div v-if="isVisible" class="button-wrapper">
+      <button class="button-item" @click="$emit('tap')">
+        <div class="button-icon">
+          <slot></slot>
+        </div>
       </button>
     </div>
   </transition>
 </template>
 
 <script>
-import { ICONS } from '../../constants';
-
-const { common: { AddIcon } } = ICONS;
-
 export default {
+  name: 'float-button',
   data() {
     return {
       isVisible: false,
     };
   },
   components: {
-    AddIcon,
+    // AddIcon,
   },
   created() {
     setTimeout(() => {
@@ -35,13 +34,13 @@ export default {
 </script>
 
 <style lang="stylus">
-.add-button-wrapper
+.button-wrapper
   position fixed
   z-index 9999
   right 20px
   bottom 80px
 
-  .add-button-item
+  .button-item
     display flex
     justify-content center
     align-items center
@@ -52,7 +51,7 @@ export default {
     border-radius theme('borderRadius.full')
     box-shadow theme('boxShadow.xl')
 
-    .add-button-icon
+    .button-icon > *
       transition all 0.2s
       width 20px
       height 20px

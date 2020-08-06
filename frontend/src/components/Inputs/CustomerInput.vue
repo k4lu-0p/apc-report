@@ -36,7 +36,7 @@
       <div v-if="customers.length > 0 || params.value.length >= 2">
         <ul class="customers-list">
           <li
-            v-if="params.value.length >= 2 && !IsCustomerNameAlreadyExist(params.value) && customerSelected === null"
+            v-if="params.value.length >= 2 && !IsCommercialNameAlreadyExist(params.value) && customerSelected === null"
             @click="onSelectNewCustomer($event)"
             class="py-2 customer-item flex justify-between items-center"
           >
@@ -44,7 +44,6 @@
               {{ params.value }}
             </span>
             <span class="flex justify-center items-center w-1/6 text-sm">
-              <!-- <add-icon class="add-icon"></add-icon> -->
               créer
             </span>
           </li>
@@ -55,7 +54,7 @@
             :key="`customer-${index}-${customer.id}`"
           >
             <span class="w-5/6 h-full" >
-              {{ customer.name }}
+              {{ customer.commercial_name }}
             </span>
             <span class="flex justify-center items-center w-1/6">
               <add-icon class="add-icon"></add-icon>
@@ -85,12 +84,13 @@ export default {
   data() {
     return {
       params: {
-        by: 'name',
+        by: 'commercial_name',
         value: '',
         limit: 4,
         offset: 0,
       },
       customerSelected: null,
+      customerFieldsVisible: false,
     };
   },
   methods: {
@@ -106,26 +106,30 @@ export default {
     },
     onSelectCustomer(event, customer) {
       this.customerSelected = customer;
-      this.params.value = customer.name;
+      this.params.value = customer.commercial_name;
       this.$store.commit('customersModule/setCustomers', []);
       this.$emit('select', this.customerSelected);
     },
     onSelectNewCustomer() {
       this.customerSelected = {
         id: 0,
-        name: this.params.value,
+        commercial_name: this.params.value,
       };
       this.$store.commit('customersModule/setCustomers', []);
-      this.$emit('select', this.customerSelected);
+      this.$emit('new', this.customerSelected);
     },
     onClearField() {
       this.params.value = '';
       this.customerSelected = null;
       this.$emit('clear');
     },
-    IsCustomerNameAlreadyExist(search) {
-      const names = this.customers.map((customer) => customer.name.toLowerCase());
-      if (names.includes(search.toLowerCase())) {
+    // permet de savoir si il faut en créer un nouveau ou non
+    IsCommercialNameAlreadyExist(search) {
+      const commercialNames = this.customers.map(
+        (customer) => customer.commercial_name.toLowerCase(),
+      );
+
+      if (commercialNames.includes(search.toLowerCase())) {
         return true;
       }
       return false;
