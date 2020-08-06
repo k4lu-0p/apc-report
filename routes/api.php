@@ -44,11 +44,14 @@ Route::middleware('auth:sanctum')->get('/report/{id}', 'ReportController@show');
 // GET : Lister tous les clients
 Route::middleware('auth:sanctum')->get('/customers', 'CustomerController@index');
 
-// DELETE : Supprime un client par son ID
+// GET : Récupérer un client par son ID
 Route::middleware('auth:sanctum')->get('/customer/{id}', 'CustomerController@show');
 
 // DELETE : Supprime un client par son ID
 Route::middleware('auth:sanctum')->delete('/customer/{id}', 'CustomerController@destroy');
+
+// PUT : Mettre à jour un client
+Route::middleware('auth:sanctum')->put('/customer/{id}', 'CustomerController@update');
 
 // GET : Lister toute les options globales
 Route::middleware('auth:sanctum')->get('/settings', 'SettingController@index');

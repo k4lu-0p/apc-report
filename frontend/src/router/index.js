@@ -85,6 +85,7 @@ const routes = [
         path: $const.NAVIGATION.CUSTOMERS_EDIT.PATH,
         name: $const.NAVIGATION.CUSTOMERS_EDIT.NAME,
         component: CustomersEdit,
+        props: true,
       },
     ],
   },

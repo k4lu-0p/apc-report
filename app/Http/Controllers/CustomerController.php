@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Http\Requests\GetCustomersRequest;
+use App\Http\Requests\UpdateCustomerRequest;
 use App\Services\CustomerService;
 use Illuminate\Http\Request;
 
@@ -18,16 +19,6 @@ class CustomerController extends Controller
     {
         $customerService->setUserRequest($request);
         return $customerService->handleFilteredRequest();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -52,16 +43,6 @@ class CustomerController extends Controller
         return $customerService->getById($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Customer $customer)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -70,9 +51,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update($id, CustomerService $customerService, UpdateCustomerRequest $request)
     {
-        //
+        $customerService->setUserRequest($request);
+        return $customerService->updateById($id);
     }
 
     /**

@@ -70,8 +70,21 @@ export default {
     };
   },
   props: {
-    label: String,
-    placeholder: String,
+    label: {
+      type: String,
+      default: '',
+      required: true,
+    },
+    placeholder: {
+      type: String,
+      default: '',
+      required: true,
+    },
+    defaultValue: {
+      type: String,
+      default: '',
+      required: false,
+    },
   },
   components: {
     MagnifyIcon,
@@ -105,6 +118,11 @@ export default {
       this.search = '';
       this.$emit('clear');
     },
+  },
+  mounted() {
+    if (this.defaultValue !== '') {
+      this.search = this.defaultValue;
+    }
   },
 };
 </script>

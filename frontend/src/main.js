@@ -57,10 +57,13 @@ Vue.filter('capitalize', (value) => {
 // global mixin
 Vue.mixin({
   methods: {
-    goTo(name, id = null) {
+    goTo(name, id = null, params = {}) {
       this.$router.push({
         name,
-        params: { id },
+        params: {
+          id,
+          ...params,
+        },
       });
     },
   },

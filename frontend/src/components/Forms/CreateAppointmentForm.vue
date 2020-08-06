@@ -107,7 +107,7 @@
       </div>
 
       <!-- Customer commercial_name -->
-      <div :class="[commercialNameErrors.length > 1 || hasNoResultCustomerSearched ? 'pb-5' : 'pb-8']">
+      <div :class="[commercialNameErrors.length > 1 ? 'pb-5' : 'pb-8']">
         <!-- input -->
         <customer-input
           @clear="handleClearCustomer($event)"
@@ -118,12 +118,7 @@
         ></customer-input>
 
         <!-- errors -->
-        <div :class="{'absolute' : commercialNameErrors.length === 1 && hasNoResultCustomerSearched == false}">
-          <p
-            class="text-red-500 font-bold text-xs pt-2"
-            v-if="hasNoResultCustomerSearched">
-            {{ $t('form.customer.commercial_name.errors.result') }}
-          </p>
+        <div :class="{ 'absolute' : commercialNameErrors.length === 1 }">
           <p
             v-for="(message, index) in commercialNameErrors"
             :key="`customer-commercial-name-error-${index}`"

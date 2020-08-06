@@ -53,6 +53,26 @@ const template = {
         throw error;
       }
     },
+    putCustomer: async ({ commit, rootState }, payload) => {
+      commit('setCustomers', []);
+
+      const { id, formData } = payload;
+      const { authModule: { token } } = rootState;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.UPDATE_CUSTOMER}${id}`;
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      try {
+        commit('setStatus', $const.API.STATUS.LOADING);
+        await axios.put(endpoint, formData, config);
+        commit('setStatus', $const.API.STATUS.SUCCESS);
+      } catch (error) {
+        commit('setStatus', $const.API.STATUS.ERROR);
+        if (error.response) {
+          if (error.response.status === 401) {
+            commit('setStatus', $const.API.STATUS.UNAUTHORIZED);
+          }
+        }
+      }
+    },
   },
 };
 

@@ -45,7 +45,7 @@ const template = {
 
       const { id, responses } = payload;
       const { authModule: { token } } = rootState;
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.UPDATE_REPORT}/${id}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.UPDATE_REPORT}${id}`;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
         commit('setStatus', $const.API.STATUS.LOADING);

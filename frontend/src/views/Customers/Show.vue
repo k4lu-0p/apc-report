@@ -10,26 +10,26 @@
       <div v-if="customer">
         <div class="py-4">
           <ul>
-            <li class="py-2">
+            <li v-if="customer.commercial_name" class="py-2">
               <p class="text-gray-800">
                 <span class="font-bold text-lg">Nom commercial :</span> {{ customer.commercial_name }}
               </p>
             </li>
-            <li class="py-2">
+            <li v-if="customer.leader_lastname" class="py-2">
               <p class="text-gray-800">
                 <span class="font-bold text-lg">Nom du dirigeant :</span> {{ customer.leader_lastname }}
               </p>
             </li>
-            <li class="py-2">
+            <li v-if="customer.leader_firstname" class="py-2">
               <p class="text-gray-800">
                 <span class="font-bold text-lg">Prénom du dirigeant :</span> {{ customer.leader_firstname }}
               </p>
             </li>
-            <li class="py-2">
+            <li class="py-2" v-if="address">
               <p class="text-gray-800">
                 <span class="font-bold text-lg">Adresse :</span>
               </p>
-              <ul class="py-2" v-if="address">
+              <ul class="py-2">
                 <li v-if="address.country"><span class="font-medium">Pays : </span>{{ address.country }}</li>
                 <li v-if="address.state"><span class="font-medium">Région : </span>{{ address.state }}</li>
                 <li v-if="address.county"><span class="font-medium">Département : </span>{{ address.county }}</li>
@@ -39,12 +39,12 @@
                 <li v-if="address.street"><span class="font-medium">Rue : </span>{{ address.street }}</li>
               </ul>
             </li>
-            <li class="py-2">
+            <li v-if="customer.phone" class="py-2">
               <p class="text-gray-800">
                 <span class="font-bold text-lg">Téléphone :</span> {{ customer.phone }}
               </p>
             </li>
-            <li class="py-2">
+            <li v-if="customer.email" class="py-2">
               <p class="text-gray-800">
                 <span class="font-bold text-lg">Email :</span> {{ customer.email }}
               </p>
