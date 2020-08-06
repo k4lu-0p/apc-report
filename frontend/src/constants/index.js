@@ -47,18 +47,19 @@ export default {
   },
   API: {
     // BASE_URL: '', // Dev mod
-    BASE_URL: 'http://localhost:8000', // Vue Serve mod
+    BASE_URL: 'http://localhost:8028', // Vue Serve mod
     // BASE_URL: 'https://212.47.230.255', // Preprod mod
     ENDPOINTS: {
       LOGIN: '/api/login',
       FETCH_REPORTS: '/api/reports',
-      UPDATE_REPORT: '/api/report',
+      UPDATE_REPORT: '/api/report/',
       FETCH_REPORT: '/api/report/',
       FETCH_APPOINTMENTS: '/api/appointments',
       FETCH_APPOINTMENT: '/api/appointment/',
       FETCH_CUSTOMERS: '/api/customers',
       FETCH_CUSTOMER: '/api/customer/',
       DELETE_CUSTOMER: '/api/customer/',
+      UPDATE_CUSTOMER: '/api/customer/',
       FETCH_SETTINGS: '/api/settings',
       STORE_APPOINTMENT: '/api/appointment',
       DELETE_APPOINTMENT: '/api/appointment/',
