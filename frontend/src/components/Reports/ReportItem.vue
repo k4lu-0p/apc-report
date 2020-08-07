@@ -18,32 +18,38 @@
         <div class="flex justify-start items-center">
           <users-icon class="users-icon"></users-icon>
           <p class="text-gray-500 pl-2 text-xs">
-            {{ report.customer_commercial_name }}
+            {{ report.customer.commercial_name }}
           </p>
         </div>
       </div>
 
       <!-- chips -->
       <hr>
-      <div class="flex flex-wrap py-4">
+      <div class="flex flex-wrap py-2">
         <p
           v-if="report.is_complete === 0 && isAppointmentOver"
-          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
           <warning-icon class="warning-icon mr-1"></warning-icon>
           <span>À compléter</span>
         </p>
 
         <p
           v-if="report.is_complete"
-          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-150 text-teal-150 font-medium flex items-center">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-150 text-teal-150 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-1"></accept-icon>
           <span>Complété</span>
         </p>
 
         <p
           v-if="isAppointmentFinishToday"
-          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-150 text-teal-150 font-medium">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-150 text-teal-150 font-medium">
           Aujourd'hui
+        </p>
+
+        <p
+          v-if="report.customer.has_been_deleted"
+          class="my-1  text-xs px-2 py-1/2 rounded-full border border-red-600 text-red-600 font-medium">
+          <span>Partenaire supprimé</span>
         </p>
       </div>
     </div>
