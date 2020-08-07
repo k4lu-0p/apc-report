@@ -11,6 +11,10 @@
           <back-icon class="back-icon"></back-icon>
         </div>
 
+        <div v-if="title !== ''">
+          <p>{{ title }}</p>
+        </div>
+
         <!-- search input -->
         <div v-if="hasSearchInput" class="magnify-icon-wrapper flex justify-between items-center w-full">
           <div class="flex justify-center items-center w-11/12">
@@ -70,6 +74,11 @@ export default {
       required: false,
       type: Boolean,
       default: false,
+    },
+    title: {
+      required: false,
+      type: String,
+      default: '',
     },
   },
 };

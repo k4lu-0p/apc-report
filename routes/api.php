@@ -32,6 +32,9 @@ Route::middleware('auth:sanctum')->get('/appointment/{id}', 'AppointmentControll
 // DELETE : Supprime un rendez-vous ainsi que son rapport lié par l'ID du RDV
 Route::middleware('auth:sanctum')->delete('/appointment/{id}', 'AppointmentController@destroy');
 
+// PUT : Mettre à jour un RDV
+Route::middleware('auth:sanctum')->put('/appointment/{id}', 'AppointmentController@update');
+
 // GET : Lister tous les comptes-rendus de tous les rendez-vous de l'utilisateur connecté
 Route::middleware('auth:sanctum')->get('/reports', 'ReportController@index');
 
