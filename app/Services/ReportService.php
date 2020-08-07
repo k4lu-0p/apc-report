@@ -158,7 +158,7 @@ class ReportService
             // Todo: rendre dynamique
             $recipients = [
                 'lucas.rob1@live.fr',
-                // 'jpheulpin@ymail.com',
+                'jpheulpin@ymail.com',
             ];
 
             foreach ($recipients as $recipient) {
