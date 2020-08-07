@@ -24,11 +24,11 @@
 
       <!-- chips -->
       <hr>
-      <div class="flex flex-wrap py-4">
+      <div class="flex flex-wrap py-2">
         <p
           @click.stop="goTo($const.NAVIGATION.REPORTS_EDIT.NAME, appointment.id)"
           v-if="appointment.report.is_complete === 0 && isAppointmentOver"
-          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
           <warning-icon class="warning-icon mr-1"></warning-icon>
           <span>
             Rapport à compléter
@@ -37,7 +37,7 @@
 
         <p
            v-if="appointment.report.is_complete"
-          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-150 text-teal-150 font-medium flex items-center">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-150 text-teal-150 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-1"></accept-icon>
           <span>
             Rapport complété
@@ -46,9 +46,16 @@
 
         <p
           v-if="isAppointmentFinishToday"
-          class="mr-2 text-xs leading-none px-2 py-1 rounded-full border border-teal-150 text-teal-150 font-medium">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-150 text-teal-150 font-medium">
           Aujourd'hui
         </p>
+
+        <p
+          v-if="appointment.customer.has_been_deleted"
+          class="my-1 text-xs px-2 py-1/2 rounded-full border border-red-600 text-red-600 font-medium">
+          <span>Partenaire supprimé</span>
+        </p>
+
       </div>
     </div>
   </div>

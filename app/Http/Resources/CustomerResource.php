@@ -22,6 +22,7 @@ class CustomerResource extends JsonResource
             'address' => $this->address,
             'email' => $this->email,
             'phone' => $this->phone,
+            'has_been_deleted' => $this->deleted_at !== null,
         ];
     }
 }
