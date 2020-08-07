@@ -9,19 +9,88 @@
     <div class="container mx-auto px-4">
 
       <div v-if="appointment">
+
+        <!-- partenaire, date et heure -->
         <div class="py-4">
-          <p>Rendez-vous avec <span class="font-medium">{{ appointment.customer.commercial_name }}</span></p>
-          <p>Début du rendez-vous : <span class="font-medium">{{ $moment(appointment.start_at).calendar() }}</span></p>
-          <p>Fin du rendez-vous estimée : <span class="font-medium">{{ $moment(appointment.finish_at).calendar() }}</span></p>
+          <h2 class="text-gray-800 font-bold text-xl text-left py-2">Avec {{ appointment.customer.commercial_name }}</h2>
+          <div class="flex flex-col">
+            <div>
+              <p class="font-medium py-1 px-4 text-gray-800 bg-gray-300 rounded-t text-left">{{ $moment(appointment.start_at).calendar() | capitalize }}</p>
+            </div>
+            <div :class="{'rounded-b-none': hasChangeHour}" class="flex justify-around items-center bg-gray-200 rounded p-6">
+              <p class="font-medium text-gray-800">De</p>
+              <div class="flex flex-col datetime-start">
+                <!-- input -->
+                <datetime
+                  format="HH:mm"
+                  zone="local"
+                  value-zone="local"
+                  type="datetime"
+                  input-id="startAt"
+                  v-model="startAt"
+                  @blur="$v.form.start_at.$touch()"
+                  input-class="appearance-none border border-teal-600 rounded w-16 h-16 font-bold text-lg text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  :phrases="{ok: 'Ok', cancel: 'Annuler'}"
+                  :title="$t('form.appointment.date.start.label')"
+                  :placeholder="$t('form.appointment.date.start.placeholder')"
+                  :flow="['time']"
+                >
+                </datetime>
+              </div>
+              <p class="font-medium text-gray-800">à</p>
+              <div class="flex flex-col datetime-finish">
+                <datetime
+                  format="HH:mm"
+                  zone="local"
+                  value-zone="local"
+                  type="datetime"
+                  input-id="finishAt"
+                  v-model="finishAt"
+                  @blur="$v.form.finish_at.$touch()"
+                  input-class="appearance-none border border-teal-600 rounded w-16 h-16 font-bold text-lg text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  :phrases="{ok: 'Ok', cancel: 'Annuler'}"
+                  :title="$t('form.appointment.date.finish.label')"
+                  :placeholder="$t('form.appointment.date.finish.placeholder')"
+                  :flow="['time']"
+                >
+                </datetime>
+              </div>
+            </div>
+            <transition mode="out-in" enter-active-class="animated flipInX" leave-active-class="animated flipOutX">
+              <button
+                :disabled="hasUpdatedAppointment || status === $const.API.STATUS.LOADING"
+                @click="handleUpdateAppointment"
+                v-if="hasChangeHour && this.$v.$invalid === false"
+                :class="[ hasUpdatedAppointment ? 'bg-gray-200 text-gray-800' : 'bg-teal-600 text-white' ]"
+                class="rounded-t-none  font-bold rounded px-4 py-2 block text-center">
+                <span v-if="!hasUpdatedAppointment">
+                  Mettre à jour
+                </span>
+                <span v-else>
+                  Mise à jour réussi
+                </span>
+              </button>
+            </transition>
+          </div>
         </div>
 
-        <div class="py-4">
-          <h2 class="font-bold text-lg py-4">{{ appointmentLocation.label }}</h2>
+        <!-- lie du rendez-vous -->
+        <div>
+          <h2 class="font-bold text-lg text-gray-800">Lieu :</h2>
+          <ul class="py-2">
+            <li v-if="appointmentLocation.address.country"><span class="font-medium">Pays : </span>{{ appointmentLocation.address.country }}</li>
+            <li v-if="appointmentLocation.address.state"><span class="font-medium">Région : </span>{{ appointmentLocation.address.state }}</li>
+            <li v-if="appointmentLocation.address.county"><span class="font-medium">Département : </span>{{ appointmentLocation.address.county }}</li>
+            <li v-if="appointmentLocation.address.postalCode"><span class="font-medium">Code postal : </span>{{ appointmentLocation.address.postalCode }}</li>
+            <li v-if="appointmentLocation.address.city"><span class="font-medium">Ville : </span>{{ appointmentLocation.address.city }}</li>
+            <li v-if="appointmentLocation.address.houseNumber"><span class="font-medium">Numéro : </span>{{ appointmentLocation.address.houseNumber }}</li>
+            <li v-if="appointmentLocation.address.street"><span class="font-medium">Rue : </span>{{ appointmentLocation.address.street }}</li>
+          </ul>
         </div>
 
         <!-- redirect to google map -->
         <a
-          class="bg-teal-600 text-white font-bold rounded px-4 py-2 block my-4 text-center"
+          class="bg-teal-600 text-white font-bold rounded px-4 py-2 block my-4 text-center border border-white"
           :href="queryGoogleMap"
           target="_blank">
           Itinéraire Google Map
@@ -56,6 +125,7 @@
 import TopBar from '../../components/Navigators/TopBar.vue';
 import Spinner from '../../components/Spinner.vue';
 import AlertModal from '../../components/Modals/AlertModal.vue';
+import validator from '../../validators';
 
 export default {
   name: 'appointments-show',
@@ -68,9 +138,25 @@ export default {
     return {
       appointment: null,
       isVisibleModal: false,
+      hasUpdatedAppointment: false,
+      form: {
+        start_at: null,
+        finish_at: null,
+      },
+    };
+  },
+  validations() {
+    return {
+      form: {
+        start_at: validator.appointment.form.start_at,
+        finish_at: validator.appointment.form.finish_at,
+      },
     };
   },
   computed: {
+    status() {
+      return this.$store.getters['appointmentsModule/getStatus'];
+    },
     token() {
       return this.$store.getters['authModule/getToken'];
     },
@@ -98,15 +184,62 @@ export default {
       }
       return '';
     },
+    startAt: {
+      get() {
+        return this.form.start_at;
+      },
+      set(value) {
+        if (value) {
+          this.form.start_at = value;
+          this.form.finish_at = this.$moment(value)
+            .add(1.5, 'hours')
+            .format('YYYY-MM-DDTHH:mm:ss.SSSSZ');
+        }
+      },
+    },
+    finishAt: {
+      get() {
+        return this.$moment(this.appointment.finish_at)
+          .format('YYYY-MM-DDTHH:mm:ss.SSSSZ');
+      },
+      set(value) {
+        this.form.finish_at = value;
+      },
+    },
+    hasChangeHour() {
+      // eslint-disable-next-line max-len
+      const hasChangeStart = this.$moment(this.form.start_at)
+        .diff(this.appointment.start_at) !== 0;
+      // eslint-disable-next-line max-len
+      const hasChangeFinish = this.$moment(this.form.finish_at)
+        .diff(this.appointment.finish_at) !== 0;
+
+      if (hasChangeStart || hasChangeFinish) {
+        return true;
+      }
+
+      return false;
+    },
   },
   methods: {
     handleDeleteAppointment() {
       const { id } = this.appointment;
       this.appointment = null;
       this.isVisibleModal = false;
-      this.$store.dispatch('appointmentsModule/deleteAppointment', id).then(() => {
-        this.$router.go(-1);
-      });
+      this.$store.dispatch('appointmentsModule/deleteAppointment', id)
+        .then(() => {
+          this.$router.go(-1);
+        });
+    },
+    handleUpdateAppointment() {
+      const { id } = this.appointment;
+      this.$store.dispatch('appointmentsModule/updateAppointment', {
+        id,
+        formData: this.form,
+      })
+        .then(() => {
+          this.hasUpdatedAppointment = true;
+        });
     },
   },
   async mounted() {
@@ -121,7 +254,11 @@ export default {
       const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.FETCH_APPOINTMENT}${this.$route.params.id}`;
       const { data: { data: appointment } } = await this.$axios.get(endpoint, config);
       if (appointment !== undefined) {
-        this.appointment = appointment;
+        this.appointment = appointment; // sauvegarde
+        this.form.start_at = this.$moment(appointment.start_at)
+          .format('YYYY-MM-DDTHH:mm:ss.SSSSZ');
+        this.form.finish_at = this.$moment(appointment.finish_at)
+          .format('YYYY-MM-DDTHH:mm:ss.SSSSZ');
       }
     }
   },
@@ -130,5 +267,20 @@ export default {
 </script>
 
 <style lang="stylus">
+
+// Theming datepicker
+.datetime-start, .datetime-finish
+  .vdatetime-time-picker__item--selected
+    color theme('colors.teal.600')
+  .vdatetime-month-picker__item--selected
+    color theme('colors.teal.600')
+  .vdatetime-popup__actions__button
+    color theme('colors.teal.600')
+  .vdatetime-calendar__month__day--selected:hover > span > span
+    background theme('colors.teal.600')
+  .vdatetime-calendar__month__day--selected > span > span
+    background theme('colors.teal.600')
+  .vdatetime-popup__header
+    background theme('colors.teal.600')
 
 </style>

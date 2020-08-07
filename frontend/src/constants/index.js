@@ -63,6 +63,7 @@ export default {
       FETCH_SETTINGS: '/api/settings',
       STORE_APPOINTMENT: '/api/appointment',
       DELETE_APPOINTMENT: '/api/appointment/',
+      UPDATE_APPOINTMENT: '/api/appointment/',
     },
     STATUS: {
       LOADING: 'loading',

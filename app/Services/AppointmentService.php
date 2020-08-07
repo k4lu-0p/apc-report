@@ -125,7 +125,8 @@ class AppointmentService {
         return AppointmentResource::collection($result);
     }
 
-    public function create() {
+    public function create()
+    {
 
         Log::debug('[AppointmentService/create()] 1. Création nouveau RDV par ' . $this->request->user()->name);
         Log::debug('[AppointmentService/create()] 1. Contenu de la requête ' . json_encode($this->request->all()));
@@ -189,6 +190,23 @@ class AppointmentService {
 
         // succes response with appointment created
         return response()->newAppointmentStored($appointment);
+    }
+
+    public function updateById($id)
+    {
+        $appointment = Appointment::find($id);
+
+        foreach ($this->request->all() as $key => $value) {
+            if ($key === 'start_at' || $key === 'finish_at') {
+                // handle date format
+                $appointment->{$key} = Carbon::create($value)->format('Y-m-d H:i:s');
+            } else {
+                $appointment->{$key} = $value ?: $appointment->{$key};
+            }
+
+        }
+        $appointment->save();
+        return response()->appointmentUpdated($appointment);
     }
 
      /**

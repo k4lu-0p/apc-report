@@ -47,6 +47,17 @@ class ResponseServiceProvider extends ServiceProvider {
             ]);
         });
 
+        // Appointment updated
+        Response::macro('appointmentUpdated', function ($appointment) {
+            $_appointment = new AppointmentResource($appointment);
+            return Response::json([
+                'http' => 204,
+                'status' => 'succes',
+                'message' => 'Rendez-vous mis à jour avec succès.',
+                'appointment' => $_appointment,
+            ]);
+        });
+
         // Report not found
         Response::macro('reportNotFound', function () {
             return Response::json([

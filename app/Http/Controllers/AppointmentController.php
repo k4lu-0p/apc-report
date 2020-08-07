@@ -6,6 +6,7 @@ use App\Appointment;
 use App\Customer;
 use App\Http\Requests\GetAppointmentsRequest;
 use App\Http\Requests\PostAppointmentRequest;
+use App\Http\Requests\UpdateAppointmentRequest;
 use App\Report;
 use App\Services\AppointmentService;
 use App\Services\SurveyService;
@@ -56,9 +57,10 @@ class AppointmentController extends Controller
      * @param  \App\Appointment  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Appointment $appointment)
+    public function update($id, AppointmentService $appointmentService, UpdateAppointmentRequest $request)
     {
-        //
+        $appointmentService->setUserRequest($request);
+        return $appointmentService->updateById($id);
     }
 
     /**
