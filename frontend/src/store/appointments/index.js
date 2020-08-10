@@ -94,6 +94,7 @@ const template = {
     updateAppointment: async ({ commit, rootState }, payload) => {
       const { authModule: { token } } = rootState;
       const { id, formData } = payload;
+      let newAppointment;
 
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.UPDATE_APPOINTMENT}${id}`;
       const config = {
@@ -104,12 +105,15 @@ const template = {
 
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
-        await axios.put(endpoint, formData, config);
+        const { data: { appointment } } = await axios.put(endpoint, formData, config);
+        newAppointment = appointment;
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);
         throw error;
       }
+
+      return newAppointment;
     },
   },
 };

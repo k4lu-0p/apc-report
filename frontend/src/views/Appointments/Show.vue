@@ -12,12 +12,37 @@
 
         <!-- partenaire, date et heure -->
         <div class="py-4">
-          <h2 class="text-gray-800 font-bold text-xl text-left py-2">Avec {{ appointment.customer.commercial_name }}</h2>
+          <h2 class="text-gray-800 text-center font-bold text-xl text-left p-6">Avec {{ appointment.customer.commercial_name }}</h2>
           <div class="flex flex-col">
             <div>
-              <p class="font-medium py-1 px-4 text-gray-800 bg-gray-300 rounded-t text-left">{{ $moment(appointment.start_at).calendar() | capitalize }}</p>
+              <p class="font-bold py-1 px-4 text-gray-800 bg-gray-300 rounded-t text-left">
+                {{ $moment(appointment.start_at).calendar(null, {
+                  sameElse : 'DD/MM/YYYY',
+                  sameDay: '[Aujourd\'hui]',
+                  nextDay: '[Demain]',
+                  lastDay: '[Hier]',
+                }) }}
+              </p>
             </div>
-            <div :class="{'rounded-b-none': hasChangeHour}" class="flex justify-around items-center bg-gray-200 rounded p-6">
+            <div :class="{'rounded-b-none': hasChangeHour}" class="relative flex justify-around items-center bg-gray-200 rounded p-6">
+
+              <!-- loading overlay -->
+              <transition
+                mode="out-in"
+                enter-active-class="animated fadeIn faster-x2"
+                leave-active-class="animated fadeOut faster-x2"
+              >
+                <div
+                  v-if="isUpdatingAppointment"
+                  class="absolute w-full h-full bg-gray-200 flex items-center justify-center"
+                >
+                  <moon-loader
+                    :color="$const.MISC.SPINNER.COLOR"
+                    class="v-spinner-custom"
+                  />
+                </div>
+              </transition>
+
               <p class="font-medium text-gray-800">De</p>
               <div class="flex flex-col datetime-start">
                 <!-- input -->
@@ -58,17 +83,11 @@
             </div>
             <transition mode="out-in" enter-active-class="animated flipInX" leave-active-class="animated flipOutX">
               <button
-                :disabled="hasUpdatedAppointment || status === $const.API.STATUS.LOADING"
+                :disabled="isUpdatingAppointment"
                 @click="handleUpdateAppointment"
-                v-if="hasChangeHour && this.$v.$invalid === false"
-                :class="[ hasUpdatedAppointment ? 'bg-gray-200 text-gray-800' : 'bg-teal-600 text-white' ]"
-                class="rounded-t-none  font-bold rounded px-4 py-2 block text-center">
-                <span v-if="!hasUpdatedAppointment">
+                v-if="hasChangeHour && this.$v.$invalid === false && isUpdatingAppointment === false"
+                class="bg-teal-600 text-white rounded-t-none  font-bold rounded px-4 py-2 block text-center">
                   Mettre à jour
-                </span>
-                <span v-else>
-                  Mise à jour réussi
-                </span>
               </button>
             </transition>
           </div>
@@ -139,6 +158,7 @@ export default {
       appointment: null,
       isVisibleModal: false,
       hasUpdatedAppointment: false,
+      isUpdatingAppointment: false,
       form: {
         start_at: null,
         finish_at: null,
@@ -233,12 +253,15 @@ export default {
     },
     handleUpdateAppointment() {
       const { id } = this.appointment;
+      this.isUpdatingAppointment = true;
       this.$store.dispatch('appointmentsModule/updateAppointment', {
         id,
         formData: this.form,
       })
-        .then(() => {
+        .then((newAppointment) => {
+          this.appointment = newAppointment;
           this.hasUpdatedAppointment = true;
+          this.isUpdatingAppointment = false;
         });
     },
   },
