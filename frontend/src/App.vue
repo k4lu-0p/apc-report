@@ -18,6 +18,7 @@
 
   <!-- admin: show account connected -->
   <info
+    v-if="this.$store.getters['authModule/getUser'].name"
     :title="this.$store.getters['authModule/getUser'].name"
     :visible="isInfoVisible"
   >
