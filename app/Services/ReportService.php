@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 class ReportService
 {
-    private ?User $user = null;
+    private $user = null;
     private $request = null;
 
     const FILTER_AUTHORIZED = [

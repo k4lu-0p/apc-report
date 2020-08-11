@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Resources\UserResource;
-use App\User;
+use App\Http\Requests\GetUsersRequest;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
-    public function index() {
-        return UserResource::collection(User::all());
+    public function index(GetUsersRequest $request, UserService $userService) {
+        $userService->setUserRequest($request);
+        return $userService->handleFilteredRequest();
+    }
+
+    public function show(UserService $userService, $id)
+    {
+        return $userService->getById($id);
     }
 }
