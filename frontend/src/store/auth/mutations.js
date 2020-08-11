@@ -16,4 +16,10 @@ export default {
     state.status = '';
     state.token = '';
   },
+  setToken(state, token) {
+    state.token = token;
+  },
+  setUser(state, user) {
+    state.user = user;
+  },
 };

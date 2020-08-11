@@ -15,6 +15,7 @@ import WarningIcon from '../assets/svg/warning.svg';
 import AlertIcon from '../assets/svg/alert.svg';
 import DeleteIcon from '../assets/svg/remove.svg';
 import EditIcon from '../assets/svg/edit.svg';
+import UserIcon from '../assets/svg/user.svg';
 
 // weather icons
 import CloudCloudy from '../assets/svg/weather/cloud_cloudy.svg';
@@ -54,6 +55,8 @@ export default {
       FETCH_REPORTS: '/api/reports',
       UPDATE_REPORT: '/api/report/',
       FETCH_REPORT: '/api/report/',
+      FETCH_USERS: '/api/users',
+      FETCH_USER: '/api/user/',
       FETCH_APPOINTMENTS: '/api/appointments',
       FETCH_APPOINTMENT: '/api/appointment/',
       FETCH_CUSTOMERS: '/api/customers',
@@ -124,6 +127,7 @@ export const ICONS = {
     AlertIcon,
     DeleteIcon,
     EditIcon,
+    UserIcon,
   },
   weather: {
     CloudCloudy,
@@ -140,5 +144,6 @@ export const ICONS = {
     CloudWinter,
     SunSunnyCloud,
     SunSunnyHot,
+    UserIcon,
   },
 };
