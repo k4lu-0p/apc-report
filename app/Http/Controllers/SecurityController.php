@@ -24,14 +24,16 @@ class SecurityController extends Controller
             ], 404);
         }
 
-        /**
-         * Supprime les anciens token de l'utilisateur afin d'éviter de spam la BDD
-         * à chaques connexion de l'utilisateur.
-         **/
-        $user->tokens()->delete();
+        // supprimer les anciens tokens utilisateur
+        $tokensToDelete = $user->tokens->where('name', 'user-token-' . $user->id);
+        if (count($tokensToDelete) > 0) {
+            foreach ($tokensToDelete as $tokenToDelete) {
+                $tokenToDelete->delete();
+            }
+        }
 
         // Créer, lier puis enregistrer un token pour l'utilisateur.
-        $token = $user->createToken(Str::random(5))->plainTextToken;
+        $token = $user->createToken( 'user-token-' . $user->id )->plainTextToken;
 
         $response = [
             'user' => $user,

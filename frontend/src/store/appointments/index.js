@@ -42,7 +42,6 @@ const template = {
         }
       }
     },
-
     storeAppointment: async ({ commit, rootState }, formData) => {
       // clean for force reload with the new
       commit('setAppointments', []);
@@ -72,7 +71,6 @@ const template = {
       }
       return newAppointment;
     },
-
     deleteAppointment: async ({ commit, rootState }, id) => {
       const { authModule: { token } } = rootState;
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.DELETE_APPOINTMENT}${id}`;

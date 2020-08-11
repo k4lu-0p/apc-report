@@ -15,6 +15,15 @@
     />
   </div>
   <spinner v-else is-visible></spinner>
+
+  <!-- admin: show account connected -->
+  <info
+    :title="this.$store.getters['authModule/getUser'].name"
+    :visible="isInfoVisible"
+  >
+    <user-icon class="user-icon"></user-icon>
+  </info>
+
 </div>
 
 </template>
@@ -23,6 +32,10 @@
 import TabsNavigator from './components/Navigators/TabsNavigator.vue';
 import autoReloading from './mixins/autoReloading';
 import Spinner from './components/Spinner.vue';
+import Info from './components/Info.vue';
+import { ICONS } from './constants';
+
+const { common: { UserIcon } } = ICONS;
 
 export default {
   name: 'app',
@@ -30,8 +43,16 @@ export default {
   components: {
     TabsNavigator,
     Spinner,
+    UserIcon,
+    Info,
   },
   computed: {
+    isInfoVisible() {
+      return (
+        this.$store.getters['authModule/hasSwitchedAccount']
+        && this.$route.name !== this.$const.NAVIGATION.SETTINGS_HOME.NAME
+      );
+    },
     isMobile() {
       if (window.innerWidth <= this.$const.CONFIG.LIMIT_WIDTH_SCREEN) {
         return true;
@@ -49,6 +70,9 @@ export default {
       ];
     },
   },
+  mounted() {
+    console.log();
+  },
 };
 </script>
 
@@ -62,4 +86,10 @@ export default {
   background-attachment fixed
   background-size cover
   background-position center
+
+.user-icon
+  fill theme('colors.gray.800')
+  color theme('colors.gray.800')
+  height 20px
+  width 20px
 </style>

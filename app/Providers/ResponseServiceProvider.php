@@ -67,6 +67,15 @@ class ResponseServiceProvider extends ServiceProvider {
             ]);
         });
 
+        // User not found
+        Response::macro('userNotFound', function () {
+            return Response::json([
+                'http' => 404,
+                'status' => 'user_not_found',
+                'message' => 'Utilisateur introuvable.',
+            ]);
+        });
+
         // Appointment not found
         Response::macro('appointmentNotFound', function () {
             return Response::json([

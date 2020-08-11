@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class AppointmentService {
 
-    private ?User $user = null;
+    private $user = null;
     private $request = null;
 
     const FILTER_AUTHORIZED = [
@@ -47,7 +47,7 @@ class AppointmentService {
         return true;
     }
 
-     /**
+    /**
      * Récupère le rendez-vous via son ID
      */
     public function getById(int $id)
@@ -67,7 +67,7 @@ class AppointmentService {
         return new AppointmentResource($result);
     }
 
-     /**
+    /**
      * Supprime le rendez-vous et le rapport associé
      */
     public function deleteById(int $id)
@@ -85,7 +85,7 @@ class AppointmentService {
         return response()->appointmentReportDeleted();
     }
 
-     /**
+    /**
      * GET les appointments
      */
     private function getAll()
@@ -209,8 +209,8 @@ class AppointmentService {
         return response()->appointmentUpdated($appointment);
     }
 
-     /**
-     *
+    /**
+     * entry point des requêtes filtrées
      */
     public function handleFilteredRequest()
     {

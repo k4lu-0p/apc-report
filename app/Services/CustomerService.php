@@ -9,8 +9,8 @@ use Illuminate\Validation\ValidationException;
 
 class CustomerService {
 
+    private $user = null;
     private $request = null;
-    private ?User $user = null;
 
     const FILTER_AUTHORIZED = [
         'CUSTOMERS_COMMERCIAL_NAME' => 'commercial_name',
