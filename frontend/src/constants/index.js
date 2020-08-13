@@ -67,6 +67,7 @@ export default {
       STORE_APPOINTMENT: '/api/appointment',
       DELETE_APPOINTMENT: '/api/appointment/',
       UPDATE_APPOINTMENT: '/api/appointment/',
+      NEWSLETTER_CUSTOMER: '/api/newsletter/customers',
     },
     STATUS: {
       LOADING: 'loading',

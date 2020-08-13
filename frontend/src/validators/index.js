@@ -75,8 +75,23 @@ const customer = {
   },
 };
 
+const newsletter = {
+  form: {
+    content: {
+      required,
+    },
+    subject: {
+      required,
+    },
+    // attachement: {
+    //   required,
+    // },
+  },
+};
+
 export default {
   login,
   appointment,
   customer,
+  newsletter,
 };

@@ -39,6 +39,7 @@ class ReportMail extends Mailable
         // $responses = $surveyService->humanReadableResponses($responses);
 
         return $this->view('mails.report')
+            ->subject('[APC Report] Rapport de ' . $this->user->name)
             ->with([
                 'user' => $this->user->name,
                 'location' => json_decode($this->report->appointment->location)->label,

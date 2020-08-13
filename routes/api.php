@@ -74,6 +74,10 @@ Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
 Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
     ->put('/customer/{id}', 'CustomerController@update');
 
+// POST : Envoi massif d'une newsletter à tous les customers
+Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_ADMIN)
+    ->post('/newsletter/customers', 'NewsletterController@publish');
+
 // GET : Lister toute les options globales
 Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
     ->get('/settings', 'SettingController@index');
