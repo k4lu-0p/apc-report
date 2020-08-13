@@ -4,7 +4,9 @@ namespace App\Services;
 use App\Customer;
 use App\Http\Requests\GetCustomersRequest;
 use App\Http\Resources\CustomerResource;
+use App\Mail\CustomerMail;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class CustomerService {
@@ -98,7 +100,7 @@ class CustomerService {
         return response()->customerUpdated($customer);
     }
 
-     /**
+    /**
      * GET les customers
      */
     private function getAll()

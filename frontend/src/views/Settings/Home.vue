@@ -1,6 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div class="container mx-auto p-4">
+  <div class="container mx-auto p-4 bg-white min-h-screen">
     <!-- spinner pending switch account -->
     <spinner
       :isVisible="true"
@@ -11,7 +11,7 @@
 
       <!-- admin features -->
       <div v-if="userRole === 'ROLE_ADMIN'" class="w-full">
-        <h2 class="font-bold text-xl text-gray-800 py-4 text-left">Fonctionalités admin :</h2>
+        <h2 class="font-bold text-xl text-gray-800 py-4 text-left">Changer de compte :</h2>
         <label for="search-user" class="py-2 block text-gray-800">Se connecter en tant que :</label>
         <input-search
           id="search-user"
@@ -43,11 +43,17 @@
         </transition>
       </div>
 
+      <!-- admin : newsletter form -->
+      <newsletter-form
+        @submit="handleSubmitNewsletter"
+        :is-sending="isSendingMails"
+      ></newsletter-form>
+
       <!-- logout -->
       <div class="fixed bottom-0 mb-12 px-5 bg-white h-16 flex items-center left-0 w-full">
         <button
           @click="logout"
-          class="mx-auto bg-teal-600 hover:bg-teal-800 w-full text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline"
+          class="mx-auto border-2 border-teal-600 text-teal-600 bg-white w-full font-bold py-2 rounded focus:outline-none focus:shadow-outline"
         >
           {{ $t('form.login.logout.label') }}
         </button>
@@ -61,6 +67,7 @@
 import logout from '../../mixins/logout';
 import InputSearch from '../../components/Inputs/InputSearch.vue';
 import Spinner from '../../components/Spinner.vue';
+import NewsletterForm from '../../components/Forms/NewsletterForm.vue';
 
 export default {
   name: 'settings-page',
@@ -68,6 +75,7 @@ export default {
   components: {
     InputSearch,
     Spinner,
+    NewsletterForm,
   },
   data() {
     return {
@@ -78,6 +86,7 @@ export default {
         value: '',
       },
       isSwitchingAccount: false,
+      isSendingMails: false,
       userToSwitchHasNoToken: false,
       hasNoResult: false,
     };
@@ -147,6 +156,30 @@ export default {
         this.token = data.token;
         this.currentUser = data.user;
         this.$router.push({ name: this.$const.NAVIGATION.HOME_INDEX.NAME });
+      }
+    },
+    async handleSubmitNewsletter(newsletterForm) {
+      if (newsletterForm) {
+        this.isSendingMails = true;
+        const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.NEWSLETTER_CUSTOMER}`;
+        const config = {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          },
+        };
+
+        // eslint-disable-next-line no-useless-catch
+        try {
+          const { subject, content, attachment } = newsletterForm;
+          const formData = new FormData();
+          formData.append('subject', subject);
+          formData.append('content', content);
+          formData.append('attachment', attachment);
+          await this.$axios.post(endpoint, formData, config);
+          this.isSendingMails = false;
+        } catch (error) {
+          throw error;
+        }
       }
     },
   },

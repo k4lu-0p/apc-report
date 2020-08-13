@@ -166,7 +166,7 @@ class AppointmentService {
         $appointment->location = $this->request->location;
         $appointment->start_at = $start_at;
         $appointment->finish_at = $finish_at;
-        $appointment->warning = $this->request->warning ?: null;
+        $appointment->warning = $this->request->warning ?: '';
 
         // save
         $customer->save();

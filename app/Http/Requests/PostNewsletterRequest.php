@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAppointmentRequest extends FormRequest {
+class PostNewsletterRequest extends FormRequest {
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,10 +23,9 @@ class UpdateAppointmentRequest extends FormRequest {
     public function rules()
     {
         return [
-            'location' => ['nullable', 'json'],
-            'start_at' => ['nullable', 'date'],
-            'finish_at' => ['nullable', 'date'],
-            'warning' => ['nullable', 'string'],
+            'subject' => ['required', 'string'],
+            'content' => ['required', 'string'],
+            'attachment' => ['required', 'file', 'mimes:pdf'],
         ];
     }
 }
