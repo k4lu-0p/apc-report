@@ -20,7 +20,7 @@
         <meta name=apple-mobile-web-app-capable content=no>
         <meta name=apple-mobile-web-app-status-bar-style content=default>
         <meta name=apple-mobile-web-app-title content="APC Report">
-        <link rel=apple-touch-icon href=/img/icons/apple-touch-icon-152x152.png>
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon-152x152.png">
         <link rel=mask-icon href=/img/icons/safari-pinned-tab.svg color=#4DBA87>
         <meta name=msapplication-TileImage content=/img/icons/msapplication-icon-144x144.png>
         <meta name=msapplication-TileColor content=#000000>
