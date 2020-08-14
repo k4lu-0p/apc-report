@@ -4,26 +4,28 @@
     <head>
         <meta charset=utf-8>
         <meta http-equiv=X-UA-Compatible content="IE=edge">
-        <meta name=viewport content="width=device-width,initial-scale=1">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
         <!--[if IE]><link rel="icon" href="/favicon.ico"><![endif]-->
         <title>APC Report</title>
+
         <link href=/css/app.f14f7f1a.css rel=preload as=style>
         <link href=/css/chunk-vendors.55704cc8.css rel=preload as=style>
         <link href=/js/app.6f4f5d1d.js rel=preload as=script>
         <link href=/js/chunk-vendors.369248b3.js rel=preload as=script>
         <link href=/css/chunk-vendors.55704cc8.css rel=stylesheet>
         <link href=/css/app.f14f7f1a.css rel=stylesheet>
-        <link rel=icon type=image/png sizes=32x32 href=/img/icons/favicon-32x32.png>
-        <link rel=icon type=image/png sizes=16x16 href=/img/icons/favicon-16x16.png>
-        <link rel=manifest href=/manifest.json>
-        <meta name=theme-color content=#4DBA87>
-        <meta name=apple-mobile-web-app-capable content=no>
-        <meta name=apple-mobile-web-app-status-bar-style content=default>
-        <meta name=apple-mobile-web-app-title content="APC Report">
-        <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon-152x152.png">
-        <link rel=mask-icon href=/img/icons/safari-pinned-tab.svg color=#4DBA87>
-        <meta name=msapplication-TileImage content=/img/icons/msapplication-icon-144x144.png>
-        <meta name=msapplication-TileColor content=#000000>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="apple-mobile-web-app-capable" content="no">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="apple-mobile-web-app-title" content="APC Report">
+        <meta name="application-name" content="APC Report">
+        <meta name="msapplication-TileColor" content="#00aba9">
+        <meta name="theme-color" content="#4DBA87">
     </head>
 
     <body>
