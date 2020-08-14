@@ -3,6 +3,7 @@
 /public/storage
 /public/img
 /public/js
+/public/uploads
 /public/css
 /public/precache-*
 /public/service-worker.js
