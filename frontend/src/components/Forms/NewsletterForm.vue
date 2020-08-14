@@ -60,8 +60,8 @@
     <button
       v-if="isSending === false"
       :disabled="$v.$invalid || form.attachment === null"
-      :class="[$v.$invalid || form.attachment === null ? 'bg-gray-400' : ' bg-teal-600']"
-      class="my-4 w-full text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline">Envoyer</button>
+      :class="[$v.$invalid || form.attachment === null ? 'bg-gray-400 border-gray-400' : ' bg-teal-600 border-teal-600']"
+      class="my-4 border-2 w-full text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline">Envoyer</button>
       <div v-else class="flex justify-center items-center">
         <moon-loader
           :color="$const.MISC.SPINNER.COLOR"
