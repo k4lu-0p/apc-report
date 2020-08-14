@@ -45,6 +45,7 @@
 
       <!-- admin : newsletter form -->
       <newsletter-form
+        v-if="userRole === 'ROLE_ADMIN'"
         @submit="handleSubmitNewsletter"
         :is-sending="isSendingMails"
       ></newsletter-form>
