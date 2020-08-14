@@ -11,7 +11,7 @@ import router from './router';
 import store from './store';
 
 // Service Worker
-// import './registerServiceWorker';
+import './registerServiceWorker';
 
 // Librairies CSS
 import './assets/tailwind.css';
