@@ -2,7 +2,15 @@
 /public/hot
 /public/storage
 /public/img
+/public/fonts
 /public/js
+/public/uploads
+/public/*.png
+/public/*.svg
+/public/*.xml
+/public/*.ico
+/public/robots.txt
+/public/*.json
 /public/css
 /public/precache-*
 /public/service-worker.js

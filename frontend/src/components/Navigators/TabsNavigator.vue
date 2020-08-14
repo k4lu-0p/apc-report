@@ -2,7 +2,7 @@
 <!-- eslint-disable max-len -->
 <template>
   <div>
-    <div class="pt-16"></div> <!-- Prevent hidden elements by offset with bar -->
+    <div class="pt-14"></div> <!-- Prevent hidden elements by offset with bar -->
     <section
       class="tabs-navigator block fixed inset-x-0 bottom-0 z-10 bg-white shadow-2xl"
       :class="{'tabs-navigator-hidden': !isVisible}"

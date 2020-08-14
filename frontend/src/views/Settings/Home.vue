@@ -1,6 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div class="container mx-auto p-4 bg-white min-h-screen">
+  <div class="container mx-auto p-4 bg-white">
     <!-- spinner pending switch account -->
     <spinner
       :isVisible="true"
@@ -11,7 +11,7 @@
 
       <!-- admin features -->
       <div v-if="userRole === 'ROLE_ADMIN'" class="w-full">
-        <h2 class="font-bold text-xl text-gray-800 py-4 text-left">Changer de compte :</h2>
+        <h2 class="font-bold text-xl text-gray-800 pt-4 text-left">Changer de compte :</h2>
         <label for="search-user" class="py-2 block text-gray-800">Se connecter en tant que :</label>
         <input-search
           id="search-user"
@@ -45,20 +45,18 @@
 
       <!-- admin : newsletter form -->
       <newsletter-form
+        v-if="userRole === 'ROLE_ADMIN'"
         @submit="handleSubmitNewsletter"
         :is-sending="isSendingMails"
       ></newsletter-form>
 
       <!-- logout -->
-      <div class="fixed bottom-0 mb-12 px-5 bg-white h-16 flex items-center left-0 w-full">
-        <button
-          @click="logout"
-          class="mx-auto border-2 border-teal-600 text-teal-600 bg-white w-full font-bold py-2 rounded focus:outline-none focus:shadow-outline"
-        >
-          {{ $t('form.login.logout.label') }}
-        </button>
-      </div>
-
+      <button
+        @click="logout"
+        class="mx-auto border-2 border-teal-600 text-teal-600 bg-white w-full font-bold py-2 rounded focus:outline-none focus:shadow-outline"
+      >
+        {{ $t('form.login.logout.label') }}
+      </button>
     </div>
   </div>
 </template>
