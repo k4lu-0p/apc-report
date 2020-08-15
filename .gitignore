@@ -4,7 +4,7 @@
 /public/img
 /public/fonts
 /public/js
-/public/uploads
+/public/uploads/*.pdf
 /public/*.png
 /public/*.svg
 /public/*.xml
