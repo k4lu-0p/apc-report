@@ -82,30 +82,32 @@ export default {
     FORECASTS: 'https://api.openweathermap.org/data/2.5/onecall',
   },
   NAVIGATION: {
-    // index
-    LOGIN_INDEX: { NAME: 'login-index', PATH: '/login' },
-    HOME_INDEX: { NAME: 'home-index', PATH: '/' },
-    SETTINGS_INDEX: { NAME: 'settings-index', PATH: '/settings' },
-    APPOINTMENTS_INDEX: { NAME: 'appointments-index', PATH: '/appointments' },
-    CUSTOMERS_INDEX: { NAME: 'customers-index', PATH: '/customers' },
-    REPORTS_INDEX: { NAME: 'reports-index', PATH: '/reports' },
+    // login
+    LOGIN_PAGE: { NAME: 'login-page', PATH: '/login' },
 
-    // childs: settings
-    SETTINGS_HOME: { NAME: 'settings-home', PATH: '' },
+    // home
+    HOME_PAGE: { NAME: 'home-index', PATH: '/' },
 
-    // childs: appointments
-    APPOINTMENTS_HOME: { NAME: 'appointments-home', PATH: '' },
-    APPOINTMENTS_CREATE: { NAME: 'appointments-create', PATH: 'create' },
-    APPOINTMENTS_SHOW: { NAME: 'appointments-show', PATH: 'show/:id' },
+    // settings
+    INDEX_SETTING_PAGE: { NAME: 'settings-index', PATH: '/settings' },
+    HOME_SETTING_PAGE: { NAME: 'settings-home', PATH: '' },
 
-    // childs: customers
-    CUSTOMERS_HOME: { NAME: 'customers-home', PATH: '' },
-    CUSTOMERS_SHOW: { NAME: 'customers-show', PATH: 'show/:id' },
-    CUSTOMERS_EDIT: { NAME: 'customers-edit', PATH: 'edit/:id' },
+    // appointments
+    INDEX_APPOINTMENT_PAGE: { NAME: 'appointments-index', PATH: '/appointments' },
+    LIST_APPOINTMENT_PAGE: { NAME: 'appointments-home', PATH: '' },
+    CREATE_APPOINTMENT_PAGE: { NAME: 'appointments-create', PATH: 'create' },
+    SHOW_APPOINTMENT_PAGE: { NAME: 'appointments-show', PATH: 'show/:id' },
+
+    // customers
+    INDEX_CUSTOMER_PAGE: { NAME: 'customers-index', PATH: '/customers' },
+    LIST_CUSTOMER_PAGE: { NAME: 'customers-home', PATH: '' },
+    SHOW_CUSTOMER_PAGE: { NAME: 'customers-show', PATH: 'show/:id' },
+    EDIT_CUSTOMER_PAGE: { NAME: 'customers-edit', PATH: 'edit/:id' },
 
     // childs: reports
-    REPORTS_HOME: { NAME: 'reports-home', PATH: '' },
-    REPORTS_EDIT: { NAME: 'reports-edit', PATH: 'edit/:id' },
+    INDEX_REPORT_PAGE: { NAME: 'reports-index', PATH: '/reports' },
+    LIST_REPORT_PAGE: { NAME: 'reports-home', PATH: '' },
+    EDIT_REPORT_PAGE: { NAME: 'reports-edit', PATH: 'edit/:id' },
 
   },
 };

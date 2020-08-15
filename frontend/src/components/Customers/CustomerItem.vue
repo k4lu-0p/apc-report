@@ -1,7 +1,7 @@
 <template>
 <!-- eslint-disable max-len */ -->
   <div
-    @click="goTo($const.NAVIGATION.CUSTOMERS_SHOW.NAME, customer.id)"
+    @click="goTo($const.NAVIGATION.SHOW_CUSTOMER_PAGE.NAME, customer.id)"
     class="h-20 rounded-r flex items-center justify-center shadow-lg bg-white rounded px-2">
     <!-- <div class="bg-teal-600 pl-1"></div> -->
     <p class="py-5 text-center w-full font-bold text-gray-800">{{ customer.commercial_name }}</p>

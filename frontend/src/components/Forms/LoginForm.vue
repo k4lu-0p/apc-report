@@ -116,7 +116,7 @@ export default {
             // settings
             this.$store.dispatch('settingsModule/fetchSettings').then(() => {
               if (this.settingsStatus === this.$const.API.STATUS.SUCCESS) {
-                this.$router.push({ name: this.$const.NAVIGATION.HOME_INDEX.NAME });
+                this.$router.push({ name: this.$const.NAVIGATION.HOME_PAGE.NAME });
               }
             });
           }

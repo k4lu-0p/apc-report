@@ -25,7 +25,7 @@ import TopBar from '../../components/Navigators/TopBar.vue';
 import Spinner from '../../components/Spinner.vue';
 
 export default {
-  name: 'reports-edit',
+  name: 'edit-report-page',
   data() {
     return {
       report: null,
@@ -41,7 +41,7 @@ export default {
       this.$store.dispatch('reportsModule/putReport', {
         id: this.$route.params.id,
         responses: JSON.stringify(responses),
-      }).then(() => this.$router.push({ name: this.$const.NAVIGATION.REPORTS_HOME.NAME }));
+      }).then(() => this.$router.push({ name: this.$const.NAVIGATION.LIST_REPORT_PAGE.NAME }));
     },
   },
   computed: {

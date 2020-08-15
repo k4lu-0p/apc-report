@@ -21,7 +21,7 @@
       </transition>
 
       <!-- go to create appointment form -->
-      <float-button @tap="goTo($const.NAVIGATION.APPOINTMENTS_CREATE.NAME)">
+      <float-button @tap="goTo($const.NAVIGATION.CREATE_APPOINTMENT_PAGE.NAME)">
         <add-icon></add-icon>
       </float-button>
     </div>
@@ -38,7 +38,7 @@ import { ICONS } from '../../constants';
 const { common: { AddIcon } } = ICONS;
 
 export default {
-  name: 'appointments-page',
+  name: 'list-appointment-page',
   components: {
     AppointmentItem,
     FloatButton,
@@ -72,7 +72,7 @@ export default {
       // Handle invalid token even if user is authenticated
       if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
         this.$store.dispatch('authModule/logout').then(() => {
-          this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
+          this.$router.push({ name: this.$const.NAVIGATION.LOGIN_PAGE.NAME });
         });
       }
     });

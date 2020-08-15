@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import WeatherWidget from '../../components/Weather/WeatherWidget.vue';
-import AppointmentItem from '../../components/Appointments/AppointmentItem.vue';
-import Spinner from '../../components/Spinner.vue';
+import WeatherWidget from '../components/Weather/WeatherWidget.vue';
+import AppointmentItem from '../components/Appointments/AppointmentItem.vue';
+import Spinner from '../components/Spinner.vue';
 
 export default {
-  name: 'home-index',
+  name: 'home-page',
   components: {
     WeatherWidget,
     AppointmentItem,
@@ -70,7 +70,7 @@ export default {
       // Handle invalid token even if user is authenticated
       if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
         this.$store.dispatch('authModule/logout').then(() => {
-          this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
+          this.$router.push({ name: this.$const.NAVIGATION.LOGIN_PAGE.NAME });
         });
       }
     });

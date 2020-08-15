@@ -44,7 +44,7 @@ import Spinner from '../../components/Spinner.vue';
 import InputSearch from '../../components/Inputs/InputSearch.vue';
 
 export default {
-  name: 'customers-page',
+  name: 'list-customer-page',
   components: {
     CustomerItem,
     TopBar,
@@ -79,7 +79,7 @@ export default {
         if (this.$store.getters['customersModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
           this.$store.dispatch('authModule/logout').then(() => {
             this.$router.push({
-              name: this.$const.NAVIGATION.LOGIN_INDEX.NAME,
+              name: this.$const.NAVIGATION.LOGIN_PAGE.NAME,
             });
           });
         }

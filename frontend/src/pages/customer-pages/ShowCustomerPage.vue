@@ -77,7 +77,7 @@
      <!-- go to edit customer form -->
     <float-button
       v-if="customer"
-      @tap="goTo($const.NAVIGATION.CUSTOMERS_EDIT.NAME, customer.id)">
+      @tap="goTo($const.NAVIGATION.EDIT_CUSTOMER_PAGE.NAME, customer.id)">
       <edit-icon></edit-icon>
     </float-button>
   </div>
@@ -94,7 +94,7 @@ import { ICONS } from '../../constants';
 const { common: { EditIcon } } = ICONS;
 
 export default {
-  name: 'customer-show',
+  name: 'show-customer-page',
   components: {
     TopBar,
     Spinner,

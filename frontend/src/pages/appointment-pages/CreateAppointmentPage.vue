@@ -32,7 +32,7 @@ import CreateAppointmentForm from '../../components/Forms/CreateAppointmentForm.
 import AlertModal from '../../components/Modals/AlertModal.vue';
 
 export default {
-  name: 'appointments-create',
+  name: 'create-appointment-page',
   components: {
     TopBar,
     CreateAppointmentForm,
@@ -53,7 +53,7 @@ export default {
     },
     handleCancel() {
       this.isConfirmModalOpen = false;
-      this.$router.push({ name: this.$const.NAVIGATION.APPOINTMENTS_HOME.NAME });
+      this.$router.push({ name: this.$const.NAVIGATION.LIST_APPOINTMENT_PAGE.NAME });
     },
     openConfirmModal() {
       this.isConfirmModalOpen = true;

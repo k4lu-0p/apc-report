@@ -249,7 +249,7 @@ import Spinner from '../../components/Spinner.vue';
 import AlertModal from '../../components/Modals/AlertModal.vue';
 
 export default {
-  name: 'customer-edit',
+  name: 'edit-customer-page',
   mixins: [customerValidationMessages],
   components: {
     TopBar,

@@ -50,7 +50,7 @@ import Spinner from '../../components/Spinner.vue';
 import AlertModal from '../../components/Modals/AlertModal.vue';
 
 export default {
-  name: 'reports-page',
+  name: 'list-report-page',
   components: {
     ReportItem,
     TopBar,
@@ -104,7 +104,7 @@ export default {
       // Handle invalid token even if user is authenticated
       if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
         this.$store.dispatch('authModule/logout').then(() => {
-          this.$router.push({ name: this.$const.NAVIGATION.LOGIN_INDEX.NAME });
+          this.$router.push({ name: this.$const.NAVIGATION.LOGIN_PAGE.NAME });
         });
       }
     });

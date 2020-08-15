@@ -153,7 +153,7 @@ export default {
       if (data.token && data.user) {
         this.token = data.token;
         this.currentUser = data.user;
-        this.$router.push({ name: this.$const.NAVIGATION.HOME_INDEX.NAME });
+        this.$router.push({ name: this.$const.NAVIGATION.HOME_PAGE.NAME });
       }
     },
     async handleSubmitNewsletter(newsletterForm) {

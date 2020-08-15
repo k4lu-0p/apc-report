@@ -51,7 +51,7 @@ export default {
     isInfoVisible() {
       return (
         this.$store.getters['authModule/hasSwitchedAccount']
-        && this.$route.name !== this.$const.NAVIGATION.SETTINGS_HOME.NAME
+        && this.$route.name !== this.$const.NAVIGATION.HOME_SETTING_PAGE.NAME
       );
     },
     isMobile() {
@@ -63,11 +63,11 @@ export default {
     },
     routesHasTabsNavigator() {
       return [
-        this.$const.NAVIGATION.HOME_INDEX.NAME, // index
-        this.$const.NAVIGATION.CUSTOMERS_HOME.NAME,
-        this.$const.NAVIGATION.APPOINTMENTS_HOME.NAME,
-        this.$const.NAVIGATION.SETTINGS_HOME.NAME,
-        this.$const.NAVIGATION.REPORTS_HOME.NAME,
+        this.$const.NAVIGATION.HOME_PAGE.NAME, // index
+        this.$const.NAVIGATION.LIST_CUSTOMER_PAGE.NAME,
+        this.$const.NAVIGATION.LIST_APPOINTMENT_PAGE.NAME,
+        this.$const.NAVIGATION.HOME_SETTING_PAGE.NAME,
+        this.$const.NAVIGATION.LIST_REPORT_PAGE.NAME,
       ];
     },
   },

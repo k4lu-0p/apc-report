@@ -147,7 +147,7 @@ import AlertModal from '../../components/Modals/AlertModal.vue';
 import validator from '../../validators';
 
 export default {
-  name: 'appointments-show',
+  name: 'show-appointment-page',
   components: {
     TopBar,
     Spinner,

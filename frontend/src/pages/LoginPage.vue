@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import LoginForm from '../../components/Forms/LoginForm.vue';
+import LoginForm from '../components/Forms/LoginForm.vue';
 
 export default {
   data() {
@@ -15,7 +15,7 @@ export default {
       formIsVisible: false,
     };
   },
-  name: 'login-index',
+  name: 'login-page',
   components: {
     LoginForm,
   },
