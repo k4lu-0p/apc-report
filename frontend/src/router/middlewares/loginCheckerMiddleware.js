@@ -7,7 +7,6 @@ import $const from '../../constants';
 export default (to, from, next) => {
   // empêche de revenir sur la page de login si on est déjà authentifié.
   if (to.name === $const.NAVIGATION.LOGIN_PAGE.NAME) {
-    console.log('coucou');
     if (store.getters['authModule/isLoggedIn']) {
       next({ name: $const.NAVIGATION.HOME_PAGE.NAME });
     } else {
