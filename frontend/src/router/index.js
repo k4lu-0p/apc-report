@@ -8,7 +8,7 @@ import loginRoutes from './routes/loginRoutes';
 import settingRoutes from './routes/settingRoutes';
 import homeRoutes from './routes/homeRoutes';
 
-import loginChecker from './middlewares/loginCheckerMiddleware';
+import authChecker from './middlewares/authCheckerMiddleware';
 
 Vue.use(VueRouter);
 
@@ -29,6 +29,6 @@ const router = new VueRouter({
 });
 
 // middlewares
-router.beforeEach(loginChecker);
+router.beforeEach(authChecker);
 
 export default router;
