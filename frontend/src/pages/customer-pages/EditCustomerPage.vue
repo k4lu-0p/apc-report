@@ -316,6 +316,7 @@ export default {
     handleSubmitCustomer() {
       const formData = this.form.customer;
       delete formData.id;
+      delete formData.has_been_deleted;
 
       // toggle si le nom commericial est déjà utilisé
       let commercialNameisAlreadyUse = false;
@@ -388,7 +389,7 @@ export default {
           Authorization: `Bearer ${this.token}`,
         },
       };
-      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.FETCH_CUSTOMER}${this.$route.params.id}`;
+      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.APC_REPORT.FETCH_CUSTOMER}${this.$route.params.id}`;
       const { data: { data: customer } } = await this.$axios.get(endpoint, config);
       if (customer !== undefined) {
         this.form.customer = customer;
