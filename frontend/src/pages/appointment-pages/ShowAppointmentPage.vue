@@ -274,7 +274,7 @@ export default {
           Authorization: `Bearer ${this.token}`,
         },
       };
-      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.FETCH_APPOINTMENT}${this.$route.params.id}`;
+      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.APC_REPORT.FETCH_APPOINTMENT}${this.$route.params.id}`;
       const { data: { data: appointment } } = await this.$axios.get(endpoint, config);
       if (appointment !== undefined) {
         this.appointment = appointment; // sauvegarde

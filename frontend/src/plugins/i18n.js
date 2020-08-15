@@ -6,6 +6,6 @@ import messages from '@/i18n';
 Vue.use(VueI18n);
 
 export default new VueI18n({
-  locale: constants.CONFIG.LOCAL.FR,
+  locale: constants.LOCAL.FR,
   messages,
 });

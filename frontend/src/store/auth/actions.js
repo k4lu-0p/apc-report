@@ -3,7 +3,7 @@ import constants from '../../constants';
 
 export default {
   async login({ commit }, payload) {
-    const endpoint = `${constants.API.BASE_URL}${constants.API.ENDPOINTS.LOGIN}`;
+    const endpoint = `${constants.API.BASE_URL}${constants.API.ENDPOINTS.APC_REPORT.LOGIN}`;
     try {
       commit('auth_request');
       const { data: { user, token } } = await axios.post(endpoint, payload);

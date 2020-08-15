@@ -55,7 +55,7 @@ export default {
       );
     },
     isMobile() {
-      if (window.innerWidth <= this.$const.CONFIG.LIMIT_WIDTH_SCREEN) {
+      if (window.innerWidth <= this.$const.MISC.LIMIT_WIDTH_SCREEN) {
         return true;
       }
       this.$store.dispatch('authModule/logout');

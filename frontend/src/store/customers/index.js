@@ -13,7 +13,7 @@ const template = {
   actions: {
     fetchCustomers: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_CUSTOMERS}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_CUSTOMERS}`;
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -37,7 +37,7 @@ const template = {
     },
     deleteCustomer: async ({ commit, rootState }, id) => {
       const { authModule: { token } } = rootState;
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.DELETE_CUSTOMER}${id}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.DELETE_CUSTOMER}${id}`;
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -58,7 +58,7 @@ const template = {
 
       const { id, formData } = payload;
       const { authModule: { token } } = rootState;
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.UPDATE_CUSTOMER}${id}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.UPDATE_CUSTOMER}${id}`;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
         commit('setStatus', $const.API.STATUS.LOADING);

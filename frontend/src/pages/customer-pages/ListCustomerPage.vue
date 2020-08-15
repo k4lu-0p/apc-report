@@ -68,7 +68,7 @@ export default {
           Authorization: `Bearer ${this.token}`,
         },
       };
-      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.DELETE_CUSTOMER}${customerId}`;
+      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.APC_REPORT.DELETE_CUSTOMER}${customerId}`;
       await this.$axios.delete(endpoint, config);
     },
     handleSearch(commercialName = '') {

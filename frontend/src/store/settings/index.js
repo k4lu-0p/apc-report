@@ -14,7 +14,7 @@ const template = {
   actions: {
     fetchSettings: async ({ commit, rootState }) => {
       const { authModule: { token } } = rootState;
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_SETTINGS}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_SETTINGS}`;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
