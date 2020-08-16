@@ -8,8 +8,8 @@ export default {
   methods: {
     handleVisibilityChange() {
       if (document.visibilityState === 'visible') {
-        this.appIsVisible = false;
-        window.location.reload();
+        // this.appIsVisible = false;
+        // window.location.reload();
       }
     },
   },

@@ -7,15 +7,16 @@ import $const from '../../constants';
 const template = {
   instructions: {
     status: 'string',
-    appointments: {
+    items: {
       type: 'array',
       // initial_value: JSON.parse(localStorage.getItem('appointments')) || [],
       initial_value: [],
     },
   },
   actions: {
-    fetchAppointments: async ({ commit, rootState }, params) => {
+    list: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
+
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_APPOINTMENTS}`;
 
       const config = {
@@ -29,7 +30,7 @@ const template = {
         commit('setStatus', $const.API.STATUS.LOADING);
 
         const { data: { data: appointments } } = await axios.get(endpoint, config);
-        commit('setAppointments', appointments);
+        commit('seItems', appointments);
 
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
@@ -41,7 +42,7 @@ const template = {
         }
       }
     },
-    storeAppointment: async ({ commit, rootState }, formData) => {
+    create: async ({ commit, rootState }, formData) => {
       // clean for force reload with the new
       commit('setAppointments', []);
 
@@ -70,7 +71,7 @@ const template = {
       }
       return newAppointment;
     },
-    deleteAppointment: async ({ commit, rootState }, id) => {
+    delete: async ({ commit, rootState }, id) => {
       const { authModule: { token } } = rootState;
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.DELETE_APPOINTMENT}${id}`;
       const config = {
@@ -88,7 +89,7 @@ const template = {
         throw error;
       }
     },
-    updateAppointment: async ({ commit, rootState }, payload) => {
+    update: async ({ commit, rootState }, payload) => {
       const { authModule: { token } } = rootState;
       const { id, formData } = payload;
       let newAppointment;

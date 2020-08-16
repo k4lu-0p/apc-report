@@ -13,7 +13,9 @@ const template = {
   actions: {
     fetchCustomers: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
+
       const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_CUSTOMERS}`;
+
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -23,8 +25,10 @@ const template = {
 
       try {
         commit('setStatus', $const.API.STATUS.LOADING);
+
         const { data: { data: customers } } = await axios.get(endpoint, config);
         commit('setCustomers', customers);
+
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {
         commit('setStatus', $const.API.STATUS.ERROR);

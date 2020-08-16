@@ -1,5 +1,6 @@
 // Page home
-import HomePage from '../../pages/HomePage.vue';
+// import HomePage from '../../pages/HomePage.vue';
+import HomePage from '../../components/AppointmentsListing.vue';
 
 import $const from '../../constants';
 
