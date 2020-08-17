@@ -104,10 +104,10 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener('scroll', this.onScroll);
+    // window.addEventListener('scroll', this.onScroll);
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.onScroll);
+    // window.removeEventListener('scroll', this.onScroll);
   },
 };
 </script>
