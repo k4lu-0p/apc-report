@@ -29,6 +29,6 @@ const router = new VueRouter({
 });
 
 // middlewares
-router.beforeEach(authChecker);
+router.beforeEach(authChecker.beforeEach);
 
 export default router;
