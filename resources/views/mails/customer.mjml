@@ -13,9 +13,9 @@
 
   <mj-body background-color="#edf2f7">
 
-    <mj-section background-color="#319795" padding="10px 0">
+    <mj-section background-color="#fff" padding="10px 0">
       <mj-column>
-             <mj-text align="center" color="#ffffff" font-size="25px" font-weight="bold" font-family="Raleway, Helvetica, Arial, sans-serif" padding="18px 0px">Alpha Plus Courtage</mj-text>
+             <mj-image src="https://apc-report.lucasrobin.fr/img/logo/apc-full.png" alt="tickets" width="300px" padding="10px 25px"></mj-image>
       </mj-column>
     </mj-section>
 
@@ -32,7 +32,7 @@
 
     <mj-section background-color="#fff" padding="10px">
     	<mj-column>
-      	<mj-button font-size="20px" align="center" background-color="#319795" color="#fff" border-radius="24px" href="{{ url('uploads/' . $pdf) }}" font-family="Raleway, Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif" padding-bottom="45px" padding-top="10px">Consulter en ligne</mj-button>
+      	<mj-button font-size="20px" align="center" background-color="#c19034" color="#fff" border-radius="24px" href="{{ url('uploads/' . $pdf) }}" font-family="Raleway, Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif" padding-bottom="45px" padding-top="10px">Consulter en ligne</mj-button>
       </mj-column>
     </mj-section>
 

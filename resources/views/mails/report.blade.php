@@ -93,49 +93,55 @@
         <tr>
           <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
       <![endif]-->
-    <div style="background:#319795;background-color:#319795;margin:0px auto;max-width:600px;">
-      <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#319795;background-color:#319795;width:100%;">
-        <tbody>
+      <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+          <tbody>
+            <tr>
+              <td style="direction:ltr;font-size:0px;padding:10px 0;text-align:center;">
+                <!--[if mso | IE]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+
           <tr>
-            <td style="direction:ltr;font-size:0px;padding:10px 0;text-align:center;">
-              <!--[if mso | IE]>
-                  <table role="presentation" border="0" cellpadding="0" cellspacing="0">
 
-        <tr>
-
-            <td
-               class="" style="vertical-align:top;width:600px;"
-            >
-          <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-                  <tbody>
-                    <tr>
-                      <td style="vertical-align:top;padding:0px;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-                          <tr>
-                            <td align="center" style="font-size:0px;padding:18px 0px;word-break:break-word;">
-                              <div style="font-family:Raleway, Helvetica, Arial, sans-serif;font-size:25px;font-weight:bold;line-height:1;text-align:center;color:#ffffff;">APC Report</div>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!--[if mso | IE]>
-            </td>
-
-        </tr>
-
+              <td
+                 class="" style="vertical-align:top;width:600px;"
+              >
+            <![endif]-->
+                <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                    <tbody>
+                      <tr>
+                        <td style="vertical-align:top;padding:0px;">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                            <tr>
+                              <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+                                  <tbody>
+                                    <tr>
+                                      <td style="width:200px;"> <img alt="tickets" height="auto" src="https://apc-report.lucasrobin.fr/img/logo/apcr-short.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="200"> </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
-                <![endif]-->
-            </td>
+                </div>
+                <!--[if mso | IE]>
+              </td>
+
           </tr>
-        </tbody>
-      </table>
-    </div>
+
+                    </table>
+                  <![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     <!--[if mso | IE]>
           </td>
         </tr>
@@ -161,39 +167,28 @@
                class="" style="vertical-align:top;width:600px;"
             >
           <![endif]-->
-              <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
-                  <tbody>
-                    <tr>
-                      <td style="vertical-align:top;padding:0px;">
-                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-                          <tr>
-                            <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                              <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                                <tbody>
-                                  <tr>
-                                    <td style="width:400px;"> <img alt="tickets" height="auto" src="https://apc-report.lucasrobin.fr/img/mails/header.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="400"> </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td align="center" style="font-size:0px;padding:15px 25px 25px 25px;word-break:break-word;">
-                              <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:20px;line-height:1;text-align:center;color:#2d3748;">Nouveau rapport de <strong> {{ $user }}</strong></div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td align="center" style="font-size:0px;padding:10px 10px;word-break:break-word;">
-                              <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;"><strong>Détail du rendez-vous</strong></div>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+          <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+            <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+              <tbody>
+                <tr>
+                  <td style="vertical-align:top;padding:0px;">
+                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                      <tr>
+                        <td align="center" style="font-size:0px;padding:15px 25px 25px 25px;word-break:break-word;">
+                          <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:20px;line-height:1;text-align:center;color:#2d3748;">Nouveau rapport de <strong> {{ $user }}</strong></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="font-size:0px;padding:10px 10px;word-break:break-word;">
+                          <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;"><strong>Détail du rendez-vous</strong></div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
               <!--[if mso | IE]>
             </td>
 
