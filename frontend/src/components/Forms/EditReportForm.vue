@@ -18,7 +18,7 @@
               v-model="responses[question.slug]"
               :show-rating="false"
               inactive-color="#e2e8f0"
-              active-color="#319795"
+              active-color="#c19034"
               :padding="10"
               :star-size="30">
           </star-rating>
