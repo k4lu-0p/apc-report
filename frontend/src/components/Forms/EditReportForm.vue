@@ -38,7 +38,7 @@
               <div class="w-1/3 flex justify-center">
                 <input
                   :id="choice.label"
-                  class="form-checkbox w-5 h-5 text-teal-600"
+                  class="form-checkbox w-5 h-5 text-yellow-750"
                   :type="question.type"
                   :value="choice.value"
                   v-model="responses[question.slug]"
@@ -69,7 +69,7 @@
               <input
                 :id="choice.label"
                 :name="`${question.slug}`"
-                class="w-5 h-5 form-radio text-teal-600"
+                class="w-5 h-5 form-radio text-yellow-750"
                 :type="question.type"
                 :value="choice.value"
                 v-model="responses[question.slug]"
@@ -97,7 +97,7 @@
 
           <button
             :disabled="isValid === false"
-            :class="[isValid === false ? 'bg-gray-400' : ' bg-teal-600 hover:bg-teal-800']"
+            :class="[isValid === false ? 'bg-gray-400' : ' bg-yellow-750 hover:bg-yellow-750']"
             v-else
             class="mx-auto text-white font-bold py-2 px-4 mt-10 w-full rounded focus:outline-none focus:shadow-outline"
           >Envoyer mon rapport</button>

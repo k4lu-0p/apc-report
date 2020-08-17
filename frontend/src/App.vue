@@ -1,6 +1,7 @@
 <template>
 <div>
-  <div v-if="appIsVisible" class="min-h-screen bg-main">
+  <div class="bg-main"></div>
+  <div v-if="appIsVisible" class="min-h-screen">
     <transition
       enter-active-class="animated slideInLeft faster-x2"
       leave-active-class="animated slideOutRight faster-x2"
@@ -80,10 +81,13 @@ export default {
 
 .bg-main
   background-color #ffffff
-  // background-image url('/img/bg/bg_main.svg')
+  background-image url('/img/bg/bg_main.svg')
   background-attachment fixed
   background-size cover
   background-position center
+  background-repeat no-repeat
+  @apply min-h-screen w-screen absolute top-0 left-0
+  z-index -1
 
 .user-icon
   fill theme('colors.gray.800')

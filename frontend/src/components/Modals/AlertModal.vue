@@ -24,7 +24,7 @@
         <!-- yes -->
         <button
           v-if="type === 'dialog'"
-          class= "w-1/2 rounded-br text-center bg-white border-teal-600 p-3 text-teal-600 text-lg font-medium"
+          class= "w-1/2 rounded-br text-center bg-white border-yellow-750 p-3 text-yellow-750 text-lg font-medium"
           @click="$emit('confirm')">
           Confirmer
         </button>
@@ -83,7 +83,7 @@ export default {
   color theme('colors.red.600')
 
 .accept-icon
-  fill theme('colors.teal.600')
-  color theme('colors.teal.600')
+  fill theme('colors.yellow.750')
+  color theme('colors.yellow.750')
 
 </style>

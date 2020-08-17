@@ -47,7 +47,7 @@ export default {
     width 45px
     height 45px
     fill theme('colors.white')
-    background-color theme('colors.teal.600')
+    background-color theme('colors.purple.800')
     border-radius theme('borderRadius.full')
     box-shadow theme('boxShadow.xl')
 

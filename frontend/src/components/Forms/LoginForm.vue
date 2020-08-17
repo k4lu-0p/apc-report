@@ -76,7 +76,7 @@
           <button
             type="submit"
             v-else
-            class="mx-auto bg-teal-600 hover:bg-teal-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            class="mx-auto bg-yellow-750 hover:bg-yellow-750 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             {{ $t('form.login.submit.label') }}
           </button>

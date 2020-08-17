@@ -54,7 +54,7 @@
                   input-id="startAt"
                   v-model="startAt"
                   @blur="$v.form.start_at.$touch()"
-                  input-class="appearance-none border border-teal-600 rounded w-16 h-16 font-bold text-lg text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  input-class="appearance-none border border-yellow-750 rounded w-16 h-16 font-bold text-lg text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   :phrases="{ok: 'Ok', cancel: 'Annuler'}"
                   :title="$t('form.appointment.date.start.label')"
                   :placeholder="$t('form.appointment.date.start.placeholder')"
@@ -72,7 +72,7 @@
                   input-id="finishAt"
                   v-model="finishAt"
                   @blur="$v.form.finish_at.$touch()"
-                  input-class="appearance-none border border-teal-600 rounded w-16 h-16 font-bold text-lg text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  input-class="appearance-none border border-yellow-750 rounded w-16 h-16 font-bold text-lg text-center text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   :phrases="{ok: 'Ok', cancel: 'Annuler'}"
                   :title="$t('form.appointment.date.finish.label')"
                   :placeholder="$t('form.appointment.date.finish.placeholder')"
@@ -86,7 +86,7 @@
                 :disabled="isUpdatingAppointment"
                 @click="handleUpdateAppointment"
                 v-if="hasChangeHour && this.$v.$invalid === false && isUpdatingAppointment === false"
-                class="bg-teal-600 text-white rounded-t-none  font-bold rounded px-4 py-2 block text-center">
+                class="bg-yellow-750 text-white rounded-t-none  font-bold rounded px-4 py-2 block text-center">
                   Mettre à jour
               </button>
             </transition>
@@ -109,7 +109,7 @@
 
         <!-- redirect to google map -->
         <a
-          class="bg-teal-600 text-white font-bold rounded px-4 py-2 block my-4 text-center border border-white"
+          class="bg-yellow-750 text-white font-bold rounded px-4 py-2 block my-4 text-center border border-white"
           :href="queryGoogleMap"
           target="_blank">
           Itinéraire Google Map
@@ -294,16 +294,16 @@ export default {
 // Theming datepicker
 .datetime-start, .datetime-finish
   .vdatetime-time-picker__item--selected
-    color theme('colors.teal.600')
+    color theme('colors.yellow.750')
   .vdatetime-month-picker__item--selected
-    color theme('colors.teal.600')
+    color theme('colors.yellow.750')
   .vdatetime-popup__actions__button
-    color theme('colors.teal.600')
+    color theme('colors.yellow.750')
   .vdatetime-calendar__month__day--selected:hover > span > span
-    background theme('colors.teal.600')
+    background theme('colors.yellow.750')
   .vdatetime-calendar__month__day--selected > span > span
-    background theme('colors.teal.600')
+    background theme('colors.yellow.750')
   .vdatetime-popup__header
-    background theme('colors.teal.600')
+    background theme('colors.yellow.750')
 
 </style>

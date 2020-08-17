@@ -333,8 +333,8 @@
           <button
             :disabled="this.$v.$invalid"
             v-else
-            :class="[this.$v.$invalid ? 'bg-gray-400' : ' bg-teal-600']"
-            class="mx-auto hover:bg-teal-800 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            :class="[this.$v.$invalid ? 'bg-gray-400' : ' bg-yellow-750']"
+            class="mx-auto hover:bg-yellow-750 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             {{ $t('form.appointment.submit.label') }}
           </button>
@@ -483,17 +483,17 @@ export default {
 // Theming datepicker
 .datetime-start, .datetime-finish
   .vdatetime-time-picker__item--selected
-    color theme('colors.teal.600')
+    color theme('colors.yellow.750')
   .vdatetime-month-picker__item--selected
-    color theme('colors.teal.600')
+    color theme('colors.yellow.750')
   .vdatetime-popup__actions__button
-    color theme('colors.teal.600')
+    color theme('colors.yellow.750')
   .vdatetime-calendar__month__day--selected:hover > span > span
-    background theme('colors.teal.600')
+    background theme('colors.yellow.750')
   .vdatetime-calendar__month__day--selected > span > span
-    background theme('colors.teal.600')
+    background theme('colors.yellow.750')
   .vdatetime-popup__header
-    background theme('colors.teal.600')
+    background theme('colors.yellow.750')
 
 .header-image
   height 120px

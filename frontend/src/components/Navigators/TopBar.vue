@@ -11,6 +11,7 @@
           <back-icon class="back-icon"></back-icon>
         </div>
 
+        <!-- title -->
         <div v-if="title !== ''">
           <p>{{ title }}</p>
         </div>
@@ -89,8 +90,8 @@ export default {
   .back-icon
     height 23px
     width 23px
-    color theme('colors.teal.600')
-    fill theme('colors.teal.600')
+    color theme('colors.purple.800')
+    fill theme('colors.purple.800')
 
 .delete-icon-wrapper
   .delete-icon

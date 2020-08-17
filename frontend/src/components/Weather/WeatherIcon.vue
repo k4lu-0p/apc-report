@@ -137,6 +137,6 @@ export default {
   .weather-icon
     height 30px
     width 30px
-    fill theme('colors.teal.600')
-    color theme('colors.teal.600')
+    fill theme('colors.purple.800')
+    color theme('colors.purple.800')
 </style>

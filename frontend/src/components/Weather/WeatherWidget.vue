@@ -1,8 +1,7 @@
 <template>
 <!-- eslint-disable max-len -->
   <div>
-    <div v-if="status === $const.API.STATUS.SUCCESS" class="bg-white shadow-lg my-4 rounded-lg w-3/4 py-4 mx-auto">
-
+    <div class="bg-white shadow-lg my-4 rounded-lg w-3/4 py-4 mx-auto">
       <!-- aujourd'hui -->
       <div v-if="current" class="px-10 py-6">
         <div class="flex flex-col items-center">
@@ -10,7 +9,7 @@
             <weather-icon :id="current.weather[0].id"></weather-icon>
             <p class="font-bold text-sm text-gray-800 text-center pl-1">{{ current.weather[0].description | capitalize }}</p>
           </div>
-          <p class="text-6xl font-bold text-teal-600 text-center pl-6 -my-4">{{ current.main.temp | fahrenheit }}<span>°</span></p>
+          <p class="text-6xl font-bold text-purple-800 text-center pl-6 -my-4">{{ current.main.temp | fahrenheit }}<span>°</span></p>
           <p class="text-sm font-bold text-gray-800 text-center">{{ current.name }}</p>
         </div>
       </div>
@@ -25,9 +24,6 @@
       <div>
 
       </div>
-    </div>
-    <div v-else class="">
-      <img src="spinner.svg" alt="">
     </div>
   </div>
 </template>

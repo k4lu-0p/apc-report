@@ -10,7 +10,7 @@ export default {
   MISC: {
     LIMIT_WIDTH_SCREEN: 768,
     SPINNER: {
-      COLOR: '#319795',
+      COLOR: '#b68d40',
     },
   },
   API,
