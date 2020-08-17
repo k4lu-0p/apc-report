@@ -28,7 +28,7 @@
         <p
           @click.stop="goTo($const.NAVIGATION.EDIT_REPORT_PAGE.NAME, appointment.id)"
           v-if="appointment.report.is_complete === 0 && isAppointmentOver"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
           <warning-icon class="warning-icon mr-1"></warning-icon>
           <span>
             Rapport à compléter
@@ -37,7 +37,7 @@
 
         <p
            v-if="appointment.report.is_complete"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-150 text-teal-150 font-medium flex items-center">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-1"></accept-icon>
           <span>
             Rapport complété
@@ -46,7 +46,7 @@
 
         <p
           v-if="isAppointmentFinishToday"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-150 text-teal-150 font-medium">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
           Aujourd'hui
         </p>
 

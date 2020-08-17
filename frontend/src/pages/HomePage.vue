@@ -1,20 +1,24 @@
 <template>
 <!-- eslint-disable max-len -->
   <!-- Main -->
-  <div class="container mx-auto px-4">
-    <transition
-      mode="out-in"
-      enter-active-class="animated fadeIn faster-x2"
-      leave-active-class="animated fadeOut faster-x2"
-    >
-      <div v-if="status === $const.API.STATUS.SUCCESS">
-        <weather-widget></weather-widget>
-        <div class="py-6">
-          <h1 class="text-center font-bold text-gray-800 text-2xl">Bienvenue sur APCReport</h1>
-          <p class="text-gray-800 text-center">Bonjour, <strong class="text-teal-600">{{ username }}</strong>.</p>
-        </div>
-        <div>
-          <p class="pb-6 text-center font-medium text-md">Vous avez <span class="font-bold text-teal-600">{{ appointments.length }}</span> rendez-vous de programmé(s), aujourd’hui. Bonne journée et bonne route !</p>
+  <div>
+    <top-bar/>
+    <div class="container mx-auto px-4">
+      <transition
+        mode="out-in"
+        enter-active-class="animated fadeIn faster-x2"
+        leave-active-class="animated fadeOut faster-x2"
+      >
+        <div v-if="status === $const.API.STATUS.SUCCESS">
+          <weather-widget></weather-widget>
+          <div class="py-6">
+            <h1 class="text-center font-bold text-gray-800 text-2xl">Bienvenue sur APCReport</h1>
+            <p class="text-gray-800 text-center">Bonjour, <strong class="text-yellow-750">{{ username }}</strong>.</p>
+          </div>
+          <div>
+            <p class="pb-6 text-center font-medium text-md">
+              Vous avez <span class="font-bold text-purple-800">{{ appointments.length }}</span> rendez-vous de programmé(s), aujourd’hui. Bonne journée et bonne route !
+            </p>
             <div>
               <appointment-item
                 v-for="(appointment) in appointments"
@@ -22,10 +26,11 @@
                 :appointment="appointment">
               </appointment-item>
             </div>
+          </div>
         </div>
-      </div>
-      <spinner v-else-if="status === $const.API.STATUS.LOADING" :is-visible="true"></spinner>
-    </transition>
+        <spinner v-else-if="status === $const.API.STATUS.LOADING" :is-visible="true"></spinner>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -33,6 +38,7 @@
 import WeatherWidget from '../components/Weather/WeatherWidget.vue';
 import AppointmentItem from '../components/Appointments/AppointmentItem.vue';
 import Spinner from '../components/Spinner.vue';
+import TopBar from '../components/Navigators/TopBar.vue';
 
 export default {
   name: 'home-page',
@@ -40,6 +46,7 @@ export default {
     WeatherWidget,
     AppointmentItem,
     Spinner,
+    TopBar,
   },
   data() {
     return {

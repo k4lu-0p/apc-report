@@ -216,8 +216,8 @@
             <button
               :disabled="this.$v.$invalid || formHasNoChange"
               v-else
-              :class="[this.$v.$invalid || formHasNoChange ? 'bg-gray-400' : ' bg-teal-600']"
-              class="mx-auto hover:bg-teal-800 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              :class="[this.$v.$invalid || formHasNoChange ? 'bg-gray-400' : ' bg-yellow-750']"
+              class="mx-auto hover:bg-yellow-750 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Mettre à jour
             </button>

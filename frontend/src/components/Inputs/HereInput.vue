@@ -133,27 +133,27 @@ export default {
   @apply w-full py-2 px-3 text-gray-700
   @apply leading-tight
   border-width theme('borderWidth.default')
-  border-color theme('borderColor.teal.600')
+  border-color theme('borderColor.purple.800')
   border-top none
   border-left none
   border-right none
 
 .magnify-icon
-  color theme('colors.teal.600')
-  fill theme('colors.teal.600')
+  color theme('colors.purple.800')
+  fill theme('colors.purple.800')
   height 20px
   width 20px
 
 .suggestions-list
   .suggestion-item
-    @apply border-b text-teal-600
+    @apply border-b text-yellow-750
     transition all 0.2s
 .suggestion-selected
   font-weight bold
 
 .add-icon
-  color theme('colors.teal.600')
-  fill theme('colors.teal.600')
+  color theme('colors.yellow.750')
+  fill theme('colors.yellow.750')
   width 10px
   height 10px
 </style>

@@ -130,6 +130,6 @@ export default {
       .icon-label
         @apply font-bold
     .tab-active
-      fill theme('colors.teal.600')
-      color theme('colors.teal.600')
+      fill theme('colors.yellow.750')
+      color theme('colors.yellow.750')
 </style>

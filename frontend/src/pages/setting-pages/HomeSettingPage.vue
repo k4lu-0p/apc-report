@@ -35,7 +35,7 @@
               v-for="user in users"
               :key="`user-${user.id}`"
               @click="handleSwitchAccount(user)"
-              class="my-2 h-20 rounded-r flex items-center justify-center border border-teal-600 shadow-lg bg-white rounded px-2"
+              class="my-2 h-20 rounded-r flex items-center justify-center border border-yellow-750 shadow-lg bg-white rounded px-2"
             >
               <p class="py-5 text-center w-full font-bold text-gray-800">{{ user.name }}</p>
             </div>
@@ -53,7 +53,7 @@
       <!-- logout -->
       <button
         @click="logout"
-        class="mx-auto border-2 border-teal-600 text-teal-600 bg-white w-full font-bold py-2 rounded focus:outline-none focus:shadow-outline"
+        class="mx-auto border-2 border-yellow-750 text-yellow-750 bg-white w-full font-bold py-2 rounded focus:outline-none focus:shadow-outline"
       >
         {{ $t('form.login.logout.label') }}
       </button>
