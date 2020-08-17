@@ -16,8 +16,7 @@ const template = {
   actions: {
     fetchAppointments: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
-
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_APPOINTMENTS}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_APPOINTMENTS}`;
 
       const config = {
         headers: {
@@ -48,7 +47,7 @@ const template = {
 
       const { authModule: { token } } = rootState;
       let newAppointment = null;
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.STORE_APPOINTMENT}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.STORE_APPOINTMENT}`;
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -73,7 +72,7 @@ const template = {
     },
     deleteAppointment: async ({ commit, rootState }, id) => {
       const { authModule: { token } } = rootState;
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.DELETE_APPOINTMENT}${id}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.DELETE_APPOINTMENT}${id}`;
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -94,7 +93,7 @@ const template = {
       const { id, formData } = payload;
       let newAppointment;
 
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.UPDATE_APPOINTMENT}${id}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.UPDATE_APPOINTMENT}${id}`;
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -1,51 +1,19 @@
-// common icons
-import SupportIcon from '../assets/svg/support.svg';
-import SettingsIcon from '../assets/svg/settings.svg';
-import ReportsIcon from '../assets/svg/reports.svg';
-import UsersIcon from '../assets/svg/users.svg';
-import AppointmentsIcon from '../assets/svg/appointments.svg';
-import HomeIcon from '../assets/svg/home.svg';
-import AddIcon from '../assets/svg/add.svg';
-import BackIcon from '../assets/svg/back.svg';
-import MagnifyIcon from '../assets/svg/magnify.svg';
-import AcceptIcon from '../assets/svg/accept.svg';
-import ClockIcon from '../assets/svg/clock.svg';
-import LocationIcon from '../assets/svg/location.svg';
-import WarningIcon from '../assets/svg/warning.svg';
-import AlertIcon from '../assets/svg/alert.svg';
-import DeleteIcon from '../assets/svg/remove.svg';
-import EditIcon from '../assets/svg/edit.svg';
-import UserIcon from '../assets/svg/user.svg';
-
-// weather icons
-import CloudCloudy from '../assets/svg/weather/cloud_cloudy.svg';
-import CloudCloudySun from '../assets/svg/weather/cloud_cloudy_sun.svg';
-import CloudCloudyThunderStorm from '../assets/svg/weather/cloud_cloudy_thunder_storm.svg';
-import CloudDrizzleRain from '../assets/svg/weather/cloud_drizzle_rain.svg';
-import CloudFog from '../assets/svg/weather/cloud_fog.svg';
-import CloudHeavyRain from '../assets/svg/weather/cloud_heavy_rain.svg';
-import CloudHeavyRainThunderStorm from '../assets/svg/weather/cloud_heavy_rain_thunder_storm.svg';
-import CloudHeavySnow from '../assets/svg/weather/cloud_heavy_snow.svg';
-import CloudNight from '../assets/svg/weather/cloud_night.svg';
-import CloudRain from '../assets/svg/weather/cloud_rain.svg';
-import CloudSnow from '../assets/svg/weather/cloud_snow.svg';
-import CloudWinter from '../assets/svg/weather/cloud_winter.svg';
-import SunSunnyCloud from '../assets/svg/weather/sun_sunny_cloud.svg';
-import SunSunnyHot from '../assets/svg/weather/sun_sunny_hot.svg';
+import _ICONS from './icons';
+import API from './api';
+import NAVIGATION from './navigation';
 
 export default {
-  CONFIG: {
-    LIMIT_WIDTH_SCREEN: 768,
-    LOCAL: {
-      FR: 'fr',
-      EN: 'en',
-    },
+  LOCAL: {
+    FR: 'fr',
+    EN: 'en',
   },
   MISC: {
+    LIMIT_WIDTH_SCREEN: 768,
     SPINNER: {
       COLOR: '#319795',
     },
   },
+<<<<<<< HEAD
   API: {
     // BASE_URL: '', // Dev mod
     // BASE_URL: 'http://localhost:8000', // Vue Serve mod
@@ -108,43 +76,10 @@ export default {
     REPORTS_EDIT: { NAME: 'reports-edit', PATH: 'edit/:id' },
 
   },
+=======
+  API,
+  NAVIGATION,
+>>>>>>> develop
 };
 
-export const ICONS = {
-  common: {
-    HomeIcon,
-    SupportIcon,
-    SettingsIcon,
-    ReportsIcon,
-    UsersIcon,
-    AppointmentsIcon,
-    AddIcon,
-    BackIcon,
-    MagnifyIcon,
-    AcceptIcon,
-    ClockIcon,
-    LocationIcon,
-    WarningIcon,
-    AlertIcon,
-    DeleteIcon,
-    EditIcon,
-    UserIcon,
-  },
-  weather: {
-    CloudCloudy,
-    CloudCloudySun,
-    CloudCloudyThunderStorm,
-    CloudDrizzleRain,
-    CloudFog,
-    CloudHeavyRain,
-    CloudHeavyRainThunderStorm,
-    CloudHeavySnow,
-    CloudNight,
-    CloudRain,
-    CloudSnow,
-    CloudWinter,
-    SunSunnyCloud,
-    SunSunnyHot,
-    UserIcon,
-  },
-};
+export const ICONS = _ICONS;

@@ -1,0 +1,13 @@
+Commentaire
+
+- commentaire en français uniquement si possible.
+
+Convention de nommage des dossiers et fichiers.
+
+- les dossiers sont nommés en snake case.
+- les fichiers services, helpers, middleware et autres sont nommé en camel case.
+- les fichiers des constantes sont nommés en snake case.
+- les composants sont nommés en pascal case.
+- les containers sont nommés en pascal case.
+- un dossier par router enfant afin.
+- un dossier par module de store.

@@ -15,7 +15,7 @@ const template = {
     fetchReports: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
 
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.FETCH_REPORTS}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_REPORTS}`;
 
       const config = {
         headers: {
@@ -45,7 +45,7 @@ const template = {
 
       const { id, responses } = payload;
       const { authModule: { token } } = rootState;
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.UPDATE_REPORT}${id}`;
+      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.UPDATE_REPORT}${id}`;
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
         commit('setStatus', $const.API.STATUS.LOADING);

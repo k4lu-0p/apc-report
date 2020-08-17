@@ -11,9 +11,9 @@
 
          <router-link
           id="tab-home"
-          :to="{name: $const.NAVIGATION.HOME_INDEX.NAME}"
+          :to="{name: $const.NAVIGATION.HOME_PAGE.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.HOME_INDEX.NAME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.HOME_PAGE.NAME}"
         >
           <home-icon class="icon"></home-icon>
           <span class="icon-label block text-xs">{{ $t('navigator.tabs.home') }}</span>
@@ -21,9 +21,9 @@
 
         <router-link
           id="tab-appointment"
-          :to="{name: $const.NAVIGATION.APPOINTMENTS_HOME.NAME}"
+          :to="{name: $const.NAVIGATION.LIST_APPOINTMENT_PAGE.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.APPOINTMENTS_HOME.NAME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.LIST_APPOINTMENT_PAGE.NAME}"
         >
           <AppointmentsIcon class="icon"></AppointmentsIcon>
           <span class="icon-label block text-xs">{{ $t('navigator.tabs.appointments') }}</span>
@@ -31,9 +31,9 @@
 
         <router-link
           id="tab-reports"
-          :to="{name: $const.NAVIGATION.REPORTS_HOME.NAME}"
+          :to="{name: $const.NAVIGATION.LIST_REPORT_PAGE.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.REPORTS_HOME.NAME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.LIST_REPORT_PAGE.NAME}"
         >
           <reports-icon class="icon"></reports-icon>
           <span class="icon-label block text-xs">{{ $t('navigator.tabs.reports') }}</span>
@@ -41,9 +41,9 @@
 
         <router-link
           id="tab-customers"
-          :to="{name: $const.NAVIGATION.CUSTOMERS_HOME.NAME}"
+          :to="{name: $const.NAVIGATION.LIST_CUSTOMER_PAGE.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.CUSTOMERS_HOME.NAME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.LIST_CUSTOMER_PAGE.NAME}"
         >
           <users-icon class="icon"></users-icon>
           <span class="icon-label block text-xs">{{ $t('navigator.tabs.customers') }}</span>
@@ -51,9 +51,9 @@
 
         <router-link
           id="tab-settings"
-          :to="{name: $const.NAVIGATION.SETTINGS_HOME.NAME}"
+          :to="{name: $const.NAVIGATION.HOME_SETTING_PAGE.NAME}"
           class="tab w-full flex flex-col items-center pt-2 pb-1 cursor-pointer"
-          :class="{'tab-active': $route.name === $const.NAVIGATION.SETTINGS_HOME.NAME}"
+          :class="{'tab-active': $route.name === $const.NAVIGATION.HOME_SETTING_PAGE.NAME}"
         >
           <settings-icon class="icon"></settings-icon>
           <span class="icon-label block text-xs">{{ $t('navigator.tabs.settings') }}</span>

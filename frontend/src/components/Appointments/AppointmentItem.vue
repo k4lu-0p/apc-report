@@ -1,7 +1,7 @@
 <template>
 <!-- eslint-disable max-len -->
   <div
-    @click="goTo($const.NAVIGATION.APPOINTMENTS_SHOW.NAME, appointment.id)"
+    @click="goTo($const.NAVIGATION.SHOW_APPOINTMENT_PAGE.NAME, appointment.id)"
     v-if="appointment" class="bg-white shadow-lg my-4 rounded-lg"
   >
     <div class="px-6">
@@ -26,7 +26,7 @@
       <hr>
       <div class="flex flex-wrap py-2">
         <p
-          @click.stop="goTo($const.NAVIGATION.REPORTS_EDIT.NAME, appointment.id)"
+          @click.stop="goTo($const.NAVIGATION.EDIT_REPORT_PAGE.NAME, appointment.id)"
           v-if="appointment.report.is_complete === 0 && isAppointmentOver"
           class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-teal-600 bg-teal-600 text-white font-medium flex items-center">
           <warning-icon class="warning-icon mr-1"></warning-icon>

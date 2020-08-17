@@ -13,17 +13,17 @@ async function createApiInstance(baseURL, params = {}) {
       'Content-Type': 'application/json',
     },
     params: {
-      appid: $const.API_WEATHER.KEY,
+      appid: $const.API.KEY.OPEN_WEATHER_MAP,
       lat: latitude,
       lon: longitude,
-      lang: $const.CONFIG.LOCAL.FR,
+      lang: $const.LOCAL.FR,
       ...params,
     },
   });
 }
 
-const apiWeatherClient = createApiInstance($const.API_WEATHER.CURRENT_WEATHER);
-const apiForecastsClient = createApiInstance($const.API_WEATHER.FORECASTS, { exclude: 'minutely,current,daily' });
+const apiWeatherClient = createApiInstance($const.API.ENDPOINTS.OPEN_WEATHER_MAP.CURRENT_WEATHER);
+const apiForecastsClient = createApiInstance($const.API.ENDPOINTS.OPEN_WEATHER_MAP.FORECASTS, { exclude: 'minutely,current,daily' });
 
 export default {
   instanciateCurrentWeather() {

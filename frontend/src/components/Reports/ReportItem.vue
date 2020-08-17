@@ -83,7 +83,7 @@ export default {
     goToSurvey() {
       if (this.report.is_complete === 0 && this.isAppointmentOver) {
         this.$router.push({
-          name: this.$const.NAVIGATION.REPORTS_EDIT.NAME,
+          name: this.$const.NAVIGATION.EDIT_REPORT_PAGE.NAME,
           params: { id: this.report.id },
         });
       } else {
