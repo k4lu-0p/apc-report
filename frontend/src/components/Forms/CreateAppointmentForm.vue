@@ -475,7 +475,7 @@ export default {
     @apply w-full px-0 py-2 text-gray-700
     @apply leading-tight
     border-width theme('borderWidth.default')
-    border-color theme('borderColor.teal.600')
+    border-color theme('borderColor.purple.800')
     border-top none
     border-left none
     border-right none
@@ -483,17 +483,17 @@ export default {
 // Theming datepicker
 .datetime-start, .datetime-finish
   .vdatetime-time-picker__item--selected
-    color theme('colors.yellow.750')
+    color theme('colors.purple.800')
   .vdatetime-month-picker__item--selected
-    color theme('colors.yellow.750')
+    color theme('colors.purple.800')
   .vdatetime-popup__actions__button
-    color theme('colors.yellow.750')
+    color theme('colors.purple.800')
   .vdatetime-calendar__month__day--selected:hover > span > span
-    background theme('colors.yellow.750')
+    background theme('colors.purple.800')
   .vdatetime-calendar__month__day--selected > span > span
-    background theme('colors.yellow.750')
+    background theme('colors.purple.800')
   .vdatetime-popup__header
-    background theme('colors.yellow.750')
+    background theme('colors.purple.800')
 
 .header-image
   height 120px

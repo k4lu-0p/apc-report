@@ -2,7 +2,8 @@
 <!-- eslint-disable max-len -->
   <div
     v-if="report.id"
-    class="bg-white shadow-lg my-4 rounded-lg"
+    class="border bg-white shadow-lg my-4 rounded-lg"
+    :class="[report.is_complete ? 'border-yellow-750' : 'border-purple-800']"
     @click="goToSurvey()"
   >
     <div class="px-6">
@@ -35,7 +36,7 @@
 
         <p
           v-if="report.is_complete"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium flex items-center">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-1"></accept-icon>
           <span>Complété</span>
         </p>
@@ -119,6 +120,6 @@ export default {
 .accept-icon2
   width 15px
   height 15px
-  fill theme('colors.purple.300')
-  color theme('colors.purple.300')
+  fill theme('colors.yellow.750')
+  color theme('colors.yellow.750')
 </style>

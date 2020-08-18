@@ -294,16 +294,16 @@ export default {
 // Theming datepicker
 .datetime-start, .datetime-finish
   .vdatetime-time-picker__item--selected
-    color theme('colors.yellow.750')
+    color theme('colors.purple.800')
   .vdatetime-month-picker__item--selected
-    color theme('colors.yellow.750')
+    color theme('colors.purple.800')
   .vdatetime-popup__actions__button
-    color theme('colors.yellow.750')
+    color theme('colors.purple.800')
   .vdatetime-calendar__month__day--selected:hover > span > span
-    background theme('colors.yellow.750')
+    background theme('colors.purple.800')
   .vdatetime-calendar__month__day--selected > span > span
-    background theme('colors.yellow.750')
+    background theme('colors.purple.800')
   .vdatetime-popup__header
-    background theme('colors.yellow.750')
+    background theme('colors.purple.800')
 
 </style>

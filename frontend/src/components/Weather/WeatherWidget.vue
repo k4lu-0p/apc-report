@@ -1,16 +1,18 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div>
-    <div class="bg-white shadow-lg my-4 rounded-lg w-3/4 py-4 mx-auto">
+  <div v-if="current && forecasts">
+    <div v-if="current.weather" class="bg-white shadow-lg my-4 rounded-lg w-3/4 pb-4 mx-auto">
       <!-- aujourd'hui -->
-      <div v-if="current" class="px-10 py-6">
+      <div v-if="current" class="py-6">
         <div class="flex flex-col items-center">
           <div class="flex items-center justify-between">
             <weather-icon :id="current.weather[0].id"></weather-icon>
-            <p class="font-bold text-sm text-gray-800 text-center pl-1">{{ current.weather[0].description | capitalize }}</p>
+            <p class="leading-10 font-bold text-sm text-gray-800 text-center pl-1">{{ current.weather[0].description | capitalize }}</p>
           </div>
-          <p class="text-6xl font-bold text-purple-800 text-center pl-6 -my-4">{{ current.main.temp | fahrenheit }}<span>°</span></p>
-          <p class="text-sm font-bold text-gray-800 text-center">{{ current.name }}</p>
+          <div class="">
+            <p class="text-6xl font-bold text-purple-800 text-center pl-6">{{ current.main.temp | fahrenheit }}<span>°</span></p>
+            <p class="text-sm font-bold text-gray-800 text-center text-xl">{{ current.name }}</p>
+          </div>
         </div>
       </div>
 
@@ -21,9 +23,7 @@
           <small class="font-bold text-gray-800">{{ $moment.unix(forecast.dt).format('LT') }}</small>
         </li>
       </ul>
-      <div>
 
-      </div>
     </div>
   </div>
 </template>

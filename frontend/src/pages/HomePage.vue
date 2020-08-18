@@ -12,7 +12,7 @@
         <div v-if="status === $const.API.STATUS.SUCCESS">
           <weather-widget></weather-widget>
           <div class="py-6">
-            <h1 class="text-center font-bold text-gray-800 text-2xl">Bienvenue sur APCReport</h1>
+            <h1 class="text-center font-bold text-gray-800 text-2xl">Bienvenue sur APC Report</h1>
             <p class="text-gray-800 text-center">Bonjour, <strong class="text-yellow-750">{{ username }}</strong>.</p>
           </div>
           <div>
