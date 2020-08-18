@@ -2,7 +2,8 @@
 <!-- eslint-disable max-len -->
   <div
     @click="goTo($const.NAVIGATION.SHOW_APPOINTMENT_PAGE.NAME, appointment.id)"
-    v-if="appointment" class="bg-white shadow-lg my-4 rounded-lg"
+    :class="[appointment.report.is_complete ? 'border-yellow-750' : 'border-purple-800']"
+    v-if="appointment" class="border  bg-white shadow-lg my-4 rounded-lg"
   >
     <div class="px-6">
        <div class="flex justify-between items-center py-2">
@@ -37,7 +38,7 @@
 
         <p
            v-if="appointment.report.is_complete"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium flex items-center">
+          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-1"></accept-icon>
           <span>
             Rapport complété

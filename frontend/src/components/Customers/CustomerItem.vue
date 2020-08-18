@@ -2,7 +2,7 @@
 <!-- eslint-disable max-len */ -->
   <div
     @click="goTo($const.NAVIGATION.SHOW_CUSTOMER_PAGE.NAME, customer.id)"
-    class="h-20 rounded-r flex items-center justify-center shadow-lg bg-white rounded px-2">
+    class="h-20 rounded-r flex items-center justify-center shadow-lg bg-white rounded px-2 border border-purple-800">
     <!-- <div class="bg-yellow-750 pl-1"></div> -->
     <p class="py-5 text-center w-full font-bold text-gray-800">{{ customer.commercial_name }}</p>
     <!-- <button

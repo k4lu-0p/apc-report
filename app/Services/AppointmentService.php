@@ -4,12 +4,14 @@ namespace App\Services;
 use App\Appointment;
 use App\Customer;
 use App\Http\Resources\AppointmentResource;
+use App\Mail\AppointmentMail;
 use App\Report;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 use App\Services\SurveyService;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentService {
 
@@ -132,8 +134,10 @@ class AppointmentService {
         Log::debug('[AppointmentService/create()] 1. Contenu de la requête ' . json_encode($this->request->all()));
 
         // handle date format
-        $start_at = Carbon::create($this->request->start_at)->format('Y-m-d H:i:s');
-        $finish_at = Carbon::create($this->request->finish_at)->format('Y-m-d H:i:s');
+        $start_at = Carbon::create($this->request->start_at)
+            ->format('Y-m-d H:i:s');
+        $finish_at = Carbon::create($this->request->finish_at)
+            ->format('Y-m-d H:i:s');
 
         Log::debug('[AppointmentService/create()] 2. start_at ' . $start_at);
         Log::debug('[AppointmentService/create()] 3. finish_at ' . $finish_at);
@@ -187,6 +191,10 @@ class AppointmentService {
 
         Log::debug('[AppointmentService/create()] 5. report lié : ' . $report->id);
         Log::debug('[AppointmentService/create()] 6. customer lié : ' . $customer->id);
+
+
+        Mail::to($customer->email)->send(new AppointmentMail($appointment, $this->request->user()));
+
 
         // succes response with appointment created
         return response()->newAppointmentStored($appointment);

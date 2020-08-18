@@ -159,7 +159,7 @@ export default {
 
 .customers-list
   .customer-item
-    @apply border-b text-yellow-750
+    @apply border-b text-purple-800
     transition all 0.2s
 
 .v-spinner-custom

@@ -46,7 +46,7 @@ class ReportMail extends Mailable
                 'responses' => $responses,
                 'start_at' => $this->report->appointment->start_at,
                 'finish_at' => $this->report->appointment->finish_at,
-                'customer_name' => $this->report->customer->name,
+                'customer_name' => $this->report->customer->commercial_name,
             ]);
         ;
     }
