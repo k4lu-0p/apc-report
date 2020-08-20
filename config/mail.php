@@ -45,7 +45,7 @@ return [
             'port' => 465,
             'encryption' => 'ssl',
             'username' => 'pro.lucas.rob1@gmail.com',
-            'password' => 'wzuQrZ1tTVRDo7oCjDm3',
+            'password' => 'VsC;z@Cz6+11L8;su.Q',
             'timeout' => null,
             'auth_mode' => 'login',
         ],
