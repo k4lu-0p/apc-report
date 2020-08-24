@@ -147,6 +147,7 @@ class SurveyService {
         return json_encode($this->generateDefaultResponses());
     }
 
+    // Rendre les réponses et questions du questionnaire lisible par un humain
     public function humanReadableResponses($responses) {
         $survey = $this->getSurvey();
         $humanResponses = [];
