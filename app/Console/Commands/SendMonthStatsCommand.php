@@ -45,9 +45,9 @@ class SendMonthStatsCommand extends Command
      */
     public function handle(StatsService $statsService, SurveyService $surveyService)
     {
-
         $appointmentsMonthly = $statsService->getAppointmentsMonthly();
-        $current_month_year = Carbon::now()->locale('fr_FR')->format('F Y');
+
+        $current_month_year = ucfirst(Carbon::today()->isoFormat('MMMM Y'));
 
         $csv_name = Str::snake($current_month_year) . '-' . uniqid() . '.csv';
         $csv_path = storage_path("app/$csv_name");
@@ -117,11 +117,12 @@ class SendMonthStatsCommand extends Command
         $admins = User::where('roles', '["ROLE_ADMIN"]')->get();
 
         // Envoi uniquement aux admins
-        // foreach ($admins as $admin) {
-        //     Mail::to($admin->email)->queue(new StatsMail($current_month_year, $csv_path));
-        // }
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)->queue(new StatsMail($current_month_year, $csv_path));
+        }
 
-        Mail::to('lucas.rob1@live.fr')->queue(new StatsMail($current_month_year, $csv_path));
+        // DEV:
+        // Mail::to('lucas.rob1@live.fr')->queue(new StatsMail($current_month_year, $csv_path));
 
     }
 }
