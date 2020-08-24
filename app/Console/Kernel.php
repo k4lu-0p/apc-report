@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('send:month:stats')->everyMinute();
+        $schedule->command('send:month:stats')->lastDayOfMonth('10:00');
     }
 
     /**
