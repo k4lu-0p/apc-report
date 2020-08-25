@@ -24,8 +24,9 @@ class GetAppointmentsRequest extends FormRequest
     public function rules()
     {
         return [
-            'by' => ['nullable'],
-            'value' => ['nullable'],
+            'report_status' => ['nullable', 'string'],
+            'commercial_name' => ['nullable', 'string'],
+            'period' => ['nullable'],
             'limit' => ['required', 'numeric'],
             'offset' => ['required', 'numeric'],
         ];

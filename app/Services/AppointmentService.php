@@ -19,34 +19,16 @@ class AppointmentService {
     private $request = null;
 
     const FILTER_AUTHORIZED = [
-        'CUSTOMER_NAME' => 'name',
-        'APPOINTMENT_START_AT' => 'start_at',
+        'REPORT_STATUS' => 'report_status',
+        'CUSTOMER_NAME' => 'customer_name',
+        'DATE' => 'date',
     ];
 
     public function setUserRequest($request) {
         // handle validations
         $validated = $request->validated();
-        $hasValidParams = $this->handleWrongParameters();
-
-        if ($hasValidParams === true) {
-            $this->request = $request;
-            $this->user = $request->user();
-        }
-    }
-
-    /**
-     * Vérifie si la valeur du $by paramètre est authorisée
-     */
-    private function handleWrongParameters()
-    {
-        if (isset($this->request->by) && in_array($this->request->by, self::FILTER_AUTHORIZED) === false) {
-            $error = ValidationException::withMessages([
-                'by' => ['filtre inconnu']
-            ]);
-            throw $error;
-        }
-
-        return true;
+        $this->request = $request;
+        $this->user = $request->user();
     }
 
     /**
@@ -220,18 +202,72 @@ class AppointmentService {
     /**
      * entry point des requêtes filtrées
      */
-    public function handleFilteredRequest()
+    public function filter()
     {
-        switch ($this->request->by) {
-            case self::FILTER_AUTHORIZED['CUSTOMER_NAME'] :
-                return $this->getByCustomerName();
-                break;
-            case self::FILTER_AUTHORIZED['APPOINTMENT_START_AT'] :
-                return $this->getByDateStart();
-                break;
-            default:
-                return $this->getAll();
-                break;
+
+        $appointment = Appointment::query()
+            ->join('reports', 'reports.appointment_id', '=', 'appointments.id')
+            ->join('customers', 'customers.id', '=', 'appointments.customer_id')
+            ->where('appointments.user_id', '=', $this->user->id);
+
+        // par status du rapport
+        if ($this->request->has('report_status')) {
+            switch ($this->request->input('report_status')) {
+                case 'completed':
+                    $appointment = $appointment
+                        ->where('reports.is_complete', true);
+                    break;
+                case 'uncompleted':
+                    $appointment = $appointment
+                        ->where('reports.is_complete', false);
+                    break;
+                default:
+                    # code...
+                    break;
+            }
         }
+
+        // par nom du customer
+        if ($this->request->has('commercial_name')) {
+            $appointment = $appointment
+                ->where('customers.commercial_name', 'LIKE', '%' . $this->request->input('commercial_name') . '%');
+        }
+
+        // par period
+        if ($this->request->has('period')) {
+            switch ($this->request->input('period')) {
+                // aujourd'hui
+                case 'current_day':
+                    $appointment = $appointment
+                        ->whereDate('start_at', Carbon::today());
+                    break;
+                // cette semaine
+                case 'current_week':
+                    $appointment = $appointment
+                        ->whereBetween('start_at', [
+                            Carbon::now()->startOfWeek(),
+                            Carbon::now()->endOfWeek()
+                        ]);
+                    break;
+                // ce mois-ci
+                case 'current_month':
+                    $appointment = $appointment
+                        ->whereMonth('start_at', date('m'))
+                        ->whereYear('start_at', date('Y'));
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+
+        // limit, offset, order
+        $appointment = $appointment
+            ->offset($this->request->offset)
+            ->limit($this->request->limit)
+            ->orderBy('start_at', 'asc')
+            ->get('appointments.*');
+
+        return AppointmentResource::collection($appointment);
     }
 }

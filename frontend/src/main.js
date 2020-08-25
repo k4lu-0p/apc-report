@@ -4,6 +4,7 @@ import axios from 'axios';
 import moment from 'moment';
 import MoonLoader from 'vue-spinner/src/MoonLoader.vue';
 import StarRating from 'vue-star-rating';
+import InfiniteScroll from 'vue-infinite-scroll';
 import { Datetime } from 'vue-datetime';
 import constants from './constants';
 import App from './App.vue';
@@ -25,6 +26,7 @@ import i18n from './plugins/i18n';
 // Dependencies
 Vue.use(Datetime);
 Vue.use(Vue2TouchEvents);
+Vue.use(InfiniteScroll);
 
 // Configurations
 Vue.config.productionTip = false;

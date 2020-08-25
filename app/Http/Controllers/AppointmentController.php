@@ -24,7 +24,7 @@ class AppointmentController extends Controller
     public function index(GetAppointmentsRequest $request, AppointmentService $appointmentService)
     {
         $appointmentService->setUserRequest($request);
-        return $appointmentService->handleFilteredRequest();
+        return $appointmentService->filter();
     }
 
     /**

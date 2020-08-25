@@ -53,8 +53,7 @@ export default {
       params: {
         limit: 10,
         offset: 0,
-        by: 'start_at',
-        value: this.$moment().format('YYYY-MM-DD'),
+        period: 'current_day',
       },
     };
   },
@@ -73,14 +72,16 @@ export default {
     this.$store.commit('appointmentsModule/setAppointments', []);
   },
   mounted() {
-    this.$store.dispatch('appointmentsModule/fetchAppointments', this.params).then(() => {
-      // Handle invalid token even if user is authenticated
-      if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
-        this.$store.dispatch('authModule/logout').then(() => {
-          this.$router.push({ name: this.$const.NAVIGATION.LOGIN_PAGE.NAME });
-        });
-      }
-    });
+    if (this.status !== this.$const.API.STATUS.LOADING) {
+      this.$store.dispatch('appointmentsModule/fetchAppointments', this.params).then(() => {
+        // Handle invalid token even if user is authenticated
+        if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
+          this.$store.dispatch('authModule/logout').then(() => {
+            this.$router.push({ name: this.$const.NAVIGATION.LOGIN_PAGE.NAME });
+          });
+        }
+      });
+    }
   },
 };
 </script>
