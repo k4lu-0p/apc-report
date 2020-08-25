@@ -9,9 +9,9 @@
       <div class="container mx-auto px-4">
 
         <!-- filtres -->
-        <div class="flex flex-col py-4">
+        <div class="flex flex-col py-6">
            <!-- par nom du partenaire -->
-           <div class="pb-2">
+           <div class="pb-4">
             <input-search
               id="customers"
               placeholder="(Optionnel) Nom du partenaire"
@@ -83,7 +83,6 @@
 
         <!-- more -->
         <div class="flex flex-col justify-center items-center pb-10 pt-4">
-          <hr class="w-2/4" :class="[status === $const.API.STATUS.LOADING ? 'mb-0' : 'mb-4']">
           <transition mode="out-in"
             enter-active-class="animated fadeIn faster-x2"
             leave-active-class="animated fadeOut faster-x2">
