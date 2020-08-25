@@ -13,6 +13,11 @@ const template = {
       initial_value: [],
     },
   },
+  mutations: {
+    addAppointment: (state, appointment) => {
+      state.appointments.push(appointment);
+    },
+  },
   actions: {
     fetchAppointments: async ({ commit, rootState }, params) => {
       const { authModule: { token } } = rootState;
@@ -29,7 +34,10 @@ const template = {
         commit('setStatus', $const.API.STATUS.LOADING);
 
         const { data: { data: appointments } } = await axios.get(endpoint, config);
-        commit('setAppointments', appointments);
+
+        appointments.forEach((appointment) => {
+          commit('addAppointment', appointment);
+        });
 
         commit('setStatus', $const.API.STATUS.SUCCESS);
       } catch (error) {

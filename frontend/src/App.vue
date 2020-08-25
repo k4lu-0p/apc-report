@@ -80,13 +80,13 @@ export default {
   animation-duration 0.25s !important
 
 .bg-main
-  background-color #ffffff
+  // background-color #ffffff
   background-image url('/img/bg/bg_main.svg')
   background-attachment fixed
   background-size cover
-  background-position center
+  background-position center 50px
   background-repeat no-repeat
-  @apply min-h-screen w-screen absolute top-0 left-0
+  @apply min-h-screen w-screen fixed top-0 left-0
   z-index -1
 
 .user-icon

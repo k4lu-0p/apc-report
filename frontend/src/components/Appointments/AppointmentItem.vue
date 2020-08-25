@@ -3,7 +3,7 @@
   <div
     @click="goTo($const.NAVIGATION.SHOW_APPOINTMENT_PAGE.NAME, appointment.id)"
     :class="[appointment.report.is_complete ? 'border-yellow-750' : 'border-purple-800']"
-    v-if="appointment" class="border  bg-white shadow-lg my-4 rounded-lg"
+    v-if="appointment" class="border-l-2 bg-white shadow-lg mb-4 rounded-r"
   >
     <div class="px-6">
        <div class="flex justify-between items-center py-2">
@@ -21,7 +21,7 @@
         </div>
       </div>
 
-      <p class="py-4 font-bold text-lg text-gray-800">{{ appointment.customer.commercial_name }}</p>
+      <p class="py-4 font-medium text-lg text-gray-800">{{ appointment.customer.commercial_name }}</p>
 
       <!-- chips -->
       <hr>
@@ -29,10 +29,10 @@
         <p
           @click.stop="goTo($const.NAVIGATION.EDIT_REPORT_PAGE.NAME, appointment.id)"
           v-if="appointment.report.is_complete === 0 && isAppointmentOver"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
+          class="cursor-pointer my-1 mr-2 text-xs px-2 py-1/2 rounded shadow border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
           <warning-icon class="warning-icon mr-1"></warning-icon>
           <span>
-            Rapport à compléter
+            Compléter le rapport
           </span>
         </p>
 
