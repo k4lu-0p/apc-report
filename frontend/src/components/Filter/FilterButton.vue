@@ -1,7 +1,7 @@
 <template>
   <button
     @click="updateActiveFilter"
-    class="rounded-full mr-2 px-3 py-1/2 text-xs border transition-all duration-300 ease-in-out"
+    class="rounded-full mr-2 px-3 py-1 text-xs border font-medium"
     :class="[ activeFilter === value ? 'active' : 'passive' ]">
     <slot></slot>
   </button>
@@ -29,8 +29,8 @@ export default {
 
 <style lang="stylus" scoped>
   .active
-    @apply border-purple-800 bg-purple-800 text-white shadow-inner font-bold
+    @apply border-purple-800 bg-purple-800 text-white shadow-inner
 
   .passive
-    @apply text-gray-500 shadow-inner font-medium bg-white
+    @apply text-gray-500 shadow-inner bg-white
 </style>
