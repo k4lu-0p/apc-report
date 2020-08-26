@@ -1,7 +1,7 @@
 <template>
   <button
     @click="updateActiveFilter"
-    class="rounded-full mr-2 px-3 py-1 text-xs border font-medium"
+    class="rounded-full mr-2 px-2 py-1 text-sm border font-medium"
     :class="[ activeFilter === value ? 'active' : 'passive' ]">
     <slot></slot>
   </button>

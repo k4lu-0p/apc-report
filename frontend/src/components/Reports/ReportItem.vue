@@ -110,7 +110,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .clock-icon, .users-icon
   width 15px
   height 15px

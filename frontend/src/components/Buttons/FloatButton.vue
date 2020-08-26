@@ -44,8 +44,8 @@ export default {
     display flex
     justify-content center
     align-items center
-    width 45px
-    height 45px
+    width 52px
+    height 52px
     fill theme('colors.white')
     background-color theme('colors.purple.800')
     border-radius theme('borderRadius.full')

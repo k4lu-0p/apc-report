@@ -1,9 +1,9 @@
 <template>
 <!-- eslint-disable max-len -->
   <div>
-    <div class="relative appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-10 flex justify-between">
+    <div class="relative appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12 flex justify-between">
       <input
-        class="px-3 bg-transparent absolute h-full w-5/6 left-0 top-0 text-gray-700"
+        class="pl-3 bg-transparent absolute h-full w-5/6 text-lg left-0 top-0 text-gray-700"
         :id="id"
         type="search"
         v-model="search"

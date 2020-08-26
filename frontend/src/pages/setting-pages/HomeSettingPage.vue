@@ -16,7 +16,7 @@
         <input-search
           id="search-user"
           :status="usersModuleStatus"
-          placeholder="Rechercher un nom d'utilisateur"
+          placeholder="Nom d'utilisateur"
           @search="handleSearchUser"
         ></input-search>
         <transition
@@ -53,7 +53,7 @@
       <!-- logout -->
       <button
         @click="logout"
-        class="mx-auto border-2 border-yellow-750 text-yellow-750 bg-white w-full font-bold py-2 rounded focus:outline-none focus:shadow-outline"
+        class="text-lg mx-auto border-2 border-yellow-750 text-yellow-750 bg-white w-full font-bold py-2 rounded focus:outline-none focus:shadow-outline"
       >
         {{ $t('form.login.logout.label') }}
       </button>

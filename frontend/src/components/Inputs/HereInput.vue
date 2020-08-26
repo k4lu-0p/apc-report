@@ -5,9 +5,9 @@
       {{ label }}
       <span class="text-red-500">*</span>
     </label>
-    <div class="relative appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-10 flex justify-between">
+    <div class="relative appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-12 flex justify-between">
       <input
-        class="px-3 bg-transparent absolute h-full w-5/6 left-0 top-0 text-gray-700"
+        class="text-lg px-3 bg-transparent absolute h-full w-5/6 left-0 top-0 text-gray-700"
         id="location"
         type="search"
         v-model="search"
