@@ -6,6 +6,7 @@
     mode="out-in">
     <!-- Main -->
     <div class="min-h-screen"  v-infinite-scroll="handleFetchMore" infinite-scroll-distance="1">
+      <top-bar></top-bar>
       <div class="container mx-auto px-4">
 
         <!-- filtres -->
@@ -109,6 +110,7 @@ import FloatButton from '../../components/Buttons/FloatButton.vue';
 import Spinner from '../../components/Spinner.vue';
 import FilterButton from '../../components/Filter/FilterButton.vue';
 import InputSearch from '../../components/Inputs/InputSearch.vue';
+import TopBar from '../../components/Navigators/TopBar.vue';
 
 import { ICONS } from '../../constants';
 
@@ -123,6 +125,7 @@ export default {
     AddIcon,
     FilterButton,
     InputSearch,
+    TopBar,
   },
   data() {
     return {

@@ -3,7 +3,7 @@
   <div
     @click="goTo($const.NAVIGATION.SHOW_APPOINTMENT_PAGE.NAME, appointment.id)"
     :class="[appointment.report.is_complete ? 'border-yellow-750' : 'border-purple-800']"
-    v-if="appointment" class="border-l-2 bg-white shadow-lg mb-4 rounded-r"
+    v-if="appointment" class="border-l-2 bg-white shadow mb-2 rounded-r"
   >
     <div class="px-6">
        <div class="flex justify-between items-center py-2">

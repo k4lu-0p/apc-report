@@ -2,7 +2,7 @@
 <!-- eslint-disable max-len -->
   <div class="min-h-screen">
     <!-- top bar -->
-    <top-bar :has-search-input="false" ></top-bar>
+    <top-bar></top-bar>
 
     <!-- Main -->
     <div class="container mx-auto px-4">

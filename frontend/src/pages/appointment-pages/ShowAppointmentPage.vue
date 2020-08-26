@@ -1,11 +1,14 @@
 <template>
 <!-- eslint-disable max-len -->
   <div class="min-h-screen">
-    <top-bar
-      has-back-button
-      :has-delete-button="isAppointmentOver === false"
-      @delete="isVisibleModal = true"
-    />
+    <!-- topbar -->
+    <top-bar>
+      <back-button slot="left"/>
+      <delete-button slot="left"
+        v-if="isAppointmentOver === false"
+        @delete="isVisibleModal = true"/>
+    </top-bar>
+
     <div class="container mx-auto px-4">
 
       <div v-if="appointment">
@@ -145,6 +148,8 @@ import TopBar from '../../components/Navigators/TopBar.vue';
 import Spinner from '../../components/Spinner.vue';
 import AlertModal from '../../components/Modals/AlertModal.vue';
 import validator from '../../validators';
+import DeleteButton from '../../components/Buttons/DeleteButton.vue';
+import BackButton from '../../components/Buttons/BackButton.vue';
 
 export default {
   name: 'show-appointment-page',
@@ -152,6 +157,8 @@ export default {
     TopBar,
     Spinner,
     AlertModal,
+    DeleteButton,
+    BackButton,
   },
   data() {
     return {

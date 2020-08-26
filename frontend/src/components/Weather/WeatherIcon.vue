@@ -135,8 +135,8 @@ export default {
 
 <style lang="stylus">
   .weather-icon
-    height 30px
-    width 30px
+    height 35px
+    width 35px
     fill theme('colors.purple.800')
     color theme('colors.purple.800')
 </style>

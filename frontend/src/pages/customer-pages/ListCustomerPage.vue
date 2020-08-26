@@ -3,7 +3,7 @@
   <!-- Main -->
   <div class="min-h-screen">
     <!-- top bar -->
-    <top-bar :has-search-input="false" ></top-bar>
+    <top-bar></top-bar>
     <div class="container mx-auto px-4">
 
       <div class="py-6">

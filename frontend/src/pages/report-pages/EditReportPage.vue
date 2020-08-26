@@ -1,8 +1,14 @@
 <template>
   <div class="min-h-screen bg-white">
-    <top-bar :has-back-button="true"></top-bar>
+    <!-- topbar -->
+    <top-bar>
+      <back-button slot="left"/>
+    </top-bar>
+
+    <!-- main -->
     <div class="container mx-auto px-4">
 
+      <!-- form -->
       <edit-report-form
         v-if="report"
         :survey="survey"
@@ -11,6 +17,7 @@
         @submit="handleSubmitResponses($event)"
       ></edit-report-form>
 
+      <!-- spinner -->
       <spinner
         :is-visible="report === null"
       ></spinner>
@@ -23,6 +30,7 @@
 import EditReportForm from '../../components/Forms/EditReportForm.vue';
 import TopBar from '../../components/Navigators/TopBar.vue';
 import Spinner from '../../components/Spinner.vue';
+import BackButton from '../../components/Buttons/BackButton.vue';
 
 export default {
   name: 'edit-report-page',
@@ -35,6 +43,7 @@ export default {
     EditReportForm,
     TopBar,
     Spinner,
+    BackButton,
   },
   methods: {
     handleSubmitResponses(responses) {

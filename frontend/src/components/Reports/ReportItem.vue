@@ -2,7 +2,7 @@
 <!-- eslint-disable max-len -->
   <div
     v-if="report.id"
-    class="border bg-white shadow-lg my-4 rounded-lg"
+    class="border-l-2 bg-white shadow mb-2 rounded-r border-purple-800"
     :class="[report.is_complete ? 'border-yellow-750' : 'border-purple-800']"
     @click="goToSurvey()"
   >
