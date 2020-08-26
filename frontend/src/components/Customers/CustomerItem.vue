@@ -2,15 +2,9 @@
 <!-- eslint-disable max-len */ -->
   <div
     @click="goTo($const.NAVIGATION.SHOW_CUSTOMER_PAGE.NAME, customer.id)"
-    class="h-20 rounded-r flex items-center justify-center shadow-lg bg-white rounded px-2 border border-purple-800">
-    <!-- <div class="bg-yellow-750 pl-1"></div> -->
+    class="h-20 border-l-2 bg-white shadow mb-1 rounded-r border-purple-800 flex items-center">
     <p class="py-5 text-center w-full font-bold text-gray-800">{{ customer.commercial_name }}</p>
-    <!-- <button
-      @click="$emit('delete', customer.id)"
-    >
-      Supprimer
-    </button> -->
-    </div>
+  </div>
 </template>
 
 <script>

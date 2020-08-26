@@ -1,9 +1,11 @@
 <template>
 <!-- eslint-disable max-len -->
   <div class="min-h-screen bg-white">
-    <top-bar
-      has-back-button
-    />
+    <!-- topbar -->
+    <top-bar>
+      <back-button slot="left"/>
+    </top-bar>
+
     <transition
       mode="out-in"
       enter-active-class="animated fadeIn faster-x2"
@@ -247,6 +249,7 @@ import { customerValidationMessages } from '../../mixins/formValidationMessages'
 import validator from '../../validators';
 import Spinner from '../../components/Spinner.vue';
 import AlertModal from '../../components/Modals/AlertModal.vue';
+import BackButton from '../../components/Buttons/BackButton.vue';
 
 export default {
   name: 'edit-customer-page',
@@ -256,6 +259,7 @@ export default {
     Spinner,
     AlertModal,
     HereInput,
+    BackButton,
   },
   data() {
     return {

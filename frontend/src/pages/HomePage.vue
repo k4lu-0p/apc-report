@@ -2,7 +2,6 @@
 <!-- eslint-disable max-len -->
   <!-- Main -->
   <div>
-    <top-bar/>
     <div class="container mx-auto px-4">
       <transition
         mode="out-in"
@@ -11,14 +10,14 @@
       >
         <div v-if="status === $const.API.STATUS.SUCCESS">
           <weather-widget></weather-widget>
-          <div class="py-6">
+          <div class="py-6 bg-white shadow rounded w-full mx-auto">
             <h1 class="text-center font-bold text-gray-800 text-2xl">Bienvenue sur APC Report</h1>
-            <p class="text-gray-800 text-center">Bonjour, <strong class="text-yellow-750">{{ username }}</strong>.</p>
           </div>
           <div>
-            <p class="pb-6 text-center font-medium text-md">
-              Vous avez <span class="font-bold text-purple-800">{{ appointments.length }}</span> rendez-vous de programmé(s), aujourd’hui. Bonne journée et bonne route !
-            </p>
+            <div class="text-center font-medium text-lg bg-white shadow my-2 rounded w-full py-6 mx-auto">
+              <p class="text-xl text-gray-800 text-center pb-3">Bonjour, <strong class="text-yellow-750">{{ username }}</strong>.</p>
+              <p class="">Vous avez <span class="font-bold text-xl text-purple-800">{{ appointments.length }}</span> rendez-vous de programmé(s), aujourd’hui. Bonne journée et bonne route !</p>
+            </div>
             <div>
               <appointment-item
                 v-for="(appointment) in appointments"
@@ -38,7 +37,6 @@
 import WeatherWidget from '../components/Weather/WeatherWidget.vue';
 import AppointmentItem from '../components/Appointments/AppointmentItem.vue';
 import Spinner from '../components/Spinner.vue';
-import TopBar from '../components/Navigators/TopBar.vue';
 
 export default {
   name: 'home-page',
@@ -46,7 +44,6 @@ export default {
     WeatherWidget,
     AppointmentItem,
     Spinner,
-    TopBar,
   },
   data() {
     return {

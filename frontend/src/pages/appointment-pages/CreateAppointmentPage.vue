@@ -2,7 +2,10 @@
 <!-- eslint-disable max-len -->
   <div class="min-h-screen bg-white">
     <!-- top bar -->
-    <top-bar has-back-button ></top-bar>
+    <top-bar>
+      <back-button slot="left"/>
+    </top-bar>
+
     <div class="container mx-auto px-8">
 
       <!-- form -->
@@ -30,6 +33,7 @@
 import TopBar from '../../components/Navigators/TopBar.vue';
 import CreateAppointmentForm from '../../components/Forms/CreateAppointmentForm.vue';
 import AlertModal from '../../components/Modals/AlertModal.vue';
+import BackButton from '../../components/Buttons/BackButton.vue';
 
 export default {
   name: 'create-appointment-page',
@@ -37,6 +41,7 @@ export default {
     TopBar,
     CreateAppointmentForm,
     AlertModal,
+    BackButton,
   },
   data() {
     return {

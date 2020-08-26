@@ -1,11 +1,14 @@
 <template>
 <!-- eslint-disable max-len -->
   <div class="min-h-screen">
-    <top-bar
-      has-back-button
-      has-delete-button
-      @delete="isVisibleModal = true"
-    />
+    <!-- topbar -->
+    <top-bar>
+      <back-button slot="left"/>
+      <delete-button slot="left"
+        @delete="isVisibleModal = true"/>
+    </top-bar>
+
+    <!-- main -->
     <div class="container mx-auto px-4">
       <div v-if="customer">
         <div class="py-4">
@@ -89,6 +92,8 @@ import TopBar from '../../components/Navigators/TopBar.vue';
 import Spinner from '../../components/Spinner.vue';
 import AlertModal from '../../components/Modals/AlertModal.vue';
 import FloatButton from '../../components/Buttons/FloatButton.vue';
+import BackButton from '../../components/Buttons/BackButton.vue';
+import DeleteButton from '../../components/Buttons/DeleteButton.vue';
 import { ICONS } from '../../constants';
 
 const { common: { EditIcon } } = ICONS;
@@ -101,6 +106,8 @@ export default {
     AlertModal,
     FloatButton,
     EditIcon,
+    BackButton,
+    DeleteButton,
   },
   data() {
     return {

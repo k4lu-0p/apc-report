@@ -50,6 +50,7 @@ export default {
     background-color theme('colors.purple.800')
     border-radius theme('borderRadius.full')
     box-shadow theme('boxShadow.xl')
+    border white solid 2px
 
     .button-icon > *
       transition all 0.2s
