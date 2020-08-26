@@ -31,7 +31,7 @@
 
           <!-- input -->
           <input
-            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="appearance-none border rounded w-full text-lg p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name=""
             id="warning"
             type="text"
@@ -62,7 +62,7 @@
 
           <!-- input -->
           <input
-            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="appearance-none border rounded w-full text-lg p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name=""
             id="warning"
             type="text"
@@ -93,7 +93,7 @@
 
           <!-- input -->
           <input
-            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="appearance-none border rounded w-full text-lg p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name=""
             id="warning"
             type="text"
@@ -147,7 +147,7 @@
 
           <!-- input -->
           <input
-            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="appearance-none border rounded w-full text-lg p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name=""
             id="warning"
             type="email"
@@ -178,7 +178,7 @@
 
           <!-- input -->
           <input
-            class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="appearance-none border rounded w-full text-lg p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name=""
             id="warning"
             type="tel"
@@ -200,7 +200,7 @@
         </div>
 
         <!-- Submit -->
-        <div class="pb-8 flex justify-center items-center h-16">
+        <div class=" flex justify-center h-20 items-start">
           <transition
             mode="out-in"
             enter-active-class="animated fadeIn faster-x2"
@@ -219,7 +219,7 @@
               :disabled="this.$v.$invalid || formHasNoChange"
               v-else
               :class="[this.$v.$invalid || formHasNoChange ? 'bg-gray-400' : ' bg-yellow-750']"
-              class="mx-auto hover:bg-yellow-750 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              class="mx-auto hover:bg-yellow-750 w-full text-white font-bold py-3 text-lg px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Mettre à jour
             </button>

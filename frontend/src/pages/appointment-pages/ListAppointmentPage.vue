@@ -15,7 +15,7 @@
            <div class="pb-4">
             <input-search
               id="customers"
-              placeholder="(Optionnel) Nom du partenaire"
+              placeholder="Nom du partenaire"
               :status="status"
               @search="handleSearchCustomer"
             >
@@ -78,8 +78,8 @@
           </li>
         </ul>
         <spinner v-else-if="status === $const.API.STATUS.LOADING" :is-visible="true"></spinner>
-        <div v-else class="absolute top-50 left-0 flex flex-col justify-center items-center">
-          <p class="text-gray-500 text-center px-10">{{ $t('page.appointments.empty') }}</p>
+        <div v-else class="absolute top-45 left-0 flex flex-col justify-center items-center">
+          <p class="text-gray-500 text-lg text-center px-6">{{ $t('page.appointments.empty') }}</p>
         </div>
 
         <!-- more -->

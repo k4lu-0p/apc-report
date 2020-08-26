@@ -16,7 +16,7 @@
           input-id="startAt"
           v-model="startAt"
           @blur="$v.form.start_at.$touch()"
-          input-class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          input-class="text-lg appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           :phrases="{ok: 'Ok', cancel: 'Annuler'}"
           :title="$t('form.appointment.date.start.label')"
           :placeholder="$t('form.appointment.date.start.placeholder')"
@@ -54,7 +54,7 @@
           input-id="finishAt"
           v-model="finishAt"
           @blur="$v.form.finish_at.$touch()"
-          input-class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          input-class="text-lg appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           :phrases="{ok: 'Ok', cancel: 'Annuler'}"
           :title="$t('form.appointment.date.finish.label')"
           :placeholder="$t('form.appointment.date.finish.placeholder')"
@@ -146,7 +146,7 @@
 
             <!-- input -->
             <input
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="text-lg appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               name=""
               id="warning"
               type="text"
@@ -177,7 +177,7 @@
 
             <!-- input -->
             <input
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="text-lg appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               name=""
               id="warning"
               type="text"
@@ -230,7 +230,7 @@
 
             <!-- input -->
             <input
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="text-lg appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               name=""
               id="warning"
               type="email"
@@ -261,7 +261,7 @@
 
             <!-- input -->
             <input
-              class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              class="text-lg appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               name=""
               id="warning"
               type="tel"
@@ -293,7 +293,7 @@
 
         <!-- input -->
         <textarea
-          class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="text-lg appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           name=""
           id="warning"
           rows="5"
@@ -334,7 +334,7 @@
             :disabled="this.$v.$invalid"
             v-else
             :class="[this.$v.$invalid ? 'bg-gray-400' : ' bg-yellow-750']"
-            class="mx-auto hover:bg-yellow-750 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            class="text-lg mx-auto hover:bg-yellow-750 w-full text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             {{ $t('form.appointment.submit.label') }}
           </button>

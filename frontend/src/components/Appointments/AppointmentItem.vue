@@ -21,7 +21,7 @@
         </div>
       </div>
 
-      <p class="py-4 font-medium text-lg text-gray-800">{{ appointment.customer.commercial_name }}</p>
+      <p class="py-4 font-medium text-xl text-gray-800">{{ appointment.customer.commercial_name }}</p>
 
       <!-- chips -->
       <hr>
@@ -29,8 +29,8 @@
         <p
           @click.stop="goTo($const.NAVIGATION.EDIT_REPORT_PAGE.NAME, appointment.id)"
           v-if="appointment.report.is_complete === 0 && isAppointmentOver"
-          class="cursor-pointer my-1 mr-2 text-xs px-2 py-1/2 rounded shadow border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
-          <warning-icon class="warning-icon mr-1"></warning-icon>
+          class="cursor-pointer my-1 mr-2 px-2 py-1/2 rounded shadow border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
+          <warning-icon class="warning-icon mr-2"></warning-icon>
           <span>
             Compléter le rapport
           </span>
@@ -38,8 +38,8 @@
 
         <p
            v-if="appointment.report.is_complete"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
-          <accept-icon class="accept-icon2 mr-1"></accept-icon>
+          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
+          <accept-icon class="accept-icon2 mr-2"></accept-icon>
           <span>
             Rapport complété
           </span>
@@ -103,7 +103,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
   .location-icon
     height 14px
     width 14px
@@ -111,8 +111,20 @@ export default {
     color theme('colors.gray.500')
 
   .warning-icon
-    height 14px
-    width 14px
+    height 20px
+    width 20px
     fill theme('colors.white')
     color theme('colors.white')
+
+  .accept-icon2
+    width 20px
+    height 20px
+    fill theme('colors.yellow.750')
+    color theme('colors.yellow.750')
+
+  .clock-icon, .users-icon
+    width 15px
+    height 15px
+    fill theme('colors.gray.500')
+    color theme('colors.gray.500')
 </style>
