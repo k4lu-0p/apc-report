@@ -5,7 +5,7 @@
     leave-active-class="animated fadeOut faster"
     mode="out-in">
     <!-- Main -->
-    <div class="min-h-screen"  v-infinite-scroll="handleFetchMore" infinite-scroll-distance="1">
+    <div class="min-h-screen" v-infinite-scroll="handleFetchMore" infinite-scroll-distance="1">
       <top-bar></top-bar>
       <div class="container mx-auto px-4">
 
