@@ -29,21 +29,21 @@
       <div class="flex flex-wrap py-2">
         <p
           v-if="report.is_complete === 0 && isAppointmentOver"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
+          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
           <warning-icon class="warning-icon mr-1"></warning-icon>
           <span>À compléter</span>
         </p>
 
         <p
           v-if="report.is_complete"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
+          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-1"></accept-icon>
           <span>Complété</span>
         </p>
 
         <p
           v-if="isAppointmentFinishToday"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
+          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
           Aujourd'hui
         </p>
 

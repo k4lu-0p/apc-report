@@ -21,7 +21,9 @@
         </div>
       </div>
 
-      <p class="py-4 font-medium text-xl text-gray-800">{{ appointment.customer.commercial_name }}</p>
+      <p class="py-4 font-medium text-xl text-gray-800">
+        {{ appointment.customer.commercial_name }}
+      </p>
 
       <!-- chips -->
       <hr>

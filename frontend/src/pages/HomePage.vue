@@ -70,7 +70,7 @@ export default {
   },
   mounted() {
     if (this.status !== this.$const.API.STATUS.LOADING) {
-      this.$store.dispatch('appointmentsModule/fetchAppointments', this.params).then(() => {
+      this.$store.dispatch('appointmentsModule/list', this.params).then(() => {
         // Handle invalid token even if user is authenticated
         if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
           this.$store.dispatch('authModule/logout').then(() => {

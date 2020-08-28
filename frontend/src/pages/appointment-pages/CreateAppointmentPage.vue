@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     handleSubmit(form) {
-      this.$store.dispatch('appointmentsModule/storeAppointment', form).then((newAppointmentCreated) => {
+      this.$store.dispatch('appointmentsModule/create', form).then((newAppointmentCreated) => {
         this.isConfirmModalOpen = true;
         this.newAppointmentCreated = newAppointmentCreated;
       });
