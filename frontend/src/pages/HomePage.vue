@@ -19,7 +19,7 @@
             <div>
               <appointment-item
                 v-for="(appointment, index) in appointments"
-                :key="`appointment-${appointment.id}`"
+                :key="`appointment-${appointment.id}-${index}`"
                 :id="`appointment-${appointment.id}-${index}`"
                 :delay-anim="index"
                 :appointment="appointment">
