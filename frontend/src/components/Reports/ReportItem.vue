@@ -116,12 +116,12 @@ export default {
       delay: this.delayAnim,
       defaults: {
         duration: 1,
-        ease: 'power2',
+        ease: 'power3',
       },
     });
 
     if (this.$refs[this.id]) {
-      timeline.from(this.$refs[this.id], 1, { x: 300 });
+      timeline.from(this.$refs[this.id], 1, { x: 500 });
       timeline.to(this.$refs[this.id], 1, { x: 0, rotation: 0 });
     }
   },
