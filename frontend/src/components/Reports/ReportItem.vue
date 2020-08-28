@@ -1,6 +1,7 @@
 <template>
 <!-- eslint-disable max-len -->
   <div
+    :ref="id"
     v-if="report.id"
     class="border-l-2 bg-white shadow mb-2 rounded-r border-purple-800"
     :class="[report.is_complete ? 'border-yellow-750' : 'border-purple-800']"
@@ -58,6 +59,7 @@
 </template>
 
 <script>
+import { gsap } from 'gsap';
 import { ICONS } from '../../constants';
 
 const {
@@ -79,6 +81,8 @@ export default {
   },
   props: {
     report: Object,
+    delayAnim: Number,
+    id: String,
   },
   methods: {
     goToSurvey() {
@@ -106,6 +110,20 @@ export default {
         this.$moment().format('YYYY-MM-DD, h:mm:ss') > this.$moment(this.report.appointment_finish_at).format('YYYY-MM-DD, h:mm:ss')
       );
     },
+  },
+  mounted() {
+    const timeline = gsap.timeline({
+      delay: this.delayAnim,
+      defaults: {
+        duration: 1,
+        ease: 'power2',
+      },
+    });
+
+    if (this.$refs[this.id]) {
+      timeline.from(this.$refs[this.id], 1, { x: 300 });
+      timeline.to(this.$refs[this.id], 1, { x: 0, rotation: 0 });
+    }
   },
 };
 </script>

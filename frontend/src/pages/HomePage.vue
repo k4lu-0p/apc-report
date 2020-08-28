@@ -10,18 +10,18 @@
       >
         <div v-if="status === $const.API.STATUS.SUCCESS">
           <weather-widget></weather-widget>
-          <div class="py-6 bg-white shadow rounded w-full mx-auto">
-            <h1 class="text-center font-bold text-gray-800 text-2xl">Bienvenue sur APC Report</h1>
-          </div>
+          <home-title />
           <div>
-            <div class="text-center font-medium text-lg bg-white shadow my-2 rounded w-full py-6 mx-auto">
-              <p class="text-xl text-gray-800 text-center pb-3">Bonjour, <strong class="text-yellow-750">{{ username }}</strong>.</p>
-              <p class="">Vous avez <span class="font-bold text-xl text-purple-800">{{ appointments.length }}</span> rendez-vous de programmé(s), aujourd’hui. Bonne journée et bonne route !</p>
-            </div>
+            <hello-card
+              :appointments-length="appointments.length"
+              :user-name="username"
+            />
             <div>
               <appointment-item
-                v-for="(appointment) in appointments"
+                v-for="(appointment, index) in appointments"
                 :key="`appointment-${appointment.id}`"
+                :id="`appointment-${appointment.id}-${index}`"
+                :delay-anim="index"
                 :appointment="appointment">
               </appointment-item>
             </div>
@@ -37,6 +37,8 @@
 import WeatherWidget from '../components/Weather/WeatherWidget.vue';
 import AppointmentItem from '../components/Appointments/AppointmentItem.vue';
 import Spinner from '../components/Spinner.vue';
+import HomeTitle from '../components/HomeTitle.vue';
+import HelloCard from '../components/HelloCard.vue';
 
 export default {
   name: 'home-page',
@@ -44,6 +46,8 @@ export default {
     WeatherWidget,
     AppointmentItem,
     Spinner,
+    HomeTitle,
+    HelloCard,
   },
   data() {
     return {
@@ -68,7 +72,7 @@ export default {
   destroyed() {
     this.$store.commit('appointmentsModule/setAppointments', []);
   },
-  mounted() {
+  created() {
     if (this.status !== this.$const.API.STATUS.LOADING) {
       this.$store.dispatch('appointmentsModule/list', this.params).then(() => {
         // Handle invalid token even if user is authenticated

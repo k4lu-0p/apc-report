@@ -12,8 +12,10 @@
         mode="out-in"
       >
         <transition-group v-if="reports && reports.length" tag="ul">
-          <li v-for="report in reports" :key="report.id">
+          <li v-for="(report, index) in reports" :key="report.id">
             <report-item
+              :delay-anim="index / 10"
+              :id="`report-${report.id}-${index}`"
               :report="report"
               @alert="handleOpenAlertModal"
             />
