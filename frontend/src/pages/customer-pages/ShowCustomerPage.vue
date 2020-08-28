@@ -128,7 +128,7 @@ export default {
       const { id } = this.customer;
       this.customer = null;
       this.isVisibleModal = false;
-      this.$store.dispatch('customersModule/deleteCustomer', id).then(() => {
+      this.$store.dispatch('customersModule/remove', id).then(() => {
         this.$router.go(-1);
       });
     },

@@ -100,7 +100,7 @@ export default {
     this.$store.commit('reportsModule/setReports', []);
   },
   mounted() {
-    this.$store.dispatch('reportsModule/fetchReports', this.params).then(() => {
+    this.$store.dispatch('reportsModule/list', this.params).then(() => {
       // Handle invalid token even if user is authenticated
       if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
         this.$store.dispatch('authModule/logout').then(() => {

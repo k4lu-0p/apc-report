@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     handleSubmitResponses(responses) {
-      this.$store.dispatch('reportsModule/putReport', {
+      this.$store.dispatch('reportsModule/update', {
         id: this.$route.params.id,
         responses: JSON.stringify(responses),
       }).then(() => this.$router.push({ name: this.$const.NAVIGATION.LIST_REPORT_PAGE.NAME }));
