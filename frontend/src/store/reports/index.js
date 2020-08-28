@@ -1,6 +1,5 @@
 import ModuleMaker from 'vuex-module-maker';
-import axios from 'axios';
-import $const from '../../constants';
+import reportsService from '../../services/reports';
 
 const template = {
   instructions: {
@@ -11,56 +10,7 @@ const template = {
       initial_value: [],
     },
   },
-  actions: {
-    fetchReports: async ({ commit, rootState }, params) => {
-      const { authModule: { token } } = rootState;
-
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_REPORTS}`;
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params,
-      };
-
-      try {
-        commit('setStatus', $const.API.STATUS.LOADING);
-
-        const { data: { data: reports } } = await axios.get(endpoint, config);
-        commit('setReports', reports);
-
-        commit('setStatus', $const.API.STATUS.SUCCESS);
-      } catch (error) {
-        commit('setStatus', $const.API.STATUS.ERROR);
-        if (error.response) {
-          if (error.response.status === 401) {
-            commit('setStatus', $const.API.STATUS.UNAUTHORIZED);
-          }
-        }
-      }
-    },
-    putReport: async ({ commit, rootState }, payload) => {
-      commit('setReports', []);
-
-      const { id, responses } = payload;
-      const { authModule: { token } } = rootState;
-      const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.UPDATE_REPORT}${id}`;
-      const config = { headers: { Authorization: `Bearer ${token}` } };
-      try {
-        commit('setStatus', $const.API.STATUS.LOADING);
-        await axios.put(endpoint, { responses }, config);
-        commit('setStatus', $const.API.STATUS.SUCCESS);
-      } catch (error) {
-        commit('setStatus', $const.API.STATUS.ERROR);
-        if (error.response) {
-          if (error.response.status === 401) {
-            commit('setStatus', $const.API.STATUS.UNAUTHORIZED);
-          }
-        }
-      }
-    },
-  },
+  actions: { ...reportsService },
   getters: {
     getReportById: (state) => (id) => state.reports.find((report) => report.id === id),
     getLastReport: (state) => state.reports[state.reports.length - 1],

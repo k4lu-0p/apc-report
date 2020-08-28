@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'John Doe',
+            'name' => 'Lucas Robin',
             'email' => 'pro.lucas.rob1@gmail.com',
             'password' => Hash::make('apc'),
             'roles' => ["ROLE_USER"],
@@ -25,6 +25,13 @@ class UserSeeder extends Seeder
             'email' => 'jpheulpin@ymail.com',
             'password' => Hash::make('apc'),
             'roles' => ["ROLE_ADMIN"],
+        ]);
+
+        User::create([
+            'name' => 'Mario Silveri',
+            'email' => 'mario.silveri@aplhapluscourtage.fr',
+            'password' => Hash::make('apc'),
+            'roles' => ["ROLE_USER"],
         ]);
 
         return User::create([

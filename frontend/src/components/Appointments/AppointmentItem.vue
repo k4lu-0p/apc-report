@@ -1,6 +1,7 @@
 <template>
 <!-- eslint-disable max-len -->
   <div
+    :ref="id"
     @click="goTo($const.NAVIGATION.SHOW_APPOINTMENT_PAGE.NAME, appointment.id)"
     :class="[appointment.report.is_complete ? 'border-yellow-750' : 'border-purple-800']"
     v-if="appointment" class="border-l-2 bg-white shadow mb-2 rounded-r"
@@ -21,7 +22,9 @@
         </div>
       </div>
 
-      <p class="py-4 font-medium text-xl text-gray-800">{{ appointment.customer.commercial_name }}</p>
+      <p class="py-4 font-medium text-xl text-gray-800">
+        {{ appointment.customer.commercial_name }}
+      </p>
 
       <!-- chips -->
       <hr>
@@ -63,6 +66,7 @@
 </template>
 
 <script>
+import { gsap } from 'gsap';
 import { ICONS } from '../../constants';
 
 const {
@@ -84,6 +88,8 @@ export default {
   },
   props: {
     appointment: Object,
+    delayAnim: Number,
+    id: String,
   },
   computed: {
     location() {
@@ -99,6 +105,20 @@ export default {
         this.$moment().format('YYYY-MM-DD, h:mm:ss') > this.$moment(this.appointment.finish_at).format('YYYY-MM-DD, h:mm:ss')
       );
     },
+  },
+  mounted() {
+    const timeline = gsap.timeline({
+      delay: this.delayAnim,
+      defaults: {
+        duration: 1,
+        ease: 'power2',
+      },
+    });
+
+    if (this.$refs[this.id]) {
+      timeline.from(this.$refs[this.id], 1, { x: 300 });
+      timeline.to(this.$refs[this.id], 1, { x: 0, rotation: 0 });
+    }
   },
 };
 </script>

@@ -335,7 +335,7 @@ export default {
 
       // On compare avec notre sauvegarde pour vérifier que l'user a bien saisi un nouveau nom
       if (this.form.customer.commercial_name !== this.customerSaved.commercial_name) {
-        this.$store.dispatch('customersModule/fetchCustomers', searchParams).then(() => {
+        this.$store.dispatch('customersModule/list', searchParams).then(() => {
           if (this.customers.length > 0) {
             // eslint-disable-next-line no-plusplus
             for (let index = 0; index < this.customers.length; index++) {
@@ -352,7 +352,7 @@ export default {
           // eslint-disable-next-line max-len
           // Si après le traitement de la boucle, c'est toujours false alors on peut envoyer nos data
           if (commercialNameisAlreadyUse === false) {
-            this.$store.dispatch('customersModule/putCustomer', {
+            this.$store.dispatch('customersModule/update', {
               id: this.$route.params.id,
               formData,
             }).then(() => this.$router.go(-1));
@@ -364,7 +364,7 @@ export default {
           }
         });
       } else {
-        this.$store.dispatch('customersModule/putCustomer', {
+        this.$store.dispatch('customersModule/update', {
           id: this.$route.params.id,
           formData,
         }).then(() => this.$router.go(-1));

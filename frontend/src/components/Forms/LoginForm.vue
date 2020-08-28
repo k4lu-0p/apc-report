@@ -114,7 +114,7 @@ export default {
         this.$store.dispatch('authModule/login', this.form).then(() => {
           if (this.authStatus === this.$const.API.STATUS.SUCCESS) {
             // settings
-            this.$store.dispatch('settingsModule/fetchSettings').then(() => {
+            this.$store.dispatch('settingsModule/list').then(() => {
               if (this.settingsStatus === this.$const.API.STATUS.SUCCESS) {
                 this.$router.push({ name: this.$const.NAVIGATION.HOME_PAGE.NAME });
               }

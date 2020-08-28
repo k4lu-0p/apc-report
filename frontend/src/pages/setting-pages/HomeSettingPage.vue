@@ -126,7 +126,7 @@ export default {
       if (userName.length) {
         this.hasNoResult = false;
         this.usersSearchParams.value = userName;
-        this.$store.dispatch('usersModule/fetchUsers', this.usersSearchParams).then(() => {
+        this.$store.dispatch('usersModule/list', this.usersSearchParams).then(() => {
           // handle no result
           if (this.users.length === 0) {
             this.hasNoResult = true;

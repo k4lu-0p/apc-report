@@ -1,6 +1,7 @@
 <template>
 <!-- eslint-disable max-len -->
   <div
+    :ref="id"
     v-if="report.id"
     class="border-l-2 bg-white shadow mb-2 rounded-r border-purple-800"
     :class="[report.is_complete ? 'border-yellow-750' : 'border-purple-800']"
@@ -29,21 +30,21 @@
       <div class="flex flex-wrap py-2">
         <p
           v-if="report.is_complete === 0 && isAppointmentOver"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
+          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
           <warning-icon class="warning-icon mr-1"></warning-icon>
           <span>À compléter</span>
         </p>
 
         <p
           v-if="report.is_complete"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
+          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-1"></accept-icon>
           <span>Complété</span>
         </p>
 
         <p
           v-if="isAppointmentFinishToday"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
+          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
           Aujourd'hui
         </p>
 
@@ -58,6 +59,7 @@
 </template>
 
 <script>
+import { gsap } from 'gsap';
 import { ICONS } from '../../constants';
 
 const {
@@ -79,6 +81,8 @@ export default {
   },
   props: {
     report: Object,
+    delayAnim: Number,
+    id: String,
   },
   methods: {
     goToSurvey() {
@@ -106,6 +110,20 @@ export default {
         this.$moment().format('YYYY-MM-DD, h:mm:ss') > this.$moment(this.report.appointment_finish_at).format('YYYY-MM-DD, h:mm:ss')
       );
     },
+  },
+  mounted() {
+    const timeline = gsap.timeline({
+      delay: this.delayAnim,
+      defaults: {
+        duration: 1,
+        ease: 'power2',
+      },
+    });
+
+    if (this.$refs[this.id]) {
+      timeline.from(this.$refs[this.id], 1, { x: 300 });
+      timeline.to(this.$refs[this.id], 1, { x: 0, rotation: 0 });
+    }
   },
 };
 </script>

@@ -3,7 +3,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import api from '../../services/weatherApi';
+import api from '../../services/weather';
 import $const from '../../constants';
 
 Vue.use(Vuex);

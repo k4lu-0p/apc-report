@@ -1,6 +1,6 @@
 import axios from 'axios';
 import $const from '../constants';
-import { getCurrentPosition } from './geolocation';
+import { getCurrentPosition } from '../utils/geolocation';
 
 async function createApiInstance(baseURL, params = {}) {
   const { coords: { latitude, longitude } } = await getCurrentPosition;

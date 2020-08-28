@@ -12,8 +12,10 @@
         mode="out-in"
       >
         <transition-group v-if="reports && reports.length" tag="ul">
-          <li v-for="report in reports" :key="report.id">
+          <li v-for="(report, index) in reports" :key="report.id">
             <report-item
+              :delay-anim="index / 10"
+              :id="`report-${report.id}-${index}`"
               :report="report"
               @alert="handleOpenAlertModal"
             />
@@ -100,7 +102,7 @@ export default {
     this.$store.commit('reportsModule/setReports', []);
   },
   mounted() {
-    this.$store.dispatch('reportsModule/fetchReports', this.params).then(() => {
+    this.$store.dispatch('reportsModule/list', this.params).then(() => {
       // Handle invalid token even if user is authenticated
       if (this.$store.getters['reportsModule/getStatus'] === this.$const.API.STATUS.UNAUTHORIZED) {
         this.$store.dispatch('authModule/logout').then(() => {

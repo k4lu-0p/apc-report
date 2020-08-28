@@ -97,7 +97,7 @@ export default {
     handleKeyUp() {
       if (this.status !== this.$const.API.STATUS.LOADING) {
         if (this.params.value.length >= 2) {
-          this.$store.dispatch('customersModule/fetchCustomers', this.params);
+          this.$store.dispatch('customersModule/list', this.params);
         }
       }
     },

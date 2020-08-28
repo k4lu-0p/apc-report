@@ -5,7 +5,7 @@
     leave-active-class="animated fadeOut faster"
     mode="out-in">
     <!-- Main -->
-    <div class="min-h-screen"  v-infinite-scroll="handleFetchMore" infinite-scroll-distance="1">
+    <div class="min-h-screen" v-infinite-scroll="handleFetchMore" infinite-scroll-distance="1">
       <top-bar></top-bar>
       <div class="container mx-auto px-4">
 
@@ -73,8 +73,12 @@
 
         <!-- listing RDV -->
         <ul v-if="appointments && appointments.length">
-          <li v-for="appointment in appointments" :key="appointment.id">
-            <appointment-item :appointment="appointment"/>
+          <li v-for="(appointment, index) in appointments" :key="appointment.id">
+            <appointment-item
+              :delay-anim="index / 10"
+              :appointment="appointment"
+              :id="`appointment-${appointment.id}-${index}`"
+            />
           </li>
         </ul>
         <spinner v-else-if="status === $const.API.STATUS.LOADING" :is-visible="true"></spinner>
@@ -142,7 +146,7 @@ export default {
   methods: {
     fetchAppointments() {
       if (this.status !== this.$const.API.STATUS.LOADING) {
-        this.$store.dispatch('appointmentsModule/fetchAppointments', this.params).then(() => {
+        this.$store.dispatch('appointmentsModule/list', this.params).then(() => {
           // Handle invalid token even if user is authenticated
           if (this.$store.getters['appointmentsModule/getStatus'] === this.$const.API.STATUS
             .UNAUTHORIZED) {
