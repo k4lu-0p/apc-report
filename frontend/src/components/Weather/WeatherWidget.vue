@@ -1,6 +1,6 @@
 <template>
 <!-- eslint-disable max-len -->
-  <div ref="weather">
+  <div class="offset" ref="weather">
     <div v-if="current && forecasts">
       <div v-if="current.weather" class="bg-white shadow my-2 rounded w-full pb-4 mx-auto">
         <!-- aujourd'hui -->
@@ -53,17 +53,17 @@ export default {
         delay: this.delayAnim,
         defaults: {
           duration: 1,
-          ease: 'power2',
+          ease: 'power3',
         },
       });
 
-      timeline.from(this.$refs.weather, 1, { y: -300 });
       timeline.to(this.$refs.weather, 1, { y: 0, rotation: 0 });
     });
   },
 };
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="stylus" scoped>
+  .offset
+    transform translateY(-500px)
 </style>
