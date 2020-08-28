@@ -1,24 +1,3 @@
-import axios from 'axios';
-import constants from '../../constants';
+import authService from '../../services/auth';
 
-export default {
-  async login({ commit }, payload) {
-    const endpoint = `${constants.API.BASE_URL}${constants.API.ENDPOINTS.APC_REPORT.LOGIN}`;
-    try {
-      commit('auth_request');
-      const { data: { user, token } } = await axios.post(endpoint, payload);
-      commit('auth_success', { token, user });
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-    } catch (error) {
-      commit('auth_error', error);
-      localStorage.removeItem('token');
-    }
-  },
-  logout({ commit }) {
-    commit('logout');
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    localStorage.removeItem('settings');
-  },
-};
+export default { ...authService };
