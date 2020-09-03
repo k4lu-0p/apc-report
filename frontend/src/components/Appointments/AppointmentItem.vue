@@ -28,7 +28,7 @@
 
       <!-- chips -->
       <hr>
-      <div class="flex flex-wrap py-2">
+      <div class="flex flex-wrap items-center py-2 ">
         <p
           @click.stop="goTo($const.NAVIGATION.EDIT_REPORT_PAGE.NAME, appointment.id)"
           v-if="appointment.report.is_complete === 0 && isAppointmentOver"
@@ -41,7 +41,7 @@
 
         <p
            v-if="appointment.report.is_complete"
-          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
+          class="h-6 mr-2 px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-2"></accept-icon>
           <span>
             Rapport complété
@@ -50,13 +50,13 @@
 
         <p
           v-if="isAppointmentFinishToday"
-          class="my-1 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
+          class="h-6 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
           Aujourd'hui
         </p>
 
         <p
           v-if="appointment.customer.has_been_deleted"
-          class="my-1 text-xs px-2 py-1/2 rounded-full border border-red-600 text-red-600 font-medium">
+          class="h-6 text-xs px-2 py-1/2 rounded-full border border-red-600 text-red-600 font-medium">
           <span>Partenaire supprimé</span>
         </p>
 
