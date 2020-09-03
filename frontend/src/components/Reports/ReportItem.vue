@@ -3,7 +3,7 @@
   <div
     :ref="id"
     v-if="report.id"
-    class="border-l-2 bg-white shadow mb-2 rounded-r border-purple-800"
+    class="border-l-2 bg-white shadow my-2 rounded-r border-purple-800"
     :class="[report.is_complete ? 'border-yellow-750' : 'border-purple-800']"
     @click="goToSurvey()"
   >
