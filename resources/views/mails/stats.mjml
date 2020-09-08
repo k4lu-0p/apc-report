@@ -14,7 +14,7 @@
   <mj-body background-color="#edf2f7">
     <mj-section background-color="#ffffff" padding="10px 0">
       <mj-column>
-            <mj-image src="https://apc-report.lucasrobin.fr/img/logo/apcr-short.png" alt="tickets" width="200px" padding="10px 25px"></mj-image>
+            <mj-image src="https://apcreport.alphapluscourtage.fr/img/logo/apcr-short.png" alt="tickets" width="200px" padding="10px 25px"></mj-image>
       </mj-column>
     </mj-section>
     <mj-section background-color="#ffffff" padding-top="20px">

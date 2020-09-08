@@ -116,7 +116,7 @@
                               <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
                                 <tbody>
                                   <tr>
-                                    <td style="width:300px;"> <img alt="logo alpha plus courtage" height="auto" src="https://apc-report.lucasrobin.fr/img/logo/apc-full.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"
+                                    <td style="width:300px;"> <img alt="logo alpha plus courtage" height="auto" src="https://apcreport.alphapluscourtage.fr/img/logo/apc-full.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"
                                         width="300"> </td>
                                   </tr>
                                 </tbody>
@@ -177,7 +177,7 @@
                               <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
                                 <tbody>
                                   <tr>
-                                    <td style="width:400px;"> <img alt="image" height="auto" src="https://apc-report.lucasrobin.fr/img/mails/header-appointment.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="400">                                      </td>
+                                    <td style="width:400px;"> <img alt="image" height="auto" src="https://apcreport.alphapluscourtage.fr/img/mails/header-appointment.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="400">                                      </td>
                                   </tr>
                                 </tbody>
                               </table>
