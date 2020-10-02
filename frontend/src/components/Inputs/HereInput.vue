@@ -11,12 +11,12 @@
         id="location"
         type="search"
         v-model="search"
-        @click="onClearField($event)"
-        @keydown="onKeyDownEnter($event)"
+        @click="handleClearField($event)"
+        @keydown="searchLocation($event)"
         :placeholder="placeholder"
       >
       <span
-      @click="onClickSearchLocations($event)"
+      @click="searchLocation($event)"
       class="w-1/6 absolute right-0 top-0 h-full flex justify-center items-center">
         <moon-loader
           class="v-spinner-custom"
@@ -31,10 +31,10 @@
       leave-active-class="animated fadeOut faster-x2"
       mode="out-in"
     >
-      <div v-if="suggestionsHere.length > 0">
+      <div v-if="suggestionsHere && suggestionsHere.length > 0">
         <ul class="suggestions-list">
           <li
-            @click="onClickLocation($event, suggestion)"
+            @click="handleSelectLocation($event, suggestion)"
             class="py-2 suggestion-item flex justify-between items-center"
             v-for="(suggestion, index) in suggestionsHere"
             :key="`sug-${index}-${suggestion.locationId}`"
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import debounce from 'lodash.debounce';
 import { ICONS } from '../../constants';
 
 const { common: { MagnifyIcon, AddIcon } } = ICONS;
@@ -91,17 +92,22 @@ export default {
     AddIcon,
   },
   methods: {
-    async onClickSearchLocations() {
+    // eslint-disable-next-line func-names
+    searchLocation: debounce(async function () {
       if (this.loading === false && this.search !== this.searchPrevious) {
         this.searchPrevious = this.search;
         this.suggestionsHere = [];
         this.loading = true;
-        const { data: { suggestions } } = await this.$axios.get(`https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?apiKey=${this.hereSecret}&query=${this.search}&maxResults=4`);
+
+        // request to Here Api
+        const baseUrlHereApi = 'https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json';
+        const { data: { suggestions } } = await this.$axios.get(`${baseUrlHereApi}?apiKey=${this.hereSecret}&query=${this.search}&maxResults=4`);
+
         this.suggestionsHere = suggestions;
         this.loading = false;
       }
-    },
-    onClickLocation(event, suggestion) {
+    }, 300),
+    handleSelectLocation(event, suggestion) {
       event.target.classList.add('suggestion-selected');
       this.suggestionsHere = [];
       this.suggestionSelected = suggestion;
@@ -109,12 +115,7 @@ export default {
       this.searchPrevious = this.suggestionSelected.label;
       this.$emit('onClickLocation', this.suggestionSelected);
     },
-    onKeyDownEnter(event) {
-      if (event.keyCode === 13) {
-        this.onClickSearchLocations();
-      }
-    },
-    onClearField() {
+    handleClearField() {
       this.search = '';
       this.$emit('clear');
     },
