@@ -8,7 +8,7 @@
         type="search"
         v-model="search"
         :placeholder="placeholder"
-        @keydown="onKeyDownEnter"
+        @keydown="handleKeyDown"
       >
       <button
         @click="onSearch"
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import debounce from 'lodash.debounce';
 import { ICONS } from '../../constants';
 
 const { common: { MagnifyIcon } } = ICONS;
@@ -58,11 +59,10 @@ export default {
     onSearch() {
       this.$emit('search', this.search);
     },
-    onKeyDownEnter(event) {
-      if (event.keyCode === 13) {
-        this.onSearch();
-      }
-    },
+    // eslint-disable-next-line func-names
+    handleKeyDown: debounce(function () {
+      this.onSearch();
+    }, 300),
   },
 };
 </script>
