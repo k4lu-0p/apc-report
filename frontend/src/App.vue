@@ -7,8 +7,7 @@
       leave-active-class="animated slideOutRight faster-x2"
       mode="out-in"
     >
-        <router-view v-if="isMobile"/>
-        <p v-else>Application uniquement disponible sur appareil mobile</p>
+        <router-view/>
     </transition>
 
     <tabs-navigator
@@ -54,13 +53,6 @@ export default {
         this.$store.getters['authModule/hasSwitchedAccount']
         && this.$route.name !== this.$const.NAVIGATION.HOME_SETTING_PAGE.NAME
       );
-    },
-    isMobile() {
-      if (window.innerWidth <= this.$const.MISC.LIMIT_WIDTH_SCREEN) {
-        return true;
-      }
-      this.$store.dispatch('authModule/logout');
-      return false;
     },
     routesHasTabsNavigator() {
       return [
