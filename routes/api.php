@@ -1,7 +1,6 @@
 <?php
 
 use App\Role\UserRole;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,70 +14,75 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// POST : S'identifier
-Route::post('/login', 'SecurityController@login');
+Route::middleware('cors')->group(function() {
 
-// GET : Lister tous les utilisateurs
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_ADMIN)
-    ->get('/users', 'UserController@index');
+    // POST : S'identifier
+    Route::post('/login', 'SecurityController@login');
 
-// GET : Récupérer un utilisateur par son ID
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_ADMIN)
-    ->get('/user/{id}', 'UserController@show');
+    // GET : Lister tous les utilisateurs
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_ADMIN)
+        ->get('/users', 'UserController@index');
 
-// GET : Lister tous les rendez-vous de l'utilisateur connecté
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->get('/appointments', 'AppointmentController@index');
+    // GET : Récupérer un utilisateur par son ID
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_ADMIN)
+        ->get('/user/{id}', 'UserController@show');
 
-// POST : Créer et enregistrer un rendez-vous
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->post('/appointment', 'AppointmentController@store');
+    // GET : Lister tous les rendez-vous de l'utilisateur connecté
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->get('/appointments', 'AppointmentController@index');
 
-// GET : Récupérer un rendez-vous par son ID
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->get('/appointment/{id}', 'AppointmentController@show');
+    // POST : Créer et enregistrer un rendez-vous
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->post('/appointment', 'AppointmentController@store');
 
-// DELETE : Supprime un rendez-vous ainsi que son rapport lié par l'ID du RDV
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->delete('/appointment/{id}', 'AppointmentController@destroy');
+    // GET : Récupérer un rendez-vous par son ID
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->get('/appointment/{id}', 'AppointmentController@show');
 
-// PUT : Mettre à jour un RDV
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->put('/appointment/{id}', 'AppointmentController@update');
+    // DELETE : Supprime un rendez-vous ainsi que son rapport lié par l'ID du RDV
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->delete('/appointment/{id}', 'AppointmentController@destroy');
 
-// GET : Lister tous les comptes-rendus de tous les rendez-vous de l'utilisateur connecté
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->get('/reports', 'ReportController@index');
+    // PUT : Mettre à jour un RDV
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->put('/appointment/{id}', 'AppointmentController@update');
 
-// PUT : Mettre à jour un rapport
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->put('/report/{id}', 'ReportController@update');
+    // GET : Lister tous les comptes-rendus de tous les rendez-vous de l'utilisateur connecté
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->get('/reports', 'ReportController@index');
 
-// GET : Récupérer un rapport par son ID
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->get('/report/{id}', 'ReportController@show');
+    // PUT : Mettre à jour un rapport
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->put('/report/{id}', 'ReportController@update');
 
-// GET : Lister tous les clients
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->get('/customers', 'CustomerController@index');
+    // GET : Récupérer un rapport par son ID
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->get('/report/{id}', 'ReportController@show');
 
-// GET : Récupérer un client par son ID
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->get('/customer/{id}', 'CustomerController@show');
+    // GET : Lister tous les clients
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->get('/customers', 'CustomerController@index');
 
-// DELETE : Supprime un client par son ID
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->delete('/customer/{id}', 'CustomerController@destroy');
+    // GET : Récupérer un client par son ID
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->get('/customer/{id}', 'CustomerController@show');
 
-// PUT : Mettre à jour un client
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->put('/customer/{id}', 'CustomerController@update');
+    // DELETE : Supprime un client par son ID
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->delete('/customer/{id}', 'CustomerController@destroy');
 
-// POST : Envoi massif d'une newsletter à tous les customers
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_ADMIN)
-    ->post('/newsletter/customers', 'NewsletterController@publish');
+    // PUT : Mettre à jour un client
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->put('/customer/{id}', 'CustomerController@update');
 
-// GET : Lister toute les options globales
-Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
-    ->get('/settings', 'SettingController@index');
+    // POST : Envoi massif d'une newsletter à tous les customers
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_ADMIN)
+        ->post('/newsletter/customers', 'NewsletterController@publish');
+
+    // GET : Lister toute les options globales
+    Route::middleware('auth:sanctum', 'check_user_role:' . UserRole::ROLE_USER)
+        ->get('/settings', 'SettingController@index');
+
+
+});
 
