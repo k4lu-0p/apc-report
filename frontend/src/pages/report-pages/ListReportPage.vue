@@ -22,7 +22,7 @@
           </li>
         </transition-group>
         <spinner v-else-if="status === $const.API.STATUS.LOADING" :is-visible="true"></spinner>
-        <div v-else class="absolute top-45 left-0 flex flex-col justify-center items-center">
+        <div v-else class="absolute md:static top-45 left-0 flex flex-col justify-center items-center md:pt-20">
           <p class="text-gray-500 text-center px-10">{{ $t('page.reports.empty') }}</p>
         </div>
       </transition>

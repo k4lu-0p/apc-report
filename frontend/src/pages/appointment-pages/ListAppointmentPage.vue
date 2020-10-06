@@ -72,7 +72,7 @@
         </div>
 
         <!-- listing RDV -->
-        <ul v-if="appointments && appointments.length">
+        <ul v-if="appointments && appointments.length" class="md:grid md:grid-cols-3">
           <li v-for="(appointment, index) in appointments" :key="appointment.id">
             <appointment-item
               :delay-anim="index / 10"
@@ -82,7 +82,7 @@
           </li>
         </ul>
         <spinner v-else-if="status === $const.API.STATUS.LOADING" :is-visible="true"></spinner>
-        <div v-else class="absolute top-45 left-0 flex flex-col justify-center items-center">
+        <div v-else class="absolute top-45 left-0 md:static md:py-10 flex flex-col justify-center items-center">
           <p class="text-gray-500 text-lg text-center px-6">{{ $t('page.appointments.empty') }}</p>
         </div>
 

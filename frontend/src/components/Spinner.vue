@@ -1,4 +1,5 @@
 <template>
+<!-- eslint-disable max-len -->
   <transition
     mode="out-in"
     enter-active-class="animated fadeIn"
@@ -6,7 +7,7 @@
   >
     <div
       v-if="isVisible"
-      class="fixed left-0 w-screen flex flex-col justify-center items-center h-full"
+      class="fixed md:static left-0 w-screen md:w-full md:py-20 flex flex-col justify-center items-center h-full"
     >
       <moon-loader :color="$const.MISC.SPINNER.COLOR"></moon-loader>
     </div>

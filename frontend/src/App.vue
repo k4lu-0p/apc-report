@@ -1,29 +1,40 @@
 <template>
 <div>
+  <!-- background -->
   <div class="bg-main"></div>
-  <div v-if="appIsVisible" class="min-h-screen">
-    <transition
-      enter-active-class="animated slideInLeft faster-x2"
-      leave-active-class="animated slideOutRight faster-x2"
-      mode="out-in"
+
+  <!-- contents layout -->
+  <div class="md:grid md:grid-cols-6 md:grid-rows-1">
+
+    <div class="md:col-span-1">
+      <drawers-navigator
+      ></drawers-navigator>
+    </div>
+
+    <div v-if="appIsVisible" class="min-h-screen md:col-span-5">
+      <transition
+        enter-active-class="animated slideInLeft faster-x2"
+        leave-active-class="animated slideOutRight faster-x2"
+        mode="out-in"
+      >
+          <router-view/>
+      </transition>
+
+      <tabs-navigator
+        v-if="Object.values(routesHasTabsNavigator).includes($route.name)"
+      />
+    </div>
+    <spinner v-else is-visible></spinner>
+
+    <!-- admin: show account connected -->
+    <info
+      v-if="this.$store.getters['authModule/getUser'].name"
+      :title="this.$store.getters['authModule/getUser'].name"
+      :visible="isInfoVisible"
     >
-        <router-view/>
-    </transition>
-
-    <tabs-navigator
-      v-if="Object.values(routesHasTabsNavigator).includes($route.name)"
-    />
+      <user-icon class="user-icon"></user-icon>
+    </info>
   </div>
-  <spinner v-else is-visible></spinner>
-
-  <!-- admin: show account connected -->
-  <info
-    v-if="this.$store.getters['authModule/getUser'].name"
-    :title="this.$store.getters['authModule/getUser'].name"
-    :visible="isInfoVisible"
-  >
-    <user-icon class="user-icon"></user-icon>
-  </info>
 
 </div>
 
@@ -31,6 +42,7 @@
 
 <script>
 import TabsNavigator from './components/Navigators/TabsNavigator.vue';
+import DrawersNavigator from './components/Navigators/DrawersNavigator.vue';
 import autoReloading from './mixins/autoReloading';
 import Spinner from './components/Spinner.vue';
 import Info from './components/Info.vue';
@@ -43,6 +55,7 @@ export default {
   mixins: [autoReloading],
   components: {
     TabsNavigator,
+    DrawersNavigator,
     Spinner,
     UserIcon,
     Info,

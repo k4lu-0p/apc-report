@@ -9,12 +9,16 @@
         leave-active-class="animated fadeOut faster-x2"
       >
         <div v-if="status === $const.API.STATUS.SUCCESS" class="md:grid md:grid-cols-2">
-          <weather-widget></weather-widget>
+          <div class="md:p-10">
+            <weather-widget></weather-widget>
+          </div>
           <home-title class="md:hidden" />
-          <hello-card
-            :appointments-length="appointments.length"
-            :user-name="username"
-          />
+          <div class="md:p-10">
+            <hello-card
+              :appointments-length="appointments.length"
+              :user-name="username"
+            />
+          </div>
           <div class="md:row-span-2 md:flex">
             <appointment-item
               v-for="(appointment, index) in appointments"
