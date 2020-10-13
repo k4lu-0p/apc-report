@@ -13,3 +13,9 @@ dev:
 
 tinker:
 	docker-compose exec app php artisan tinker
+
+docker-reset:
+	docker container rm -f $(shell docker container ls -aq) && \
+	docker image rm -f $(shell docker image ls -aq) && \
+	docker network prune && \
+	docker volume prune
