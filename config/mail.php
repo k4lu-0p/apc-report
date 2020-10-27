@@ -36,16 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            // 'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            // 'port' => env('MAIL_PORT', 587),
-            // 'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            // 'username' => env('MAIL_USERNAME'),
-            // 'password' => env('MAIL_PASSWORD'),
-            'host' => 'smtp.gmail.com',
-            'port' => 465,
-            'encryption' => 'ssl',
-            'username' => 'pro.lucas.rob1@gmail.com',
-            'password' => 'VsC;z@Cz6+11L8;su.Q',
+            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'port' => env('MAIL_PORT', 587),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => 'login',
         ],
@@ -89,7 +84,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'pro.lucas.rob1@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'apcreport@alphapluscourtage.fr'),
         'name' => env('MAIL_FROM_NAME', 'Alpha Plus Courtage Report'),
     ],
 

@@ -6,7 +6,6 @@ use App\Customer;
 use App\Http\Resources\AppointmentResource;
 use App\Mail\AppointmentMail;
 use App\Report;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 use App\Services\SurveyService;
@@ -174,9 +173,8 @@ class AppointmentService {
         Log::debug('[AppointmentService/create()] 5. report lié : ' . $report->id);
         Log::debug('[AppointmentService/create()] 6. customer lié : ' . $customer->id);
 
-
+        // send an email to the customer to alert him
         Mail::to($customer->email)->send(new AppointmentMail($appointment, $this->request->user()));
-
 
         // succes response with appointment created
         return response()->newAppointmentStored($appointment);

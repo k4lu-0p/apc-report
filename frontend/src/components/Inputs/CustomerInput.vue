@@ -12,12 +12,12 @@
         id="customer"
         type="search"
         v-model="params.value"
-        @click="onClearField($event)"
-        @keyup="handleKeyUp($event)"
+        @click="handleClearField($event)"
+        @keyup="searchCustomer($event)"
         :placeholder="placeholder"
       >
       <span
-        @click="onClickSearchCustomer($event)"
+        @click="searchCustomer($event)"
         class="w-1/6 absolute right-0 top-0 h-full flex justify-center items-center"
       >
           <moon-loader
@@ -37,7 +37,7 @@
         <ul class="customers-list">
           <li
             v-if="params.value.length >= 2 && !IsCommercialNameAlreadyExist(params.value) && customerSelected === null"
-            @click="onSelectNewCustomer($event)"
+            @click="handleSelectNewCustomer($event)"
             class="py-2 customer-item flex justify-between items-center"
           >
             <span class="w-5/6 h-full" >
@@ -48,7 +48,7 @@
             </span>
           </li>
           <li
-            @click="onSelectCustomer($event, customer)"
+            @click="handleSelectCustomer($event, customer)"
             class="py-2 customer-item flex justify-between items-center"
             v-for="(customer, index) in customers"
             :key="`customer-${index}-${customer.id}`"
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import debounce from 'lodash.debounce';
 import { ICONS } from '../../constants';
 
 const { common: { AddIcon, MagnifyIcon } } = ICONS;
@@ -94,23 +95,21 @@ export default {
     };
   },
   methods: {
-    handleKeyUp() {
+    // eslint-disable-next-line func-names
+    searchCustomer: debounce(function () {
       if (this.status !== this.$const.API.STATUS.LOADING) {
         if (this.params.value.length >= 2) {
           this.$store.dispatch('customersModule/list', this.params);
         }
       }
-    },
-    onClickSearchCustomer() {
-      this.handleKeyUp();
-    },
-    onSelectCustomer(event, customer) {
+    }, 300),
+    handleSelectCustomer(event, customer) {
       this.customerSelected = customer;
       this.params.value = customer.commercial_name;
       this.$store.commit('customersModule/setCustomers', []);
       this.$emit('select', this.customerSelected);
     },
-    onSelectNewCustomer() {
+    handleSelectNewCustomer() {
       this.customerSelected = {
         id: 0,
         commercial_name: this.params.value,
@@ -118,7 +117,7 @@ export default {
       this.$store.commit('customersModule/setCustomers', []);
       this.$emit('new', this.customerSelected);
     },
-    onClearField() {
+    handleClearField() {
       this.params.value = '';
       this.customerSelected = null;
       this.$emit('clear');

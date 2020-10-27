@@ -8,7 +8,7 @@ services:
             # Les arguments qui seront passés à notre Dockerfile
             args:
                 user: lucas
-                uid: 1001
+                uid: 1000
             # Soit un chemin vers un répertoire contenant un Dockerfile, soit une URL vers un référentiel git.
             context: ./
             dockerfile: ./docker/Dockerfile
@@ -21,6 +21,9 @@ services:
         restart: unless-stopped
         # Définit le répertoire par défaut du service
         working_dir: /var/www/
+        depends_on:
+          - db
+          - nginx
         # Crée un volume partagé qui synchronisera le contenu du répertoire actuel avec /var/www dans le conteneur.
         volumes:
             - ./:/var/www
@@ -59,6 +62,8 @@ services:
             MYSQL_USERNAME: ${DB_USERNAME}
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
             PMA_HOST: db
+        depends_on:
+          - db
     # Service pour notre server web
     nginx:
         # Image Nginx pré-construite sur Alpine, une distribution Linux légère
