@@ -253,7 +253,8 @@ export default {
       const { id } = this.appointment;
       this.appointment = null;
       this.isVisibleModal = false;
-      this.$store.dispatch('appointmentsModule/deleteAppointment', id)
+      console.log(this.$store);
+      this.$store.dispatch('appointmentsModule/remove', id)
         .then(() => {
           this.$router.go(-1);
         });
@@ -261,7 +262,7 @@ export default {
     handleUpdateAppointment() {
       const { id } = this.appointment;
       this.isUpdatingAppointment = true;
-      this.$store.dispatch('appointmentsModule/updateAppointment', {
+      this.$store.dispatch('appointmentsModule/update', {
         id,
         formData: this.form,
       })
