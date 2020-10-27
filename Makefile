@@ -12,6 +12,9 @@ dev:
 	yarn serve
 
 tinker:
+	docker-compose exec php artisan tinker
+
+tinker:
 	docker-compose exec app php artisan tinker
 
 docker-reset:
@@ -19,3 +22,11 @@ docker-reset:
 	docker image rm -f $(shell docker image ls -aq) && \
 	docker network prune && \
 	docker volume prune
+
+cache:
+	docker-compose exec app php artisan config:clear && \
+	docker-compose exec app php artisan cache:clear && \
+	docker-compose exec app php artisan route:clear
+
+stop:
+	docker-compose stop
