@@ -3,7 +3,7 @@ import $const from '../constants';
 
 export async function list({ commit, rootState }, params) {
   const { authModule: { token } } = rootState;
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_APPOINTMENTS}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.FETCH_APPOINTMENTS}`;
 
   const config = {
     headers: {
@@ -38,7 +38,7 @@ export async function create({ commit, rootState }, formData) {
 
   const { authModule: { token } } = rootState;
   let newAppointment = null;
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.STORE_APPOINTMENT}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.STORE_APPOINTMENT}`;
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ export async function create({ commit, rootState }, formData) {
 
 export async function remove({ commit, rootState }, id) {
   const { authModule: { token } } = rootState;
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.DELETE_APPOINTMENT}${id}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.DELETE_APPOINTMENT}${id}`;
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -87,7 +87,7 @@ export async function update({ commit, rootState }, payload) {
   const { id, formData } = payload;
   let newAppointment;
 
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.UPDATE_APPOINTMENT}${id}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.UPDATE_APPOINTMENT}${id}`;
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

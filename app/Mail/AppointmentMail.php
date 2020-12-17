@@ -16,8 +16,8 @@ class AppointmentMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private Appointment $appointment;
-    private User $user;
+    private $appointment;
+    private $user;
 
     /**
      * Create a new message instance.

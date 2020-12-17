@@ -142,7 +142,7 @@ export default {
           Authorization: `Bearer ${this.token}`,
         },
       };
-      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.APC_REPORT.FETCH_CUSTOMER}${this.$route.params.id}`;
+      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.API_ENDPOINTS.FETCH_CUSTOMER}${this.$route.params.id}`;
       const { data: { data: customer } } = await this.$axios.get(endpoint, config);
       if (customer !== undefined) {
         this.customer = customer;

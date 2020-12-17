@@ -3,7 +3,7 @@ import $const from '../constants';
 
 export async function list({ commit, rootState }, params) {
   const { authModule: { token } } = rootState;
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_USERS}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.FETCH_USERS}`;
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

@@ -4,7 +4,7 @@ import $const from '../constants';
 export async function list({ commit, rootState }, params) {
   const { authModule: { token } } = rootState;
 
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_REPORTS}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.FETCH_REPORTS}`;
 
   const config = {
     headers: {
@@ -35,7 +35,7 @@ export async function update({ commit, rootState }, payload) {
 
   const { id, responses } = payload;
   const { authModule: { token } } = rootState;
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.UPDATE_REPORT}${id}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.UPDATE_REPORT}${id}`;
   const config = { headers: { Authorization: `Bearer ${token}` } };
   try {
     commit('setStatus', $const.API.STATUS.LOADING);

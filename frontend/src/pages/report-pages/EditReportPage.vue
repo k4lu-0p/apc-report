@@ -73,7 +73,7 @@ export default {
           Authorization: `Bearer ${this.token}`,
         },
       };
-      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.APC_REPORT.FETCH_REPORT}${this.$route.params.id}`;
+      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.API_ENDPOINTS.FETCH_REPORT}${this.$route.params.id}`;
       const { data: { data: report } } = await this.$axios.get(endpoint, config);
       if (report !== undefined) {
         this.report = report;

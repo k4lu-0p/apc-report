@@ -3,7 +3,7 @@ import $const from '../constants';
 
 export async function list({ commit, rootState }, params) {
   const { authModule: { token } } = rootState;
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.FETCH_CUSTOMERS}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.FETCH_CUSTOMERS}`;
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -28,7 +28,7 @@ export async function list({ commit, rootState }, params) {
 
 export async function remove({ commit, rootState }, id) {
   const { authModule: { token } } = rootState;
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.DELETE_CUSTOMER}${id}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.DELETE_CUSTOMER}${id}`;
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export async function update({ commit, rootState }, payload) {
 
   const { id, formData } = payload;
   const { authModule: { token } } = rootState;
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.UPDATE_CUSTOMER}${id}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.UPDATE_CUSTOMER}${id}`;
   const config = { headers: { Authorization: `Bearer ${token}` } };
   try {
     commit('setStatus', $const.API.STATUS.LOADING);

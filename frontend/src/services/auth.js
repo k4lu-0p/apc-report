@@ -2,7 +2,7 @@ import axios from 'axios';
 import $const from '../constants';
 
 export async function login({ commit }, payload) {
-  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.APC_REPORT.LOGIN}`;
+  const endpoint = `${$const.API.BASE_URL}${$const.API.ENDPOINTS.API_ENDPOINTS.LOGIN}`;
   try {
     commit('auth_request');
     const { data: { user, token } } = await axios.post(endpoint, payload);

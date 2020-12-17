@@ -141,7 +141,7 @@ export default {
     },
     async handleSwitchAccount(user) {
       this.isSwitchingAccount = true;
-      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.APC_REPORT.FETCH_USER}${user.id}`;
+      const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.API_ENDPOINTS.FETCH_USER}${user.id}`;
       const config = {
         headers: {
           Authorization: `Bearer ${this.token}`,
@@ -159,7 +159,7 @@ export default {
     async handleSubmitNewsletter(newsletterForm) {
       if (newsletterForm) {
         this.isSendingMails = true;
-        const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.APC_REPORT.NEWSLETTER_CUSTOMER}`;
+        const endpoint = `${this.$const.API.BASE_URL}${this.$const.API.ENDPOINTS.API_ENDPOINTS.NEWSLETTER_CUSTOMER}`;
         const config = {
           headers: {
             Authorization: `Bearer ${this.token}`,

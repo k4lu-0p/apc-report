@@ -1,3 +1,6 @@
+## Docker-compose
+prod:
+	docker-compose -f ./docker-compose.yml up --detach
 
 migrate:
 	docker-compose exec app php artisan migrate
@@ -6,27 +9,41 @@ users:
 	docker-compose exec app php artisan db:seed --class=UserSeeder
 
 dev:
-	docker-compose stop && \
-	docker-compose up -d && \
-	cd frontend/ && \
-	yarn serve
-
-tinker:
-	docker-compose exec php artisan tinker
+	docker-compose down
+	docker-compose -f docker-compose.yml -f docker-compose.develop.yml up -d
+	cd frontend/ && yarn serve
 
 tinker:
 	docker-compose exec app php artisan tinker
-
-docker-reset:
-	docker container rm -f $(shell docker container ls -aq) && \
-	docker image rm -f $(shell docker image ls -aq) && \
-	docker network prune && \
-	docker volume prune
 
 cache:
 	docker-compose exec app php artisan config:clear && \
 	docker-compose exec app php artisan cache:clear && \
 	docker-compose exec app php artisan route:clear
 
-stop:
-	docker-compose stop
+## Image de l'app
+
+build:
+	docker build -t i2fc/apc-report-app .
+
+run:
+	docker run -p 8888:80 \
+	--volume $(CURDIR)/dockerfs/nginx/conf.d:/etc/nginx/conf.d \
+	--volume $(CURDIR)/dockerfs/nginx/nginx.conf:/etc/nginx/nginx.conf \
+	--volume $(CURDIR)/dockerfs/php/php-fpm.d:/etc/php7/php-fpm.d \
+	--volume $(CURDIR)/dockerfs/supervisord.conf:/etc/supervisord.conf \
+	--name i2fc-apc-report-app \
+	i2fc/apc-report-app
+
+exec:
+	docker run -it \
+	-p 8888:80 \
+	--rm \
+	--volume $(CURDIR)/dockerfs/nginx/conf.d:/etc/nginx/conf.d \
+	--volume $(CURDIR)/dockerfs/nginx/nginx.conf:/etc/nginx/nginx.conf \
+	--volume $(CURDIR)/dockerfs/php/php-fpm.d:/etc/php7/php-fpm.d \
+	--volume $(CURDIR)/dockerfs/supervisord.conf:/etc/supervisord.conf \
+	--volume $(CURDIR)/dockerfs/var/log/nginx:/var/log/nginx \
+	--name i2fc-apc-report-app \
+	i2fc/apc-report-app \
+	/bin/bash

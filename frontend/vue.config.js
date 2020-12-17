@@ -1,7 +1,9 @@
 module.exports = {
-  outputDir: '../public',
+  outputDir: process.env.NODE_ENV === 'production'
+    ? 'dist/public/'
+    : '../public',
   indexPath: process.env.NODE_ENV === 'production'
-    ? '../resources/views/index.blade.php'
+    ? '../views/index.blade.php'
     : 'index.html',
   chainWebpack: (config) => {
     const svgRule = config.module.rule('svg');

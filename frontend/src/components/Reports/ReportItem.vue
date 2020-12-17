@@ -44,13 +44,13 @@
 
         <p
           v-if="isAppointmentFinishToday"
-          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
+          class="h-6 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
           Aujourd'hui
         </p>
 
         <p
           v-if="report.customer.has_been_deleted"
-          class="my-1  text-xs px-2 py-1/2 rounded-full border border-red-600 text-red-600 font-medium">
+          class="h-6 text-xs px-2 py-1/2 rounded-full border border-red-600 text-red-600 font-medium">
           <span>Partenaire supprimé</span>
         </p>
       </div>

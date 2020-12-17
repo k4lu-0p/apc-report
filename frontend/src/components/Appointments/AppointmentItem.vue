@@ -7,14 +7,14 @@
     v-if="appointment" class="border-l-2 bg-white shadow mb-2 rounded-r"
   >
     <div class="px-6">
-       <div class="flex justify-between items-center py-2">
+      <div class="flex justify-between items-center py-2">
         <div class="flex justify-start items-center">
           <clock-icon class="clock-icon"></clock-icon>
           <p class="text-gray-500 pl-2 text-xs">
             {{ $moment(appointment.start_at).calendar() }}
           </p>
         </div>
-        <div class="flex justify-start items-center">
+        <div v-if="location.address.city" class="flex justify-start items-center">
           <location-icon class="location-icon"></location-icon>
           <p class="text-gray-500 pl-2 text-xs">
             {{ location.address.city }}
@@ -40,7 +40,7 @@
         </p>
 
         <p
-           v-if="appointment.report.is_complete"
+          v-if="appointment.report.is_complete"
           class="h-6 mr-2 px-2 py-1/2 rounded-full border border-yellow-750 text-yellow-750 font-medium flex items-center">
           <accept-icon class="accept-icon2 mr-2"></accept-icon>
           <span>

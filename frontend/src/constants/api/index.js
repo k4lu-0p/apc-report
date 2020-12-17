@@ -1,14 +1,14 @@
-import APC_REPORT from './apc-report';
+import API_ENDPOINTS from './api-endpoints';
 import OPEN_WEATHER_MAP from './open-weather-map';
 import KEY from './key';
 import STATUS from './status';
 
 export default {
-  // BASE_URL: '', // Dev mod
-  // BASE_URL: 'http://localhost:8000', // Vue Serve mod
-  BASE_URL: 'https://apcreport.alphapluscourtage.fr', // Preprod mod
+  BASE_URL: process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8888'
+    : '',
   ENDPOINTS: {
-    APC_REPORT,
+    API_ENDPOINTS,
     OPEN_WEATHER_MAP,
   },
   STATUS,
