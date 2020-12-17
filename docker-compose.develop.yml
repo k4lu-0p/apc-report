@@ -4,3 +4,17 @@ services:
     volumes:
       - ./:/www
       - /www/vendor/
+    ports:
+      - 8888:80
+      - 8889:443
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8181:8080
+    networks:
+      - apc-report-network
+
+networks:
+    apc-report-network:
+        driver: bridge

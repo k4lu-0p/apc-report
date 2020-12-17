@@ -12,9 +12,6 @@ services:
       - db
     networks:
       - apc-report-network
-    ports:
-      - 8888:80
-      - 8889:443
     volumes:
       - ./dockerfs/var/log/nginx:/var/log/nginx
 
@@ -34,20 +31,5 @@ services:
     networks:
       - apc-report-network
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8181:8080
-    networks:
-      - apc-report-network
-
-  # certbot:
-  #   image: certbot/certbot
-  #   container_name: i2fc-apc-certbot
-  #   volumes:
-  #     - ./dockerfs/certbot:/etc/letsencrypt
-
 networks:
     apc-report-network:
-        driver: bridge
