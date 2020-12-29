@@ -1,11 +1,9 @@
 FROM node:12 as builder
 
-RUN npm install -g @vue/cli
-
 WORKDIR /app
 
-COPY ./frontend /app
-COPY ./frontend/package*.json /app
+COPY ./frontend ./
+COPY ./frontend/package*.json ./
 
 RUN yarn install
 RUN yarn build:prod

@@ -26,3 +26,4 @@ npm-debug.log
 yarn-error.log
 /.vscode
 /dockerfs/var/log/nginx/*.log
+supervisord.log

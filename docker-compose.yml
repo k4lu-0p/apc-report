@@ -5,7 +5,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     restart: unless-stopped
-    image: i2fc/apc-report-app
+    image: registry.lucasrobin.fr/i2fc-apc-report-app
     container_name: i2fc-apc-report-app
     working_dir: /www
     depends_on:

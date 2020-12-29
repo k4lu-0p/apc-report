@@ -24,7 +24,10 @@ cache:
 ## Image de l'app
 
 build:
-	docker build -t i2fc/apc-report-app .
+	docker build \
+    -t registry.lucasrobin.fr/i2fc-apc-report-app \
+    -t registry.lucasrobin.fr/i2fc-apc-report-app:stable \
+    .
 
 run:
 	docker run -p 8888:80 \
@@ -33,7 +36,7 @@ run:
 	--volume $(CURDIR)/dockerfs/php/php-fpm.d:/etc/php7/php-fpm.d \
 	--volume $(CURDIR)/dockerfs/supervisord.conf:/etc/supervisord.conf \
 	--name i2fc-apc-report-app \
-	i2fc/apc-report-app
+	registry.lucasrobin.fr/i2fc-apc-report-app
 
 exec:
 	docker run -it \
@@ -45,5 +48,5 @@ exec:
 	--volume $(CURDIR)/dockerfs/supervisord.conf:/etc/supervisord.conf \
 	--volume $(CURDIR)/dockerfs/var/log/nginx:/var/log/nginx \
 	--name i2fc-apc-report-app \
-	i2fc/apc-report-app \
+	registry.lucasrobin.fr/i2fc-apc-report-app \
 	/bin/bash
