@@ -1,35 +1,43 @@
 version: '3'
 services:
   app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    restart: unless-stopped
+    restart: always
     image: registry.lucasrobin.fr/i2fc-apc-report-app
     container_name: i2fc-apc-report-app
-    working_dir: /www
     depends_on:
       - db
     networks:
-      - apc-report-network
+      - apc_report
     volumes:
-      - ./dockerfs/var/log/nginx:/var/log/nginx
+      # - ./app/:/www
+      # - /www/vendor/
+      # - /www/public
+      - ./app/dockerfs/var/log/nginx:/var/log/nginx
+    ports:
+      - 8888:80
 
   db:
-    restart: unless-stopped
+    restart: always
     image: mysql:5.7
     container_name: i2fc-apc-report-mysql
-    env_file:
-      - .env
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_DATABASE: apc_report
+      MYSQL_ROOT_PASSWORD: www@i2fc@2020
+      MYSQL_PASSWORD: 20059478Lr
+      MYSQL_USER: www
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     networks:
-      - apc-report-network
+      - apc_report
+  
+  adminer:
+    restart: always
+    image: adminer
+    container_name: i2fc-apc-report-adminer
+    ports:
+      - 8181:8080
+    networks:
+      - apc_report
 
 networks:
-    apc-report-network:
+    apc_report:

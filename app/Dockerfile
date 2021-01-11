@@ -1,13 +1,3 @@
-FROM node:12 as builder
-
-WORKDIR /app
-
-COPY ./frontend ./
-COPY ./frontend/package*.json ./
-
-RUN yarn install
-RUN yarn build:prod
-
 FROM alpine:3.11
 
 ENV TIMEZONE=Europe/Paris \
@@ -77,8 +67,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /www
 COPY composer.* ./
 COPY . .
-COPY --from=builder /app/dist/public ./public
-COPY --from=builder /app/dist/views ./resources/views
+
+COPY --from=registry.lucasrobin.fr/i2fc-apc-report-static /app/dist/public ./public
+COPY --from=registry.lucasrobin.fr/i2fc-apc-report-static /app/dist/views ./resources/views
+
 RUN composer install
 
 RUN addgroup --gid $GID www

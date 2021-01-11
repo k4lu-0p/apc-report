@@ -4,7 +4,6 @@ env.*
 docker
 README.md
 .DS_Store
-frontend/node_modules
 /tmp/*
 *.csv
 vendor
