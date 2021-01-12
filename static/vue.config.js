@@ -1,4 +1,5 @@
 module.exports = {
+  lintOnSave: false,
   outputDir: 'dist/public/',
   indexPath: '../views/index.blade.php',
   chainWebpack: (config) => {
