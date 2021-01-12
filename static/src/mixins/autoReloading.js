@@ -3,13 +3,16 @@ export default {
     return {
       listenerVisibility: null,
       appIsVisible: true,
+      bypassedRouteNames: ['appointments-create', 'reports-edit'],
     };
   },
   methods: {
     handleVisibilityChange() {
       if (document.visibilityState === 'visible') {
-        this.appIsVisible = false;
-        window.location.reload();
+        if (!this.bypassedRouteNames.includes(this.$route.name)) {
+          this.appIsVisible = false;
+          window.location.reload();
+        }
       }
     },
   },
