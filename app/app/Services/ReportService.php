@@ -157,7 +157,7 @@ class ReportService
 
             // Todo: rendre dynamique : tous les email des comptes ADMIN
             $recipients = [
-                'lucas.rob1@live.fr',
+                'lucas.robin@alphapluscourtage.fr',
                 'jpheulpin@ymail.com',
             ];
 
