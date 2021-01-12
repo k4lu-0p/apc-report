@@ -183,13 +183,14 @@ class AppointmentService {
     public function updateById($id)
     {
         $appointment = Appointment::find($id);
-
         foreach ($this->request->all() as $key => $value) {
             if ($key === 'start_at' || $key === 'finish_at') {
                 // handle date format
                 $appointment->{$key} = Carbon::create($value)->format('Y-m-d H:i:s');
             } else {
-                $appointment->{$key} = $value ?: $appointment->{$key};
+                if ($key !== '_url') {
+                    $appointment->{$key} = $value ?: $appointment->{$key};
+                }
             }
 
         }
