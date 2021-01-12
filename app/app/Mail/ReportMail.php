@@ -14,8 +14,8 @@ class ReportMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private Report $report;
-    private User $user;
+    private $report;
+    private $user;
 
     /**
      * Create a new message instance.
