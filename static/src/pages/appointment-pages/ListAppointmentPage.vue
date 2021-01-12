@@ -11,8 +11,8 @@
 
         <!-- filtres -->
         <div class="flex flex-col py-6">
-           <!-- par nom du partenaire -->
-           <div class="pb-4">
+          <!-- par nom du partenaire -->
+          <div class="pb-4">
             <input-search
               id="customers"
               placeholder="Nom du partenaire"

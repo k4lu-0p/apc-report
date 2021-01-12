@@ -7,8 +7,11 @@ export async function list({ commit, rootState }) {
   const config = { headers: { Authorization: `Bearer ${token}` } };
   try {
     commit('setStatus', $const.API.STATUS.LOADING);
+
     const { data: { data: settings } } = await axios.get(endpoint, config);
+
     localStorage.setItem('settings', JSON.stringify(settings));
+
     commit('setSettings', settings);
     commit('setStatus', $const.API.STATUS.SUCCESS);
   } catch (error) {

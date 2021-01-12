@@ -253,7 +253,6 @@ export default {
       const { id } = this.appointment;
       this.appointment = null;
       this.isVisibleModal = false;
-      console.log(this.$store);
       this.$store.dispatch('appointmentsModule/remove', id)
         .then(() => {
           this.$router.go(-1);
