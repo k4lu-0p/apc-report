@@ -8,6 +8,9 @@ migrate:
 users:
 	docker-compose exec app php artisan db:seed --class=UserSeeder
 
+settings:
+	docker-compose exec app php artisan db:seed --class=SettingSeeder
+
 tinker:
 	docker-compose exec app php artisan tinker
 

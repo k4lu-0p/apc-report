@@ -77,6 +77,9 @@ RUN addgroup --gid $GID www
 RUN adduser -D --uid $UID -G www -h /home/www www
 RUN chown -R www:www /www
 
+# TEMP : Fix permission denied log file
+RUN chmod -R 777 storage/
+
 EXPOSE 80 443
 
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]

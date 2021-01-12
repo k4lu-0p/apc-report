@@ -9,9 +9,8 @@ services:
     networks:
       - apc_report
     volumes:
-      # - ./app/:/www
-      # - /www/vendor/
-      # - /www/public
+      - ./app/:/www
+      - /www/vendor/
       - ./app/dockerfs/var/log/nginx:/var/log/nginx
     ports:
       - 8888:80
