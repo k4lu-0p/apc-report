@@ -94,7 +94,9 @@ class CustomerService {
     public function updateById($id) {
         $customer = Customer::find($id);
         foreach ($this->request->all() as $key => $value) {
-            $customer->{$key} = $value ?: $customer->{$key};
+            if ($key !== '_url') {
+                $customer->{$key} = $value ?: $customer->{$key};
+            }
         }
         $customer->save();
         return response()->customerUpdated($customer);
@@ -108,7 +110,7 @@ class CustomerService {
         $result = Customer::query()
             ->offset($this->request->offset)
             ->limit($this->request->limit)
-            ->orderBy('name', 'asc')
+            ->orderBy('commercial_name', 'asc')
             ->get();
 
         return CustomerResource::collection($result);
