@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Mario Silveri',
-            'email' => 'mario.silveri@aplhapluscourtage.fr',
+            'email' => 'mario.silveri@alphapluscourtage.fr',
             'password' => Hash::make('apc'),
             'roles' => ["ROLE_USER"],
         ]);
