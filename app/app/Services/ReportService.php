@@ -159,6 +159,7 @@ class ReportService
             $recipients = [
                 'lucas.robin@alphapluscourtage.fr',
                 'jpheulpin@ymail.com',
+                'gilles.gavoille@i2fc.fr',
             ];
 
             foreach ($recipients as $recipient) {
