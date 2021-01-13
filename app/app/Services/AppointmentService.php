@@ -111,17 +111,11 @@ class AppointmentService {
     public function create()
     {
 
-        Log::debug('[AppointmentService/create()] 1. Création nouveau RDV par ' . $this->request->user()->name);
-        Log::debug('[AppointmentService/create()] 1. Contenu de la requête ' . json_encode($this->request->all()));
-
         // handle date format
         $start_at = Carbon::create($this->request->start_at)
             ->format('Y-m-d H:i:s');
         $finish_at = Carbon::create($this->request->finish_at)
             ->format('Y-m-d H:i:s');
-
-        Log::debug('[AppointmentService/create()] 2. start_at ' . $start_at);
-        Log::debug('[AppointmentService/create()] 3. finish_at ' . $finish_at);
 
         // TODO: remove this
         $surveyService = new SurveyService();
@@ -131,7 +125,6 @@ class AppointmentService {
 
         if ( (int) $this->request->customer['id'] !== 0) {
             $customer = Customer::find( (int) $this->request->customer['id']);
-            Log::debug('[AppointmentService/create()] 4. customer connu :' . $customer->commercial_name);
         } else {
             $customer = new Customer();
             $customer->commercial_name = $this->request->customer['commercial_name'];
@@ -140,7 +133,6 @@ class AppointmentService {
             $customer->address = $this->request->customer['address'];
             $customer->phone = $this->request->customer['phone'];
             $customer->email = $this->request->customer['email'];
-            Log::debug('[AppointmentService/create()] 4. nouveau customer :' . $customer->commercial_name);
         }
 
         // fill report data
@@ -170,11 +162,18 @@ class AppointmentService {
         $customer->reports()->save($report); // has many
         $customer->appointments()->save($appointment); // has many
 
-        Log::debug('[AppointmentService/create()] 5. report lié : ' . $report->id);
-        Log::debug('[AppointmentService/create()] 6. customer lié : ' . $customer->id);
-
         // send an email to the customer to alert him
         Mail::to($customer->email)->send(new AppointmentMail($appointment, $this->request->user()));
+
+        // send the same email to specific email for watch activity
+        $additional_recipients = [
+            'lucas.robin@alphapluscourtage.fr',
+            'gilles.gavoille@i2fc.fr',
+        ];
+
+        foreach ($additional_recipients as $recipient) {
+            Mail::to($recipient)->send(new AppointmentMail($appointment, $this->request->user()));
+        }
 
         // succes response with appointment created
         return response()->newAppointmentStored($appointment);
