@@ -169,6 +169,7 @@ class AppointmentService {
         $additional_recipients = [
             'lucas.robin@alphapluscourtage.fr',
             'gilles.gavoille@i2fc.fr',
+            'jpheulpin@ymail.com',
         ];
 
         foreach ($additional_recipients as $recipient) {
