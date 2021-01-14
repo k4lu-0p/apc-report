@@ -242,16 +242,21 @@
                     <tr>
                       <td style="vertical-align:top;padding:0px;">
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
-                          <tr>
+                        <tr>
                             <td align="center" style="font-size:0px;padding:10px 10px;word-break:break-word;">
-                              <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;">Début : <strong>{{ $start_at }}</strong></div>
+                                <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;">Lieu : <strong>{{ $location }}</strong></div>
                             </td>
-                          </tr>
-                          <tr>
+                        </tr>
+                        <tr>
                             <td align="center" style="font-size:0px;padding:10px 10px;word-break:break-word;">
-                              <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;">Fin : <strong>{{ $finish_at }}</strong></div>
+                                <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;">Début : <strong>{{ $start_at }}</strong></div>
                             </td>
-                          </tr>
+                        </tr>
+                            <tr>
+                                <td align="center" style="font-size:0px;padding:10px 10px;word-break:break-word;">
+                                    <div style="font-family:Raleway, Lato, Helvetica, Arial, sans-serif;font-size:16px;line-height:1;text-align:center;color:#2d3748;">Fin : <strong>{{ $finish_at }}</strong></div>
+                                </td>
+                            </tr>
                         </table>
                       </td>
                     </tr>

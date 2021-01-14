@@ -32,6 +32,7 @@
 
     <mj-section background-color="#fff" padding="10px">
     	<mj-column>
+              	<mj-text align="center" color="#2d3748" font-size="16px" font-family="Raleway, Lato, Helvetica, Arial, sans-serif" padding="10px 10px">Lieu : <strong>{{ $location }}</strong></mj-text>
       	<mj-text align="center" color="#2d3748" font-size="16px" font-family="Raleway, Lato, Helvetica, Arial, sans-serif" padding="10px 10px">Début : <strong>{{ $start_at }}</strong></mj-text>
         <mj-text align="center" color="#2d3748" font-size="16px" font-family="Raleway, Lato, Helvetica, Arial, sans-serif" padding="10px 10px">Fin : <strong>{{ $finish_at }}</strong></mj-text>
       </mj-column>
