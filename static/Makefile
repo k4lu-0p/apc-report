@@ -1,6 +1,6 @@
 IMG_NAME=registry.lucasrobin.fr/i2fc-apc-report-static
 APP_NAME=i2fc-apc-report-static
-APP_PORT=4444
+APP_PORT=4445
 
 build:
 	docker image build \
