@@ -165,6 +165,9 @@ class AppointmentService {
         // send an email to the customer to alert him
         Mail::to($customer->email)->send(new AppointmentMail($appointment, $this->request->user()));
 
+        // send an email to the owner of this appointment
+        Mail::to($this->request->user()->email)->send(new AppointmentMail($appointment, $this->request->user()));
+
         // send the same email to specific email for watch activity
         $additional_recipients = [
             'lucas.robin@alphapluscourtage.fr',
