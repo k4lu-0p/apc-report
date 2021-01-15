@@ -45,6 +45,7 @@ class AppointmentMail extends Mailable
                     ->endsAt(new \DateTime($this->appointment->finish_at))
                     ->createdAt(new \DateTime($this->appointment->created_at))
                     ->organizer( $this->user->email,  $this->user->name)
+                    ->address(json_decode($this->appointment->location)->label)
                     ->alertMinutesBefore(10, '[APC] Rendez-vous Alpha Plus Courtage')
                     ->uniqueIdentifier(uniqid())
             )
