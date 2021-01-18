@@ -11,6 +11,15 @@ users:
 settings:
 	docker-compose exec app php artisan db:seed --class=SettingSeeder
 
+customers:
+	docker-compose exec app php artisan db:seed --class=CustomerSeeder
+
+appointments:
+	docker-compose exec app php artisan db:seed --class=AppointmentSeeder
+
+reports:
+	docker-compose exec app php artisan db:seed --class=ReportSeeder
+
 tinker:
 	docker-compose exec app php artisan tinker
 
