@@ -17,7 +17,7 @@ services:
 
   db:
     restart: always
-    image: mysql:5.7
+    image: mariadb:10.5.8
     container_name: i2fc-apc-report-mysql
     environment:
       MYSQL_DATABASE: apc_report
