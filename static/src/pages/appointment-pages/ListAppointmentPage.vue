@@ -143,6 +143,16 @@ export default {
       hasGetMax: false,
     };
   },
+  watch: {
+    'params.period'() {
+      this.clearAppointments();
+      this.fetchAppointments();
+    },
+    'params.report_status'() {
+      this.clearAppointments();
+      this.fetchAppointments();
+    }
+  },
   methods: {
     fetchAppointments() {
       if (this.status !== this.$const.API.STATUS.LOADING) {
