@@ -35,6 +35,7 @@ RUN apk update && apk upgrade --force && apk add --no-cache \
     php7-pdo_pgsql \
     php7-pdo_sqlite \
     php7-phar \
+    php7-fileinfo \
     php7-posix \
     php7-session \
     php7-soap \
@@ -54,6 +55,8 @@ RUN apk add --no-cache \
     coreutils \
     gettext \
     tzdata
+
+# RUN sed 's/;extension=fileinfo/extension=fileinfo/g' /etc/php7/php.ini
 
 RUN rm /var/cache/apk/* && \
     mkdir -p /www
