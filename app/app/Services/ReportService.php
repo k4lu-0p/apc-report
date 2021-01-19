@@ -73,11 +73,13 @@ class ReportService
     private function getAll()
     {
         $result = Report::query()
+            ->join('appointments', 'reports.appointment_id', '=', 'appointments.id')
             ->where('reports.user_id', '=', $this->user->id)
             ->offset($this->request->offset)
             ->limit($this->request->limit)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('appointments.start_at', 'asc')
             ->get();
+
 
         return ReportResource::collection($result);
     }
