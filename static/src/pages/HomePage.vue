@@ -9,25 +9,42 @@
         leave-active-class="animated fadeOut faster-x2"
       >
         <div v-if="status === $const.API.STATUS.SUCCESS">
+
+          <!-- Méteo -->
           <weather-widget></weather-widget>
+
+          <!-- Titre du jour -->
           <home-title />
+
           <div>
+
+
             <hello-card
               :appointments-length="appointments.length"
               :user-name="username"
             />
+
+            <!-- Rendez-vous du jour -->
             <div>
-              <appointment-item
-                v-for="(appointment, index) in appointments"
-                :key="`appointment-${appointment.id}-${index}`"
-                :id="`appointment-${appointment.id}-${index}`"
-                :delay-anim="index"
-                :appointment="appointment">
-              </appointment-item>
+              <div
+                :class="[index === appointments.length - 1 ? 'mb-6' : '']"
+                v-for="(appointment, index) in appointments" :key="`appointment-today-${index}`"
+              >
+                <appointment-item
+                  :key="`appointment-${appointment.id}-${index}`"
+                  :id="`appointment-${appointment.id}-${index}`"
+                  :delay-anim="index"
+                  :appointment="appointment">
+                </appointment-item>
+              </div>
             </div>
+
           </div>
         </div>
+
+        <!-- Loader -->
         <spinner v-else-if="status === $const.API.STATUS.LOADING" :is-visible="true"></spinner>
+
       </transition>
     </div>
   </div>
