@@ -28,3 +28,9 @@ cache:
 	docker-compose exec app php artisan cache:clear && \
 	docker-compose exec app php artisan route:clear
 
+populate:
+	docker-compose exec app php artisan db:seed --class=SettingSeeder
+	docker-compose exec app php artisan db:seed --class=UserSeeder
+	docker-compose exec app php artisan db:seed --class=CustomerSeeder
+	docker-compose exec app php artisan db:seed --class=AppointmentSeeder
+	
