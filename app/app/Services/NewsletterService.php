@@ -37,13 +37,35 @@ class NewsletterService {
         $pdf = $fileId . '-alpha-plus-courtage.' . 'pdf';
         $attachment->move(public_path('uploads'), $pdf);
 
-        // mise en file d'attente de l'envoi
-        foreach ($customers as $customer) {
-            $to = $customer->email;
-            Mail::to($to)->queue(new CustomerMail($customer, $subject, $content, $pdf));
+        if (!empty($customers)) {
+            // send an email to the owner of this newsletter
+            Mail::to($this->request->user()->email)->send(new CustomerMail($customers[0], $subject, $content, $pdf));
+
+            // send the same email to specific email for watch activity
+            $additional_recipients = [ 'lucas.robin@alphapluscourtage.fr' ];
+            if (env('APP_DEBUG', true) === false) {
+                $additional_recipients = array_merge($additional_recipients, [
+                    'gilles.gavoille@i2fc.fr',
+                    'jpheulpin@ymail.com',
+                ]);
+            }
+
+            foreach ($additional_recipients as $recipient) {
+                Mail::to($recipient)->send(new CustomerMail($customers[0], $subject, $content, $pdf));
+            }
+
+            // mise en file d'attente de l'envoi
+            foreach ($customers as $customer) {
+                $to = $customer->email;
+                Mail::to($to)->queue(new CustomerMail($customer, $subject, $content, $pdf));
+            }
+
+            return response([ 'message' => 'success' ], 200);
+
         }
 
-        return response([ 'message' => 'success'], 200);
+        return response([ 'message' => 'failed' ], 500);
+
     }
 
 }

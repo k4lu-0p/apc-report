@@ -169,11 +169,13 @@ class AppointmentService {
         Mail::to($this->request->user()->email)->send(new AppointmentMail($appointment, $this->request->user()));
 
         // send the same email to specific email for watch activity
-        $additional_recipients = [
-            'lucas.robin@alphapluscourtage.fr',
-            'gilles.gavoille@i2fc.fr',
-            'jpheulpin@ymail.com',
-        ];
+        $additional_recipients = [ 'lucas.robin@alphapluscourtage.fr' ];
+        if (env('APP_DEBUG', true) === false) {
+            $additional_recipients = array_merge($additional_recipients, [
+                'gilles.gavoille@i2fc.fr',
+                'jpheulpin@ymail.com',
+            ]);
+        }
 
         foreach ($additional_recipients as $recipient) {
             Mail::to($recipient)->send(new AppointmentMail($appointment, $this->request->user()));
