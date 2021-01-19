@@ -30,8 +30,8 @@
       <div class="flex flex-wrap py-2">
         <p
           v-if="report.is_complete === 0 && isAppointmentOver"
-          class="my-1 mr-2 px-2 py-1/2 rounded-full border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
-          <warning-icon class="warning-icon mr-1"></warning-icon>
+          class="h-6 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-800 bg-purple-800 text-white font-medium flex items-center">
+          <warning-icon class="warning-icon h-4 mr-2 fill-current"></warning-icon>
           <span>À compléter</span>
         </p>
 
