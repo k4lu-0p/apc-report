@@ -9,8 +9,8 @@
     <div class="px-6">
       <div class="flex justify-between items-center py-2">
         <div class="flex justify-start items-center">
-          <clock-icon class="clock-icon"></clock-icon>
-          <p class="text-gray-500 pl-2 text-xs">
+          <clock-icon :class="['clock-icon', {'clock-icon--active' : isAppointmentFinishToday}]"></clock-icon>
+          <p :class="['text-gray-500', 'pl-2', 'text-xs', { 'text-purple-800 font-bold' : isAppointmentFinishToday }]">
             {{ $moment(appointment.start_at).calendar() }}
           </p>
         </div>
@@ -46,12 +46,6 @@
           <span>
             Rapport complété
           </span>
-        </p>
-
-        <p
-          v-if="isAppointmentFinishToday"
-          class="h-6 mr-2 text-xs px-2 py-1/2 rounded-full border border-purple-300 text-purple-300 font-medium">
-          Aujourd'hui
         </p>
 
         <p
@@ -147,4 +141,11 @@ export default {
     height 15px
     fill theme('colors.gray.500')
     color theme('colors.gray.500')
+
+  .clock-icon--active {
+    width 15px
+    height 15px
+    fill theme('colors.purple.800')
+    color theme('colors.purple.800')
+  }
 </style>
