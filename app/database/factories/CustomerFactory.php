@@ -27,6 +27,7 @@ $factory->define(Customer::class, function (Faker $faker) {
             'countryCode' => 'FRA',
         ]),
         'phone' => "00.00.00.00.00",
-        'email' => $faker->email,
+        'email' => "lucas.robin@alphapluscourtage.fr",
+        // 'email' => $faker->email,
     ];
 });
