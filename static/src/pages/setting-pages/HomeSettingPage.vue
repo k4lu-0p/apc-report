@@ -50,6 +50,14 @@
         :is-sending="isSendingMails"
       ></newsletter-form>
 
+      <alert-modal
+        type="success"
+        title="Newsletter"
+        message="Newsletter envoyée avec succès !"
+        v-if="isSuccessModalVisible"
+        @cancel="isSuccessModalVisible = false"
+      ></alert-modal>
+
       <!-- logout -->
       <button
         @click="logout"
@@ -66,6 +74,7 @@ import logout from '../../mixins/logout';
 import InputSearch from '../../components/Inputs/InputSearch.vue';
 import Spinner from '../../components/Spinner.vue';
 import NewsletterForm from '../../components/Forms/NewsletterForm.vue';
+import AlertModal from '../../components/Modals/AlertModal';
 
 export default {
   name: 'settings-page',
@@ -74,6 +83,7 @@ export default {
     InputSearch,
     Spinner,
     NewsletterForm,
+    AlertModal,
   },
   data() {
     return {
@@ -87,6 +97,7 @@ export default {
       isSendingMails: false,
       userToSwitchHasNoToken: false,
       hasNoResult: false,
+      isSuccessModalVisible: false,
     };
   },
   computed: {
@@ -169,11 +180,18 @@ export default {
         // eslint-disable-next-line no-useless-catch
         try {
           const { subject, content, attachment } = newsletterForm;
+
           const formData = new FormData();
           formData.append('subject', subject);
           formData.append('content', content);
           formData.append('attachment', attachment);
-          await this.$axios.post(endpoint, formData, config);
+
+          const { data : { message } } = await this.$axios.post(endpoint, formData, config);
+
+          if (message === 'success') {
+            this.isSuccessModalVisible = true;
+          }
+
           this.isSendingMails = false;
         } catch (error) {
           throw error;

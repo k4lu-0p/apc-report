@@ -95,6 +95,9 @@ export default {
   methods: {
     onSubmit() {
       this.$emit('submit', this.form);
+      this.form.subject = null;
+      this.form.content = null;
+      this.form.attachment = null;
     },
   },
 };
